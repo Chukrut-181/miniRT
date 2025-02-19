@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 10:28:29 by igchurru          #+#    #+#             */
-/*   Updated: 2025/02/19 11:34:09 by igchurru         ###   ########.fr       */
+/*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
+/*   Updated: 2025/02/19 11:30:43 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#include "../include/minirt.h"
 
-# include "../libft/libft.h"
-# include "../MLX42/include/MLX42/MLX42.h"
-
-#endif
+int	main(int argc, char **argv)
+{
+	if (argc != 2)
+		return (1);
+	else
+		printf("Test main: %s\n", argv[1]);
+	return (0);
+}
