@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/02/19 14:31:30 by igchurru         ###   ########.fr       */
+/*   Created: 2025/02/19 13:23:51 by igchurru          #+#    #+#             */
+/*   Updated: 2025/02/19 14:29:57 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-int	main(int argc, char **argv)
+void ft_handle_key(mlx_key_data_t keydata, void *param)
 {
-	(void)argv;
-	if (argc != 2)
-		ft_error_exit("Error\nUsage: ./miniRT <arg1>", 1);
-	else
-		ft_minirt();
-	return (0);
+
+	mlx_t *mlx;
+	mlx = (mlx_t *)param;
+	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
+	{
+		mlx_close_window(mlx);
+	}
 }

@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   miniRT.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/02/19 14:31:30 by igchurru         ###   ########.fr       */
+/*   Created: 2025/02/19 13:09:24 by igchurru          #+#    #+#             */
+/*   Updated: 2025/02/19 14:32:48 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-int	main(int argc, char **argv)
+int	ft_minirt(void)
 {
-	(void)argv;
-	if (argc != 2)
-		ft_error_exit("Error\nUsage: ./miniRT <arg1>", 1);
-	else
-		ft_minirt();
+	mlx_t 		*mlx;
+	mlx_image_t	*image;
+
+	mlx = mlx_init(2400, 1800, "miniRT", true);
+	image = mlx_new_image(mlx, 2400, 1800);
+	mlx_image_to_window(mlx, image, 0, 0);
+	mlx_key_hook(mlx, ft_handle_key, mlx);
+	mlx_loop(mlx);
+	mlx_terminate(mlx);
 	return (0);
 }

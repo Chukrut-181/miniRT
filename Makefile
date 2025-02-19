@@ -6,7 +6,7 @@
 #    By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/19 10:29:45 by igchurru          #+#    #+#              #
-#    Updated: 2025/02/19 11:26:20 by igchurru         ###   ########.fr        #
+#    Updated: 2025/02/19 12:07:48 by igchurru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME = miniRT
 CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
+MLX42_FLAGS = -ldl -lglfw -pthread
 
 SRC_DIR = sources
 OBJ_DIR = objects
@@ -22,7 +23,7 @@ OBJ_DIR = objects
 SRCS = $(wildcard $(SRC_DIR)/*.c)
 OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 
-LIBFT = libft/libft.a
+LIBS = MLX42/build/libmlx42.a libft/libft.a
 
 GREEN = \033[0;32m
 RED = \033[0;31m
@@ -32,8 +33,8 @@ RESET = \033[0m
 
 all: libft mlx42 $(NAME)
 
-$(NAME): $(OBJ_DIR) $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) -lm $(OBJS) $(LIBFT) -o $(NAME)
+$(NAME): $(OBJS) $(LIBS)
+	@$(CC) $(CFLAGS) $(MLX42_FLAGS) -lm $(OBJS) $(LIBS) -o $(NAME)
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
@@ -58,10 +59,10 @@ libft:
 	@make -C libft
 
 mlx42:
-	if [ ! -d "MLX42/build" ]; then \
+	@if [ ! -d "MLX42/build" ]; then \
 		mkdir -p MLX42/build && cd MLX42/build && cmake ..; \
 	fi
-	make -C MLX42/build
+	@make -C MLX42/build
 
 update:
 	@git submodule update --init --recursive --remote
