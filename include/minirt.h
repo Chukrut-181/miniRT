@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:28:29 by igchurru          #+#    #+#             */
-/*   Updated: 2025/02/19 14:32:03 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:26:41 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,16 @@
 
 # include "../libft/libft.h"
 # include "../MLX42/include/MLX42/MLX42.h"
+
+# define EPSILON 0.00001
+
+typedef struct s_tuple
+{
+	float	x;
+	float	y;
+	float	z;
+	int		w;
+}	t_tuple;
 
 //	MAIN
 int		main(int argc, char **argv);
