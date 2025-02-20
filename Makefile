@@ -6,7 +6,7 @@
 #    By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/19 10:29:45 by igchurru          #+#    #+#              #
-#    Updated: 2025/02/19 12:07:48 by igchurru         ###   ########.fr        #
+#    Updated: 2025/02/20 09:43:26 by igchurru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ all: libft mlx42 $(NAME)
 
 $(NAME): $(OBJS) $(LIBS)
 	@$(CC) $(CFLAGS) $(MLX42_FLAGS) -lm $(OBJS) $(LIBS) -o $(NAME)
+	@echo "$(GREEN)-> MiniRT: miniRT compilation OK$(RESET)"
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
