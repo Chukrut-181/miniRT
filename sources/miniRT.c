@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:09:24 by igchurru          #+#    #+#             */
-/*   Updated: 2025/02/20 15:44:00 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/02/24 10:13:15 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	ft_minirt(void)
 
 	mlx = mlx_init(2400, 1800, "miniRT", true);
 	image = mlx_new_image(mlx, 2400, 1800);
+	ft_minigun(image);
 	mlx_image_to_window(mlx, image, 0, 0);
 	mlx_key_hook(mlx, ft_handle_key, mlx);
 	mlx_loop(mlx);

@@ -6,11 +6,11 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:08:59 by igchurru          #+#    #+#             */
-/*   Updated: 2025/02/21 11:42:02 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/02/24 10:16:36 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test_header.h"
+#include "../include/minirt.h"
 
 
 t_tuple	ft_create_point(float x, float y, float z)

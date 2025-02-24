@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:28:29 by igchurru          #+#    #+#             */
-/*   Updated: 2025/02/24 10:04:35 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/02/24 10:38:16 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../libft/libft.h"
 # include "../MLX42/include/MLX42/MLX42.h"
 # include <math.h>
+# include <stdio.h>
 
 # define EPSILON 0.00001
 
@@ -28,6 +29,8 @@ typedef struct s_tuple
 }	t_tuple;
 
 //	MAIN
+void	ft_draw_large_pixel(mlx_image_t	*image, int x, int y, int size);
+void	ft_minigun(mlx_image_t	*image);
 int		main(int argc, char **argv);
 
 //	MINIRT

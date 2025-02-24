@@ -6,11 +6,11 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:36:49 by igchurru          #+#    #+#             */
-/*   Updated: 2025/02/21 11:42:12 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/02/24 10:16:42 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test_header.h"
+#include "../include/minirt.h"
 
 t_tuple	ft_add_tuples(t_tuple *tuple1, t_tuple *tuple2)
 {
