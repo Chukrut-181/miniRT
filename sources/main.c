@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/02/24 10:47:39 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/02/24 10:53:30 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_draw_large_pixel(mlx_image_t	*image, int x, int y, int size)
 		w = 0;
 		while (w < size)
 		{
-			mlx_put_pixel(image, x + w, (1800 - y + h), 0xFFFFFFFF);
+			mlx_put_pixel(image, x + w, (1800 - y + h), 0xFF0000FF);
 			w++;
 		}
 		h++;
@@ -41,9 +41,9 @@ void	ft_minigun(mlx_image_t	*image)
 	float	l;
 
 	bullet = ft_create_point(0, 1, 0);						//	A point in space.
-	velocity = ft_create_vector(1, 2, 0);					//	A vector representing movement.
+	velocity = ft_create_vector(1, 1, 0);					//	A vector representing movement.
 	ft_normalize(&velocity);
-	velocity = ft_multiply_tuple(&velocity, 1.7);								//	Muzzle speed is 1 click per tick.
+	velocity = ft_multiply_tuple(&velocity, 1.5);								//	Muzzle speed is 1 click per tick.
 	gravity = ft_create_vector(0, -0.1, 0);					//	A vector representing gravity.
 	wind = ft_create_vector(-0.01, 0, 0);					//	A vector representing drag.
 	environment = ft_add_tuples(&gravity, &wind);			//	Environment is gravity + drag
