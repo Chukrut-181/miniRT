@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:28:29 by igchurru          #+#    #+#             */
-/*   Updated: 2025/02/24 10:38:16 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/02/25 11:56:33 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,21 @@ typedef struct s_tuple
 	float	z;
 	int		w;
 }	t_tuple;
+
+typedef struct s_4x4
+{
+	float	data[4][4];
+}	t_4x4;
+
+typedef struct s_3x3
+{
+	float	data[3][3];
+}	t_3x3;
+
+typedef struct s_2x2
+{
+	float	data[2][2];
+}	t_2x2;
 
 //	MAIN
 void	ft_draw_large_pixel(mlx_image_t	*image, int x, int y, int size);
@@ -53,6 +68,14 @@ float	ft_calculate_magnitude(t_tuple *v);
 void	ft_normalize(t_tuple *v);
 float	ft_dot_product(t_tuple *v1, t_tuple *v2);
 t_tuple	ft_cross_product(t_tuple *v1, t_tuple *v2);
+
+//	MATRIX OPERATIONS
+int		ft_check_matrix_equality(t_4x4 *matrix1, t_4x4 *matrix2);
+t_4x4	ft_multiply_matrices(t_4x4 *matrix1, t_4x4 *matrix2);
+t_tuple	ft_multiply_mat_and_tuple(t_4x4 *matrix, t_tuple *tuple);
+
+// MATRIX DETERMINANT
+float	ft_calculate_determinant(t_4x4 *matrix);
 
 //	HOOKS
 void	ft_handle_key(mlx_key_data_t keydata, void *param);
