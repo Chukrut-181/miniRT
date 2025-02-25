@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:10:23 by igchurru          #+#    #+#             */
-/*   Updated: 2025/02/25 11:54:16 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/02/25 15:23:53 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static float	determinant_3x3(t_3x3 submx)
 		- submx.data[1][1] * submx.data[2][0]));
 }
 
-static void	get_submatrix_3x3(t_4x4 *matrix, t_3x3 *submatrix, int exclude_col)
+static void	get_3x3_submatrix(t_4x4 *matrix, t_3x3 *submatrix, int exclude_col)
 {
 	int	row;
 	int	i;
@@ -60,7 +60,7 @@ float	ft_calculate_determinant(t_4x4 *matrix)
 	col = 0;
 	while (col < 4)
 	{
-		get_submatrix_3x3(matrix, &submatrix, col);
+		get_3x3_submatrix(matrix, &submatrix, col);
 		determinant += sign * matrix->data[0][col] * determinant_3x3(submatrix);
 		sign = -sign;
 		col++;
