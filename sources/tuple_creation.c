@@ -6,12 +6,11 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:08:59 by igchurru          #+#    #+#             */
-/*   Updated: 2025/02/24 10:16:36 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/02/25 12:01:43 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
-
 
 t_tuple	ft_create_point(float x, float y, float z)
 {
@@ -44,4 +43,3 @@ int	ft_check_equality(t_tuple *tuple1, t_tuple *tuple2)
 	else
 		return (1);
 }
-
