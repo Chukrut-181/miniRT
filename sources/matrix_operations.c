@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 09:50:24 by igchurru          #+#    #+#             */
-/*   Updated: 2025/02/26 10:35:12 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/02/26 10:51:06 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ t_4x4	ft_find_inverse(t_4x4 *matrix)
 
 	cofdet[1] = ft_calculate_determinant(matrix);
 	if (cofdet[1] == 0)
-		return (inverse);
+		return (*matrix);
 	row = -1;
 	while (++row < 4)
 	{

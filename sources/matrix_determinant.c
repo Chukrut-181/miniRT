@@ -6,13 +6,13 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:10:23 by igchurru          #+#    #+#             */
-/*   Updated: 2025/02/26 10:37:39 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/02/26 10:50:08 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-static float	ft_determinant_3x3(t_3x3 submx)
+float	ft_determinant_3x3(t_3x3 submx)
 {
 	return (submx.data[0][0] * (submx.data[1][1] * submx.data[2][2]
 		- submx.data[1][2] * submx.data[2][1])
