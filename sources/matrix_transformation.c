@@ -2,9 +2,7 @@
 
 //static void	ft_print_4x4(t_4x4 *matrix)
 //{
-//	int i = 0;
-//	int j;
-//
+//	int i = 0; //	int j; //
 //	while (i < 4)
 //	{
 //		j = 0;
@@ -49,5 +47,16 @@ t_4x4	*translation(t_tuple *tuple)
 	identity_matrix->data[0][3] = tuple->x;
 	identity_matrix->data[1][3] = tuple->y;
 	identity_matrix->data[2][3] = tuple->z;
+	return (identity_matrix);
+}
+
+t_4x4	*scaling(t_tuple *tuple)
+{
+	t_4x4	*identity_matrix;
+
+	identity_matrix = ft_create_identity_matrix();
+	identity_matrix->data[0][0] = tuple->x;
+	identity_matrix->data[1][1] = tuple->y;
+	identity_matrix->data[2][2] = tuple->z;
 	return (identity_matrix);
 }
