@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:28:29 by igchurru          #+#    #+#             */
-/*   Updated: 2025/02/26 10:51:53 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:27:08 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,9 @@ t_4x4	ft_find_inverse(t_4x4 *matrix);
 // MATRIX DETERMINANT
 float	ft_calculate_determinant(t_4x4 *matrix);
 float	ft_determinant_3x3(t_3x3 submx);
+
+// MATRIX TRANSFOMATION
+t_4x4	*translation();
 
 //	HOOKS
 void	ft_handle_key(mlx_key_data_t keydata, void *param);
