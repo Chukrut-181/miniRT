@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:28:29 by igchurru          #+#    #+#             */
-/*   Updated: 2025/02/25 11:56:33 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/02/26 10:51:53 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ typedef struct s_2x2
 	float	data[2][2];
 }	t_2x2;
 
+int		ft_test_matrix_functions(void);
+
 //	MAIN
 void	ft_draw_large_pixel(mlx_image_t	*image, int x, int y, int size);
 void	ft_minigun(mlx_image_t	*image);
@@ -73,9 +75,11 @@ t_tuple	ft_cross_product(t_tuple *v1, t_tuple *v2);
 int		ft_check_matrix_equality(t_4x4 *matrix1, t_4x4 *matrix2);
 t_4x4	ft_multiply_matrices(t_4x4 *matrix1, t_4x4 *matrix2);
 t_tuple	ft_multiply_mat_and_tuple(t_4x4 *matrix, t_tuple *tuple);
+t_4x4	ft_find_inverse(t_4x4 *matrix);
 
 // MATRIX DETERMINANT
 float	ft_calculate_determinant(t_4x4 *matrix);
+float	ft_determinant_3x3(t_3x3 submx);
 
 //	HOOKS
 void	ft_handle_key(mlx_key_data_t keydata, void *param);
