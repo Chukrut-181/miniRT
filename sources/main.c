@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/02/26 16:48:15 by eandres          ###   ########.fr       */
+/*   Updated: 2025/02/27 15:22:25 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		ft_error_exit("Error\nUsage: ./miniRT <arg1>", 1);
 	else
-		translation(tuple);
+		ft_minirt();
 	return (0);
 }

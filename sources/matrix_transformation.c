@@ -16,7 +16,7 @@
 //	}
 //}
 //
-t_4x4	*ft_create_identity_matrix()
+t_4x4	*ft_create_identity_matrix(void)
 {
 	t_4x4	*matrix = malloc(sizeof(t_4x4) * 1);
 

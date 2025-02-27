@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:28:29 by igchurru          #+#    #+#             */
-/*   Updated: 2025/02/26 17:13:07 by eandres          ###   ########.fr       */
+/*   Updated: 2025/02/27 15:15:40 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,9 @@ typedef struct s_2x2
 	float	data[2][2];
 }	t_2x2;
 
-int		ft_test_matrix_functions(void);
+
 
 //	MAIN
-void	ft_draw_large_pixel(mlx_image_t	*image, int x, int y, int size);
-void	ft_minigun(mlx_image_t	*image);
 int		main(int argc, char **argv);
 
 //	MINIRT
@@ -82,12 +80,20 @@ float	ft_calculate_determinant(t_4x4 *matrix);
 float	ft_determinant_3x3(t_3x3 submx);
 
 // MATRIX TRANSFOMATION
-t_4x4	*translation();
+t_4x4	*ft_create_identity_matrix(void);
+t_4x4	*translation(t_tuple *tuple);
+t_4x4	*scaling(t_tuple *tuple);
 
 //	HOOKS
 void	ft_handle_key(mlx_key_data_t keydata, void *param);
 
 // 	ERROR EXIT
 int		ft_error_exit(char *err_msg, int err_code);
+
+//	TEST FUNCTIONS (to be removed)
+void	ft_minigun(mlx_image_t	*image);
+void	ft_draw_clock(mlx_image_t *image);
+int		ft_test_matrix_functions(void);
+void	ft_draw_large_pixel(mlx_image_t	*image, int x, int y, int size);
 
 #endif
