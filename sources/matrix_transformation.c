@@ -19,7 +19,7 @@ t_4x4	*ft_create_identity_matrix(void)
 				idmatrix->data[i][j] = 0;
 			j++;
 		}
-		i++;		
+		i++;
 	}
 	return (idmatrix);
 }

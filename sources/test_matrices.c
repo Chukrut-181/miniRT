@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 10:41:59 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/03 15:59:07 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:05:13 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	ft_print_4x4(t_4x4 *matrix)
 	printf("\n");
 }
 
-t_4x4 *ft_randomize_matrix(void)
+t_4x4	*ft_randomize_matrix(void)
 {
 	t_4x4	*random_mx;
 	float	temp;
@@ -58,13 +58,12 @@ t_4x4 *ft_randomize_matrix(void)
 		i++;
 	}
 	return (random_mx);
-	
 }
 
-int ft_test_matrix_functions(void)
+int	ft_test_matrix_functions(void)
 {
-	t_4x4 *testmx1;
-	t_4x4 *testmx2;
+	t_4x4	*testmx1;
+	t_4x4	*testmx2;
 
 	testmx1 = ft_randomize_matrix();
 	printf("This is testmx1:\n");
@@ -75,4 +74,3 @@ int ft_test_matrix_functions(void)
 	printf("Determinant of testmx1 is %f, and of testmx2 is %f\n", ft_calculate_determinant(testmx1), ft_calculate_determinant(testmx2));
 	return (0);
 }
-
