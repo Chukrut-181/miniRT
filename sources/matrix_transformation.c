@@ -1,62 +1,47 @@
 #include "../include/minirt.h"
 
-//static void	ft_print_4x4(t_4x4 *matrix)
-//{
-//	int i = 0; //	int j; //
-//	while (i < 4)
-//	{
-//		j = 0;
-//		while (j < 4)
-//		{
-//			printf("%f ", matrix->data[i][j]);
-//			j++;
-//		}
-//		printf("\n");
-//		i++;
-//	}
-//}
-//
 t_4x4	*ft_create_identity_matrix(void)
 {
-	t_4x4	*matrix = malloc(sizeof(t_4x4) * 1);
+	t_4x4	*idmatrix;
+	int		i;
+	int		j;
 
-	matrix->data[0][0] = 1.0;
-	matrix->data[0][1] = 0.0;
-	matrix->data[0][2] = 0.0;
-	matrix->data[0][3] = 0.0;
-	matrix->data[1][0] = 0.0;
-	matrix->data[1][1] = 1.0;
-	matrix->data[1][2] = 0.0;
-	matrix->data[1][3] = 0.0;
-	matrix->data[2][0] = 0.0;
-	matrix->data[2][1] = 0.0;
-	matrix->data[2][2] = 1.0;
-	matrix->data[2][3] = 0.0;
-	matrix->data[3][0] = 0.0;
-	matrix->data[3][1] = 0.0;
-	matrix->data[3][2] = 0.0;
-	matrix->data[3][3] = 1.0;
-	return (matrix);
+	idmatrix = malloc(sizeof(t_4x4));
+	i = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			if (i == j)
+				idmatrix->data[i][j] = 1;
+			else
+				idmatrix->data[i][j] = 0;
+			j++;
+		}
+		i++;		
+	}
+	return (idmatrix);
 }
 
-t_4x4	*translation(t_tuple *tuple)
+t_4x4	*create_translation_mx(t_tuple *tuple)
 {
-	t_4x4	*identity_matrix;
+	t_4x4	*translation_mx;
 
-	identity_matrix = ft_create_identity_matrix();
-	identity_matrix->data[0][3] = tuple->x;
-	identity_matrix->data[1][3] = tuple->y;
-	identity_matrix->data[2][3] = tuple->z;
-	return (identity_matrix);
+	translation_mx = ft_create_identity_matrix();
+	translation_mx->data[0][3] = tuple->x;
+	translation_mx->data[1][3] = tuple->y;
+	translation_mx->data[2][3] = tuple->z;
+	return (translation_mx);
 }
 
-t_4x4	*scaling(t_tuple *tuple)
+t_4x4	*create_scalation_mx(t_tuple *tuple)
 {
-	t_4x4	*identity_matrix;
+	t_4x4	*scalation_mx;
 
-	identity_matrix = ft_create_identity_matrix();
-	identity_matrix->data[0][0] = tuple->x;
-	identity_matrix->data[1][1] = tuple->y;
-	identity_matrix->data[2][2] = tuple->z;
-	return (identity_matrix);
+	scalation_mx = ft_create_identity_matrix();
+	scalation_mx->data[0][0] = tuple->x;
+	scalation_mx->data[1][1] = tuple->y;
+	scalation_mx->data[2][2] = tuple->z;
+	return (scalation_mx);
 }
