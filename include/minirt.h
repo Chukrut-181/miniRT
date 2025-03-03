@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:28:29 by igchurru          #+#    #+#             */
-/*   Updated: 2025/02/27 15:15:40 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/03 13:26:34 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,16 @@ int		main(int argc, char **argv);
 int	ft_minirt(void);
 
 //	TUPLE CREATION
-t_tuple	ft_create_point(float x, float y, float z);
-t_tuple	ft_create_vector(float x, float y, float z);
+t_tuple	*ft_create_point(float x, float y, float z);
+t_tuple	*ft_create_vector(float x, float y, float z);
 int		ft_check_equality(t_tuple *tuple1, t_tuple *tuple2);
 
 //	TUPLE OPERATIONS
-t_tuple	ft_add_tuples(t_tuple *tuple1, t_tuple *tuple2);
-t_tuple	ft_substract_tuples(t_tuple *tuple1, t_tuple *tuple2);
-t_tuple	ft_multiply_tuple(t_tuple *tuple, float scalar);
-t_tuple	ft_divide_tuple(t_tuple *tuple, float scalar);
-t_tuple	ft_negate_tuple(t_tuple *tuple);
+t_tuple	*ft_add_tuples(t_tuple *tuple1, t_tuple *tuple2);
+t_tuple	*ft_substract_tuples(t_tuple *tuple1, t_tuple *tuple2);
+t_tuple	*ft_multiply_tuple(t_tuple *tuple, float scalar);
+t_tuple	*ft_divide_tuple(t_tuple *tuple, float scalar);
+t_tuple	*ft_negate_tuple(t_tuple *tuple);
 
 //	VECTOR OPERATIONS
 float	ft_calculate_magnitude(t_tuple *v);
