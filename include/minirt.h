@@ -6,12 +6,12 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:28:29 by igchurru          #+#    #+#             */
-/*   Updated: 2025/02/27 15:15:40 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/03 18:18:51 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
-# define MINIRT_H
+#define MINIRT_H
 
 # include "../libft/libft.h"
 # include "../MLX42/include/MLX42/MLX42.h"
@@ -84,6 +84,8 @@ t_4x4	*ft_create_identity_matrix(void);
 t_4x4	*translation(t_tuple *tuple);
 t_4x4	*scaling(t_tuple *tuple);
 
+// 	ROTATION
+t_4x4	*rotation_z(double angle);
 //	HOOKS
 void	ft_handle_key(mlx_key_data_t keydata, void *param);
 
