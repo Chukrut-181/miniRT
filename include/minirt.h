@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:28:29 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/03 13:37:04 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/03 13:40:45 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_tuple	*ft_negate_tuple(t_tuple *tuple);
 float	ft_calculate_magnitude(t_tuple *v);
 void	ft_normalize(t_tuple *v);
 float	ft_dot_product(t_tuple *v1, t_tuple *v2);
-t_tuple	ft_cross_product(t_tuple *v1, t_tuple *v2);
+t_tuple	*ft_cross_product(t_tuple *v1, t_tuple *v2);
 
 //	MATRIX OPERATIONS
 int		ft_check_matrix_equality(t_4x4 *matrix1, t_4x4 *matrix2);

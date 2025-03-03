@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 10:04:30 by igchurru          #+#    #+#             */
-/*   Updated: 2025/02/24 10:16:46 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/03 13:39:41 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,16 @@ float	ft_dot_product(t_tuple *v1, t_tuple *v2)
 /* This function 'creates' a new vector that is perpendicular to both the
 original vectors. Note that this is specifically testing vectors, not tuples.
 Also, note that if you change the order of the operands, you change the
-direction of the resulting vector.Order matters!
+direction of the resulting vector. Order matters!
 X cross Y gives you Z, but Y cross X gives you -Z! */
-t_tuple	ft_cross_product(t_tuple *v1, t_tuple *v2)
+t_tuple	*ft_cross_product(t_tuple *v1, t_tuple *v2)
 {
-	t_tuple	cross_vector;
+	t_tuple	*cross_vector;
 
-	cross_vector.x = v1->y * v2->z - v1->z * v2->y;
-	cross_vector.y = v1->z * v2->x - v1->x * v2->z;
-	cross_vector.z = v1->x * v2->y - v1->y * v2->x;
-	cross_vector.w = 0;
+	cross_vector = malloc(sizeof(t_tuple));
+	cross_vector->x = v1->y * v2->z - v1->z * v2->y;
+	cross_vector->y = v1->z * v2->x - v1->x * v2->z;
+	cross_vector->z = v1->x * v2->y - v1->y * v2->x;
+	cross_vector->w = 0;
 	return (cross_vector);
 }
