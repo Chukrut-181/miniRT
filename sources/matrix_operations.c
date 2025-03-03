@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 09:50:24 by igchurru          #+#    #+#             */
-/*   Updated: 2025/02/26 13:32:33 by eandres          ###   ########.fr       */
+/*   Updated: 2025/03/03 13:36:41 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,42 +33,44 @@ int	ft_check_matrix_equality(t_4x4 *matrix1, t_4x4 *matrix2)
 	return (0);
 }
 
-t_4x4	ft_multiply_matrices(t_4x4 *matrix1, t_4x4 *matrix2)
+t_4x4	*ft_multiply_matrices(t_4x4 *mat1, t_4x4 *mat2)
 {
-	t_4x4	multiplied;
+	t_4x4	*product;
 	int		i;
 	int		j;
 
+	product = malloc(sizeof(t_4x4));
 	i = 0;
 	while (i < 4)
 	{
 		j = 0;
 		while (j < 4)
 		{
-			multiplied.data[i][j] = matrix1->data[i][0] * matrix2->data[0][j]
-				+ matrix1->data[i][1] * matrix2->data[1][j]
-				+ matrix1->data[i][2] * matrix2->data[2][j]
-				+ matrix1->data[i][3] * matrix2->data[3][j];
+			product->data[i][j] = mat1->data[i][0] * mat2->data[0][j]
+				+ mat1->data[i][1] * mat2->data[1][j]
+				+ mat1->data[i][2] * mat2->data[2][j]
+				+ mat1->data[i][3] * mat2->data[3][j];
 			j++;
 		}
 		i++;
 	}
-	return (multiplied);
+	return (product);
 }
 
-t_tuple	ft_multiply_mat_and_tuple(t_4x4 *matrix, t_tuple *tuple)
+t_tuple	*ft_multiply_mat_and_tuple(t_4x4 *mat, t_tuple *tuple)
 {
-	t_tuple	multiplied;
+	t_tuple	*product;
 
-	multiplied.x = matrix->data[0][0] * tuple->x + matrix->data[0][1] * tuple->y
-		+ matrix->data[0][2] * tuple->z + matrix->data[0][3] * tuple->w;
-	multiplied.y = matrix->data[1][0] * tuple->x + matrix->data[1][1] * tuple->y
-		+ matrix->data[1][2] * tuple->z + matrix->data[1][3] * tuple->w;
-	multiplied.z = matrix->data[2][0] * tuple->x + matrix->data[2][1] * tuple->y
-		+ matrix->data[2][2] * tuple->z + matrix->data[2][3] * tuple->w;
-	multiplied.w = matrix->data[3][0] * tuple->x + matrix->data[3][1] * tuple->y
-		+ matrix->data[3][2] * tuple->z + matrix->data[3][3] * tuple->w;
-	return (multiplied);
+	product = malloc(sizeof(t_tuple));
+	product->x = mat->data[0][0] * tuple->x + mat->data[0][1] * tuple->y
+		+ mat->data[0][2] * tuple->z + mat->data[0][3] * tuple->w;
+	product->y = mat->data[1][0] * tuple->x + mat->data[1][1] * tuple->y
+		+ mat->data[1][2] * tuple->z + mat->data[1][3] * tuple->w;
+	product->z = mat->data[2][0] * tuple->x + mat->data[2][1] * tuple->y
+		+ mat->data[2][2] * tuple->z + mat->data[2][3] * tuple->w;
+	product->w = mat->data[3][0] * tuple->x + mat->data[3][1] * tuple->y
+		+ mat->data[3][2] * tuple->z + mat->data[3][3] * tuple->w;
+	return (product);
 }
 
 static void	ft_get_3x3_minor(t_4x4 *matrix, t_3x3 *submatrix, int row, int col)
@@ -99,29 +101,29 @@ static void	ft_get_3x3_minor(t_4x4 *matrix, t_3x3 *submatrix, int row, int col)
 	}
 }
 
-t_4x4	ft_find_inverse(t_4x4 *matrix)
+t_4x4	*ft_find_inverse(t_4x4 *matrix)
 {
-	t_4x4	inverse;
+	t_4x4	*inverse;
 	t_3x3	submatrix;
 	float	cofdet[2];
 	int		row;
 	int		col;
 
+	inverse = malloc(sizeof(t_4x4));
 	cofdet[1] = ft_calculate_determinant(matrix);
 	if (cofdet[1] == 0)
-		return (*matrix);
+		return (matrix);
 	row = -1;
 	while (++row < 4)
 	{
-		col = 0;
-		while (col < 4)
+		col = -1;
+		while (++col < 4)
 		{
 			ft_get_3x3_minor(matrix, &submatrix, row, col);
 			cofdet[0] = ft_determinant_3x3(submatrix);
 			if ((row + col) % 2 != 0)
 				cofdet[0] = -cofdet[0];
-			inverse.data[col][row] = cofdet[0] / cofdet[1];
-			col++;
+			inverse->data[col][row] = cofdet[0] / cofdet[1];
 		}
 	}
 	return (inverse);
