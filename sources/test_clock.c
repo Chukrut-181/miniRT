@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 13:47:46 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/04 15:56:20 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/04 16:17:08 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_draw_clock(mlx_image_t *image)
 	radius = 500;
 	translation_matrix = create_translation_mx
 		(ft_create_point(image->width / 2, image->height / 2, 0));
-	shearing_matrix = ft_create_shearing_mx(ft_create_point(-0.3, 0, 0));
+	shearing_matrix = ft_create_shearing_mx(1, 0, 0, 0, 0, 0);
 	twelve_oclock = *ft_create_point(0, -radius, 0);
 	ft_draw_large_pixel(image, center_x, center_y, 10);
 	hour = 0;
