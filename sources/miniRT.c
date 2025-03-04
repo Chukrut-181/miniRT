@@ -51,6 +51,8 @@ void	ft_draw_clock(mlx_image_t *image)
 	t_tuple		twelve_oclock;
 	t_tuple		hour_position;
 	t_4x4		*rotation_matrix;
+	t_4x4		*translation_matrix;
+	t_4x4		*transformation_matrix;
 	int			hour;
 	double		angle;
 	int			center_x;
@@ -61,7 +63,7 @@ void	ft_draw_clock(mlx_image_t *image)
 	center_x = image->width / 2;
 	center_y = image->height / 2;
 	radius = 500;  // Radius of the clock
-	
+	translation_matrix = create_translation_mx(ft_create_point(image->width / 2, image->height / 2, 0));
 	// Create the 12 o'clock position (top of the clock)
 	twelve_oclock = *ft_create_point(0, -radius, 0);
 	ft_draw_large_pixel(image, center_x, center_y, 10);
@@ -71,10 +73,10 @@ void	ft_draw_clock(mlx_image_t *image)
 		angle = (float)hour * (2 * M_PI / 12);
 		
 		rotation_matrix = rotation_z(angle);
-
-		hour_position = *ft_multiply_mat_and_tuple(rotation_matrix, &twelve_oclock);
+		transformation_matrix = ft_multiply_matrices(translation_matrix, rotation_matrix);
+		hour_position = *ft_multiply_mat_and_tuple(transformation_matrix, &twelve_oclock);
 		printf("hourX = %f, hourY = %f\n", hour_position.x, hour_position.y);
-		ft_draw_large_pixel(image, center_x + (int)hour_position.x, center_y + (int)hour_position.y, 15);
+		ft_draw_large_pixel(image, (int)hour_position.x, (int)hour_position.y, 15);
 		free(rotation_matrix);
 		hour++;
 	}
