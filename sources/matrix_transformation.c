@@ -45,3 +45,17 @@ t_4x4	*create_scalation_mx(t_tuple *tuple)
 	scalation_mx->data[2][2] = tuple->z;
 	return (scalation_mx);
 }
+
+t_4x4	*ft_create_shearing_mx(t_tuple *tuple)
+{
+	t_4x4	*shearing_mx;
+
+	shearing_mx = ft_create_identity_matrix();
+	shearing_mx->data[0][1] = tuple->x + tuple->y;
+	shearing_mx->data[0][2] = tuple->x + tuple->z;
+	shearing_mx->data[1][0] = tuple->y + tuple->x;
+	shearing_mx->data[1][3] = tuple->y + tuple->z;
+	shearing_mx->data[2][0] = tuple->z + tuple->x;
+	shearing_mx->data[2][1] = tuple->z + tuple->y;
+	return (shearing_mx);
+}
