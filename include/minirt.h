@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:28:29 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/04 10:45:20 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/04 11:25:23 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../MLX42/include/MLX42/MLX42.h"
 # include <math.h>
 # include <stdio.h>
+# include <unistd.h>
 
 # define EPSILON 0.00001
 
