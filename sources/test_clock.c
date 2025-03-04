@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 13:47:46 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/04 16:17:08 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/04 16:42:13 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,17 @@ void	ft_draw_large_pixel(mlx_image_t	*image, int x, int y, int size)
 {
 	int	i;
 	int	j;
+	int	r;
 
-	i = 0;
-	while (i < size)
+	r = size / 2;
+	i = -r;
+	while (i <= r)
 	{
-		j = 0;
-		while (j < size)
+		j = -r;
+		while (j <= r)
 		{
-			mlx_put_pixel(image, x + i, y + j, 0xFFFFFFFF);
+			if ((i * i) + (j * j) <= (r * r))
+				mlx_put_pixel(image, x + i, y + j, 0xFFFFFFFF);
 			j++;
 		}
 		i++;
@@ -49,13 +52,13 @@ void	ft_draw_clock(mlx_image_t *image)
 	radius = 500;
 	translation_matrix = create_translation_mx
 		(ft_create_point(image->width / 2, image->height / 2, 0));
-	shearing_matrix = ft_create_shearing_mx(1, 0, 0, 0, 0, 0);
+	shearing_matrix = ft_create_shearing_mx(0, 0, 0, 0, 0, 0);
 	twelve_oclock = *ft_create_point(0, -radius, 0);
-	ft_draw_large_pixel(image, center_x, center_y, 10);
+	ft_draw_large_pixel(image, center_x, center_y, 15);
 	hour = 0;
-	while (hour < 12)
+	while (hour < 48)
 	{
-		angle = (float)hour * (2 * M_PI / 12);
+		angle = (float)hour * (2 * M_PI / 48);
 		rotation_matrix = rotation_z(angle);
 		transformation_matrix = ft_multiply_matrices(translation_matrix, ft_multiply_matrices(shearing_matrix, rotation_matrix));
 		hour_position = *ft_multiply_mat_and_tuple(transformation_matrix, &twelve_oclock);
