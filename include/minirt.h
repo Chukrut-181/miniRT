@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:28:29 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/04 10:45:20 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/04 16:09:22 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../MLX42/include/MLX42/MLX42.h"
 # include <math.h>
 # include <stdio.h>
+# include <unistd.h>
 
 # define EPSILON 0.00001
 
@@ -85,6 +86,7 @@ float	ft_determinant_3x3(t_3x3 submx);
 t_4x4	*ft_create_identity_matrix(void);
 t_4x4	*create_translation_mx(t_tuple *tuple);
 t_4x4	*create_scalation_mx(t_tuple *tuple);
+t_4x4	*ft_create_shearing_mx(float Xy, float Xz, float Yx, float Yz, float Zx, float Zy);
 
 // 	ROTATION
 t_4x4	*rotation_z(double angle);

@@ -20,6 +20,7 @@ int	ft_minirt(void)
 
 	mlx = mlx_init(2400, 1800, "miniRT", true);
 	image = mlx_new_image(mlx, 2400, 1800);
+	//ft_minigun(image);
 	//ft_test_matrix_functions();
 	//ft_draw_clock(image);
 	ft_draw_dock(image);
@@ -34,8 +35,7 @@ void	ft_draw_large_pixel(mlx_image_t	*image, int x, int y, int size)
 {
 	int	i;
 	int	j;
-
-	i = 0;
+i = 0;
 	while (i < size)
 	{
 		j = 0;
