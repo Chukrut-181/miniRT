@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:28:29 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/04 10:12:00 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/04 10:33:00 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ t_4x4	*scaling(t_tuple *tuple);
 
 // 	ROTATION
 t_4x4	*rotation_z(double angle);
+
 //	HOOKS
 void	ft_handle_key(mlx_key_data_t keydata, void *param);
 

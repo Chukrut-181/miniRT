@@ -19,7 +19,8 @@ int	ft_minirt(void)
 
 	mlx = mlx_init(2400, 1800, "miniRT", true);
 	image = mlx_new_image(mlx, 2400, 1800);
-	ft_test_matrix_functions();
+	//ft_test_matrix_functions();
+	ft_draw_clock(image);
 	mlx_image_to_window(mlx, image, 0, 0);
 	mlx_key_hook(mlx, ft_handle_key, mlx);
 	mlx_loop(mlx);
@@ -62,7 +63,7 @@ void	ft_draw_clock(mlx_image_t *image)
 	radius = 500;  // Radius of the clock
 	
 	// Create the 12 o'clock position (top of the clock)
-	twelve_oclock = ft_create_point(0, -radius, 0);
+	twelve_oclock = *ft_create_point(0, -radius, 0);
 	ft_draw_large_pixel(image, center_x, center_y, 10);
 	hour = 0;
 	while (hour < 12)
@@ -71,7 +72,7 @@ void	ft_draw_clock(mlx_image_t *image)
 		
 		rotation_matrix = rotation_z(angle);
 
-		hour_position = ft_multiply_mat_and_tuple(rotation_matrix, &twelve_oclock);
+		hour_position = *ft_multiply_mat_and_tuple(rotation_matrix, &twelve_oclock);
 		printf("hourX = %f, hourY = %f\n", hour_position.x, hour_position.y);
 		ft_draw_large_pixel(image, center_x + (int)hour_position.x, center_y + (int)hour_position.y, 15);
 		free(rotation_matrix);
