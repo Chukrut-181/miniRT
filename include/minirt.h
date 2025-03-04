@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:28:29 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/04 10:10:24 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/04 10:12:00 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ typedef struct s_2x2
 	float	data[2][2];
 }	t_2x2;
 
-
+# ifndef M_PI
+#  define M_PI 3.1415926
+# endif
 
 //	MAIN
 int		main(int argc, char **argv);
