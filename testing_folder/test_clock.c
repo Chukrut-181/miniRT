@@ -6,11 +6,11 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 13:47:46 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/04 11:13:01 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/04 12:48:27 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../include/minirt.h"
+#include "../include/minirt.h"
 
 void	ft_draw_large_pixel(mlx_image_t	*image, int x, int y, int size)
 {
@@ -42,25 +42,26 @@ void	ft_draw_clock(mlx_image_t *image)
 	int			center_x;
 	int			center_y;
 	int			radius;
-	
-	// Set up the clock parameters
+
 	center_x = image->width / 2;
 	center_y = image->height / 2;
-	radius = 500;  // Radius of the clock
-	translation_matrix = create_translation_mx(ft_create_point(image->width / 2, image->height / 2, 0));
-	// Create the 12 o'clock position (top of the clock)
+	radius = 500;
+	translation_matrix = create_translation_mx
+		(ft_create_point(image->width / 2, image->height / 2, 0));
 	twelve_oclock = *ft_create_point(0, -radius, 0);
 	ft_draw_large_pixel(image, center_x, center_y, 10);
 	hour = 0;
 	while (hour < 12)
 	{
 		angle = (float)hour * (2 * M_PI / 12);
-		
 		rotation_matrix = rotation_z(angle);
-		transformation_matrix = ft_multiply_matrices(translation_matrix, rotation_matrix);
-		hour_position = *ft_multiply_mat_and_tuple(transformation_matrix, &twelve_oclock);
-		printf("hourX = %9.3f, hourY = %9.3f\n", hour_position.x, hour_position.y);
-		ft_draw_large_pixel(image, (int)hour_position.x, (int)hour_position.y, 15);
+		transformation_matrix = ft_multiply_matrices
+			(translation_matrix, rotation_matrix);
+		hour_position = *ft_multiply_mat_and_tuple
+			(transformation_matrix, &twelve_oclock);
+		printf("X = %9.3f, Y = %9.3f\n", hour_position.x, hour_position.y);
+		ft_draw_large_pixel
+			(image, (int)hour_position.x, (int)hour_position.y, 15);
 		free(rotation_matrix);
 		free(transformation_matrix);
 		hour++;

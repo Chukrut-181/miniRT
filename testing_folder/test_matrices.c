@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 10:41:59 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/04 12:24:25 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/04 12:37:41 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	ft_test_matrix_functions(void)
 	ft_print_4x4(testmx2);
 	det_mx2 = ft_calculate_determinant(testmx2);
 	printf("It's determinant is %f\n\n", det_mx2);
-	if(det_mx1 != 0)
+	if (det_mx1 != 0)
 	{
 		invmx1 = ft_find_inverse(testmx1);
 		printf("testmx1 can be inverted, and it's inverse is invmx1:\n");
@@ -96,14 +96,14 @@ int	ft_test_matrix_functions(void)
 		productmx = ft_multiply_matrices(testmx1, invmx1);
 		printf("And if we multiply testmx1 by it's inverse invmx1 we get:\n");
 		ft_print_4x4(productmx);
-		if(!ft_check_matrix_equality(productmx, ft_create_identity_matrix()))
-			printf("Equality check OK: Result is an Identity Matrix\n\n");
+		if (!ft_check_matrix_equality(productmx, ft_create_identity_matrix()))
+			printf("Equality check OK: Result is an ID Matrix\n\n");
 		else
-			printf("Equality check NOT OK: Result is not an Identity Matrix\n\n");
+			printf("Equality check NOT OK: Result is not an ID Matrix\n\n");
 	}
 	else
 		printf("testmx1 cannot be inverted sice it's determinant is 0\n");
-	if(det_mx2 != 0)
+	if (det_mx2 != 0)
 	{
 		invmx2 = ft_find_inverse(testmx2);
 		printf("testmx2 can be inverted, and it's inverse is invmx2:\n");
@@ -113,10 +113,10 @@ int	ft_test_matrix_functions(void)
 		productmx = ft_multiply_matrices(testmx2, invmx2);
 		printf("And if we multiply testmx2 by it's inverse invmx2 we get:\n");
 		ft_print_4x4(productmx);
-		if(!ft_check_matrix_equality(productmx, ft_create_identity_matrix()))
-			printf("Equality check OK: Result is an Identity Matrix\n\n");
+		if (!ft_check_matrix_equality(productmx, ft_create_identity_matrix()))
+			printf("Equality check OK: Result is an ID Matrix\n\n");
 		else
-			printf("Equality check NOT OK: Result is not an Identity Matrix\n\n");
+			printf("Equality check NOT OK: Result is not an ID Matrix\n\n");
 	}
 	else
 		printf("testmx2 cannot be inverted sice it's determinant is 0\n");
@@ -125,7 +125,7 @@ int	ft_test_matrix_functions(void)
 	ft_print_4x4(productmx);
 	det_prodmx = ft_calculate_determinant(productmx);
 	printf("It's determinant is %f\n\n", det_prodmx);
-	if(det_prodmx != 0)
+	if (det_prodmx != 0)
 	{
 		invprod = ft_find_inverse(productmx);
 		printf("productmx can be inverted, and it's inverse is invprod:\n");
@@ -133,12 +133,12 @@ int	ft_test_matrix_functions(void)
 		det_invprod = ft_calculate_determinant(invprod);
 		printf("It's determinant is %f\n\n", det_invprod);
 		product2mx = ft_multiply_matrices(productmx, invprod);
-		printf("And if we multiply productmx by it's inverse invprod we get:\n");
+		printf("If we multiply productmx by it's inverse invprod we get:\n");
 		ft_print_4x4(product2mx);
-		if(!ft_check_matrix_equality(product2mx, ft_create_identity_matrix()))
-			printf("Equality check OK: Result is an Identity Matrix\n\n");
+		if (!ft_check_matrix_equality(product2mx, ft_create_identity_matrix()))
+			printf("Equality check OK: Result is an ID Matrix\n\n");
 		else
-			printf("Equality check NOT OK: Result is not an Identity Matrix\n\n");
+			printf("Equality check NOT OK: Result is not an ID Matrix\n\n");
 	}
 	else
 		printf("productmx cannot be inverted sice it's determinant is 0\n");
