@@ -72,7 +72,8 @@ void	ft_draw_clock(mlx_image_t *image)
 		rotation_matrix = rotation_z(angle);
 
 		hour_position = ft_multiply_mat_and_tuple(rotation_matrix, &twelve_oclock);
-		ft_draw_large_pixel(image, (center_x/3) + (int)hour_position.x, (center_y/3) + (int)hour_position.y, 15);
+		printf("hourX = %f, hourY = %f\n", hour_position.x, hour_position.y);
+		ft_draw_large_pixel(image, center_x + (int)hour_position.x, center_y + (int)hour_position.y, 15);
 		free(rotation_matrix);
 		hour++;
 	}
