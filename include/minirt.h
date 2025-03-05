@@ -1,5 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
+/* ************************************************************************** */ /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
@@ -26,7 +25,7 @@ typedef struct s_tuple
 	float	x;
 	float	y;
 	float	z;
-	int		w;
+	int	w;
 }	t_tuple;
 
 typedef struct s_4x4
@@ -43,6 +42,13 @@ typedef struct s_2x2
 {
 	float	data[2][2];
 }	t_2x2;
+
+//	SPHERE
+typedef struct s_ray
+{
+	t_tuple	origin;
+	t_tuple	direction;
+}	t_ray
 
 # ifndef M_PI
 #  define M_PI 3.1415926
