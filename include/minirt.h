@@ -6,13 +6,14 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:28:29 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/05 12:11:52 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:20:45 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 #define MINIRT_H
 
+# include "structures.h"
 # include "../libft/libft.h"
 # include "../MLX42/include/MLX42/MLX42.h"
 # include <math.h>
@@ -21,41 +22,7 @@
 
 # define EPSILON 0.00001
 
-typedef struct s_tuple
-{
-	float	x;
-	float	y;
-	float	z;
-	int		w;
-}	t_tuple;
 
-typedef struct s_4x4
-{
-	float	data[4][4];
-}	t_4x4;
-
-typedef struct s_3x3
-{
-	float	data[3][3];
-}	t_3x3;
-
-typedef struct s_2x2
-{
-	float	data[2][2];
-}	t_2x2;
-
-typedef struct s_ray
-{
-	t_tuple	origin;
-	t_tuple	direction;
-}	t_ray;
-
-typedef struct s_sphere
-{
-	t_tuple	center;
-	float	radius;
-	t_4x4	*transform;
-}	t_sphere;
 
 # ifndef M_PI
 #  define M_PI 3.1415926
@@ -82,7 +49,7 @@ t_tuple	*ft_negate_tuple(t_tuple *tuple);
 //	VECTOR OPERATIONS
 float	ft_calculate_magnitude(t_tuple *v);
 void	ft_normalize(t_tuple *v);
-float	ft_dot_product(t_tuple *v1, t_tuple *v2);
+float	ft_dot_product(t_tuple v1, t_tuple v2);
 t_tuple	*ft_cross_product(t_tuple *v1, t_tuple *v2);
 
 //	MATRIX OPERATIONS
@@ -107,6 +74,10 @@ t_4x4	*rotation_z(double angle);
 //	RAY
 t_ray	ft_create_ray(t_tuple origin, t_tuple direction);
 t_tuple	ft_position(t_ray ray, float t);
+float	ft_intersection(t_ray ray, t_sphere sphere);
+
+//	THINGS
+t_sphere	*ft_create_sphere(t_tuple point, float r);
 
 //	HOOKS
 void	ft_handle_key(mlx_key_data_t keydata, void *param);
@@ -121,5 +92,6 @@ int		ft_test_matrix_functions(void);
 t_4x4	*ft_randomize_matrix(void);
 void	ft_draw_large_pixel(mlx_image_t	*image, int x, int y, int size);
 int		ft_test_ray(void);
+int		ft_test_intersection(void);
 
 #endif

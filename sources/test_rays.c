@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 11:34:10 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/05 12:02:03 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:32:24 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,19 @@ int	ft_test_ray(void)
 	printf("we can see that, in %f ticks\n", time);
 	position = ft_position(blast, time);
 	printf("the ray will reach coordinates %.4f %.4f %.4f %i\n", position.x, position.y, position.z, position.w);
+	return (0);
+}
+
+int ft_test_intersection(void)
+{
+	t_ray		beam;
+	t_sphere	ball;
+	float		time[2];
+
+	beam = ft_create_ray(*ft_create_point(0, 0, -5), *ft_create_vector(0, 0, 1));
+	ball = *ft_create_sphere(*ft_create_point(0, 0, 0), 1);
+	*time = ft_intersection(beam, ball);
+	printf("Time of X1 = %.5f\n", time[0]);
+	printf("Time of X2 = %.5f\n", time[1]);
 	return (0);
 }
