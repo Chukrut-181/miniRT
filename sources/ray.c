@@ -1,6 +1,6 @@
 #include "../include/minirt.h"
 
-t_ray	ft_creatin_ray(t_tuple origin, t_tuple direction)
+t_ray	ft_create(t_tuple origin, t_tuple direction)
 {
 	t_ray	ray;
 
