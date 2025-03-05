@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:28:29 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/05 11:58:24 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/05 12:11:52 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,13 @@ typedef struct s_ray
 	t_tuple	origin;
 	t_tuple	direction;
 }	t_ray;
+
+typedef struct s_sphere
+{
+	t_tuple	center;
+	float	radius;
+	t_4x4	*transform;
+}	t_sphere;
 
 # ifndef M_PI
 #  define M_PI 3.1415926
