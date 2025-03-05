@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:28:29 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/04 16:09:22 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/05 11:58:24 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,12 @@ typedef struct s_2x2
 	float	data[2][2];
 }	t_2x2;
 
+typedef struct s_ray
+{
+	t_tuple	origin;
+	t_tuple	direction;
+}	t_ray;
+
 # ifndef M_PI
 #  define M_PI 3.1415926
 # endif
@@ -52,7 +58,7 @@ typedef struct s_2x2
 int		main(int argc, char **argv);
 
 //	MINIRT
-int	ft_minirt(void);
+int		ft_minirt(void);
 
 //	TUPLE CREATION
 t_tuple	*ft_create_point(float x, float y, float z);
@@ -91,6 +97,10 @@ t_4x4	*ft_create_shearing_mx(float Xy, float Xz, float Yx, float Yz, float Zx, f
 // 	ROTATION
 t_4x4	*rotation_z(double angle);
 
+//	RAY
+t_ray	ft_create_ray(t_tuple origin, t_tuple direction);
+t_tuple	ft_position(t_ray ray, float t);
+
 //	HOOKS
 void	ft_handle_key(mlx_key_data_t keydata, void *param);
 
@@ -103,5 +113,6 @@ void	ft_draw_clock(mlx_image_t *image);
 int		ft_test_matrix_functions(void);
 t_4x4	*ft_randomize_matrix(void);
 void	ft_draw_large_pixel(mlx_image_t	*image, int x, int y, int size);
+int		ft_test_ray(void);
 
 #endif
