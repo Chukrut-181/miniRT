@@ -21,7 +21,7 @@ int	ft_minirt(void)
 	image = mlx_new_image(mlx, 2400, 1800);
 	//ft_minigun(image);
 	//ft_test_matrix_functions();
-	ft_draw_clock(image);
+	//ft_draw_clock(image);
 	mlx_image_to_window(mlx, image, 0, 0);
 	mlx_key_hook(mlx, ft_handle_key, mlx);
 	mlx_loop(mlx);
