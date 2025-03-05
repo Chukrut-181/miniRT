@@ -48,7 +48,27 @@ typedef struct s_ray
 {
 	t_tuple	origin;
 	t_tuple	direction;
-}	t_ray
+}	t_ray;
+
+typedef struct s_sphere
+{
+	t_tuple	center;
+	float	radius;
+	t_4x4	*transform;
+	t_4x4	*inverse_transform;
+}	t_sphere;
+
+typedef struct s_itersection
+{
+	float	point;  // puntos en los que intersecionan
+	void	*object;
+}	t_itersection;
+
+typedef struct s_itersections
+{
+	t_itersection	*intersections;
+	int		count;
+}	t_itersections;
 
 # ifndef M_PI
 #  define M_PI 3.1415926
