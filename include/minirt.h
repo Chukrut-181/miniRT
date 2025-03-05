@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:28:29 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/05 15:20:45 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:43:30 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_4x4	*rotation_z(double angle);
 //	RAY
 t_ray	ft_create_ray(t_tuple origin, t_tuple direction);
 t_tuple	ft_position(t_ray ray, float t);
-float	ft_intersection(t_ray ray, t_sphere sphere);
+float	*ft_intersection(t_ray ray, t_sphere sphere);
 
 //	THINGS
 t_sphere	*ft_create_sphere(t_tuple point, float r);

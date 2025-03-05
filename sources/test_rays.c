@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 11:34:10 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/05 15:32:24 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:45:41 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ int ft_test_intersection(void)
 {
 	t_ray		beam;
 	t_sphere	ball;
-	float		time[2];
+	float		*time;
 
 	beam = ft_create_ray(*ft_create_point(0, 0, -5), *ft_create_vector(0, 0, 1));
 	ball = *ft_create_sphere(*ft_create_point(0, 0, 0), 1);
-	*time = ft_intersection(beam, ball);
-	printf("Time of X1 = %.5f\n", time[0]);
-	printf("Time of X2 = %.5f\n", time[1]);
+	time = ft_intersection(beam, ball);
+	printf("Time of X1 = %.5f\n", *time++);
+	printf("Time of X2 = %.5f\n", *time);
 	return (0);
 }
