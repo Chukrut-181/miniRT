@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 11:23:47 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/05 15:31:58 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:39:41 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ float	ft_intersection(t_ray ray, t_sphere sphere)
 	c = ft_dot_product(sphere_to_ray, sphere_to_ray) - 1;
 	discriminant = (b * b) - (4 * a * c);
 	if (discriminant < 0)
-		return (0);
+		return (0.0f);
 	time[0] = (-b - sqrtf(discriminant)) / (2 * a);
 	time[1] = (-b + sqrtf(discriminant)) / (2 * a);
 	return (*time);
