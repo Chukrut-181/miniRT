@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 11:34:10 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/06 13:14:01 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/06 15:41:57 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int ft_test_intersection(void)
 	t_sphere	ball;
 	t_xs		*xs_test;
 
-	beam = ft_create_ray(*ft_create_point(0.0, 0.0, -5.0), *ft_create_vector(0.0, 0.0, 1));
+	beam = ft_create_ray(*ft_create_point(1.0, 0.0, -5.0), *ft_create_vector(0.0, 0.0, 1));
 	ball = *ft_create_sphere(*ft_create_point(0.0, 0.0, 0.0), 1.0);
 	xs_test = ft_intersection(beam, ball);
 	if (!xs_test)
