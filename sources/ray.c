@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 11:23:47 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/05 15:43:12 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/06 12:09:26 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,24 @@ t_tuple	ft_position(t_ray ray, float t)
 	return (position);
 }
 
-float	*ft_intersection(t_ray ray, t_sphere sphere)
+t_xs	*ft_intersection(t_ray ray, t_sphere sphere)
 {
 	float	discriminant;
 	float	a, b, c;
 	t_tuple	sphere_to_ray;
-	float	*time;
-
-	time = malloc(sizeof(time) * 2);
+	t_xs	*hit;
+	
 	sphere_to_ray = *ft_substract_tuples(&ray.origin, &sphere.center);
 	a = ft_dot_product(ray.direction, ray.direction);
 	b = 2 * ft_dot_product(ray.direction, sphere_to_ray);
-	c = ft_dot_product(sphere_to_ray, sphere_to_ray) - 1;
+	c = (ft_dot_product(sphere_to_ray, sphere_to_ray) - (sphere.radius * sphere.radius));
 	discriminant = (b * b) - (4 * a * c);
-	if (discriminant < 0)
+	if (discriminant < EPSILON)
 		return (NULL);
-	time[0] = (-b - sqrtf(discriminant)) / (2 * a);
-	time[1] = (-b + sqrtf(discriminant)) / (2 * a);
-	return (time);
+	hit = malloc(sizeof(t_xs));
+	hit->t1 = (-b - sqrtf(discriminant)) / (2 * a);
+	hit->entry = ft_position(ray, hit->t1);
+	hit->t2 = (-b + sqrtf(discriminant)) / (2 * a);
+	hit->exit = ft_position(ray, hit->t2);
+	return (hit);
 }

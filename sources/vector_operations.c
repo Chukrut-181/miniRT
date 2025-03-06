@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 10:04:30 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/05 13:48:20 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/06 12:27:55 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ Specifically, and again if the two vectors are unit vectors, the dot product
 is actually the cosine of the angle between them. */
 float	ft_dot_product(t_tuple v1, t_tuple v2)
 {
-	return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z + v1.w * v2.w);
+	return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
 }
 
 /* This function 'creates' a new vector that is perpendicular to both the
