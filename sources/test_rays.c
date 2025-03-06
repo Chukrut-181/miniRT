@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 11:34:10 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/06 12:25:43 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/06 12:35:16 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,15 @@ int ft_test_intersection(void)
 	t_sphere	ball;
 	t_xs		*xs_test;
 
-	beam = ft_create_ray(*ft_create_point(0.0, 0.0, -5.0), *ft_create_vector(0.0, 0.0, 1.0));
+	beam = ft_create_ray(*ft_create_point(0.0, 0.0, -5.0), *ft_create_vector(0.0, 0.0, 1));
 	ball = *ft_create_sphere(*ft_create_point(0.0, 0.0, 0.0), 1.0);
 	xs_test = ft_intersection(beam, ball);
 	if (!xs_test)
 		return (printf("No intersection detected\n"));
-	printf("Time of X1 = %.3f\n", xs_test->t1);
-	printf("Coords of X1 = %.3f, %.3f, %.3f\n", xs_test->entry.x, xs_test->entry.y, xs_test->entry.z);
-	printf("Time of X2 = %.3f\n", xs_test->t2);
-	printf("Coords of X2 = %.3f, %.3f, %.3f\n", xs_test->exit.x, xs_test->exit.y, xs_test->exit.z);
+	printf("Time of xs1 = %.3f\n", xs_test->t1);
+	printf("Coords of xs1 = %.3f, %.3f, %.3f\n", xs_test->entry.x, xs_test->entry.y, xs_test->entry.z);
+	printf("Time of xs2 = %.3f\n", xs_test->t2);
+	printf("Coords of xs2 = %.3f, %.3f, %.3f\n", xs_test->exit.x, xs_test->exit.y, xs_test->exit.z);
 	free(xs_test);
 	return (0);
 }
