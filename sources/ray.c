@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 11:23:47 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/06 12:09:26 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/06 12:56:12 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,10 @@ t_xs	*ft_intersection(t_ray ray, t_sphere sphere)
 	b = 2 * ft_dot_product(ray.direction, sphere_to_ray);
 	c = (ft_dot_product(sphere_to_ray, sphere_to_ray) - (sphere.radius * sphere.radius));
 	discriminant = (b * b) - (4 * a * c);
-	if (discriminant < EPSILON)
+	if (discriminant < 0)
 		return (NULL);
 	hit = malloc(sizeof(t_xs));
+	hit->object = &sphere;
 	hit->t1 = (-b - sqrtf(discriminant)) / (2 * a);
 	hit->entry = ft_position(ray, hit->t1);
 	hit->t2 = (-b + sqrtf(discriminant)) / (2 * a);

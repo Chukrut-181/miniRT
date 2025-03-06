@@ -23,7 +23,7 @@ int	ft_minirt(void)
 	//ft_test_matrix_functions();
 	//ft_draw_clock(image);
 	//ft_test_ray();
-	ft_test_intersection();
+	//ft_test_intersection();
 	mlx_image_to_window(mlx, image, 0, 0);
 	mlx_key_hook(mlx, ft_handle_key, mlx);
 	mlx_loop(mlx);
