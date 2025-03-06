@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   matrix_transformation.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/05 10:23:12 by igchurru          #+#    #+#             */
+/*   Updated: 2025/03/05 11:05:43 by igchurru         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minirt.h"
 
 t_4x4	*ft_create_identity_matrix(void)
@@ -54,7 +66,7 @@ t_4x4	*ft_create_shearing_mx(float Xy, float Xz, float Yx, float Yz, float Zx, f
 	shearing_mx->data[0][1] = Xy;
 	shearing_mx->data[0][2] = Xz;
 	shearing_mx->data[1][0] = Yx;
-	shearing_mx->data[1][3] = Yz;
+	shearing_mx->data[1][2] = Yz;
 	shearing_mx->data[2][0] = Zx;
 	shearing_mx->data[2][1] = Zy;
 	return (shearing_mx);

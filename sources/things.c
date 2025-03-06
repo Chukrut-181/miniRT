@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   things.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/06 12:44:05 by igchurru         ###   ########.fr       */
+/*   Created: 2025/03/05 12:42:33 by igchurru          #+#    #+#             */
+/*   Updated: 2025/03/05 12:48:38 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-int	main(int argc, char **argv)
+t_sphere	*ft_create_sphere(t_tuple point, float r)
 {
-	(void)argv;
-	if (argc != 2)
-		ft_error_exit("Error\nUsage: ./miniRT <arg1>", 1);
-	else
-		//ft_minirt();
-		ft_test_intersection();
-	return (0);
+	t_sphere	*sphere;
+
+	sphere = malloc(sizeof(t_sphere));
+	if (!sphere)
+		return (NULL);
+	sphere->center.x = point.x;
+	sphere->center.y = point.y;
+	sphere->center.z = point.z;
+	sphere->radius = r;
+	sphere->transform = NULL;
+	return (sphere);
 }

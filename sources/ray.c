@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eandres <eandres@student.42urduliz.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/05 11:23:47 by igchurru          #+#    #+#             */
+/*   Updated: 2025/03/06 15:33:33 by eandres          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minirt.h"
 
-t_ray	ft_create(t_tuple origin, t_tuple direction)
+t_ray	ft_create_ray(t_tuple origin, t_tuple direction)
 {
 	t_ray	ray;
 
@@ -9,92 +21,35 @@ t_ray	ft_create(t_tuple origin, t_tuple direction)
 	return (ray);
 }
 
-t_tuple	ft_position(t_ray ray, int t)
+t_tuple	ft_position(t_ray ray, float t)
 {
-	t_tuple point;
+	t_tuple	position;
 
-	point = ft_multiply_tuple(point, t);
-	point = ft_add_tuples(ray.origin, ray.direction);
-	return (point);
-}
-
-t_sphere *ft_create_sphere()
-{
-	t_sphere *sphere;
+	position = *ft_add_tuples(&ray.origin, ft_multiply_tuple(&ray.direction, t));
 	
-	sphere = malloc(sizeof(t_sphere));
-	if (!sphere)
-		return (NULL);
-	sphere->center = *ft_create_point(0, 0, 0);
-	sphere->radius = 1.0;
-	sphere->transform = ft_create_identity_matrix();
-	sphere->inverse_transform = ft_create_identity_matrix();
-	return (sphere);
+	return (position);
 }
 
-t_intersections *ft_intersecting_ray_sphere(t_shpere *s, t_ray ray)
+t_xs	*ft_intersection(t_ray ray, t_sphere sphere)
 {
+	float	discriminant;
+	float	a, b, c;
 	t_tuple	sphere_to_ray;
-	t_ray	transformed_ray;
-	float	a, b, c, discriminant;
-	t_intersections *inter;
-
-	inter = malloc(sizeof(t_intersections));
-
-	transformed_ray.origin = ft_multiply_mat_and_tuple(s->inverse_transform, &ray.origin);
-	transformed_ray.direction = ft_multiply_mat_and_tuple(s->inverse_transform, &ray.direction);
-
-	shpere_to_ray = ft_substract_tuples(&transformed_ray.origin, &sphere->center);
-
-	a = ft_dot_product(&transformed_ray.direction, &transformed_ray.direction);
-	b = 2 * ft_dot_product(&transformed_ray.direction, &sphere_to_ray);
-	c = ft_dot_product(&sphere_to_ray, &sphere_to_ray) - 1;
-
-	discriminant = b * b - 4 * a * c;
-
+	t_xs	*new_xs;
+	
+	sphere_to_ray = *ft_substract_tuples(&ray.origin, &sphere.center);
+	a = ft_dot_product(ray.direction, ray.direction);
+	b = 2 * ft_dot_product(ray.direction, sphere_to_ray);
+	c = (ft_dot_product(sphere_to_ray, sphere_to_ray) - (sphere.radius * sphere.radius));
+	discriminant = (b * b) - (4 * a * c);
 	if (discriminant < 0)
-	{
-		inter->count = 0;
-		inter->intersections = NULL;
-		return (inter);
-	}
-	
-	inter->count = 2;
-	inter->intersections = malloc(sizeof(t_intersection) * 2);
-
-	inter->intersections[0].t = (-b - sqrt(discriminant)) / (2 * a);
-	inter->intersections[1].t = (-b - sqrt(discriminant)) / (2 * a);
-	inter->intersections[0].object = sphere;
-	inter->intersections[1].object = sphere;
-	return (inter);
-}
-
-t_intersection *ft_hit(t_intersections *xs)
-{
-	int i;
-	float min_t;
-	int min_index;
-	
-	if (xs->count == 0)
 		return (NULL);
-	
-	min_t = FLT_MAX;
-	min_index = -1;
-	
-	i = 0;
-	while (i < xs->count)
-	{
-		if (xs->intersections[i].t > 0 && xs->intersections[i].t < min_t)
-		{
-			min_t = xs->intersections[i].t;
-			min_index = i;
-		}
-		i++;
-	}
-	
-	if (min_index == -1)
-		return (NULL);
-	
-	return (&xs->intersections[min_index]);
+	new_xs = malloc(sizeof(t_xs));
+	new_xs->object = &sphere;
+	new_xs->t1 = (-b - sqrtf(discriminant)) / (2 * a);
+	new_xs->entry = ft_position(ray, new_xs->t1);
+	new_xs->t2 = (-b + sqrtf(discriminant)) / (2 * a);
+	new_xs->exit = ft_position(ray, new_xs->t2);
+	new_xs->next = NULL;
+	return (new_xs);
 }
-
