@@ -69,3 +69,32 @@ t_intersections *ft_intersecting_ray_sphere(t_shpere *s, t_ray ray)
 	return (inter);
 }
 
+t_intersection *ft_hit(t_intersections *xs)
+{
+	int i;
+	float min_t;
+	int min_index;
+	
+	if (xs->count == 0)
+		return (NULL);
+	
+	min_t = FLT_MAX;
+	min_index = -1;
+	
+	i = 0;
+	while (i < xs->count)
+	{
+		if (xs->intersections[i].t > 0 && xs->intersections[i].t < min_t)
+		{
+			min_t = xs->intersections[i].t;
+			min_index = i;
+		}
+		i++;
+	}
+	
+	if (min_index == -1)
+		return (NULL);
+	
+	return (&xs->intersections[min_index]);
+}
+

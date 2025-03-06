@@ -52,7 +52,7 @@ typedef struct s_ray
 
 typedef struct s_sphere
 {
-	t_tuple	center;
+	t_point	center;
 	float	radius;
 	t_4x4	*transform;
 	t_4x4	*inverse_transform;
@@ -60,7 +60,7 @@ typedef struct s_sphere
 
 typedef struct s_itersection
 {
-	float	point;  // puntos en los que intersecionan
+	float	t;  // puntos en los que intersecionan
 	void	*object;
 }	t_itersection;
 
