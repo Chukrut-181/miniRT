@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 11:23:47 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/06 12:56:12 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/06 13:20:41 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_xs	*ft_intersection(t_ray ray, t_sphere sphere)
 	float	discriminant;
 	float	a, b, c;
 	t_tuple	sphere_to_ray;
-	t_xs	*hit;
+	t_xs	*new_xs;
 	
 	sphere_to_ray = *ft_substract_tuples(&ray.origin, &sphere.center);
 	a = ft_dot_product(ray.direction, ray.direction);
@@ -44,11 +44,12 @@ t_xs	*ft_intersection(t_ray ray, t_sphere sphere)
 	discriminant = (b * b) - (4 * a * c);
 	if (discriminant < 0)
 		return (NULL);
-	hit = malloc(sizeof(t_xs));
-	hit->object = &sphere;
-	hit->t1 = (-b - sqrtf(discriminant)) / (2 * a);
-	hit->entry = ft_position(ray, hit->t1);
-	hit->t2 = (-b + sqrtf(discriminant)) / (2 * a);
-	hit->exit = ft_position(ray, hit->t2);
-	return (hit);
+	new_xs = malloc(sizeof(t_xs));
+	new_xs->object = &sphere;
+	new_xs->t1 = (-b - sqrtf(discriminant)) / (2 * a);
+	new_xs->entry = ft_position(ray, new_xs->t1);
+	new_xs->t2 = (-b + sqrtf(discriminant)) / (2 * a);
+	new_xs->exit = ft_position(ray, new_xs->t2);
+	new_xs->next = NULL;
+	return (new_xs);
 }

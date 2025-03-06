@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 11:34:10 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/06 12:45:28 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/06 13:14:01 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_test_ray(void)
 	float	time;
 	t_tuple	position;
 
-	time = 16.55479;
+	time = 12.55479;
 	gun = *ft_create_point(0, 0, -5);
 	direction = *ft_create_vector(0, 0, 1);
 	blast = ft_create_ray(gun, direction);
@@ -43,10 +43,10 @@ int ft_test_intersection(void)
 	xs_test = ft_intersection(beam, ball);
 	if (!xs_test)
 		return (printf("No intersection detected\n"));
-	printf("Time of xs1 = %.3f\n", xs_test->t1);
-	printf("Coords of xs1 = %.3f, %.3f, %.3f\n", xs_test->entry.x, xs_test->entry.y, xs_test->entry.z);
-	printf("Time of xs2 = %.3f\n", xs_test->t2);
-	printf("Coords of xs2 = %.3f, %.3f, %.3f\n", xs_test->exit.x, xs_test->exit.y, xs_test->exit.z);
+	printf("Time of entry = %.3f\n", xs_test->t1);
+	printf("Coords of entry = %.3f, %.3f, %.3f\n", xs_test->entry.x, xs_test->entry.y, xs_test->entry.z);
+	printf("Time of exit = %.3f\n", xs_test->t2);
+	printf("Coords of exit = %.3f, %.3f, %.3f\n", xs_test->exit.x, xs_test->exit.y, xs_test->exit.z);
 	free(xs_test);
 	return (0);
 }
