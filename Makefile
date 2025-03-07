@@ -6,7 +6,7 @@
 #    By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/19 10:29:45 by igchurru          #+#    #+#              #
-#    Updated: 2025/02/26 15:04:20 by eandres          ###   ########.fr        #
+#    Updated: 2025/03/07 10:25:52 by igchurru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ fclean: clean
 re: fclean all
 
 libft:
-	@make -C libft
+	@make bonus -C libft
 
 mlx42:
 	@if [ ! -d "MLX42/build" ]; then \
