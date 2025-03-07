@@ -6,12 +6,14 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 12:43:31 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/07 11:03:36 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/07 12:57:17 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
+
+# include <stdbool.h>
 
 typedef struct s_tuple
 {
@@ -51,9 +53,10 @@ typedef struct s_sphere
 
 typedef struct s_intersection
 {
-	void					*object;
-	float					time;
-	t_tuple					point;
+	void	*object;
+	float	time;
+	t_tuple	point;
+	bool	hit;
 }	t_xs;
 
 typedef struct s_quadratic_equation_data
@@ -63,4 +66,5 @@ typedef struct s_quadratic_equation_data
 	float	b;
 	float	c;
 }	t_abcd;
+
 #endif
