@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 12:59:10 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/07 13:23:11 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/07 13:55:20 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ static void	ft_identify_hit(t_list *xs_list)
 	float	reference;
 	t_xs	*aux;
 	t_xs	*mark;
-	
+
 	reference = 2147483648;
 	aux = NULL;
 	mark = NULL;
-	while(xs_list != NULL)
+	while (xs_list != NULL)
 	{
 		aux = (t_xs *)xs_list->content;
 		if (aux->time < reference && aux->time > 0)
