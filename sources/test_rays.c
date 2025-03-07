@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 11:34:10 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/07 12:46:54 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/07 12:50:23 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ int	ft_test_intersection(void)
 	while (xs_list)
 	{
 		aux = (t_xs *)(xs_list->content);
-		printf(" XS data: Time = %.3f, Coords %.3f, %.3f, %.3f\n", aux->time, aux->point.x, aux->point.y, aux->point.z);
+		printf("Object intersected: %s\n", (char *)aux->object);
+		printf("XS data: Time = %.3f, Coords %.3f, %.3f, %.3f\n", aux->time, aux->point.x, aux->point.y, aux->point.z);
 		xs_list = xs_list->next;
 		free(aux);
 	}
