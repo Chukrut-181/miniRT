@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 12:43:31 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/06 13:18:01 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/07 11:03:36 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,15 @@ typedef struct s_sphere
 typedef struct s_intersection
 {
 	void					*object;
-	float					t1;
-	t_tuple					entry;
-	float					t2;
-	t_tuple					exit;
-	struct s_intersection	*next;
+	float					time;
+	t_tuple					point;
 }	t_xs;
 
+typedef struct s_quadratic_equation_data
+{
+	float	discriminant;
+	float	a;
+	float	b;
+	float	c;
+}	t_abcd;
 #endif
