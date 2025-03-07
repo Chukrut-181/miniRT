@@ -6,13 +6,13 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 13:47:46 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/04 16:42:13 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/07 11:55:50 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-void	ft_draw_large_pixel(mlx_image_t	*image, int x, int y, int size)
+static void	ft_draw_large_pixel(mlx_image_t	*image, int x, int y, int size)
 {
 	int	i;
 	int	j;

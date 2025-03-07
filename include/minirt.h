@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:28:29 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/07 11:29:16 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/07 11:55:42 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,6 @@ int		ft_error_exit(char *err_msg, int err_code);
 void	ft_minigun(mlx_image_t	*image);
 void	ft_draw_clock(mlx_image_t *image);
 int		ft_test_matrix_functions(void);
-t_4x4	*ft_randomize_matrix(void);
-void	ft_draw_large_pixel(mlx_image_t	*image, int x, int y, int size);
 int		ft_test_ray(void);
 int		ft_test_intersection(void);
 

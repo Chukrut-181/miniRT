@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 11:34:10 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/07 11:49:34 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/07 12:46:54 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ int	ft_test_ray(void)
 	printf("and a direction vector %.4f %.4f %.4f %i\n", blast.direction.x, blast.direction.y, blast.direction.z, blast.direction.w);
 	printf("we can see that, in %f ticks\n", time);
 	position = ft_position(blast, time);
-	printf("the ray will reach coordinates %.4f %.4f %.4f %i\n", position.x, position.y, position.z, position.w);
+	printf("the ray will reach coordinates %.4f %.4f %.4f\n", position.x, position.y, position.z);
 	return (0);
 }
 
-int ft_test_intersection(void)
+int	ft_test_intersection(void)
 {
 	t_ray		beam;
 	t_sphere	ball;
