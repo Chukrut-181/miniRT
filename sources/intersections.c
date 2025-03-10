@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 12:59:10 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/07 13:55:20 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/07 16:16:12 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	ft_identify_hit(t_list *xs_list)
 	t_xs	*aux;
 	t_xs	*mark;
 
-	reference = 2147483648;
+	reference = 214748368;
 	aux = NULL;
 	mark = NULL;
 	while (xs_list != NULL)
@@ -77,7 +77,7 @@ t_list	*ft_intersection(t_ray ray, t_sphere sphere, t_list *xs_list)
 
 	ft_calculate_abcd(ray, sphere, &solution_data);
 	if (solution_data.discriminant < 0)
-		return (xs_list);
+		return (NULL);
 	xs_list = ft_register_intersections(solution_data, xs_list, ray);
 	ft_identify_hit(xs_list);
 	return (xs_list);

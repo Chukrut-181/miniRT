@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:28:29 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/07 12:56:44 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/07 15:35:46 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,6 @@ void	ft_draw_clock(mlx_image_t *image);
 int		ft_test_matrix_functions(void);
 int		ft_test_ray(void);
 int		ft_test_intersection(void);
+void	ft_render_sphere(mlx_image_t *image);
 
 #endif
