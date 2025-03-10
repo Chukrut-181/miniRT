@@ -21,10 +21,8 @@ int	ft_minirt(void)
 	mlx = mlx_init(2400, 1800, "miniRT", true);
 	image = mlx_new_image(mlx, 2400, 1800);
 	//ft_minigun(image);
-	//ft_test_matrix_functions();
 	//ft_draw_clock(image);
-	//ft_test_ray();
-	//ft_test_intersection();
+	ft_render_sphere(image);
 	mlx_image_to_window(mlx, image, 0, 0);
 	mlx_key_hook(mlx, ft_handle_key, mlx);
 	mlx_loop(mlx);

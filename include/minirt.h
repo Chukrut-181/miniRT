@@ -5,7 +5,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:28:29 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/06 10:45:48 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/07 15:35:46 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ t_4x4	*rotation_z(double angle);
 //	RAY
 t_ray	ft_create_ray(t_tuple origin, t_tuple direction);
 t_tuple	ft_position(t_ray ray, float t);
-t_xs	*ft_intersection(t_ray ray, t_sphere sphere);
+t_list	*ft_intersection(t_ray ray, t_sphere sphere, t_list *xs_list);
 
 //	THINGS
 t_sphere	*ft_create_sphere(t_tuple point, float r);
@@ -121,9 +121,8 @@ int		ft_error_exit(char *err_msg, int err_code);
 void	ft_minigun(mlx_image_t	*image);
 void	ft_draw_clock(mlx_image_t *image);
 int		ft_test_matrix_functions(void);
-t_4x4	*ft_randomize_matrix(void);
-void	ft_draw_large_pixel(mlx_image_t	*image, int x, int y, int size);
 int		ft_test_ray(void);
 int		ft_test_intersection(void);
+void	ft_render_sphere(mlx_image_t *image);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 10:41:59 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/04 12:37:41 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/07 11:55:23 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	ft_print_4x4(t_4x4 *matrix)
 	}
 }
 
-t_4x4	*ft_randomize_matrix(void)
+static t_4x4	*ft_randomize_matrix(void)
 {
 	t_4x4	*random_mx;
 	float	temp;

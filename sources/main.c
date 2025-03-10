@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/06 12:44:05 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/07 13:54:36 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		ft_error_exit("Error\nUsage: ./miniRT <arg1>", 1);
 	else
-		//ft_minirt();
-		ft_test_intersection();
+		ft_minirt();
+		//ft_test_matrix_functions();
+		//ft_test_ray();
+		//ft_test_intersection();
 	return (0);
 }
