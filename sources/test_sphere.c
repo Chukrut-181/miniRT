@@ -6,21 +6,20 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:57:06 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/10 11:53:13 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/11 11:33:35 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-static t_ray ft_transform_ray(t_ray ray, t_4x4 *m)
+/* static t_ray	ft_transform_ray(t_ray ray, t_4x4 *m)
 {
-    t_ray transformed;
+	t_ray	transformed;
 
-    transformed.origin = *ft_multiply_mat_and_tuple(m, &ray.origin);
-    transformed.direction = *ft_multiply_mat_and_tuple(m, &ray.direction);
-    return (transformed);
+	transformed.origin = *ft_multiply_mat_and_tuple(m, &ray.origin);
+	transformed.direction = *ft_multiply_mat_and_tuple(m, &ray.direction);
+	return (transformed);
 }
-
 
 static t_4x4 *ft_transformation_test(void)
 {
@@ -31,7 +30,7 @@ static t_4x4 *ft_transformation_test(void)
 	if (!transform_test)
 		return (write(1, "matriz caca\n", 12), NULL);
 	return (transform_test);
-}
+} */
 
 void	ft_render_sphere(mlx_image_t *image)
 {
@@ -45,7 +44,6 @@ void	ft_render_sphere(mlx_image_t *image)
 	int			y;
 
 	sphere = *ft_create_sphere(*ft_create_point(0, 0, 0), 10);
-	//ray_origin = *ft_multiply_mat_and_tuple(ft_transformation_test(), ft_create_point(0, 0, -100));
 	ray_origin = *ft_create_point(0, 0, -100);
 	xs_list = NULL;
 	x = 0;
@@ -57,7 +55,7 @@ void	ft_render_sphere(mlx_image_t *image)
 			direction = *ft_create_vector(x - 1200, 900 - y, 5000);
 			ft_normalize(&direction);
 			ray = ft_create_ray(ray_origin, direction);
-			ray = ft_transform_ray(ray, ft_transformation_test());
+			//ray = ft_transform_ray(ray, ft_transformation_test());
 			xs_list = ft_intersection(ray, sphere, xs_list);
 			while (xs_list)
 			{
