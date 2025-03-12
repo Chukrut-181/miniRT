@@ -46,7 +46,7 @@ int		ft_minirt(void);
 //	TUPLE CREATION
 t_tuple	*ft_create_point(float x, float y, float z);
 t_tuple	*ft_create_vector(float x, float y, float z);
-int		ft_check_equality(t_tuple *tuple1, t_tuple *tuple2);
+int	ft_check_equality(t_tuple *tuple1, t_tuple *tuple2);
 
 //	TUPLE OPERATIONS
 t_tuple	*ft_add_tuples(t_tuple *tuple1, t_tuple *tuple2);
@@ -62,7 +62,7 @@ float	ft_dot_product(t_tuple v1, t_tuple v2);
 t_tuple	*ft_cross_product(t_tuple *v1, t_tuple *v2);
 
 //	MATRIX OPERATIONS
-int		ft_check_matrix_equality(t_4x4 *matrix1, t_4x4 *matrix2);
+int	ft_check_matrix_equality(t_4x4 *matrix1, t_4x4 *matrix2);
 t_4x4	*ft_multiply_matrices(t_4x4 *matrix1, t_4x4 *matrix2);
 t_tuple	*ft_multiply_mat_and_tuple(t_4x4 *matrix, t_tuple *tuple);
 t_4x4	*ft_find_inverse(t_4x4 *matrix);
@@ -86,20 +86,18 @@ t_tuple	ft_position(t_ray ray, float t);
 t_list	*ft_intersection(t_ray ray, t_sphere sphere, t_list *xs_list);
 
 //	THINGS
-t_sphere	*ft_create_sphere(t_tuple point, float r);
+t_spher	*ft_create_sphere(t_tuple point, float r);
 
 //	HOOKS
 void	ft_handle_key(mlx_key_data_t keydata, void *param);
 
 // 	ERROR EXIT
-int		ft_error_exit(char *err_msg, int err_code);
+int	ft_error_exit(char *err_msg, int err_code);
 
 //	TEST FUNCTIONS (to be removed)
 void	ft_minigun(mlx_image_t	*image);
 void	ft_draw_clock(mlx_image_t *image);
-int		ft_test_matrix_functions(void);
-int		ft_test_ray(void);
-int		ft_test_intersection(void);
+int	ft_test_matrix_functions(void);
+int	ft_test_ray(void);
+int	ft_test_intersection(void);
 void	ft_render_sphere(mlx_image_t *image);
-
-#endif
