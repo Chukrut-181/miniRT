@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_operations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eandres <eandres@student.42urduliz.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 09:50:24 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/12 12:48:37 by eandres          ###   ########.fr       */
+/*   Updated: 2025/03/12 12:52:05 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,24 @@ t_4x4	*ft_multiply_matrices(t_4x4 *mat1, t_4x4 *mat2)
 	int		j;
 
 	product = malloc(sizeof(t_4x4));
-	i = 0;
-	while (i < 4)
+	if (!product)
+		return (NULL);
+	i = -1;
+	while (++i < 4)
 	{
-		j = 0;
-		while (j < 4)
+		j = -1;
+		while (++j < 4)
 		{
 			product->data[i][j] = mat1->data[i][0] * mat2->data[0][j]
 				+ mat1->data[i][1] * mat2->data[1][j]
 				+ mat1->data[i][2] * mat2->data[2][j]
 				+ mat1->data[i][3] * mat2->data[3][j];
-			j++;
 		}
-		i++;
 	}
+/* 	free(mat1);
+	free(mat2);
+	mat1 = NULL;
+	mat2 = NULL; */
 	return (product);
 }
 
@@ -62,6 +66,8 @@ t_tuple	*ft_multiply_mat_and_tuple(t_4x4 *mat, t_tuple *tuple)
 	t_tuple	*product;
 
 	product = malloc(sizeof(t_tuple));
+	if (!product)
+		return (NULL);
 	product->x = mat->data[0][0] * tuple->x + mat->data[0][1] * tuple->y
 		+ mat->data[0][2] * tuple->z + mat->data[0][3] * tuple->w;
 	product->y = mat->data[1][0] * tuple->x + mat->data[1][1] * tuple->y
@@ -70,6 +76,10 @@ t_tuple	*ft_multiply_mat_and_tuple(t_4x4 *mat, t_tuple *tuple)
 		+ mat->data[2][2] * tuple->z + mat->data[2][3] * tuple->w;
 	product->w = mat->data[3][0] * tuple->x + mat->data[3][1] * tuple->y
 		+ mat->data[3][2] * tuple->z + mat->data[3][3] * tuple->w;
+/* 	free(mat);
+	free(tuple);
+	mat = NULL;
+	tuple = NULL; */
 	return (product);
 }
 
@@ -111,8 +121,8 @@ t_4x4	*ft_find_inverse(t_4x4 *matrix)
 
 	inverse = malloc(sizeof(t_4x4));
 	cofdet[1] = ft_calculate_determinant(matrix);
-	if (cofdet[1] == 0)
-		return (matrix);
+	if (!inverse || cofdet[1] == 0)
+		return (NULL);
 	row = -1;
 	while (++row < 4)
 	{
@@ -127,4 +137,27 @@ t_4x4	*ft_find_inverse(t_4x4 *matrix)
 		}
 	}
 	return (inverse);
+}
+
+t_4x4	*ft_transpose(t_4x4 *matrix)
+{
+	t_4x4	*transposed;
+	int		i;
+	int		j;
+
+	transposed = malloc(sizeof(t_4x4));
+	if (!transposed)
+		return (NULL);
+	i = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			transposed->data[i][j] = matrix->data[j][i];
+			j++;
+		}
+		i++;
+	}
+	return (transposed);
 }

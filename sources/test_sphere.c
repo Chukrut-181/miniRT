@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:57:06 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/11 11:33:35 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/12 11:48:42 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@
 
 static t_4x4 *ft_transformation_test(void)
 {
-	t_4x4	*transform_test;
+	t_4x4	*transform;
 
-	transform_test =  NULL;
-	transform_test = ft_find_inverse(create_scalation_mx(ft_create_point(0.25, 1, 1)));
-	if (!transform_test)
+	transform =  NULL;
+	transform = ft_find_inverse(create_scalation_mx(ft_create_point(0.25, 1, 1)));
+	if (!transform)
 		return (write(1, "matriz caca\n", 12), NULL);
-	return (transform_test);
+	return (transform);
 } */
 
 void	ft_render_sphere(mlx_image_t *image)

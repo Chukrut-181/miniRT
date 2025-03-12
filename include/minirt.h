@@ -5,7 +5,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:28:29 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/07 15:35:46 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/12 09:54:50 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,6 @@
 # include <unistd.h>
 
 # define EPSILON 0.00001
-
-//typedef struct s_itersection
-//{
-//	float	t;  // puntos en los que intersecionan
-//	void	*object;
-//}	t_itersection;
-//
-//typedef struct s_itersections
-//{
-//	t_itersection	*intersections;
-//	int		count;
-//}	t_itersections;
 
 # ifndef M_PI
 #  define M_PI 3.1415926
