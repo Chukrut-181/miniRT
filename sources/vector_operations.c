@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 10:04:30 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/06 15:43:04 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/12 13:49:22 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,24 @@
 /* The distance represented by a vector is called its magnitude, or length.
 It’s how far you would travel in a straight line if you were to walk from
 one end of the vector to the other. */
-float	ft_calculate_magnitude(t_tuple *v)
+float	ft_calculate_magnitude(t_tuple v)
 {
-	return (sqrtf(v->x * v->x + v->y * v->y + v->z * v->z + v->w * v->w));
+	return (sqrtf(v.x * v.x + v.y * v.y + v.z * v.z + v.w * v.w));
 }
 
 /* Vectors with magnitudes of 1 are called unit vectors. Normalization is the
 process of taking an arbitrary vector and converting it into a unit vector. */
-void	ft_normalize(t_tuple *v)
+t_tuple	ft_normalize(t_tuple v)
 {
 	float	mag;
+	t_tuple	normalized;
+	
 
 	mag = ft_calculate_magnitude(v);
-	v->x /= mag;
-	v->y /= mag;
-	v->z /= mag;
+	normalized.x /= mag;
+	normalized.y /= mag;
+	normalized.z /= mag;
+	return (normalized);
 }
 
 /* The dot product takes two vectors and returns a scalar value.
@@ -48,14 +51,13 @@ original vectors. Note that this is specifically testing vectors, not tuples.
 Also, note that if you change the order of the operands, you change the
 direction of the resulting vector. Order matters!
 X cross Y gives you Z, but Y cross X gives you -Z! */
-t_tuple	*ft_cross_product(t_tuple *v1, t_tuple *v2)
+t_tuple	ft_cross_product(t_tuple v1, t_tuple v2)
 {
-	t_tuple	*cross_vector;
+	t_tuple	cross_vector;
 
-	cross_vector = malloc(sizeof(t_tuple));
-	cross_vector->x = v1->y * v2->z - v1->z * v2->y;
-	cross_vector->y = v1->z * v2->x - v1->x * v2->z;
-	cross_vector->z = v1->x * v2->y - v1->y * v2->x;
-	cross_vector->w = 0;
+	cross_vector.x = v1.y * v2.z - v1.z * v2.y;
+	cross_vector.y = v1.z * v2.x - v1.x * v2.z;
+	cross_vector.z = v1.x * v2.y - v1.y * v2.x;
+	cross_vector.w = 0;
 	return (cross_vector);
 }

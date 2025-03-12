@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:08:59 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/12 13:10:56 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/12 14:09:53 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ t_tuple	ft_create_vector(float x, float y, float z)
 	return (new_vector);
 }
 
-int	ft_check_equality(t_tuple *tuple1, t_tuple *tuple2)
+int	ft_check_equality(t_tuple tuple1, t_tuple tuple2)
 {
-	if ((fabsf(tuple1->x - tuple2->x) < EPSILON)
-		&& (fabsf(tuple1->y - tuple2->y) < EPSILON)
-		&& (fabsf(tuple1->z - tuple2->z) < EPSILON))
+	if ((fabsf(tuple1.x - tuple2.x) < EPSILON)
+		&& (fabsf(tuple1.y - tuple2.y) < EPSILON)
+		&& (fabsf(tuple1.z - tuple2.z) < EPSILON))
 		return (0);
 	else
 		return (1);
