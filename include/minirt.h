@@ -21,40 +21,17 @@
 
 # define EPSILON 0.00001
 
-typedef struct s_tuple
-{
-	float	x;
-	float	y;
-	float	z;
-	int	w;
-}	t_tuple;
-
-//	SPHERE
-typedef struct s_ray
-{
-	t_tuple	origin;
-	t_tuple	direction;
-}	t_ray;
-
-typedef struct s_sphere
-{
-	t_point	center;
-	float	radius;
-	t_4x4	*transform;
-	t_4x4	*inverse_transform;
-}	t_sphere;
-
-typedef struct s_itersection
-{
-	float	t;  // puntos en los que intersecionan
-	void	*object;
-}	t_itersection;
-
-typedef struct s_itersections
-{
-	t_itersection	*intersections;
-	int		count;
-}	t_itersections;
+//typedef struct s_itersection
+//{
+//	float	t;  // puntos en los que intersecionan
+//	void	*object;
+//}	t_itersection;
+//
+//typedef struct s_itersections
+//{
+//	t_itersection	*intersections;
+//	int		count;
+//}	t_itersections;
 
 # ifndef M_PI
 #  define M_PI 3.1415926

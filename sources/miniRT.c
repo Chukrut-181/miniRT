@@ -9,10 +9,10 @@
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
-
-static	void	ft_draw_semi_circule(mlx_image_t *image);
-static void	ft_draw_dock(mlx_image_t *image);
-static void	ft_draw_line_up(mlx_image_t *image);
+//
+//static	void	ft_draw_semi_circule(mlx_image_t *image);
+//static void	ft_draw_dock(mlx_image_t *image);
+//static void	ft_draw_line_up(mlx_image_t *image);
 
 int	ft_minirt(void)
 {
