@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:28:29 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/12 09:54:50 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/12 13:11:03 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int		main(int argc, char **argv);
 int		ft_minirt(void);
 
 //	TUPLE CREATION
-t_tuple	*ft_create_point(float x, float y, float z);
-t_tuple	*ft_create_vector(float x, float y, float z);
+t_tuple	ft_create_point(float x, float y, float z);
+t_tuple	ft_create_vector(float x, float y, float z);
 int		ft_check_equality(t_tuple *tuple1, t_tuple *tuple2);
 
 //	TUPLE OPERATIONS
