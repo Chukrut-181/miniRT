@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 09:50:24 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/12 10:16:28 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/12 12:45:07 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ t_4x4	*ft_multiply_matrices(t_4x4 *mat1, t_4x4 *mat2)
 				+ mat1->data[i][3] * mat2->data[3][j];
 		}
 	}
-	free(mat1);
+/* 	free(mat1);
 	free(mat2);
 	mat1 = NULL;
-	mat2 = NULL;
+	mat2 = NULL; */
 	return (product);
 }
 
@@ -76,10 +76,10 @@ t_tuple	*ft_multiply_mat_and_tuple(t_4x4 *mat, t_tuple *tuple)
 		+ mat->data[2][2] * tuple->z + mat->data[2][3] * tuple->w;
 	product->w = mat->data[3][0] * tuple->x + mat->data[3][1] * tuple->y
 		+ mat->data[3][2] * tuple->z + mat->data[3][3] * tuple->w;
-	free(mat);
+/* 	free(mat);
 	free(tuple);
 	mat = NULL;
-	tuple = NULL;
+	tuple = NULL; */
 	return (product);
 }
 
@@ -137,4 +137,27 @@ t_4x4	*ft_find_inverse(t_4x4 *matrix)
 		}
 	}
 	return (inverse);
+}
+
+t_4x4	*ft_transpose(t_4x4 *matrix)
+{
+	t_4x4	*transposed;
+	int		i;
+	int		j;
+
+	transposed = malloc(sizeof(t_4x4));
+	if (!transposed)
+		return (NULL);
+	i = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			transposed->data[i][j] = matrix->data[j][i];
+			j++;
+		}
+		i++;
+	}
+	return (transposed);
 }
