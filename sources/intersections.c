@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 12:59:10 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/12 11:49:24 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/12 14:05:35 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	ft_calculate_abcd(t_ray ray, t_sphere sphere, t_abcd *data)
 {
 	t_tuple	sphere_to_ray;
 
-	sphere_to_ray = *ft_substract_tuples(&ray.origin, &sphere.center);
+	sphere_to_ray = ft_substract_tuples(ray.origin, sphere.center);
 	data->a = ft_dot_product(ray.direction, ray.direction);
 	data->b = 2 * ft_dot_product(ray.direction, sphere_to_ray);
 	data->c = (ft_dot_product(sphere_to_ray, sphere_to_ray)
@@ -57,14 +57,14 @@ t_list	*ft_register_intersections(t_abcd data, t_list *xs_list, t_ray ray)
 	first_xs = malloc(sizeof(t_xs));
 	first_xs->object = "sphere";
 	first_xs->time = (-data.b - sqrtf(data.discriminant)) / (2 * data.a);
-	first_xs->point = *ft_add_tuples
-		(&ray.origin, ft_multiply_tuple(&ray.direction, first_xs->time));
+	first_xs->point = ft_add_tuples
+		(ray.origin, ft_multiply_tuple(ray.direction, first_xs->time));
 	first_xs->hit = 0;
 	second_xs = malloc(sizeof(t_xs));
 	second_xs->object = "sphere";
 	second_xs->time = (-data.b + sqrtf(data.discriminant)) / (2 * data.a);
-	second_xs->point = *ft_add_tuples
-		(&ray.origin, ft_multiply_tuple(&ray.direction, second_xs->time));
+	second_xs->point = ft_add_tuples
+		(ray.origin, ft_multiply_tuple(ray.direction, second_xs->time));
 	second_xs->hit = 0;
 	ft_lstadd_back(&xs_list, ft_lstnew(first_xs));
 	ft_lstadd_back(&xs_list, ft_lstnew(second_xs));

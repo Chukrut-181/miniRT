@@ -6,7 +6,7 @@
 /*   By: eandres <eandres@student.42urduliz.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 11:23:47 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/10 14:02:26 by eandres          ###   ########.fr       */
+/*   Updated: 2025/03/13 14:16:06 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ t_tuple	ft_position(t_ray ray, float t)
 {
 	t_tuple	pos;
 
-	pos = *ft_add_tuples(&ray.origin, ft_multiply_tuple(&ray.direction, t));
+	pos = ft_add_tuples(ray.origin, ft_multiply_tuple(ray.direction, t));
 	return (pos);
 }

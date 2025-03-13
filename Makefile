@@ -6,7 +6,7 @@
 #    By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/19 10:29:45 by igchurru          #+#    #+#              #
-#    Updated: 2025/03/07 10:25:52 by igchurru         ###   ########.fr        #
+#    Updated: 2025/03/13 12:56:34 by igchurru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,13 +57,13 @@ fclean: clean
 re: fclean all
 
 libft:
-	@make bonus -C libft
+	make bonus -s -C libft
 
 mlx42:
 	@if [ ! -d "MLX42/build" ]; then \
 		mkdir -p MLX42/build && cd MLX42/build && cmake ..; \
 	fi
-	@make -C MLX42/build
+	make -s -C MLX42/build
 
 update:
 	@git submodule update --init --recursive --remote

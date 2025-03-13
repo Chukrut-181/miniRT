@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:10:23 by igchurru          #+#    #+#             */
-/*   Updated: 2025/02/26 10:50:08 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/12 13:40:08 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@ float	ft_determinant_3x3(t_3x3 submx)
 		- submx.data[1][1] * submx.data[2][0]));
 }
 
-static void	ft_get_3x3_submatrix(t_4x4 *matrix, t_3x3 *submatrix, int exc_col)
+static t_3x3	ft_get_3x3_submatrix(t_4x4 matrix, int exc_col)
 {
 	int	row;
 	int	i;
 	int	col_offset;
 	int	j;
+	t_3x3 submatrix;
 
 	row = 1;
 	i = 0;
@@ -39,16 +40,17 @@ static void	ft_get_3x3_submatrix(t_4x4 *matrix, t_3x3 *submatrix, int exc_col)
 		{
 			if (j != exc_col)
 			{
-				submatrix->data[i][col_offset] = matrix->data[row + i][j];
+				submatrix.data[i][col_offset] = matrix.data[row + i][j];
 				col_offset++;
 			}
 			j++;
 		}
 		i++;
 	}
+	return (submatrix);
 }
 
-float	ft_calculate_determinant(t_4x4 *matrix)
+float	ft_calculate_determinant(t_4x4 matrix)
 {
 	float	det;
 	t_3x3	submatrix;
@@ -60,8 +62,8 @@ float	ft_calculate_determinant(t_4x4 *matrix)
 	col = 0;
 	while (col < 4)
 	{
-		ft_get_3x3_submatrix(matrix, &submatrix, col);
-		det += sign * matrix->data[0][col] * ft_determinant_3x3(submatrix);
+		submatrix = ft_get_3x3_submatrix(matrix, col);
+		det += sign * matrix.data[0][col] * ft_determinant_3x3(submatrix);
 		sign = -sign;
 		col++;
 	}
