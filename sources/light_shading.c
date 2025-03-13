@@ -1,6 +1,6 @@
 #include "../include/minirt.h"
 
-// testear estas tres funciones (eliminar estor posteriormente)
+// testear todas estas funciones (eliminar estor posteriormente)
 
 t_tuple	ft_create_material(float x, float y, float z)
 {
@@ -66,8 +66,13 @@ t_tuple	lighting(t_material mat, t_light light, t_tuple point, t_tuple eyev, t_t
 	t_tuple	*effective_color;
 	t_tuple	*lightv;
 	t_tuple	*ambient;
+	t_tuple	*diffuse;
+	t_tuple	*specular;
+	t_tuple	*reflectv;
 	float	light_dot_normal;
+	float	reflect_dot_eye;
 	float	var;
+	float	factor;
 
 	effective_color = ft_cross_product(mat.color, light.intensity);
 	lightv = ft_substract_tuples(light.position, point);
@@ -76,14 +81,22 @@ t_tuple	lighting(t_material mat, t_light light, t_tuple point, t_tuple eyev, t_t
 	light_dot_normal = ft_dot_product(lightv, normalv);
 	if (light_dot_normal < 0)
 	{
-		material.diffuse = 0;
-		material.specular = 0;
+		diffuse = ft_create_point(0, 0, 0);
+		specular = ft_create_point(0, 0, 0);
 	}
 	else
 	{
-		var = material.diffuse * light_dot_normal;
-		material.diffuse = ft_multiply_tuple(effective_color, var);
-		
+		diffuse = ft_multiply_tuple(effective_color, material.diffuse * light_dot_normal);
+		reflectv = reflect(ft_negate_tuple(lightv), normalv);
+		reflect_dot_eye = ft_dot_product(reflectv, eyev);
 	}
+	if (reflect_dot_eye <= 0)
+		specular = ft_create_point(0, 0, 0);
+	else
+	{
+		factor = powf(reflect_dot_eye, material.shininess);
+		specular = ft_multiply_tuple(light.intensity, (material.specular * factor));
+	}
+	return (ft_multiply_tuple(ambient, (diffuse * specular));
 }
 
