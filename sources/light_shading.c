@@ -100,3 +100,4 @@ t_tuple	lighting(t_material mat, t_light light, t_tuple point, t_tuple eyev, t_t
 	return (ft_multiply_tuple(ambient, (diffuse * specular));
 }
 
+void	test_sphere(
