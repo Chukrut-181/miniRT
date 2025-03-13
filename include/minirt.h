@@ -42,6 +42,7 @@ t_tuple	ft_substract_tuples(t_tuple tuple1, t_tuple tuple2);
 t_tuple	ft_multiply_tuple(t_tuple tuple, float scalar);
 t_tuple	ft_divide_tuple(t_tuple tuple, float scalar);
 t_tuple	ft_negate_tuple(t_tuple tuple);
+t_tuple	ft_multiply_colors(t_tuple c1, t_tuple c2);
 
 //	VECTOR OPERATIONS
 float	ft_calculate_magnitude(t_tuple v);
@@ -76,7 +77,7 @@ t_tuple	ft_position(t_ray ray, float t);
 t_list	*ft_intersection(t_ray ray, t_sphere sphere, t_list *xs_list);
 
 //	THINGS
-t_spher	*ft_create_sphere(t_tuple point, float r);
+t_sphere	*ft_create_sphere(t_tuple point, float r);
 
 //	HOOKS
 void	ft_handle_key(mlx_key_data_t keydata, void *param);
@@ -91,3 +92,8 @@ int	ft_test_matrix_functions(void);
 int	ft_test_ray(void);
 int	ft_test_intersection(void);
 void	ft_render_sphere(mlx_image_t *image);
+void	test_reflection();
+void	test_lighting();
+void 	render_lit_sphere(mlx_image_t *image);
+
+# endif

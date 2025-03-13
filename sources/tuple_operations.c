@@ -6,7 +6,7 @@
 /*   By: eandres <eandres@student.42urduliz.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:36:49 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/13 14:16:10 by eandres          ###   ########.fr       */
+/*   Updated: 2025/03/13 15:01:26 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,3 +67,14 @@ t_tuple	ft_negate_tuple(t_tuple tuple)
 	negated.w = tuple.w;
 	return (negated);
 }
+
+t_tuple ft_multiply_colors(t_tuple c1, t_tuple c2)
+{
+	t_tuple result;
+
+	result.x = c1.x * c2.x;
+	result.y = c1.y * c2.y;
+	result.z = c1.z * c2.z;
+	return (result);
+}
+

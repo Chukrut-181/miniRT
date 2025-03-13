@@ -6,7 +6,7 @@
 /*   By: eandres <eandres@student.42urduliz.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 10:04:30 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/13 14:16:14 by eandres          ###   ########.fr       */
+/*   Updated: 2025/03/13 15:21:14 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ t_tuple	ft_normalize(t_tuple v)
 	
 
 	mag = ft_calculate_magnitude(v);
-	normalized.x /= mag;
-	normalized.y /= mag;
-	normalized.z /= mag;
+	normalized.x = v.x / mag;
+	normalized.y = v.y / mag;
+	normalized.z = v.z / mag;
+	normalized.w = v.w;
 	return (normalized);
 }
 
