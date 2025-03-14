@@ -82,18 +82,18 @@ t_sphere	*ft_create_sphere(t_tuple point, float r);
 //	HOOKS
 void	ft_handle_key(mlx_key_data_t keydata, void *param);
 
-// 	ERROR EXIT
-int	ft_error_exit(char *err_msg, int err_code);
+//	ERROR EXIT
+int		ft_error_exit(char *err_msg, int err_code);
 
 //	TEST FUNCTIONS (to be removed)
 void	ft_minigun(mlx_image_t	*image);
 void	ft_draw_clock(mlx_image_t *image);
-int	ft_test_matrix_functions(void);
-int	ft_test_ray(void);
-int	ft_test_intersection(void);
+int		ft_test_matrix_functions(void);
+int		ft_test_ray(void);
+int		ft_test_intersection(void);
 void	ft_render_sphere(mlx_image_t *image);
 void	test_reflection();
 void	test_lighting();
-void 	render_lit_sphere(mlx_image_t *image);
+void	render_lit_sphere(mlx_image_t *image);
 
-# endif
+#endif
