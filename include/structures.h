@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
+/*																			*/
+/*														:::	  ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 12:43:31 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/13 14:56:51 by eandres          ###   ########.fr       */
-/*                                                                            */
+/*													+:+ +:+		 +:+	 */
+/*   By: igchurru <igchurru@student.42.fr>		  +#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2025/03/05 12:43:31 by igchurru		  #+#	#+#			 */
+/*   Updated: 2025/03/14 10:05:23 by eandres          ###   ########.fr       */
+/*																			*/
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
@@ -83,5 +83,20 @@ typedef struct s_light
 	t_tuple	intensity;
 	t_tuple position;
 }	t_light;
+
+typedef struct s_world
+{
+//	t_list *objects;  // Lista de objetos (esferas, etc.)
+	t_light light;    // Fuente de luz
+}	t_world;
+
+typedef struct s_comps
+{
+	void	*object;
+	float	time;
+	t_tuple	point;
+	t_tuple	eyev;
+	t_tuple	normalv;
+}	t_comps;
 
 #endif
