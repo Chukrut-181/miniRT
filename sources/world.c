@@ -43,8 +43,63 @@ t_comps	prepare_computations(t_list *intersection, t_ray ray)
 
 	comps.time = hit->time;
 	comps.object = hit->object;
-	comps.point = ft_position(ray.direction);
+	comps.point = ft_position(ray, comps.time);
 	comps.eyev = ft_negate_tuple(ray.direction);
-	comps.normalv = normal_at(*(t_sphere)comps.object, comps.point);
+	comps.normalv = normal_at(*(t_sphere *)comps.object, comps.point);
 	return (comps);
 }
+
+t_tuple	shade_hit(t_world world, t_comps comps)
+{
+	t_tuple	result;
+
+	result = lighting(((t_sphere *)comps.object)->material, world.light, comps.point, comps.eyev, comps.normalv);
+	return (result);
+}
+
+t_list *ft_find_hit(t_list *intersections)
+{
+	t_list *current;
+	t_list *hit;
+	t_xs *xs;
+	float min_time;
+	
+	current = intersections;
+	hit = NULL;
+	min_time = INFINITY;
+	
+	while (current)
+	{
+		xs = (t_xs *)current->content;
+		
+		if (xs->time > 0 && xs->time < min_time)
+		{
+			min_time = xs->time;
+			hit = current;
+		}
+		
+		current = current->next;
+	}
+	
+	return (hit);
+}
+
+t_tuple	color_at(t_world world, t_ray ray)
+{
+	t_list	*intersect;
+	t_list	*hit;
+	t_comps	comps;
+	t_tuple	shade;
+
+	intersect = ft_intersect_world(world, ray);
+	hit = ft_find_hit(intersect);
+	if (hit == NULL)
+	{
+		shade = ft_create_point(0, 0, 0);
+		return (shade);
+	}
+	comps = prepare_computations(intersect, ray);
+	shade = shade_hit(world, comps);
+	return (shade);
+}
+

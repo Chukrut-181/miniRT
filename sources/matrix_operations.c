@@ -6,7 +6,7 @@
 /*   By: eandres <eandres@student.42urduliz.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 09:50:24 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/13 14:16:01 by eandres          ###   ########.fr       */
+/*   Updated: 2025/03/14 13:35:34 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,6 @@ t_tuple	ft_multiply_mat_and_tuple(t_4x4 mat, t_tuple tuple)
 		+ mat.data[2][2] * tuple.z + mat.data[2][3] * tuple.w;
 	product.w = mat.data[3][0] * tuple.x + mat.data[3][1] * tuple.y
 		+ mat.data[3][2] * tuple.z + mat.data[3][3] * tuple.w;
-/* 	free(mat);
-	free(tuple);
-	mat = NULL;
-	tuple = NULL; */
 	return (product);
 }
 
