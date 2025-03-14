@@ -1,16 +1,17 @@
-/* ************************************************************************** */ /*                                                                            */
+/* ************************************************************************** */
+/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 10:28:29 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/12 14:08:57 by igchurru         ###   ########.fr       */
+/*   Created: 2025/03/12 14:08:57 by igchurru          #+#    #+#             */
+/*   Updated: 2025/03/14 11:05:45 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
-#define MINIRT_H
+# define MINIRT_H
 
 # include "structures.h"
 # include "../libft/libft.h"
@@ -92,8 +93,8 @@ int		ft_test_matrix_functions(void);
 int		ft_test_ray(void);
 int		ft_test_intersection(void);
 void	ft_render_sphere(mlx_image_t *image);
-void	test_reflection();
-void	test_lighting();
+void	test_reflection(void);
+void	test_lighting(void);
 void	render_lit_sphere(mlx_image_t *image);
 
 #endif

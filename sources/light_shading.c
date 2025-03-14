@@ -2,7 +2,7 @@
 
 t_material	ft_create_material(float x, float y, float z)
 {
-	t_material m;
+	t_material	m;
 
 	m.color = ft_create_point(x, y, z);
 	m.ambient = 0.1;
@@ -37,7 +37,7 @@ t_tuple	reflect(t_tuple in, t_tuple normal)
 
 t_light	point_light(t_tuple position, t_tuple intensity)
 {
-	t_light light;
+	t_light	light;
 
 	light.position = position;
 	light.intensity = intensity;
