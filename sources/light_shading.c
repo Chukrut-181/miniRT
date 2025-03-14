@@ -182,14 +182,14 @@ void render_lit_sphere(mlx_image_t *image)
 	
 	sphere.center = ft_create_point(0, 0, 0);
 	sphere.radius = 500;
-	sphere.material = ft_create_material(1, 0.2, 1);  // Purple/magenta color
+	sphere.material = ft_create_material(1, 1, 1);  // Purple/magenta color
 	sphere.material.ambient = 0.1;
 	sphere.material.diffuse = 0.7;
 	sphere.material.specular = 0.3;
 	sphere.material.shininess = 100.0;
 	
 	// Create a light source (positioned to create highlight in upper-right)
-	light = point_light(ft_create_point(-500, 500, -1000), ft_create_point(0.5, 1, 1));
+	light = point_light(ft_create_point(-400, 400, -1000), ft_create_point(0.4, 0.6, 0.9));
 	// Eye position
 	eye_pos = ft_create_point(0, 0, -1000);
 	
