@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:36:49 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/14 13:48:35 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/14 14:08:17 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ t_tuple	ft_multiply_tuple(t_tuple tuple, float scalar)
 	product.y = tuple.y * scalar;
 	product.z = tuple.z * scalar;
 	product.w = tuple.w;
-
 	return (product);
 }
 
@@ -139,24 +138,19 @@ t_tuple	ft_negate_tuple(t_tuple tuple)
  * ft_multiply_color - Multiplies corresponding components of two color tuples.
  * 
  * The function multiplies the `x`, `y`, and `z` components of the two tuples 
- * together, and returns a new tuple where the resulting `x`, `y`, and `z` 
- * components are the product of the corresponding components from `c1` and 
- * `c2`. The `w` component is omitted from the result.
+ * together. The `w` component is omitted from the result.
  *
- * param c1: The first t_tuple structure representing the first color.
- * param c2: The second t_tuple structure representing the second color.
+ * param c1: The first t_tuple representing the first color.
+ * param c2: The second t_tuple representing the second color.
  * 
- * Return: A new t_tuple structure containing the product of the `x`, `y`, 
- *         and `z` components of `c1` and `c2`, with the `w` component 
- *         omitted.
+ * Return: A new t_tuple containing the product of the `x`, `y`, and `z`.
  */
-t_tuple ft_multiply_colors(t_tuple c1, t_tuple c2)
+t_tuple	ft_multiply_colors(t_tuple c1, t_tuple c2)
 {
-	t_tuple result;
+	t_tuple	result;
 
 	result.x = c1.x * c2.x;
 	result.y = c1.y * c2.y;
 	result.z = c1.z * c2.z;
 	return (result);
 }
-

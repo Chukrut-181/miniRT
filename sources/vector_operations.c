@@ -3,30 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   vector_operations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eandres <eandres@student.42urduliz.com>    +#+  +:+       +#+        */
+/*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 10:04:30 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/13 15:21:14 by eandres          ###   ########.fr       */
+/*   Updated: 2025/03/14 14:05:23 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-/* The distance represented by a vector is called its magnitude, or length.
-It’s how far you would travel in a straight line if you were to walk from
-one end of the vector to the other. */
+/**
+ *ft_calculate_magnitude - Calculates the magnitude (length) of a 3D vector.
+ * 
+ * This function computes the magnitude of a 3D vector using the Euclidean 
+ * formula. The `w` component is ignored in the calculation. The result is
+ * a floating-point value representing the length of the vector.
+ *
+ * param v: A t_tuple structure containing the 3D vector components. 
+ * 
+ * Return: A float representing the magnitude (length) of the vector `v`.
+ */
 float	ft_calculate_magnitude(t_tuple v)
 {
 	return (sqrtf(v.x * v.x + v.y * v.y + v.z * v.z + v.w * v.w));
 }
 
-/* Vectors with magnitudes of 1 are called unit vectors. Normalization is the
-process of taking an arbitrary vector and converting it into a unit vector. */
+/**
+ * ft_normalize - Normalizes a 3D vector to have a magnitude of 1.
+ * 
+ * This function takes a 3D vector (`v`), calculates its magnitude using
+ * the `ft_calculate_magnitude` function, and then divides each component
+ * by the magnitude to normalize the vector.
+ * The `w` component remains unchanged.
+ * 
+ * param v: A t_tuple structure containing the 3D vector to be normalized.
+ * 
+ * Return: A new t_tuple structure representing the normalized vector.
+ */
 t_tuple	ft_normalize(t_tuple v)
 {
 	float	mag;
 	t_tuple	normalized;
-	
 
 	mag = ft_calculate_magnitude(v);
 	normalized.x = v.x / mag;
@@ -36,22 +53,37 @@ t_tuple	ft_normalize(t_tuple v)
 	return (normalized);
 }
 
-/* The dot product takes two vectors and returns a scalar value.
-The smaller the dot product, the larger the angle between the vectors.
-Given two unit vectors, a dot product of 1 means the vectors are identical,
-and a dot product of -1 means they point in opposite directions.
-Specifically, and again if the two vectors are unit vectors, the dot product
-is actually the cosine of the angle between them. */
+/**
+ * ft_dot_product - Computes the dot product of two 3D vectors.
+ * 
+ * This function calculates the dot product of two 3D vectors, `v1` and `v2`,
+ * each represented by the `t_tuple` structure.The result is a floating-point
+ * value that represents the scalar product of the two vectors.
+ *
+ * param v1: The first t_tuple structure representing the first 3D vector.
+ * param v2: The second t_tuple structure representing the second 3D vector.
+ * 
+ * Return A float representing the dot product of the vectors `v1` and `v2`.
+ */
 float	ft_dot_product(t_tuple v1, t_tuple v2)
 {
 	return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
 }
 
-/* This function 'creates' a new vector that is perpendicular to both the
-original vectors. Note that this is specifically testing vectors, not tuples.
-Also, note that if you change the order of the operands, you change the
-direction of the resulting vector. Order matters!
-X cross Y gives you Z, but Y cross X gives you -Z! */
+/**
+ * ft_cross_product - Computes the cross product of two 3D vectors.
+ * 
+ * This function calculates the cross product of two 3D vectors, `v1` and `v2`,
+ * each represented by the `t_tuple` structure. The cross product results in a
+ * new vector that is perpendicular to both `v1` and `v2`.
+ * The `w` component of the result is set to 0, as cross products in 3D space
+ * yield a vector with three components. The resulting vector is returned.
+ *
+ * param v1: The first t_tuple structure representing the first 3D vector.
+ * param v2: The second t_tuple structure representing the second 3D vector.
+ * 
+ * Return: A new t_tuple containing the cross product of `v1` and `v2`.
+ */
 t_tuple	ft_cross_product(t_tuple v1, t_tuple v2)
 {
 	t_tuple	cross_vector;
