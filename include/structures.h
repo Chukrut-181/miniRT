@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>		  +#+  +:+	   +#+		*/
 /*												+#+#+#+#+#+   +#+		   */
 /*   Created: 2025/03/05 12:43:31 by igchurru		  #+#	#+#			 */
-/*   Updated: 2025/03/14 10:05:23 by eandres          ###   ########.fr       */
+/*   Updated: 2025/03/14 14:38:12 by eandres          ###   ########.fr       */
 /*																			*/
 /* ************************************************************************** */
 
@@ -84,12 +84,12 @@ typedef struct s_light
 	t_tuple position;
 }	t_light;
 
-typedef struct s_world
-{
+//typedef struct s_world
+//{
 //	t_list *objects;  // Lista de objetos (esferas, etc.)
-	t_light light;    // Fuente de luz
-}	t_world;
-
+//	t_light light;    // Fuente de luz
+//}	t_world;
+//
 typedef struct s_comps
 {
 	void	*object;
@@ -97,6 +97,18 @@ typedef struct s_comps
 	t_tuple	point;
 	t_tuple	eyev;
 	t_tuple	normalv;
+	bool	inside;
 }	t_comps;
+
+typedef struct s_camera
+{
+	int	hsize;
+	int	vsize;
+	float	field_of_view;
+	float	pixel_size;
+	float	half_width;
+	float	half_height;
+	t_4x4	transform;
+}	t_camera;
 
 #endif

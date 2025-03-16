@@ -93,3 +93,22 @@ t_ray	ray_for_pixel(t_camera c, float px, float py)
 	return (ft_create_ray(origin, direction));
 }
 
+//void	test_render()
+//{
+//	t_world w;
+//	t_camera c;
+//	t_tuple from;
+//	t_tuple up;
+//	t_tuple to;
+//	mlx_image_t *image;
+//
+//	w = ft_default_world();
+//	c = ft_camera(11, 11, M_PI / 2);
+//	from = ft_create_point(0, 0, -5);
+//	to = ft_create_point(0, 0, 0);
+//	up = ft_create_vector(0, 1, 0);
+//	c.transform = view_transform(from, to, up);
+//	image = render(c, w);
+//	pixel_at(image, 5, 5) = color(0.38066, 0.47583, 0.2855);
+//}
+//

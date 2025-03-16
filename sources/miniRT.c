@@ -9,22 +9,15 @@
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
-//
-//static	void	ft_draw_semi_circule(mlx_image_t *image);
-//static void	ft_draw_dock(mlx_image_t *image);
-//static void	ft_draw_line_up(mlx_image_t *image);
 
 int	ft_minirt(void)
 {
-	mlx_t		*mlx; mlx_image_t	*image;
+	mlx_t		*mlx;
+	mlx_image_t	*image;
 
 	mlx = mlx_init(2400, 1800, "miniRT", true);
 	image = mlx_new_image(mlx, 2400, 1800);
 	render_lit_sphere(image);
-	printf("Testing lighting fuciton...\n\n");
-	test_lighting();
-	printf("Testing reflection fuciton...\n\n");
-	test_reflection();
 	//ft_minigun(image);
 	//ft_draw_clock(image);
 	//ft_render_sphere(image);
@@ -52,38 +45,3 @@ i = 0;
 	}
 }
 
-//void	ft_draw_clock(mlx_image_t *image)
-//{
-//	t_tuple		twelve_oclock;
-//	t_tuple		hour_position;
-//	t_4x4		*rotation_matrix;
-//	t_4x4		*translation_matrix;
-//	t_4x4		*transformation_matrix;
-//	int		hour;
-//	double		angle;
-//	int		center_x;
-//	int		center_y;
-//	int		radius;
-//	
-//	// Set up the clock parameters
-//	center_x = image->width / 2;
-//	center_y = image->height / 1.5;
-//	radius = 200;  // Radius of the clock
-//	translation_matrix = create_translation_mx(ft_create_point(image->width / 2, image->height / 1.5, 0));
-//	// Create the 12 o'clock position (top of the clock)
-//	twelve_oclock = *ft_create_point(0, -radius, 0);
-//	hour = 0;
-//	while (hour < 12)
-//	{
-//		angle = (float)hour * (2 * M_PI / 12);
-//		
-//		rotation_matrix = rotation_z(angle);
-//		transformation_matrix = ft_multiply_matrices(translation_matrix, rotation_matrix);
-//		hour_position = *ft_multiply_mat_and_tuple(transformation_matrix, &twelve_oclock);
-//		printf("hourX = %f, hourY = %f\n", hour_position.x, hour_position.y);
-//		ft_draw_large_pixel(image, (int)hour_position.x, (int)hour_position.y, 15);
-//		free(rotation_matrix);
-//		hour++;
-//	}
-//}
-//
