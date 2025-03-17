@@ -6,13 +6,13 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 12:59:10 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/12 14:05:35 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/14 17:43:22 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-static void	ft_identify_hit(t_list *xs_list)
+void	ft_identify_hit(t_list *xs_list)
 {
 	float	reference;
 	t_xs	*aux;

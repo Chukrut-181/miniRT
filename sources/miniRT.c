@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 11:09:31 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/14 11:09:40 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:52:46 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	ft_minirt(void)
 {
+	mlx_t		*mlx;
+	mlx_image_t	*image;
 	mlx_t		*mlx;
 	mlx_image_t	*image;
 
