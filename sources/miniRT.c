@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 11:09:31 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/17 11:25:32 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/18 10:57:31 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	ft_minirt(void)
 	//ft_draw_clock(image);
 	//ft_render_sphere(image);
 	//render_lit_sphere(image);
+	ft_render_billiard_ball(image);
 	mlx_image_to_window(mlx, image, 0, 0);
 	mlx_key_hook(mlx, ft_handle_key, mlx);
 	mlx_loop(mlx);

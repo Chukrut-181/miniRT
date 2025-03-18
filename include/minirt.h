@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:08:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/17 10:52:23 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/18 10:57:56 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int		ft_check_matrix_equality(t_4x4 matrix1, t_4x4 matrix2);
 t_4x4	ft_multiply_matrices(t_4x4 matrix1, t_4x4 matrix2);
 t_tuple	ft_multiply_mat_and_tuple(t_4x4 matrix, t_tuple tuple);
 t_4x4	ft_find_inverse(t_4x4 matrix);
+t_4x4	ft_transpose(t_4x4 matrix);
 
 // MATRIX DETERMINANT
 float	ft_calculate_determinant(t_4x4 matrix);
@@ -124,5 +125,6 @@ void	ft_render_sphere(mlx_image_t *image);
 void	test_reflection(void);
 void	test_lighting(void);
 void	render_lit_sphere(mlx_image_t *image);
+void	ft_render_billiard_ball(mlx_image_t *image);
 
 #endif
