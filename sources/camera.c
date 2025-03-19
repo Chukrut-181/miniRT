@@ -93,6 +93,93 @@ t_ray	ray_for_pixel(t_camera c, float px, float py)
 	return (ft_create_ray(origin, direction));
 }
 
+void	create_scene(mlx_t *mlx, mlx_image_t *image)
+{
+	t_world world;
+	t_camera camera;
+	t_tuple from, to, up;
+	t_sphere *floor, *left_wall, *right_wall, *middle, *right, *left;
+	
+	world.light = point_light(ft_create_point(-10, 10, -10), ft_create_point(1, 1, 1));
+	world.objects = NULL;
+	
+	floor = ft_create_sphere(ft_create_point(0, 0, 0), 500);
+	floor->transform = scalation(ft_create_point(10, 0.01, 10));
+	floor->material = ft_create_material(1, 0.9, 0.9);
+	floor->material.specular = 0;
+	ft_lstadd_back(&world.objects, ft_lstnew(floor));
+	
+	left_wall = ft_create_sphere(ft_create_point(0, 0, 0), 500);
+	t_4x4 left_wall_transform = ft_multiply_matrices(translation(ft_create_point(0, 0, 5)), ft_multiply_matrices(rotation_y(-M_PI / 4), ft_multiply_matrices(rotation_x(M_PI / 2), scalation(ft_create_point(10, 0.01, 10)))));
+	left_wall->transform = left_wall_transform;
+	left_wall->material = floor->material;
+	ft_lstadd_back(&world.objects, ft_lstnew(left_wall));
+	
+	right_wall = ft_create_sphere(ft_create_point(0, 0, 0), 500);
+	t_4x4 right_wall_transform = ft_multiply_matrices(translation(ft_create_point(0, 0, 5)),ft_multiply_matrices(rotation_y(M_PI / 4), ft_multiply_matrices(rotation_x(M_PI / 2), scalation(ft_create_point(10, 0.01, 10)))));
+	right_wall->transform = right_wall_transform;
+	right_wall->material = floor->material;
+	ft_lstadd_back(&world.objects, ft_lstnew(right_wall));
+	
+	middle = ft_create_sphere(ft_create_point(0, 0, 0), 300);
+	middle->transform = translation(ft_create_point(-0.5, 1, 0.5));
+	middle->material = ft_create_material(0.1, 0.8, 0.1);
+	middle->material.diffuse = 0.7;
+	middle->material.specular = 0.3;
+	ft_lstadd_back(&world.objects, ft_lstnew(middle));
+	
+	right = ft_create_sphere(ft_create_point(0, 0, 0), 100);
+	right->transform = ft_multiply_matrices(
+		translation(ft_create_point(1.5, 0.5, -0.5)),
+		scalation(ft_create_point(0.5, 0.5, 0.5))
+	);
+	right->material = ft_create_material(0.5, 1, 0.1);
+	right->material.diffuse = 0.7;
+	right->material.specular = 0.3;
+	ft_lstadd_back(&world.objects, ft_lstnew(right));
+	
+	left = ft_create_sphere(ft_create_point(0, 0, 0), 300);
+	left->transform = ft_multiply_matrices(
+		translation(ft_create_point(-1.5, 0.33, -0.75)),
+		scalation(ft_create_point(0.33, 0.33, 0.33))
+	);
+	left->material = ft_create_material(1, 0.8, 0.1);
+	left->material.diffuse = 0.7;
+	left->material.specular = 0.3;
+	ft_lstadd_back(&world.objects, ft_lstnew(left));
+	
+	camera = ft_camera(1200, 900, M_PI / 3);
+	from = ft_create_point(0, 1.5, -5);
+	to = ft_create_point(0, 1, 0);
+	up = ft_create_vector(0, 1, 0);
+	camera.transform = view_transform(from, to, up);
+	
+	render(camera, world, mlx, image);
+}
+
+void	render(t_camera camera, t_world world, mlx_t *mlx, mlx_image_t *image)
+{
+	(void)mlx;
+	t_ray ray;
+	t_tuple color;
+	int x, y;
+	
+	y = 0;
+	while (y < camera.vsize)
+	{
+		x = 0;
+		while (x < camera.hsize)
+		{
+			ray = ray_for_pixel(camera, x, y);
+			color = color_at(world, ray);
+			uint32_t pixel_color = ((uint32_t)(color.x * 255) << 24) | ((uint32_t)(color.y * 255) << 16) | ((uint32_t)(color.z * 255) << 8) | 0xFF;
+			mlx_put_pixel(image, x - 1200,900 -  y, pixel_color);
+			x++;
+		}
+		y++;
+	}
+}
+
 //void	test_render()
 //{
 //	t_world w;

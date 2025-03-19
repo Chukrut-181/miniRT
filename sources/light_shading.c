@@ -84,7 +84,7 @@ t_tuple	lighting(t_material mat, t_light light, t_tuple point, t_tuple eyev, t_t
 	return (res);
 }
 
-void render_lit_sphere(mlx_image_t *image)
+/* void render_lit_sphere(mlx_image_t *image)
 {
 	t_sphere sphere;
 	t_light light;
@@ -162,5 +162,5 @@ void render_lit_sphere(mlx_image_t *image)
 		}
 		y++;
 	}
-}
+} */
 

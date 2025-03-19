@@ -15,9 +15,9 @@ int	ft_minirt(void)
 	mlx_t		*mlx;
 	mlx_image_t	*image;
 
-	mlx = mlx_init(2400, 1800, "miniRT", true);
-	image = mlx_new_image(mlx, 2400, 1800);
-	render_lit_sphere(image);
+	mlx = mlx_init(1200, 900, "miniRT", true);
+	image = mlx_new_image(mlx, 1200, 900);
+	create_scene(mlx, image);
 	//ft_minigun(image);
 	//ft_draw_clock(image);
 	//ft_render_sphere(image);
@@ -28,7 +28,7 @@ int	ft_minirt(void)
 	return (0);
 }
 
-void	ft_draw_large_pixel(mlx_image_t	*image, int x, int y, int size)
+/* void	ft_draw_large_pixel(mlx_image_t	*image, int x, int y, int size)
 {
 	int	i;
 	int	j;
@@ -43,5 +43,5 @@ i = 0;
 		}
 		i++;
 	}
-}
+} */
 

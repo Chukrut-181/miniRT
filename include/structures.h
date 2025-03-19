@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>		  +#+  +:+	   +#+		*/
 /*												+#+#+#+#+#+   +#+		   */
 /*   Created: 2025/03/05 12:43:31 by igchurru		  #+#	#+#			 */
-/*   Updated: 2025/03/14 14:38:12 by eandres          ###   ########.fr       */
+/*   Updated: 2025/03/19 17:31:04 by eandres          ###   ########.fr       */
 /*																			*/
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct s_sphere
 {
 	t_tuple		center;
 	float		radius;
-	t_4x4		*transform;
+	t_4x4		transform;
 	t_material	material;
 }	t_sphere;
 
@@ -67,7 +67,7 @@ typedef struct s_intersection
 	void	*object;
 	float	time;
 	t_tuple	point;
-	bool	hit;
+	int	hit;
 }	t_xs;
 
 typedef struct s_quadratic_equation_data
@@ -97,7 +97,7 @@ typedef struct s_comps
 	t_tuple	point;
 	t_tuple	eyev;
 	t_tuple	normalv;
-	bool	inside;
+	int	inside;
 }	t_comps;
 
 typedef struct s_camera

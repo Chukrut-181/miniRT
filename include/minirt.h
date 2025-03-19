@@ -66,8 +66,8 @@ float	ft_determinant_3x3(t_3x3 submx);
 
 // MATRIX TRANSFOMATION
 t_4x4	ft_create_identity_matrix(void);
-t_4x4	create_translation_mx(t_tuple tuple);
-t_4x4	create_scalation_mx(t_tuple tuple);
+t_4x4	translation(t_tuple tuple);
+t_4x4	scalation(t_tuple tuple);
 t_4x4	ft_create_shearing_mx(float Xy, float Xz, float Yx, float Yz, float Zx, float Zy);
 
 // 	ROTATION
@@ -123,5 +123,7 @@ void	test_reflection();
 void	test_lighting();
 void 	render_lit_sphere(mlx_image_t *image);
 t_tuple	color_at(t_world world, t_ray ray);
+void 	render(t_camera camera, t_world world, mlx_t *mlx, mlx_image_t *image);
+void	create_scene(mlx_t *mlx, mlx_image_t *image);
 
 # endif
