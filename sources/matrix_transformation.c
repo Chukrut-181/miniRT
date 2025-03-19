@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 10:23:12 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/12 13:43:34 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/18 15:16:45 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_4x4	ft_create_identity_matrix(void)
 	return (idmatrix);
 }
 
-t_4x4	create_translation_mx(t_tuple tuple)
+t_4x4	translation(t_tuple tuple)
 {
 	t_4x4	translation_mx;
 
@@ -46,7 +46,7 @@ t_4x4	create_translation_mx(t_tuple tuple)
 	return (translation_mx);
 }
 
-t_4x4	create_scalation_mx(t_tuple tuple)
+t_4x4	scalation(t_tuple tuple)
 {
 	t_4x4	scalation_mx;
 

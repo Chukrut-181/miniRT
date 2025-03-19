@@ -33,7 +33,7 @@ t_4x4	view_transform(t_tuple from, t_tuple to, t_tuple up)
 	left = ft_cross_product(forward, upn);
 	true_up = ft_cross_product(left, forward);
 	orientation = ft_orientation(left, true_up, forward);
-	res = ft_multiply_matrices(orientation, create_translation_mx(ft_negate_tuple(from)));
+	res = ft_multiply_matrices(orientation, translation(ft_negate_tuple(from)));
 	return (res);
 }
 
