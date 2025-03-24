@@ -1,5 +1,31 @@
 #include "../include/minirt.h"
 
+/* static t_ray	ft_transform_ray(t_ray ray, t_4x4 *transformation_mx)
+{
+	t_ray	transformed;
+
+	if (!transformation_mx)
+		return (ray);
+	transformed.origin = ft_multiply_mat_and_tuple(*transformation_mx, ray.origin);
+	transformed.direction = ft_multiply_mat_and_tuple(*transformation_mx, ray.direction);
+	return (transformed);
+} */
+
+/* static t_4x4 *ft_transformation_test(float x_ratio, float y_ratio, float z_ratio)
+{
+	t_4x4	*transformation_mx;
+	t_4x4	temp_mx1;
+	t_4x4	temp_mx2;
+	t_4x4	aux;
+
+	temp_mx1 = create_scalation_mx(ft_create_point(x_ratio, y_ratio, z_ratio));
+	temp_mx2 = rotation_z(0);
+	aux = ft_multiply_matrices(temp_mx2, temp_mx1);
+	transformation_mx = malloc(sizeof(t_4x4));
+	*transformation_mx = ft_find_inverse(aux);
+	return (transformation_mx);
+} */
+
 t_material	ft_create_material(float x, float y, float z)
 {
 	t_material	m;
@@ -182,14 +208,14 @@ void render_lit_sphere(mlx_image_t *image)
 	
 	sphere.center = ft_create_point(0, 0, 0);
 	sphere.radius = 500;
-	sphere.material = ft_create_material(1, 1, 1);  // Purple/magenta color
+	sphere.material = ft_create_material(0.9, 0.2, 0.2);  // Purple/magenta color
 	sphere.material.ambient = 0.1;
 	sphere.material.diffuse = 0.7;
 	sphere.material.specular = 0.3;
 	sphere.material.shininess = 100.0;
 	
 	// Create a light source (positioned to create highlight in upper-right)
-	light = point_light(ft_create_point(-400, 400, -1000), ft_create_point(0.4, 0.6, 0.9));
+	light = point_light(ft_create_point(-400, 400, -1000), ft_create_point(1, 1, 1));
 	// Eye position
 	eye_pos = ft_create_point(0, 0, -1000);
 	
