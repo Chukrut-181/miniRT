@@ -72,6 +72,17 @@ typedef struct s_sphere
 	t_material	material;
 }	t_sphere;
 
+typedef struct s_cylinder
+{
+	t_type		type;
+	t_tuple		center;
+	t_tuple		n_n_vector;
+	float		diameter;
+	float		height;
+	t_4x4		*transform;
+	t_material	material;
+}	t_cyl;
+
 typedef struct s_plane
 {
 	t_type		type;

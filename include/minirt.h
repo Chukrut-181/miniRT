@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:08:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/18 10:57:56 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/31 16:00:36 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,9 @@ t_tuple	color_at(t_world world, t_ray ray);
 
 //	THINGS
 t_sphere	*ft_create_sphere(t_tuple point, float r);
-void	ft_identify_hit(t_list *xs_list);
+t_plane		*ft_create_plane(t_tuple point, t_tuple vector);
+t_cyl		*ft_create_cylinder(t_tuple point, t_tuple vector, float d, float h);
+void		ft_identify_hit(t_list *xs_list);
 
 //	HOOKS
 void	ft_handle_key(mlx_key_data_t keydata, void *param);
