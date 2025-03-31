@@ -54,13 +54,32 @@ typedef struct s_material
 	
 }	t_material;
 
+typedef enum e_object_type
+{
+	SPHERE,
+	PLANE,
+	CYLINDER,
+	CONE,
+	CUBE,
+}	t_type;
+
 typedef struct s_sphere
 {
+	t_type		type;
 	t_tuple		center;
 	float		radius;
 	t_4x4		*transform;
 	t_material	material;
 }	t_sphere;
+
+typedef struct s_plane
+{
+	t_type		type;
+	t_tuple		point_in_plane;
+	t_tuple		n_n_vector;
+	t_4x4		*transform;
+	t_material	material;
+}	t_plane;
 
 typedef struct s_intersection
 {
