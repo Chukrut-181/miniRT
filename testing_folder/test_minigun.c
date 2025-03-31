@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   test_minigun.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eandres <eandres@student.42urduliz.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 11:39:24 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/04 12:41:44 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/19 21:03:12 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-void	ft_draw_large_pixel(mlx_image_t	*image, int x, int y, int size)
+/* void	ft_draw_large_pixel(mlx_image_t	*image, int x, int y, int size)
 {
 	int	w;
 	int	h;
@@ -28,7 +28,7 @@ void	ft_draw_large_pixel(mlx_image_t	*image, int x, int y, int size)
 		}
 		h++;
 	}
-}
+} */
 
 void	ft_minigun(mlx_image_t	*image)
 {

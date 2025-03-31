@@ -1,0 +1,18 @@
+1. Parsear todo el imput
+2. Render-> pasar por todos los pixeles de la pantalla y por cada uno chequear si existe un interseccion ya sea con plano, cilindro o espera.
+3. Conseguir el "color rgb" del pixel en caso de que si exista interseccion.
+4. Imprimir el pixel correctamente.
+5. Limpiar todo.
+
+2.1 Calcular el centro del pixel en la escena 3D (pixel_center).
+2.2 Crear el rayo desde la camara hacia el centro del pixel calculado.
+2.3 Transformar el rayo usando la matriz de la camara.
+2.4 Comprobar si el rayo intersecta con algun objeto de la escena.
+2.5 Si no hay intersection devolver color negro.
+
+3.1 Chequear si hay interseccion.
+3.2 Si existe interseccion calcular si es con un plano, esfera o cilindro.
+
+4.1 Conseguir el color de esa interseccion.
+4.2 Con la funcion get_color.
+4.3 Imprimr ese pixel con el color correspondiente.

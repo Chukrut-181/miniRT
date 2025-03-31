@@ -1,13 +1,13 @@
 # **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/02/19 10:29:45 by igchurru          #+#    #+#              #
-#    Updated: 2025/03/13 12:56:34 by igchurru         ###   ########.fr        #
-#                                                                              #
+#																			  #
+#														 :::	  ::::::::	#
+#	Makefile										   :+:	  :+:	:+:	#
+#													 +:+ +:+		 +:+	  #
+#	By: igchurru <igchurru@student.42.fr>		  +#+  +:+	   +#+		 #
+#												 +#+#+#+#+#+   +#+			#
+#	Created: 2025/02/19 10:29:45 by igchurru		  #+#	#+#			  #
+#	Updated: 2025/03/24 12:09:59 by eandres		  ###   ########.fr		#
+#																			  #
 # **************************************************************************** #
 
 NAME = miniRT
@@ -20,7 +20,7 @@ MLX42_FLAGS = -ldl -lglfw -pthread
 SRC_DIR = sources
 OBJ_DIR = objects
 
-SRCS = $(wildcard $(SRC_DIR)/*.c)
+SRCS = $(wildcard $(SRC_DIR)/**/*.c)
 OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 
 LIBS = MLX42/build/libmlx42.a libft/libft.a
@@ -40,7 +40,17 @@ $(NAME): $(OBJS) $(LIBS)
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+# Create the operations subdirectory
+$(OBJ_DIR)/operations:
+	@mkdir -p $(OBJ_DIR)/operations
+
+$(OBJ_DIR)/parse:
+	@mkdir -p $(OBJ_DIR)/parse
+
+$(OBJ_DIR)/test:
+	@mkdir -p $(OBJ_DIR)/test
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR) $(OBJ_DIR)/operations $(OBJ_DIR)/parse $(OBJ_DIR)/test
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

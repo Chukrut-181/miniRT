@@ -11,12 +11,12 @@
 #ifndef MINIRT_H
 #define MINIRT_H
 
-# include "structures.h"
 # include "../libft/libft.h"
 # include "../MLX42/include/MLX42/MLX42.h"
 # include <math.h>
 # include <stdio.h>
 # include <unistd.h>
+# include "structures.h"
 
 # define EPSILON 0.00001
 
@@ -24,16 +24,10 @@
 #  define M_PI 3.1415926
 # endif
 
-typedef struct s_world
-{
-	t_list *objects;  // Lista de objetos (esferas, etc.)
-	t_light light;    // Fuente de luz
-}	t_world;
-
-int		main(int argc, char **argv);
+int	main(int argc, char **argv);
 
 //	MINIRT
-int		ft_minirt(void);
+int	ft_minirt(void);
 
 //	TUPLE CREATION
 t_tuple	ft_create_point(float x, float y, float z);
@@ -59,6 +53,7 @@ int		ft_check_matrix_equality(t_4x4 matrix1, t_4x4 matrix2);
 t_4x4	ft_multiply_matrices(t_4x4 matrix1, t_4x4 matrix2);
 t_tuple	ft_multiply_mat_and_tuple(t_4x4 matrix, t_tuple tuple);
 t_4x4	ft_find_inverse(t_4x4 matrix);
+t_4x4	ft_transpose(t_4x4 matrix);
 
 // MATRIX DETERMINANT
 float	ft_calculate_determinant(t_4x4 matrix);
@@ -67,13 +62,13 @@ float	ft_determinant_3x3(t_3x3 submx);
 // MATRIX TRANSFOMATION
 t_4x4	ft_create_identity_matrix(void);
 t_4x4	translation(t_tuple tuple);
-t_4x4	scalation(t_tuple tuple);
+t_4x4	scaling(t_tuple tuple);
 t_4x4	ft_create_shearing_mx(float Xy, float Xz, float Yx, float Yz, float Zx, float Zy);
 
 // 	ROTATION
-t_4x4	rotation_z(double radians);
-t_4x4	rotation_x(double radians);
-t_4x4	rotation_y(double radians);
+t_4x4	rotation_z(float radians);
+t_4x4	rotation_x(float radians);
+t_4x4	rotation_y(float radians);
 
 //	RAY
 t_ray	ft_create_ray(t_tuple origin, t_tuple direction);
@@ -101,10 +96,19 @@ t_comps	prepare_computations(t_list *intersection, t_ray ray);
 t_list *ft_intersect_world(t_world world, t_ray ray);
 t_tuple	shade_hit(t_world world, t_comps comps);
 t_tuple	color_at(t_world world, t_ray ray);
+t_list *ft_sort_intersections(t_list *intersections);
+
+//	PARSE
+void	create_ambient_light(t_scene *s, char **res);
+int	check_rgb(char *str, t_scene *data);
 
 //	THINGS
 t_sphere	*ft_create_sphere(t_tuple point, float r);
 void	ft_identify_hit(t_list *xs_list);
+
+//	UTILS
+float	ft_atof(char *n);
+int	check_ratio(char *str, t_scene *data);
 
 //	HOOKS
 void	ft_handle_key(mlx_key_data_t keydata, void *param);
@@ -123,7 +127,6 @@ void	test_reflection();
 void	test_lighting();
 void 	render_lit_sphere(mlx_image_t *image);
 t_tuple	color_at(t_world world, t_ray ray);
-void 	render(t_camera camera, t_world world, mlx_t *mlx, mlx_image_t *image);
-void	create_scene(mlx_t *mlx, mlx_image_t *image);
+void scene(mlx_image_t *image);
 
 # endif

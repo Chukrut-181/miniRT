@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 12:59:10 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/14 17:43:22 by eandres          ###   ########.fr       */
+/*   Updated: 2025/03/22 12:15:44 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,3 +82,4 @@ t_list	*ft_intersection(t_ray ray, t_sphere sphere, t_list *xs_list)
 	ft_identify_hit(xs_list);
 	return (xs_list);
 }
+

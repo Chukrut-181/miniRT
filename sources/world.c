@@ -1,5 +1,7 @@
 #include "../include/minirt.h"
 
+static t_list *ft_insert_sorted(t_list *sorted, t_xs *xs);
+
 t_world ft_default_world(void)
 {
 	t_world world;
@@ -32,7 +34,7 @@ t_list *ft_intersect_world(t_world world, t_ray ray)
 		intersections = ft_intersection(ray, *sphere, intersections);
 		current = current->next;
 	}
-	// Aqui deveriamos ordenar las interseciones.
+	intersections = ft_sort_intersections(intersections);
 	return (intersections);
 }
 
@@ -46,6 +48,13 @@ t_comps	prepare_computations(t_list *intersection, t_ray ray)
 	comps.point = ft_position(ray, comps.time);
 	comps.eyev = ft_negate_tuple(ray.direction);
 	comps.normalv = normal_at(*(t_sphere *)comps.object, comps.point);
+	if (ft_dot_product(comps.normalv, comps.eyev) < 0)
+	{
+		comps.inside = true;
+		comps.normalv = ft_negate_tuple(comps.normalv);
+	}
+	else
+		comps.inside = false;
 	return (comps);
 }
 
@@ -96,10 +105,78 @@ t_tuple	color_at(t_world world, t_ray ray)
 	if (hit == NULL)
 	{
 		shade = ft_create_point(0, 0, 0);
+		t_list *current = intersect;
+		while (current)
+		{
+			t_list *next = current->next;
+			free(current->content);
+			free(current);
+			current = next;
+		}
 		return (shade);
 	}
 	comps = prepare_computations(intersect, ray);
 	shade = shade_hit(world, comps);
+	t_list *current = intersect;
+	while (current)
+	{
+		t_list *next = current->next;
+		free(current->content);
+		free(current);
+		current = next;
+	}
 	return (shade);
+}
+
+t_list *ft_sort_intersections(t_list *intersections)
+{
+	t_list *sorted = NULL;
+	t_list *current;
+	t_list *temp;
+	t_xs *xs;
+	
+	if (intersections == NULL || intersections->next == NULL)
+		return (intersections);
+	
+	current = intersections;
+	while (current)
+	{
+		xs = (t_xs *)current->content;
+		sorted = ft_insert_sorted(sorted, xs);
+		current = current->next;
+	}
+	current = intersections;
+	while (current)
+	{
+		temp = current->next;
+		free(current);
+		current = temp;
+	}
+	
+	return (sorted);
+}
+
+static t_list *ft_insert_sorted(t_list *sorted, t_xs *xs)
+{
+	t_list *new_node;
+	t_list *current;
+	t_list *prev;
+	
+	new_node = ft_lstnew(xs);
+	if (sorted == NULL || ((t_xs *)sorted->content)->time > xs->time)
+	{
+		new_node->next = sorted;
+		return (new_node);
+	}
+	current = sorted;
+	prev = NULL;
+	while (current && ((t_xs *)current->content)->time <= xs->time)
+	{
+		prev = current;
+		current = current->next;
+	}
+	prev->next = new_node;
+	new_node->next = current;
+	return (sorted);
 }
 
