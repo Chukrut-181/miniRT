@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 11:46:24 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/18 11:25:09 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/03/31 10:13:48 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 uint32_t	ft_color_to_argb(t_tuple color)
 {
-	return (((uint32_t)(color.x * 255) << 24) | ((uint32_t)(color.y * 255) << 16) | ((uint32_t)(color.z * 255) << 8)  | 0xFF);  
+	return (0xFF | ((uint32_t)(color.x * 255) << 16) | ((uint32_t)(color.y * 255) << 8) | ((uint32_t)(color.z * 255)));  
 }
 
 t_light	ft_switch_on_light(t_tuple source, t_tuple intensity)
@@ -30,7 +30,7 @@ t_material	ft_create_material(float x, float y, float z)
 {
 	t_material	m;
 
-	m.color = ft_create_point(x, y, z);
+	m.color = ft_create_vector(x, y, z);
 	m.ambient = 0.1;
 	m.diffuse = 0.9;
 	m.specular = 0.9;
@@ -106,8 +106,8 @@ void	ft_render_billiard_ball(mlx_image_t *image)
 	int			y;
 
 	ball = ft_create_sphere(ft_create_point(0, 0, 0), 100);
-	ball->material = ft_create_material(200, 100, 100);
-	point_light = ft_switch_on_light(ft_create_point(-500, 500, -1000), ft_create_point(1, 1, 1));
+	ball->material = ft_create_material(50, 50, 50);
+	point_light = ft_switch_on_light(ft_create_point(-500, 500, -1000), ft_create_point(0.9, 0.9, 0.9));
 	aux = ft_multiply_matrices(create_translation_mx(ft_create_point(1200, 900, 0)), create_scalation_mx(ft_create_point(10, 10, 10)));
 	ball->transform = malloc(sizeof(t_4x4));
 	ball->transform = &aux;
