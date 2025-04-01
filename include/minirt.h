@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:08:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/01 11:00:47 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/01 13:32:25 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define MINIRT_H
 
 # include "structures.h"
-# include "parse_scene.h"
 # include "../libft/libft.h"
 # include "../MLX42/include/MLX42/MLX42.h"
 # include <math.h>
@@ -91,26 +90,20 @@ t_tuple	reflect(t_tuple in, t_tuple normal);
 t_light	point_light(t_tuple position, t_tuple intensity);
 t_tuple	lighting(t_material mat, t_light light, t_tuple point, t_tuple eyev, t_tuple normalv);
 
-//	CAMERA
-t_4x4	view_transform(t_tuple from, t_tuple to, t_tuple up);
-t_camera	ft_create_camera(int hsize, int vsize, float field_of_view);
-t_camera	ft_camera(int hsize, int vsize, float field_of_view);
-t_ray	ray_for_pixel(t_camera c, float px, float py);
-mlx_image_t *ft_render(mlx_t *mlx, t_camera camera, t_world world);
-
-//	WORLD
-t_world ft_default_world(void);
-t_list *ft_find_hit(t_list *intersections);
-t_comps	prepare_computations(t_list *intersection, t_ray ray);
-t_list *ft_intersect_world(t_world world, t_ray ray);
-t_tuple	shade_hit(t_world world, t_comps comps);
-t_tuple	color_at(t_world world, t_ray ray);
-
 //	THINGS
 t_sphere	*ft_create_sphere(t_tuple point, float r);
 t_plane		*ft_create_plane(t_tuple point, t_tuple vector);
 t_cyl		*ft_create_cylinder(t_tuple point, t_tuple vector, float d, float h);
 void		ft_identify_hit(t_list *xs_list);
+
+//	PARSE
+int	ft_get_scene(t_scene *scene, char *argv1);
+ft_parse_line(t_scene *scene, char *line);
+
+//	CREATE SCENE
+int		ft_create_ambient(t_scene *scene, char **ambient);
+bool	ft_check_rgb(char *colorcode);
+bool	ft_apply_rgb(t_scene *scene, char *color);
 
 //	HOOKS
 void	ft_handle_key(mlx_key_data_t keydata, void *param);

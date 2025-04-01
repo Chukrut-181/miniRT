@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/01 12:05:19 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/01 13:28:37 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	main(int argc, char **argv)
 	scene.mlx = NULL;
 	scene.image = NULL;
 	scene.ambient = NULL;
-	scene.camera = NULL;
 	scene.light = NULL;
 	scene.objects = NULL;
 	ft_get_scene(&scene, argv[1]);
@@ -29,9 +28,3 @@ int	main(int argc, char **argv)
 	
 	return (0);
 }
-mlx_t		*mlx;
-mlx_image_t	*image;
-t_tuple		*ambient;
-t_camera	*camera;
-t_tuple		*light;
-t_list		*objects;

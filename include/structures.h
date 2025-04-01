@@ -13,6 +13,8 @@
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
 
+# include "../MLX42/include/MLX42/MLX42.h"
+# include "../libft/libft.h"
 # include <stdbool.h>
 
 typedef struct s_tuple
@@ -115,9 +117,16 @@ typedef struct s_light
 	t_tuple position;
 }	t_light;
 
+typedef struct s_color
+{
+	float	r;
+	float	g;
+	float	b;
+}	t_color;
+
 typedef struct s_ambient
 {
-	t_tuple	color;
+	t_color	color;
 	float	ratio;
 }	t_ambient;
 
@@ -126,7 +135,6 @@ typedef struct s_scene
 	mlx_t		*mlx;
 	mlx_image_t	*image;
 	t_ambient	*ambient;
-	//t_camera	*camera;
 	t_tuple		*light;
 	t_list		*objects;
 }	t_scene;
