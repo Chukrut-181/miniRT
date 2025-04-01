@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:08:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/31 16:00:36 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/01 11:00:47 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINIRT_H
 
 # include "structures.h"
+# include "parse_scene.h"
 # include "../libft/libft.h"
 # include "../MLX42/include/MLX42/MLX42.h"
 # include <math.h>

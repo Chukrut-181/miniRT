@@ -61,6 +61,7 @@ typedef enum e_object_type
 	CYLINDER,
 	CONE,
 	CUBE,
+	TORUS,
 }	t_type;
 
 typedef struct s_sphere
@@ -114,31 +115,20 @@ typedef struct s_light
 	t_tuple position;
 }	t_light;
 
-//typedef struct s_world
-//{
-//	t_list *objects;  // Lista de objetos (esferas, etc.)
-//	t_light light;    // Fuente de luz
-//}	t_world;
-//
-typedef struct s_comps
+typedef struct s_ambient
 {
-	void	*object;
-	float	time;
-	t_tuple	point;
-	t_tuple	eyev;
-	t_tuple	normalv;
-	bool	inside;
-}	t_comps;
+	t_tuple	color;
+	float	ratio;
+}	t_ambient;
 
-typedef struct s_camera
+typedef struct s_scene
 {
-	int	hsize;
-	int	vsize;
-	float	field_of_view;
-	float	pixel_size;
-	float	half_width;
-	float	half_height;
-	t_4x4	transform;
-}	t_camera;
+	mlx_t		*mlx;
+	mlx_image_t	*image;
+	t_ambient	*ambient;
+	//t_camera	*camera;
+	t_tuple		*light;
+	t_list		*objects;
+}	t_scene;
 
 #endif
