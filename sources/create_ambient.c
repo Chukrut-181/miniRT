@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_scene.c                                     :+:      :+:    :+:   */
+/*   create_ambient.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 12:18:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/01 13:28:06 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/01 15:44:15 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ bool	ft_check_rgb(char *colorcode)
 	int		j;
 
 	split = ft_split(colorcode, ',');
+	if (ft_arraylen(split) > 3)
+		return (ft_free_array(split), false);
 	i = 0;
 	while (i < 3)
 	{
@@ -50,10 +52,7 @@ bool	ft_check_rgb(char *colorcode)
 		while (j < 3)
 		{
 			if (!ft_isdigit(split[i][j]))
-			{
-				ft_free_array(split);
-				return (false);
-			}
+				return (ft_free_array(split), false);
 			else
 				j++;
 		}
