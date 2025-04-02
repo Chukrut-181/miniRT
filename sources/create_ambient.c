@@ -6,19 +6,21 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 12:18:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/01 15:44:15 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/01 17:07:07 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-bool	ft_apply_rgb(t_scene *scene, char *color)
+bool	ft_apply_rgb(t_color *color, char *original)
 {
 	char	**split;
 	float	aux;
 	int		i;
 
-	split = ft_split(color, ',');
+	split = ft_split(original, ',');
+	if (!split)
+		return (false);
 	i = 0;
 	while (i < 3)
 	{
@@ -26,11 +28,11 @@ bool	ft_apply_rgb(t_scene *scene, char *color)
 		if (aux < 0 || 1 < aux)
 			return (free(split), false);
 		if (i == 0)
-			scene->ambient->color.r = aux;
+			color->r = aux;
 		else if (i == 1)
-			scene->ambient->color.g = aux;
+			color->g = aux;
 		else if (i == 2)
-			scene->ambient->color.b = aux;
+			color->b = aux;
 		i++;
 	}
 	return (free(split), true);
@@ -73,7 +75,7 @@ int	ft_create_ambient(t_scene *scene, char **ambient)
 	scene->ambient->ratio = aux;
 	if (!ft_check_rgb(ambient[2]))
 		return (free(scene->ambient), 1);
-	if (!ft_apply_rgb(scene, ambient[2]))
+	if (!ft_apply_rgb(&scene->ambient->color, ambient[2]))
 		return (free(scene->ambient), 1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:08:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/01 13:43:50 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/01 17:10:43 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,12 @@ int ft_parse_line(t_scene *scene, char *line);
 //	CREATE AMBIENT
 int		ft_create_ambient(t_scene *scene, char **ambient);
 bool	ft_check_rgb(char *colorcode);
-bool	ft_apply_rgb(t_scene *scene, char *color);
+bool	ft_apply_rgb(t_color *color, char *original);
+
+//	CREATE LIGHT
+int		ft_create_light(t_scene *scene, char **light);
+bool	ft_check_coords(char *coords);
+bool	ft_apply_coords(t_scene *scene, char *coords);
 
 //	HOOKS
 void	ft_handle_key(mlx_key_data_t keydata, void *param);

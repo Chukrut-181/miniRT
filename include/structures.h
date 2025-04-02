@@ -111,18 +111,19 @@ typedef struct s_quadratic_equation_data
 	float	c;
 }	t_abcd;
 
-typedef struct s_light
-{
-	t_tuple	intensity;
-	t_tuple position;
-}	t_light;
-
 typedef struct s_color
 {
 	float	r;
 	float	g;
 	float	b;
 }	t_color;
+
+typedef struct s_light
+{
+	t_tuple	source;
+	float	intensity;
+	t_color	color;
+}	t_light;
 
 typedef struct s_ambient
 {
@@ -135,7 +136,7 @@ typedef struct s_scene
 	mlx_t		*mlx;
 	mlx_image_t	*image;
 	t_ambient	*ambient;
-	t_tuple		*light;
+	t_light		*light;
 	t_list		*objects;
 }	t_scene;
 
