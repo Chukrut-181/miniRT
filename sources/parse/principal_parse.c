@@ -5,12 +5,12 @@ static	void	parse_line(t_scene *s, char *line)
 	char **res = ft_split(line, 32);
 	if (ft_strcmp(res[0], "A") == 0)
 		create_ambient_light(s, res);
-//	else if (ft_strcmp(res[0], "C") == 0)
-//		create_camera(res, s);
-//	else if (ft_strcmp(res[0], "L") == 0)
-//		create_light(res);
-//	else if (ft_strcmp(res[0], "sp") == 0)
-//		create_sphere(res);
+	else if (ft_strcmp(res[0], "C") == 0)
+		create_camera(res, s);
+	else if (ft_strcmp(res[0], "L") == 0)
+		create_light(res, s);
+	else if (ft_strcmp(res[0], "sp") == 0)
+		create_sphere(res, s);
 //	else if (ft_strcmp(res[0], "pl") == 0)
 //		create_plane(res);
 //	else if (ft_strcmp(res[0], "cy") == 0)
@@ -39,6 +39,8 @@ static	void	parse(t_scene *s, char **argv)
 		free(line);
 		line = ft_get_next_line(fd);
 	}
+	// pruebas aqui
+	
 }
 
 int	main(int argc, char **argv)

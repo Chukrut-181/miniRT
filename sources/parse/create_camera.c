@@ -1,10 +1,123 @@
 #include "../../include/minirt.h"
 
-void	create_camera(char *str, t_scene *s)
+static int	check_vector(char *str, t_scene *data)
 {
-	s->camera = (s->camera *)malloc(sizeof(s->camera));
+	char	**split;
+	float	num1;
+	float	num2;
+	float	num3;
+
+	split = ft_split(str, ',');
+	if (!split)
+		return (1);
+	num1 = ft_atof(split[0]);
+	num2 = ft_atof(split[1]);
+	num3 = ft_atof(split[2]);
+	ft_free_array(split);
+	if ((num1 > 1 || num1 < -1) || (num2 > 1 || num2 < -1) || (num3 > 1 || num3 < -1))
+		return (1);
+	data->camera->v_orientation.x = num1;
+	data->camera->v_orientation.y = num2;
+	data->camera->v_orientation.z = num3;
+	return (0);
+}
+
+static int	check_viewpoint(char *str, t_scene *data)
+{
+	char	**split;
+	float	num1;
+	float	num2;
+	float	num3;
+
+	split = ft_split(str, ',');
+	if (!split)
+		return (1);
+	num1 = ft_atof(split[0]);
+	num2 = ft_atof(split[1]);
+	num3 = ft_atof(split[2]);
+	data->camera->origin_point.x = num1;
+	data->camera->origin_point.y = num2;
+	data->camera->origin_point.z = num3;
+	return (0);
+}
+
+t_4x4	ft_orientation(t_tuple left, t_tuple true_up, t_tuple forward)
+{
+	t_4x4	matrix;
+
+	matrix = ft_create_identity_matrix();
+	matrix.data[0][0] = left.x;
+	matrix.data[0][1] = left.y;
+	matrix.data[0][2] = left.z;
+
+	matrix.data[1][0] = true_up.x;
+	matrix.data[1][1] = true_up.y;
+	matrix.data[1][2] = true_up.z;
+
+	matrix.data[2][0] = forward.x;
+	matrix.data[2][1] = forward.y;
+	matrix.data[2][2] = forward.z;
+	return (matrix);
+}
+
+t_4x4	view_transform(t_tuple from, t_tuple to, t_tuple up)
+{
+	t_tuple forward;
+	t_tuple upn;
+	t_tuple left;
+	t_tuple true_up;
+	t_4x4	orientation;
+	t_4x4	res;
+
+	forward = ft_normalize(ft_substract_tuples(to, from));
+	upn = ft_normalize(up);
+	left = ft_cross_product(forward, upn);
+	true_up = ft_cross_product(left, forward);
+	orientation = ft_orientation(left, true_up, forward);
+	res = ft_multiply_matrices(orientation, translation(ft_negate_tuple(from)));
+	return (res);
+}
+
+int	create_camera(char **str, t_scene *s)
+{
+	float	fov;
+	t_tuple	up;
+	t_tuple	to;
+
+	s->camera = (t_camera *) malloc(sizeof(t_camera));
 	if (s->camera == NULL)
-		return ;
-	
+	{
+		free(s->camera);
+		return (1);
+	}
+	if (check_viewpoint(str[1], s) == 1)
+	{
+		free(s->camera);
+		return (1);
+	}
+	if (check_vector(str[2], s) == 1)
+	{
+		free(s->camera);
+		return (1);
+	}
+	fov = ft_atof(str[3]);
+	if (fov <= 0 || fov >= 180)
+	{
+		free(s->camera);
+		s->camera = NULL;
+		return (1);
+	}
+	// lo necesito en radianes
+	s->camera->field_of_view = fov * M_PI / 180.0;
+
+	to = ft_add_tuples(s->camera->origin_point, s->camera->v_orientation);
+
+	if (fabs(s->camera->v_orientation.y) > 0.99)
+		up = ft_create_vector(0, 0, 1);
+	else
+		up = ft_create_vector(0, 1, 0);
+
+	s->camera->transform = view_transform(s->camera->origin_point, to, up);
+	return (0);
 }
 

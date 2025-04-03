@@ -1,6 +1,6 @@
 #include "../include/minirt.h"
 
-static	t_4x4	ft_orientation(t_tuple left, t_tuple true_up, t_tuple forward)
+t_4x4	ft_orientation(t_tuple left, t_tuple true_up, t_tuple forward)
 {
 	t_4x4	matrix;
 

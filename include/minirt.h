@@ -1,10 +1,12 @@
-/* ************************************************************************** */ /*                                                                            */
+/* ************************************************************************** */
+/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */ /*   Created: 2025/02/19 10:28:29 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/12 14:08:57 by igchurru         ###   ########.fr       */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/19 10:28:29 by igchurru          #+#    #+#             */
+/*   Updated: 2025/04/03 19:55:38 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +85,12 @@ t_light	point_light(t_tuple position, t_tuple intensity);
 t_tuple	lighting(t_material mat, t_light light, t_tuple point, t_tuple eyev, t_tuple normalv);
 
 //	CAMERA
-t_4x4	view_transform(t_tuple from, t_tuple to, t_tuple up);
+t_4x4		view_transform(t_tuple from, t_tuple to, t_tuple up);
 t_camera	ft_create_camera(int hsize, int vsize, float field_of_view);
 t_camera	ft_camera(int hsize, int vsize, float field_of_view);
 t_ray	ray_for_pixel(t_camera c, float px, float py);
 mlx_image_t *ft_render(mlx_t *mlx, t_camera camera, t_world world);
+t_4x4	ft_orientation(t_tuple left, t_tuple true_up, t_tuple forward);
 
 //	WORLD
 t_world ft_default_world(void);
@@ -99,7 +102,10 @@ t_tuple	color_at(t_world world, t_ray ray);
 t_list *ft_sort_intersections(t_list *intersections);
 
 //	PARSE
-void	create_ambient_light(t_scene *s, char **res);
+int	create_ambient_light(t_scene *s, char **res);
+int	create_camera(char **str, t_scene *s);
+int	create_light(char **res, t_scene *s);
+int	create_sphere(char **res, t_scene *s);
 int	check_rgb(char *str, t_scene *data);
 
 //	THINGS
