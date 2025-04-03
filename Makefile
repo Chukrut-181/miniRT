@@ -6,7 +6,7 @@
 #    By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/19 10:29:45 by igchurru          #+#    #+#              #
-#    Updated: 2025/03/13 12:56:34 by igchurru         ###   ########.fr        #
+#    Updated: 2025/04/03 10:50:32 by igchurru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = miniRT
 
 CC = cc
 
-CFLAGS = -g -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g -g3 -O0
 MLX42_FLAGS = -ldl -lglfw -pthread
 
 SRC_DIR = sources

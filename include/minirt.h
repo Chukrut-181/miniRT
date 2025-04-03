@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:08:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/01 17:10:43 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/02 13:14:10 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ void		ft_identify_hit(t_list *xs_list);
 //	PARSE
 int	ft_get_scene(t_scene *scene, char *argv1);
 int ft_parse_line(t_scene *scene, char *line);
+char	*get_one_line(int fd);
 
 //	CREATE AMBIENT
 int		ft_create_ambient(t_scene *scene, char **ambient);

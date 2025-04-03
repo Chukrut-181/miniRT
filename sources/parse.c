@@ -6,11 +6,39 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:44:53 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/01 15:51:38 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/03 11:39:01 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
+
+char	*get_one_line(int fd)
+{
+	char	c;
+	char	*str;
+	char	*temp;
+	char	*aux;
+
+	str = malloc(1 * sizeof(char));
+	if (!str)
+		return (NULL);
+	str[0] = 0;
+	while (read(fd, &c, 1) > 0)
+	{
+		if (c == '\n')
+			break ;
+		aux = str;
+		temp = malloc(2 * sizeof(char));
+		if (!temp)
+		return (NULL);
+		temp[0] = c;
+		temp[1] = 0;
+		str = ft_strjoin(aux, temp);
+		free(temp);
+		free(aux);
+	}
+	return (str);
+}
 
 int	ft_parse_line(t_scene *scene, char *line)
 {
@@ -44,16 +72,16 @@ int	ft_get_scene(t_scene *scene, char *argv1)
 		ft_error_exit("Error: Could not open scene", 1);
 	}
 	free(aux);
-	line = ft_get_next_line(fd);
-	while (line)
+	line = get_one_line(fd);
+	while (line && ft_strlen(line) > 0)
 	{
-		if (*line != '\n' && ft_parse_line(scene, line))
+		if (ft_parse_line(scene, line))
 		{
 			free(line);
 			ft_error_exit("Error: Incorrect format encountered", 1);
 		}
 		free(line);
-		line = ft_get_next_line(fd);
+		line = get_one_line(fd);
 	}
 	close(fd);
 	return (0);
