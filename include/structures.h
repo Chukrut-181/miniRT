@@ -46,9 +46,16 @@ typedef struct s_ray
 	t_tuple	direction;
 }	t_ray;
 
+typedef struct s_color
+{
+	float	r;
+	float	g;
+	float	b;
+}	t_color;
+
 typedef struct s_material
 {
-	t_tuple	color;
+	t_color	color;
 	float	ambient;   // 0-1
 	float	diffuse;   // 0-1
 	float	specular;  // 0-1
@@ -79,7 +86,7 @@ typedef struct s_cylinder
 {
 	t_type		type;
 	t_tuple		center;
-	t_tuple		n_n_vector;
+	t_tuple		axis_vector;
 	float		diameter;
 	float		height;
 	t_4x4		*transform;
@@ -110,13 +117,6 @@ typedef struct s_quadratic_equation_data
 	float	b;
 	float	c;
 }	t_abcd;
-
-typedef struct s_color
-{
-	float	r;
-	float	g;
-	float	b;
-}	t_color;
 
 typedef struct s_camera
 {

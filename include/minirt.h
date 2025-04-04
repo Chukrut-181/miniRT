@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:08:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/04 10:54:33 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/04 12:20:27 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,8 @@ t_light	point_light(t_tuple position, t_tuple intensity);
 t_tuple	lighting(t_material mat, t_light light, t_tuple point, t_tuple eyev, t_tuple normalv);
 
 //	THINGS
-t_sphere	*ft_create_sphere(t_tuple point, float r);
-t_plane		*ft_create_plane(t_tuple point, t_tuple vector);
-t_cyl		*ft_create_cylinder(t_tuple point, t_tuple vector, float d, float h);
-void		ft_identify_hit(t_list *xs_list);
+int		ft_create_cylinder(t_scene *scene, char **cyl);
+void	ft_identify_hit(t_list *xs_list);
 
 //	PARSE
 int	ft_get_scene(t_scene *scene, char *argv1);
