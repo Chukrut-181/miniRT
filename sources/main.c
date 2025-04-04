@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/04 10:56:48 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/04 12:31:12 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ static void ft_testprinter(t_scene *scene)
 	}
 	else
 		printf("No camera detected\n");
+	if (scene->objects)
+		printf("Some unknown object detected...\n");
+	else
+		printf("No objects detected\n");
 }
 
 int	main(int argc, char **argv)
