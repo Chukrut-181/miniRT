@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 11:43:31 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/04 12:25:29 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/04 12:35:48 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static bool	ft_set_cylinder_center(t_cyl *cylinder, char *coords)
 	while (i < 3)
 	{
 		aux = ft_atof(split[i]);
-		if(i == 0)
+		if (i == 0)
 			cylinder->center.x = aux;
 		else if (i == 1)
 			cylinder->center.y = aux;
@@ -93,11 +93,10 @@ static bool	ft_set_cylinder_center(t_cyl *cylinder, char *coords)
 
 int	ft_create_cylinder(t_scene *scene, char **cyl)
 {
-
 	t_cyl	*cylinder;
 	t_list	*new_node;
 	float	aux;
-	
+
 	cylinder = malloc(sizeof(t_cyl));
 	if (!cylinder)
 		return (1);
