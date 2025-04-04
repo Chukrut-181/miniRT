@@ -118,6 +118,14 @@ typedef struct s_color
 	float	b;
 }	t_color;
 
+typedef struct s_camera
+{
+	t_tuple	viewpoint;
+	t_tuple	v_orientation;
+	float	field_of_view;
+	t_4x4	transform;
+}	t_camera;
+
 typedef struct s_light
 {
 	t_tuple	source;
@@ -135,6 +143,7 @@ typedef struct s_scene
 {
 	mlx_t		*mlx;
 	mlx_image_t	*image;
+	t_camera	*camera;
 	t_ambient	*ambient;
 	t_light		*light;
 	t_list		*objects;

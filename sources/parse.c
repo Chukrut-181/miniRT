@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:44:53 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/03 11:39:01 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/04 10:29:27 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ int	ft_parse_line(t_scene *scene, char *line)
 	if (!ft_strncmp(temp[0], "A", 1) && ft_arraylen(temp) == 3
 		&& !ft_create_ambient(scene, temp))
 		return (ft_free_array(temp), 0);
-	// else if (!ft_strncmp(temp[0], "C", 1) && ft_arraylen(temp) == 4
-	// 	&& !ft_create_camera(scene, temp))
-	// 	return (ft_free_array(temp), 0);
+	else if (!ft_strncmp(temp[0], "C", 1) && ft_arraylen(temp) == 4
+		&& !ft_create_camera(scene, temp))
+		return (ft_free_array(temp), 0);
 	else if (!ft_strncmp(temp[0], "L", 1) && ft_arraylen(temp) == 4
 		&& !ft_create_light(scene, temp))
 		return (ft_free_array(temp), 0);

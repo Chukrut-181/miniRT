@@ -6,13 +6,13 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 15:51:55 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/03 11:27:06 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/04 10:33:36 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-bool	ft_apply_coords(t_scene *scene, char *coords)
+static bool	ft_apply_light_coords(t_scene *scene, char *coords)
 {
 	char	**split;
 	float	aux;
@@ -73,7 +73,7 @@ int	ft_create_light(t_scene *scene, char **light)
 	scene->light = malloc(sizeof(t_light));
 	if (!ft_check_coords(light[1]))
 		return (free(scene->light), 1);
-	if (!ft_apply_coords(scene, light[1]))
+	if (!ft_apply_light_coords(scene, light[1]))
 		return (free(scene->light), 1);
 	aux = ft_atof(light[2]);
 	if (aux < 0 || 1 < aux)
