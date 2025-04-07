@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:08:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/04 12:20:27 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/07 11:29:41 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,8 @@ int		ft_create_light(t_scene *scene, char **light);
 bool	ft_check_coords(char *coords);
 
 //	CREATE CAMERA
-int	ft_create_camera(t_scene *scene, char **cam);
+int		ft_create_camera(t_scene *scene, char **cam);
+bool	ft_check_orientation_vector(char *orientation);
 
 //	HOOKS
 void	ft_handle_key(mlx_key_data_t keydata, void *param);

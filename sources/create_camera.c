@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:07:46 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/04 10:53:50 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/07 11:29:18 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static bool	ft_apply_orientation_vector(t_scene *scene, char *coords)
 	return (true);
 }
 
-static bool	ft_check_orientation_vector(char *orientation)
+bool	ft_check_orientation_vector(char *orientation)
 {
 	char	**split;
 	int		i;
