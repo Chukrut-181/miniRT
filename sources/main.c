@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/04 12:31:12 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/07 13:40:09 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void ft_testprinter(t_scene *scene)
 {
+	t_sphere	*aux;
+	
 	if (scene->ambient)
 	{
 		printf("Parsing Ambient:\n");
@@ -44,10 +46,21 @@ static void ft_testprinter(t_scene *scene)
 	}
 	else
 		printf("No camera detected\n");
-	if (scene->objects)
-		printf("Some unknown object detected...\n");
-	else
-		printf("No objects detected\n");
+	if (!scene->objects)
+			printf("No objects detected\n");
+	while (scene->objects)
+		{
+			aux = (t_sphere *)scene->objects->content;
+			if (aux->type == SPHERE)
+				printf ("Sphere detected\n");
+			else if (aux->type == CYLINDER)
+				printf ("Cylinder detected\n");
+			else if (aux->type == PLANE)
+				printf ("Plane detected\n");
+			scene->objects = scene->objects->next;
+		}
+		printf("End of object list reached\n");
+
 }
 
 int	main(int argc, char **argv)

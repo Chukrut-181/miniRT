@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:44:53 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/04 11:00:22 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/07 13:25:50 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,9 @@ int	ft_parse_line(t_scene *scene, char *line)
 		return (ft_free_array(temp), 0);
 	else if (!ft_strncmp(temp[0], "cy", 2) && ft_arraylen(temp) == 6
 		&& !ft_create_cylinder(scene, temp))
+		return (ft_free_array(temp), 0);
+	else if (!ft_strncmp(temp[0], "pl", 2) && ft_arraylen(temp) == 4
+		&& !ft_create_plane(scene, temp))
 		return (ft_free_array(temp), 0);
 	else
 		return (ft_free_array(temp), 1);
