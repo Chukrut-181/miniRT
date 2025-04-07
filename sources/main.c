@@ -1,56 +1,85 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
+/*   Updated: 2025/04/07 15:22:02 by igchurru         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minirt.h"
 
-// 1.inicializar
-// 2.check argument
-// 3.init mlx
-// 4.parse
-// 5.render (execute)
-// 6.clean all
-
-static	void	init_mlx(t_scene *scene)
+static void ft_testprinter(t_scene *scene)
 {
-	scene->mlx = mlx_init(2400, 1800, "miniRT", true);
-	if (!scene->mlx)
+	t_sphere	*aux;
+	
+	if (scene->ambient)
 	{
-		write(2, "Error\n", 6);
-		exit(1);
+		printf("Parsing Ambient:\n");
+		printf("Ratio %.4f\n", scene->ambient->ratio);
+		printf(" Color R = %.4f, G = %.4f, B = %.4f\n", scene->ambient->color.r, scene->ambient->color.g, scene->ambient->color.b);
 	}
-	scene->image = mlx_new_image(scene->mlx, 2400, 1800);
-	if (!scene->image)
+	else
 	{
-		write(2, "Error\n", 6);
-		mlx_terminate(scene->mlx);
-		exit(1);
+		printf("No ambient detected\n");
 	}
+	if (scene->light)
+	{
+		printf("Parsing Light:\n");
+		printf("Source X = %.4f, Y = %.4f, Z = %.4f\n", scene->light->source.x, scene->light->source.y, scene->light->source.z);
+		printf("Intensity: %.4f\n", scene->light->intensity);
+		printf("Color: R = %.4f, G = %.4f, B = %.4f\n", scene->light->color.r, scene->light->color.g, scene->light->color.b);
+	}
+	else
+	{
+		printf("No light detected\n");
+	}
+	if (scene->camera)
+	{
+		printf("Parsing Camera:\n");
+		printf("Viewpoint X = %.4f, Y = %.4f, Z = %.4f\n", scene->camera->viewpoint.x, scene->camera->viewpoint.y, scene->camera->viewpoint.z);
+		printf("Orientation X = %.4f, Y = %.4f, Z = %.4f\n", scene->camera->v_orientation.x, scene->camera->v_orientation.y, scene->camera->v_orientation.z);
+		printf("FOV: %.4f\n", scene->camera->field_of_view);
+	}
+	else
+		printf("No camera detected\n");
+	if (!scene->objects)
+		printf("No objects detected\n");
+	else
+		printf("Parsing object list:\n");
+	while (scene->objects)
+		{
+			aux = (t_sphere *)scene->objects->content;
+			if (aux->type == SPHERE)
+				printf ("Sphere detected!\n");
+			else if (aux->type == CYLINDER)
+				printf ("Cylinder detected!\n");
+			else if (aux->type == PLANE)
+				printf ("Plane detected!\n");
+			scene->objects = scene->objects->next;
+		}
+		printf("End of object list reached\n");
+
 }
 
 int	main(int argc, char **argv)
 {
-	t_scene scene;
-
+	t_scene	scene;
+	
 	if (argc != 2)
-	{
-		write(2, "Error\nUsage: ./miniRT scene.rt\n", 37);
-		return (1);
-	}
-	ft_memset(&scene, 0, sizeof(t_scene));
-//	s.mlx = NULL;
-//	s.image = NULL;
-//	s.objects = NULL;
-//	s.camera = NULL;
-//	s.ray = NULL;
-//	s.ambient = NULL;
-	init_mlx(&scene);
-	parse(&scene, argv);
-//	render_scene(&scene);
-//	render_test_gradient(&scene);
-//	render_test_sphere(&scene);
-//	render_basic_sphere(&scene);
-	render_lit_sphere(&scene);
-	mlx_image_to_window(scene.mlx, scene.image, 0, 0);
-	mlx_key_hook(scene.mlx, ft_handle_key, &scene);
-	mlx_loop(scene.mlx);
-	mlx_terminate(scene.mlx);
+		ft_error_exit("Error\nUsage: ./miniRT <arg1>", 1);
+	scene.mlx = NULL;
+	scene.image = NULL;
+	scene.camera = NULL;
+	scene.ambient = NULL;
+	scene.light = NULL;
+	scene.objects = NULL;
+	ft_get_scene(&scene, argv[1]);
+	ft_testprinter(&scene);	
+	//ft_minirt();
 	return (0);
 }
 

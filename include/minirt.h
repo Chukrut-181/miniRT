@@ -5,13 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 10:28:29 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/07 16:37:38 by eandres          ###   ########.fr       */
+/*   Created: 2025/03/12 14:08:57 by igchurru          #+#    #+#             */
+/*   Updated: 2025/04/07 13:41:18 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
-#define MINIRT_H
+# define MINIRT_H
 
 # include "../libft/libft.h"
 # include "../MLX42/include/MLX42/MLX42.h"
@@ -117,33 +117,46 @@ int	check_rgb(char *str, t_scene *data);
 void render_scene(t_scene *s);
 
 //	THINGS
-t_sphere	*ft_create_sphere(t_tuple point, float r);
+int		ft_create_cylinder(t_scene *scene, char **cyl);
 void	ft_identify_hit(t_list *xs_list);
 
-//	UTILS
-float	ft_atof(char *n);
-int	check_ratio(char *str, t_scene *data);
+//	PARSE
+int	ft_get_scene(t_scene *scene, char *argv1);
+int ft_parse_line(t_scene *scene, char *line);
+char	*get_one_line(int fd);
+
+//	CREATE AMBIENT
+int		ft_create_ambient(t_scene *scene, char **ambient);
+bool	ft_check_rgb(char *colorcode);
+bool	ft_apply_rgb(t_color *color, char *original);
+
+//	CREATE LIGHT
+int		ft_create_light(t_scene *scene, char **light);
+bool	ft_check_coords(char *coords);
+
+//	CREATE CAMERA
+int		ft_create_camera(t_scene *scene, char **cam);
+bool	ft_check_orientation_vector(char *orientation);
+
+//	CREATE PLANE
+int	ft_create_plane(t_scene *scene, char **plane);
 
 //	HOOKS
 void	ft_handle_key(mlx_key_data_t keydata, void *param);
 
-// 	ERROR EXIT
-int	ft_error_exit(char *err_msg, int err_code);
+//	ERROR EXIT
+int		ft_error_exit(char *err_msg, int err_code);
 
 //	TEST FUNCTIONS (to be removed)
 void	ft_minigun(mlx_image_t	*image);
 void	ft_draw_clock(mlx_image_t *image);
-int	ft_test_matrix_functions(void);
-int	ft_test_ray(void);
-int	ft_test_intersection(void);
+int		ft_test_matrix_functions(void);
+int		ft_test_ray(void);
+int		ft_test_intersection(void);
 void	ft_render_sphere(mlx_image_t *image);
-void	test_reflection();
-void	test_lighting();
-t_tuple	color_at(t_world world, t_ray ray);
-void scene(mlx_image_t *image);
-void render_test_gradient(t_scene *s);
-void render_test_sphere(t_scene *s);
-void render_basic_sphere(t_scene *s);
-void render_lit_sphere(t_scene *s);
+void	test_reflection(void);
+void	test_lighting(void);
+void	render_lit_sphere(mlx_image_t *image);
+void	ft_render_billiard_ball(mlx_image_t *image);
 
-# endif
+#endif
