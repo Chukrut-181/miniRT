@@ -6,11 +6,11 @@
 /*   By: eandres <eandres@student.42urduliz.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 09:50:24 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/24 10:17:33 by eandres          ###   ########.fr       */
+/*   Updated: 2025/04/04 13:28:08 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minirt.h"
+#include "../include/minirt.h"
 
 int	ft_check_matrix_equality(t_4x4 matrix1, t_4x4 matrix2)
 {

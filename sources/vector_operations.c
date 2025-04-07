@@ -6,11 +6,11 @@
 /*   By: eandres <eandres@student.42urduliz.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 10:04:30 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/24 10:18:05 by eandres          ###   ########.fr       */
+/*   Updated: 2025/04/04 13:28:41 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minirt.h"
+#include "../include/minirt.h"
 
 /* The distance represented by a vector is called its magnitude, or length.
 It’s how far you would travel in a straight line if you were to walk from

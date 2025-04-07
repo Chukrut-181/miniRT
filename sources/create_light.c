@@ -1,4 +1,4 @@
-#include "../../include/minirt.h"
+#include "../include/minirt.h"
 
 static int	check_origin_point(char *str, t_scene *data)
 {

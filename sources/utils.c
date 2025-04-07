@@ -1,31 +1,31 @@
 #include "../include/minirt.h"
 
-float	ft_atof(char *n)
+float	ft_atof(char *str)
 {
-	int		i;
-	int		j;
-	float		nb;
-	int		m;
+	float	res;
+	float	res2;
+	int	i;
+	int	len;
 
 	i = 0;
-	nb = 0;
-	m = 1;
-	j = 1;
-	if (n[i] == '-')
-	{
-		m = -m;
+	res = (float)ft_atoi(str);
+	while (str[i] && str[i] != '.')
 		i++;
-	}
-	while (n[i])
+	if (str[i] == '.')
+		i++;
+	res2 = (float)ft_atoi(str + i);
+	len = ft_strlen(str + i);
+	while (len--)
+		res2 /= 10;
+	if (res2 > 0)
 	{
-		if (j > 1 && n[i - 1] != '.')
-			j *= 10;
-		if (n[i] == '.')
-			j *= 10;
+		if (res < 0)
+			res -= res2;
 		else
-			nb = nb * 10 + (n[i] - 48);
-		i++;
+			res += res2;
 	}
-	return (m * nb / j);
+	else
+		res += -res2;
+	return (res);
 }
 

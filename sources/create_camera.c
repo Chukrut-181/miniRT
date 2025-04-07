@@ -1,4 +1,4 @@
-#include "../../include/minirt.h"
+#include "../include/minirt.h"
 
 static int	check_vector(char *str, t_scene *data)
 {
@@ -35,47 +35,8 @@ static int	check_viewpoint(char *str, t_scene *data)
 	num1 = ft_atof(split[0]);
 	num2 = ft_atof(split[1]);
 	num3 = ft_atof(split[2]);
-	data->camera->origin_point.x = num1;
-	data->camera->origin_point.y = num2;
-	data->camera->origin_point.z = num3;
+	data->camera->origin_point = ft_create_point(num1, num2, num3);
 	return (0);
-}
-
-t_4x4	ft_orientation(t_tuple left, t_tuple true_up, t_tuple forward)
-{
-	t_4x4	matrix;
-
-	matrix = ft_create_identity_matrix();
-	matrix.data[0][0] = left.x;
-	matrix.data[0][1] = left.y;
-	matrix.data[0][2] = left.z;
-
-	matrix.data[1][0] = true_up.x;
-	matrix.data[1][1] = true_up.y;
-	matrix.data[1][2] = true_up.z;
-
-	matrix.data[2][0] = forward.x;
-	matrix.data[2][1] = forward.y;
-	matrix.data[2][2] = forward.z;
-	return (matrix);
-}
-
-t_4x4	view_transform(t_tuple from, t_tuple to, t_tuple up)
-{
-	t_tuple forward;
-	t_tuple upn;
-	t_tuple left;
-	t_tuple true_up;
-	t_4x4	orientation;
-	t_4x4	res;
-
-	forward = ft_normalize(ft_substract_tuples(to, from));
-	upn = ft_normalize(up);
-	left = ft_cross_product(forward, upn);
-	true_up = ft_cross_product(left, forward);
-	orientation = ft_orientation(left, true_up, forward);
-	res = ft_multiply_matrices(orientation, translation(ft_negate_tuple(from)));
-	return (res);
 }
 
 int	create_camera(char **str, t_scene *s)
@@ -86,20 +47,11 @@ int	create_camera(char **str, t_scene *s)
 
 	s->camera = (t_camera *) malloc(sizeof(t_camera));
 	if (s->camera == NULL)
-	{
-		free(s->camera);
-		return (1);
-	}
+		return (free(s->camera), 1);
 	if (check_viewpoint(str[1], s) == 1)
-	{
-		free(s->camera);
-		return (1);
-	}
+		return (free(s->camera), 1);
 	if (check_vector(str[2], s) == 1)
-	{
-		free(s->camera);
-		return (1);
-	}
+		return (free(s->camera), 1);
 	fov = ft_atof(str[3]);
 	if (fov <= 0 || fov >= 180)
 	{

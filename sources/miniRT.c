@@ -10,27 +10,27 @@
 
 #include "../include/minirt.h"
 
-int ft_minirt(void)
-{
-	mlx_t *mlx;
-	mlx_image_t *image;
-
-	mlx = mlx_init(800, 600, "miniRT - Simple Scene", true);
-	if (!mlx)
-		return (1);
-	image = mlx_new_image(mlx, 800, 600);
-	if (!image)
-	{
-		mlx_terminate(mlx);
-		return (1);
-	}
-	render_lit_sphere(image);
-	mlx_image_to_window(mlx, image, 0, 0);
-	mlx_key_hook(mlx, ft_handle_key, mlx);
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
-	return (0);
-}
+//int ft_minirt(void)
+//{
+//	mlx_t *mlx;
+//	mlx_image_t *image;
+//
+//	mlx = mlx_init(800, 600, "miniRT", true);
+//	if (!mlx)
+//		return (1);
+//	image = mlx_new_image(mlx, 800, 600);
+//	if (!image)
+//	{
+//		mlx_terminate(mlx);
+//		return (1);
+//	}
+//	render_lit_sphere(image);
+//	mlx_image_to_window(mlx, image, 0, 0);
+//	mlx_key_hook(mlx, ft_handle_key, mlx);
+//	mlx_loop(mlx);
+//	mlx_terminate(mlx);
+//	return (0);
+//}
 
 //int	ft_minirt(void)
 //{

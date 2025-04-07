@@ -6,11 +6,11 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:10:23 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/24 10:17:27 by eandres          ###   ########.fr       */
+/*   Updated: 2025/04/04 13:28:01 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minirt.h"
+#include "../include/minirt.h"
 
 float	ft_determinant_3x3(t_3x3 submx)
 {

@@ -20,7 +20,7 @@ MLX42_FLAGS = -ldl -lglfw -pthread
 SRC_DIR = sources
 OBJ_DIR = objects
 
-SRCS = $(wildcard $(SRC_DIR)/**/*.c)
+SRCS = $(wildcard $(SRC_DIR)/**/*.c, $(SRC_DIR)/*.c)
 OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 
 LIBS = MLX42/build/libmlx42.a libft/libft.a

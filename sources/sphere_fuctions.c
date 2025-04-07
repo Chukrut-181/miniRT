@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   things.c                                           :+:      :+:    :+:   */
+/*   sphere_fuctions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 12:42:33 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/20 10:51:10 by eandres          ###   ########.fr       */
+/*   Updated: 2025/04/04 13:17:54 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_sphere	*ft_create_sphere(t_tuple point, float r)
 	sphere->center.x = point.x;
 	sphere->center.y = point.y;
 	sphere->center.z = point.z;
-	sphere->radius = r;
+	sphere->diameter = r*2;
 	sphere->transform = ft_create_identity_matrix();
 	return (sphere);
 }

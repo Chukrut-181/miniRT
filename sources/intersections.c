@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 12:59:10 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/22 12:15:44 by eandres          ###   ########.fr       */
+/*   Updated: 2025/04/04 13:10:36 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	ft_calculate_abcd(t_ray ray, t_sphere sphere, t_abcd *data)
 	data->a = ft_dot_product(ray.direction, ray.direction);
 	data->b = 2 * ft_dot_product(ray.direction, sphere_to_ray);
 	data->c = (ft_dot_product(sphere_to_ray, sphere_to_ray)
-			- (sphere.radius * sphere.radius));
+			- (sphere.diameter/2 * sphere.diameter/2));
 	data->discriminant = (data->b * data->b) - (4 * data->a * data->c);
 	return ;
 }

@@ -6,11 +6,11 @@
 /*   By: eandres <eandres@student.42urduliz.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:36:49 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/03 16:03:35 by eandres          ###   ########.fr       */
+/*   Updated: 2025/04/04 13:28:34 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minirt.h"
+#include "../include/minirt.h"
 
 t_tuple	ft_add_tuples(t_tuple tuple1, t_tuple tuple2)
 {

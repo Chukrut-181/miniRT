@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>		  +#+  +:+	   +#+		*/
 /*												+#+#+#+#+#+   +#+		   */
 /*   Created: 2025/03/05 12:43:31 by igchurru		  #+#	#+#			 */
-/*   Updated: 2025/04/03 19:55:38 by eandres          ###   ########.fr       */
+/*   Updated: 2025/04/07 12:03:47 by eandres          ###   ########.fr       */
 /*																			*/
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_sphere
 	t_tuple		center;
 	t_type_obj	type;
 	float		diameter;
+	float		radius;
 	t_4x4		transform;
 	t_tuple		color;
 	t_material	material;
@@ -117,11 +118,11 @@ typedef struct s_comps
 
 typedef struct s_camera
 {
-//	int	hsize;
-//	int	vsize;
-//	float	pixel_size;
-//	float	half_width;
-//	float	half_height;
+	int	hsize;
+	int	vsize;
+	float	pixel_size;
+	float	half_width;
+	float	half_height;
 	t_tuple	origin_point;
 	t_tuple	v_orientation;
 	float	field_of_view;

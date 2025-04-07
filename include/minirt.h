@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:28:29 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/03 19:55:38 by eandres          ###   ########.fr       */
+/*   Updated: 2025/04/07 14:45:13 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # include "structures.h"
 
 # define EPSILON 0.00001
+
+# define HEIGHT 1800
+# define WIDTH 2400
 
 # ifndef M_PI
 #  define M_PI 3.1415926
@@ -102,11 +105,15 @@ t_tuple	color_at(t_world world, t_ray ray);
 t_list *ft_sort_intersections(t_list *intersections);
 
 //	PARSE
+void	parse(t_scene *s, char **argv);
 int	create_ambient_light(t_scene *s, char **res);
 int	create_camera(char **str, t_scene *s);
 int	create_light(char **res, t_scene *s);
 int	create_sphere(char **res, t_scene *s);
 int	check_rgb(char *str, t_scene *data);
+
+//	EXECUTE
+void render_scene(t_scene *s);
 
 //	THINGS
 t_sphere	*ft_create_sphere(t_tuple point, float r);
@@ -131,8 +138,11 @@ int	ft_test_intersection(void);
 void	ft_render_sphere(mlx_image_t *image);
 void	test_reflection();
 void	test_lighting();
-void 	render_lit_sphere(mlx_image_t *image);
 t_tuple	color_at(t_world world, t_ray ray);
 void scene(mlx_image_t *image);
+void render_test_gradient(t_scene *s);
+void render_test_sphere(t_scene *s);
+void render_basic_sphere(t_scene *s);
+void render_lit_sphere(t_scene *s);
 
 # endif

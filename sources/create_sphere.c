@@ -1,4 +1,4 @@
-#include "../../include/minirt.h"
+#include "../include/minirt.h"
 
 static	t_4x4	create_sphere_transform(t_tuple center, float diameter)
 {
@@ -52,6 +52,10 @@ static int	check_rgb_sphere(char *str, t_sphere *sphere)
 	sphere->material.color.x = num1;
 	sphere->material.color.y = num2;
 	sphere->material.color.z = num3;
+	sphere->material.ambient = 0.1;
+	sphere->material.diffuse = 0.7;
+	sphere->material.specular = 0.3;
+	sphere->material.shininess = 100.0;
 	return (0);
 }
 
