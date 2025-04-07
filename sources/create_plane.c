@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 11:07:45 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/07 11:43:13 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/07 11:47:16 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static bool	ft_apply_orientation_vector(t_plane *surface, char *n_n_vector)
 	i = 0;
 	while (i < 3)
 	{
-		aux = ft_atof(n_n_vector[i]);
+		aux = ft_atof(split[i]);
 		if (i == 0)
 			surface->n_n_vector.x = aux;
 		else if (i == 1)
@@ -95,8 +95,8 @@ int	ft_create_plane(t_scene *scene, char **plane)
 	t_plane	*surface;
 	t_list	*new_node;
 
-	plane = malloc(sizeof(t_plane));
-	if (!plane)
+	surface = malloc(sizeof(t_plane));
+	if (!surface)
 		return (1);
 	surface->type = PLANE;
 	if (!ft_check_coords(plane[1]) || !ft_set_plane_point(surface, plane[1]))
