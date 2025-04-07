@@ -24,15 +24,6 @@ static	void	init_mlx(t_scene *scene)
 	}
 }
 
-static	void	check_arg(int argc, char **argv)
-{
-	if (argc != 2 || ft_strncmp(argv[1], ".rt", 3) == 1)
-	{
-		write(2, "Error\n", 6);
-		exit(1);
-	}
-}
-
 int	main(int argc, char **argv)
 {
 	t_scene scene;
@@ -49,7 +40,6 @@ int	main(int argc, char **argv)
 //	s.camera = NULL;
 //	s.ray = NULL;
 //	s.ambient = NULL;
-	check_arg(argc, argv);
 	init_mlx(&scene);
 	parse(&scene, argv);
 //	render_scene(&scene);
