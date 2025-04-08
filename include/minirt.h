@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:08:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/08 11:03:42 by eandres          ###   ########.fr       */
+/*   Updated: 2025/04/08 16:39:39 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <math.h>
 # include <stdio.h>
 # include <unistd.h>
-# include <string.h>
 # include "structures.h"
 
 # define EPSILON 0.00001
