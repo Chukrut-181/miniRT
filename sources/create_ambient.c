@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 12:18:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/08 10:42:43 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:23:29 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ bool	ft_check_rgb(char *colorcode)
 		j = 0;
 		while (split[i][j] && split[i][j] != '\n')
 		{
-			if (!ft_isdigit(split[i][j]) )
+			if (!ft_isdigit(split[i][j]))
 				return (ft_free_array(split), false);
 			else
 				j++;
