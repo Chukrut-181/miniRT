@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:08:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/07 13:41:18 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/08 11:03:42 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,20 @@ int	ft_minirt(void);
 
 //	TUPLE CREATION
 t_tuple	ft_create_point(float x, float y, float z);
+t_color	ft_create_color(float x, float y, float z);
 t_tuple	ft_create_vector(float x, float y, float z);
 int		ft_check_equality(t_tuple tuple1, t_tuple tuple2);
 
 //	TUPLE OPERATIONS
 t_tuple	ft_add_tuples(t_tuple tuple1, t_tuple tuple2);
 t_tuple	ft_substract_tuples(t_tuple tuple1, t_tuple tuple2);
-t_tuple	ft_multiply_tuple(t_tuple tuple, float scalar);
+t_tuple	ft_multiply_tuple_f(t_tuple tuple, float scalar);
 t_tuple	ft_divide_tuple(t_tuple tuple, float scalar);
 t_tuple	ft_negate_tuple(t_tuple tuple);
 t_tuple	ft_multiply_colors(t_tuple c1, t_tuple c2);
+t_color	ft_multiply_color_f(t_color tuple, float scalar);
+t_color	ft_add_color(t_color tuple1, t_color tuple2);
+t_color	ft_multiply_color(t_color c1, t_color c2);
 
 //	VECTOR OPERATIONS
 float	ft_calculate_magnitude(t_tuple v);
@@ -85,12 +89,12 @@ t_list	*ft_intersection(t_ray ray, t_sphere sphere, t_list *xs_list);
 t_material	ft_create_material(float x, float y, float z);
 t_tuple	normal_at(t_sphere sphere, t_tuple world_point);
 t_tuple	reflect(t_tuple in, t_tuple normal);
-t_light	point_light(t_tuple position, t_tuple intensity);
-t_tuple	lighting(t_material mat, t_light light, t_tuple point, t_tuple eyev, t_tuple normalv);
+t_light	point_light(t_tuple position, t_color color);
+t_color	lighting(t_material mat, t_light light, t_tuple point, t_tuple eyev, t_tuple normalv);
 
 //	CAMERA
 t_4x4		view_transform(t_tuple from, t_tuple to, t_tuple up);
-t_camera	ft_create_camera(int hsize, int vsize, float field_of_view);
+//t_camera	ft_create_camera(int hsize, int vsize, float field_of_view);
 t_camera	ft_camera(int hsize, int vsize, float field_of_view);
 t_ray	ray_for_pixel(t_camera c, float px, float py);
 mlx_image_t *ft_render(mlx_t *mlx, t_camera camera, t_world world);
@@ -156,7 +160,7 @@ int		ft_test_intersection(void);
 void	ft_render_sphere(mlx_image_t *image);
 void	test_reflection(void);
 void	test_lighting(void);
-void	render_lit_sphere(mlx_image_t *image);
+void	render_lit_sphere(t_scene *s);
 void	ft_render_billiard_ball(mlx_image_t *image);
 
 #endif

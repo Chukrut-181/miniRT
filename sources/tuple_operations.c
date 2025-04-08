@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:36:49 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/14 14:08:17 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/08 11:10:32 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,16 @@ t_tuple	ft_add_tuples(t_tuple tuple1, t_tuple tuple2)
 	addition.y = tuple1.y + tuple2.y;
 	addition.z = tuple1.z + tuple2.z;
 	addition.w = tuple1.w + tuple2.w;
+	return (addition);
+}
+
+t_color	ft_add_color(t_color tuple1, t_color tuple2)
+{
+	t_color	addition;
+
+	addition.r = tuple1.r + tuple2.r;
+	addition.g = tuple1.g + tuple2.g;
+	addition.b = tuple1.b + tuple2.b;
 	return (addition);
 }
 
@@ -72,7 +82,7 @@ t_tuple	ft_substract_tuples(t_tuple tuple1, t_tuple tuple2)
  *
  * Return: A t_tuple structure representing the scaled tuple.
  */
-t_tuple	ft_multiply_tuple(t_tuple tuple, float scalar)
+t_tuple	ft_multiply_tuple_f(t_tuple tuple, float scalar)
 {
 	t_tuple	product;
 
@@ -80,6 +90,16 @@ t_tuple	ft_multiply_tuple(t_tuple tuple, float scalar)
 	product.y = tuple.y * scalar;
 	product.z = tuple.z * scalar;
 	product.w = tuple.w;
+	return (product);
+}
+
+t_color	ft_multiply_color_f(t_color tuple, float scalar)
+{
+	t_color	product;
+
+	product.r = tuple.r * scalar;
+	product.g = tuple.g * scalar;
+	product.b = tuple.b * scalar;
 	return (product);
 }
 
@@ -145,12 +165,22 @@ t_tuple	ft_negate_tuple(t_tuple tuple)
  * 
  * Return: A new t_tuple containing the product of the `x`, `y`, and `z`.
  */
-t_tuple	ft_multiply_colors(t_tuple c1, t_tuple c2)
+t_tuple	ft_multiply_tuple(t_tuple c1, t_tuple c2)
 {
 	t_tuple	result;
 
 	result.x = c1.x * c2.x;
 	result.y = c1.y * c2.y;
 	result.z = c1.z * c2.z;
+	return (result);
+}
+
+t_color	ft_multiply_color(t_color c1, t_color c2)
+{
+	t_color	result;
+
+	result.r = c1.r * c2.r;
+	result.g = c1.g * c2.g;
+	result.b = c1.b * c2.b;
 	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>		  +#+  +:+	   +#+		*/
 /*												+#+#+#+#+#+   +#+		   */
 /*   Created: 2025/03/05 12:43:31 by igchurru		  #+#	#+#			 */
-/*   Updated: 2025/04/07 12:03:47 by eandres          ###   ########.fr       */
+/*   Updated: 2025/04/08 11:03:43 by eandres          ###   ########.fr       */
 /*																			*/
 /* ************************************************************************** */
 
@@ -24,13 +24,6 @@ typedef struct s_tuple
 	float	z;
 	int		w;
 }	t_tuple;
-
-typedef	enum s_type_obj
-{
-	SPHERE,
-	PLANE,
-	CYLINDRE,
-}	t_type_obj;
 
 typedef struct s_4x4
 {
@@ -84,7 +77,6 @@ typedef struct s_sphere
 {
 	t_type		type;
 	t_tuple		center;
-	t_type_obj	type;
 	float		diameter;
 	float		radius;
 	t_4x4		transform;
@@ -127,18 +119,19 @@ typedef struct s_quadratic_equation_data
 	float	b;
 	float	c;
 }	t_abcd;
+//
+//typedef struct s_light
+//{
+//	t_tuple	intensity;
+//	t_tuple position;
+//}	t_light;
 
 typedef struct s_light
 {
-	t_tuple	intensity;
-	t_tuple position;
+	t_tuple	source;
+	float	intensity;
+	t_color	color;
 }	t_light;
-
-typedef struct s_ambient_light
-{
-	float	ratio;
-	t_tuple	color;
-}	t_ambient_light;
 
 typedef struct s_world
 {
@@ -158,23 +151,16 @@ typedef struct s_comps
 
 typedef struct s_camera
 {
-	int	hsize;
-	int	vsize;
-	float	pixel_size;
-	float	half_width;
-	float	half_height;
-	t_tuple	origin_point;
+//	int	hsize;
+//	int	vsize;
+//	float	pixel_size;
+//	float	half_width;
+//	float	half_height;
+	t_tuple	viewpoint;
 	t_tuple	v_orientation;
 	float	field_of_view;
 	t_4x4	transform;
 }	t_camera;
-
-typedef struct s_light
-{
-	t_tuple	source;
-	float	intensity;
-	t_color	color;
-}	t_light;
 
 typedef struct s_ambient
 {

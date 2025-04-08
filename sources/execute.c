@@ -1,66 +1,5 @@
 #include "../include/minirt.h"
 
-void render_test_gradient(t_scene *s)
-{
-	printf("Rendering test gradient...\n");
-	
-	// Clear the image
-	for (int y = 0; y < WIDTH; y++)
-	{
-		for (int x = 0; x < HEIGHT; x++)
-		{
-			// Create a simple gradient
-			uint8_t r = (uint8_t)((float)x / HEIGHT * 255);
-			uint8_t g = (uint8_t)((float)y / WIDTH * 255);
-			uint8_t b = 128;
-			
-			// MLX42 uses RGBA format
-			uint32_t color = (r) | (g << 8) | (b << 16) | (255 << 24);
-			
-			mlx_put_pixel(s->image, x, y, color);
-		}
-	}
-	
-	printf("Test gradient complete!\n");
-}
-
-void render_test_sphere(t_scene *s)
-{
-	printf("Rendering test sphere...\n");
-	
-	// Sphere parameters
-	int center_x = HEIGHT / 2;
-	int center_y = WIDTH / 2;
-	int radius = 100;
-	
-	// Draw a simple sphere
-	for (int y = 0; y < WIDTH; y++)
-	{
-		for (int x = 0; x < HEIGHT; x++)
-		{
-			// Calculate distance from center
-			int dx = x - center_x;
-			int dy = y - center_y;
-			int distance_squared = dx*dx + dy*dy;
-			
-			// If inside the sphere
-			if (distance_squared <= radius*radius)
-			{
-				// Simple shading based on distance from center
-				float normalized_distance = sqrtf((float)distance_squared) / radius;
-				uint8_t intensity = (uint8_t)((1.0f - normalized_distance) * 255);
-				
-				// Red sphere
-				uint32_t color = (intensity) | (0 << 8) | (0 << 16) | (255 << 24);
-				
-				mlx_put_pixel(s->image, x, y, color);
-			}
-		}
-	}
-	
-	printf("Test sphere complete!\n");
-}
-
 void render_lit_sphere(t_scene *s)
 {
 	t_ray ray;
@@ -69,7 +8,7 @@ void render_lit_sphere(t_scene *s)
 	t_tuple point;
 	t_tuple normal;
 	t_tuple eye_v;
-	t_tuple color;
+	t_color color;
 	t_sphere *sphere;
 	int x, y;
 	
@@ -89,8 +28,8 @@ void render_lit_sphere(t_scene *s)
 		{
 			// Create a ray from the eye through this pixel
 			t_tuple pixel_point = ft_create_point(x - 1200, 900 - y, 0);
-			t_tuple direction = ft_normalize(ft_substract_tuples(pixel_point, s->camera->origin_point));
-			ray = ft_create_ray(s->camera->origin_point, direction);
+			t_tuple direction = ft_normalize(ft_substract_tuples(pixel_point, s->camera->viewpoint));
+			ray = ft_create_ray(s->camera->viewpoint, direction);
 			xs_list = ft_intersection(ray, *sphere, NULL);
 			if (xs_list)
 			{
@@ -117,9 +56,9 @@ void render_lit_sphere(t_scene *s)
 					// Calculate the color using the lighting function
 					color = lighting(sphere->material, *s->light, point, eye_v, normal);
 					// Convert color to uint32_t for MLX
-					uint32_t pixel_color = ((uint32_t)(color.x * 255) << 24) | 
-										 ((uint32_t)(color.y * 255) << 16) | 
-										 ((uint32_t)(color.z * 255) << 8) | 
+					uint32_t pixel_color = ((uint32_t)(color.r * 255) << 24) | 
+										 ((uint32_t)(color.g * 255) << 16) | 
+										 ((uint32_t)(color.b * 255) << 8) | 
 										 0xFF;
 					mlx_put_pixel(s->image, x, y, pixel_color);
 				}

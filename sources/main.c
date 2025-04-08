@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/07 15:22:02 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/08 11:10:33 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int	main(int argc, char **argv)
 	scene.objects = NULL;
 	ft_get_scene(&scene, argv[1]);
 	ft_testprinter(&scene);	
+	render_lit_sphere(&scene);
 	//ft_minirt();
 	return (0);
 }
