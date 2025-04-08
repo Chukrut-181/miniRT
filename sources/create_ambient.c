@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 12:18:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/08 11:44:30 by eandres          ###   ########.fr       */
+/*   Updated: 2025/04/08 15:10:34 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,3 +79,4 @@ int	ft_create_ambient(t_scene *scene, char **ambient)
 		return (free(scene->ambient), 1);
 	return (0);
 }
+

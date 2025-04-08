@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/08 11:10:33 by eandres          ###   ########.fr       */
+/*   Updated: 2025/04/08 12:41:03 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,16 @@ static void ft_testprinter(t_scene *scene)
 
 }
 
+static	void	init_mlx(t_scene *s)
+{
+	s->mlx = mlx_init(2400, 1800, "miniRT", NULL);
+	if (!s->mlx)
+		exit(1);
+	s->image = mlx_new_image(s->mlx, 2400, 1800);
+	if (!s->image || (mlx_image_to_window(s->mlx, s->image, 0, 0) < 0))
+		exit(1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_scene	scene;
@@ -79,8 +89,12 @@ int	main(int argc, char **argv)
 	scene.objects = NULL;
 	ft_get_scene(&scene, argv[1]);
 	ft_testprinter(&scene);	
+	init_mlx(&scene);
 	render_lit_sphere(&scene);
-	//ft_minirt();
+
+//	mlx_loop_hook(scene->mlx, ft_hook, scene->mlx);
+	mlx_loop(scene.mlx);
+	mlx_terminate(scene.mlx);
 	return (0);
 }
 
