@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:08:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/08 10:35:31 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/09 10:05:27 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,9 @@ bool	ft_check_coords(char *coords);
 //	CREATE CAMERA
 int		ft_create_camera(t_scene *scene, char **cam);
 bool	ft_check_orientation_vector(char *orientation);
+
+//	CREATE SPHERE
+int	ft_create_sphere(t_scene *scene, char **ball);
 
 //	CREATE CYLINDER
 int		ft_create_cylinder(t_scene *scene, char **cyl);
