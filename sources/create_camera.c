@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:07:46 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/07 11:29:18 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/09 10:29:58 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ static bool	ft_apply_camera_coords(t_scene *scene, char *coords)
 
 int	ft_create_camera(t_scene *scene, char **cam)
 {
+	if (scene->camera != NULL)
+		return (free(scene->camera), 1);
 	scene->camera = malloc(sizeof(t_camera));
 	if (!ft_check_coords(cam[1]))
 		return (free(scene->camera), 1);
