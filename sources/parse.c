@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:44:53 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/09 10:10:18 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/09 10:40:30 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	ft_get_scene(t_scene *scene, char *argv1)
 	if (fd < 0)
 	{
 		free(aux);
-		ft_error_exit("Error: Could not open scene", 1);
+		ft_error_exit("Error\nCould not open scene", 1);
 	}
 	free(aux);
 	line = get_one_line(fd);
@@ -87,7 +87,7 @@ int	ft_get_scene(t_scene *scene, char *argv1)
 		if (*line != '\n' && ft_parse_line(scene, line))
 		{
 			free(line);
-			ft_error_exit("Error: Incorrect format encountered", 1);
+			ft_error_exit("Error\nIncorrect format encountered", 1);
 		}
 		free(line);
 		line = get_one_line(fd);
