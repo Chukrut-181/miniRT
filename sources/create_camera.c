@@ -6,13 +6,13 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:07:46 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/09 10:29:58 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/09 13:53:23 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-static bool ft_apply_fov(t_scene *scene, char *angle)
+static bool	ft_apply_fov(t_scene *scene, char *angle)
 {
 	float	aux;
 
@@ -36,7 +36,7 @@ static bool	ft_apply_orientation_vector(t_scene *scene, char *coords)
 	while (i < 3)
 	{
 		aux = ft_atof(split[i]);
-		if(i == 0)
+		if (i == 0)
 			scene->camera->v_orientation.x = aux;
 		else if (i == 1)
 			scene->camera->v_orientation.y = aux;
@@ -82,7 +82,7 @@ static bool	ft_apply_camera_coords(t_scene *scene, char *coords)
 	while (i < 3)
 	{
 		aux = ft_atof(split[i]);
-		if(i == 0)
+		if (i == 0)
 			scene->camera->viewpoint.x = aux;
 		else if (i == 1)
 			scene->camera->viewpoint.y = aux;
