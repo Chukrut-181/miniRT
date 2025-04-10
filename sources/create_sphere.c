@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 10:05:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/10 10:11:48 by eandres          ###   ########.fr       */
+/*   Updated: 2025/04/10 14:56:13 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ static bool	ft_apply_rgb_to_sphere(t_sphere *sphere, char *rgb)
 		if (aux < 0 || 1 < aux)
 			return (free(split), false);
 		if (i == 0)
-			sphere->material.color.r = aux;
+			sphere->material.color.x = aux;
 		else if (i == 1)
-			sphere->material.color.g = aux;
+			sphere->material.color.y = aux;
 		else if (i == 2)
-			sphere->material.color.b = aux;
+			sphere->material.color.z = aux;
 		i++;
 	}
 	return (free(split), true);
@@ -80,7 +80,7 @@ int	ft_create_sphere(t_scene *scene, char **ball)
 		return (free(sphere), 1);
 	aux = ft_atof(ball[2]);
 	//CONTROLAR SI ESTAMOS UTILIZANDO DIÁMETRO O RADIO Y RENOMBRAR O CORREGIR
-	sphere->radius = aux;
+	sphere->diameter = aux;
 	if (!ft_check_rgb(ball[3]))
 		return (free(sphere), 1);
 	if (!ft_apply_rgb_to_sphere(sphere, ball[3]))

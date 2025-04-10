@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:08:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/09 10:05:27 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/10 15:57:05 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ t_material	ft_create_material(float x, float y, float z);
 t_tuple	normal_at(t_sphere sphere, t_tuple world_point);
 t_tuple	reflect(t_tuple in, t_tuple normal);
 t_light	point_light(t_tuple position, t_color color);
-t_color	lighting(t_material mat, t_light light, t_tuple point, t_tuple eyev, t_tuple normalv);
+t_tuple	lighting(t_material mat, t_light light, t_tuple point, t_tuple eyev, t_tuple normalv);
 
 //	CAMERA
 t_4x4		view_transform(t_tuple from, t_tuple to, t_tuple up);
@@ -164,5 +164,6 @@ void	test_reflection(void);
 void	test_lighting(void);
 void	render_lit_sphere(t_scene *s);
 void	ft_render_billiard_ball(mlx_image_t *image);
+t_tuple	ft_multiply_tuple(t_tuple c1, t_tuple c2);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/10 11:25:18 by eandres          ###   ########.fr       */
+/*   Updated: 2025/04/10 15:57:03 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void ft_testprinter(t_scene *scene)
 	{
 		printf("Parsing Light:\n");
 		printf("Source X = %.4f, Y = %.4f, Z = %.4f\n", scene->light->source.x, scene->light->source.y, scene->light->source.z);
-		printf("Intensity: %.4f\n", scene->light->intensity);
+		printf("Intensity: %.4f\n", scene->light->intensity.x);
 		printf("Color: R = %.4f, G = %.4f, B = %.4f\n", scene->light->color.r, scene->light->color.g, scene->light->color.b);
 	}
 	else
@@ -46,22 +46,22 @@ static void ft_testprinter(t_scene *scene)
 	}
 	else
 		printf("No camera detected\n");
-//	if (!scene->objects)
-//		printf("No objects detected\n");
-//	else
-//		printf("Parsing object list:\n");
-//	while (scene->objects)
-//	{
-//		aux = (t_sphere *)scene->objects->content;
-//		if (aux->type == SPHERE)
-//			printf ("Sphere detected!\n");
-//		else if (aux->type == CYLINDER)
-//			printf ("Cylinder detected!\n");
-//		else if (aux->type == PLANE)
-//			printf ("Plane detected!\n");
-//		scene->objects = scene->objects->next;
-//	}
-//	printf("End of object list reached\n");
+	if (!scene->objects)
+		printf("No objects detected\n");
+	else
+		printf("Parsing object list:\n");
+	while (scene->objects)
+	{
+		aux = (t_sphere *)scene->objects->content;
+		if (aux->type == SPHERE)
+			printf ("Sphere detected!\n");
+		else if (aux->type == CYLINDER)
+			printf ("Cylinder detected!\n");
+		else if (aux->type == PLANE)
+			printf ("Plane detected!\n");
+		scene->objects = scene->objects->next;
+	}
+	printf("End of object list reached\n");
 }
 
 static	void	init_mlx(t_scene *s)
@@ -97,3 +97,16 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
+//int main()
+//{
+//	t_tuple eye_v = ft_create_vector(0, 0, -1);
+//	t_tuple normalv = ft_create_vector(0, 0, -1);
+//	t_light light = point_light(ft_create_point(0, 10, 10), ft_create_color(1, 1, 1));
+//	t_tuple res;
+//	t_tuple pos = ft_create_point(0, 0, 0);
+//	t_material mat = ft_create_material(1, 0.2, 1);
+//
+//	res = lighting(mat, light, pos, eye_v, normalv);
+//	printf("x-> %f, y-> %f, z->%f\n", res.x, res.y, res.z);
+//	return (0);
+//}

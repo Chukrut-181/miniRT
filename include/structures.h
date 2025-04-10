@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>		  +#+  +:+	   +#+		*/
 /*												+#+#+#+#+#+   +#+		   */
 /*   Created: 2025/03/05 12:43:31 by igchurru		  #+#	#+#			 */
-/*   Updated: 2025/04/08 11:03:43 by eandres          ###   ########.fr       */
+/*   Updated: 2025/04/10 15:57:04 by eandres          ###   ########.fr       */
 /*																			*/
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct s_color
 
 typedef struct s_material
 {
-	t_color	color;
+	t_tuple	color;
 	float	ambient;   // 0-1
 	float	diffuse;   // 0-1
 	float	specular;  // 0-1
@@ -78,7 +78,6 @@ typedef struct s_sphere
 	t_type		type;
 	t_tuple		center;
 	float		diameter;
-	float		radius;
 	t_4x4		transform;
 	t_tuple		color;
 	t_material	material;
@@ -129,7 +128,7 @@ typedef struct s_quadratic_equation_data
 typedef struct s_light
 {
 	t_tuple	source;
-	float	intensity;
+	t_tuple	intensity;
 	t_color	color;
 }	t_light;
 
