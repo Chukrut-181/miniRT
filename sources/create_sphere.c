@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 10:05:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/08 10:33:54 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/10 10:11:48 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,3 +91,4 @@ int	ft_create_sphere(t_scene *scene, char **ball)
 	ft_lstadd_back(&(scene->objects), new_node);
 	return (0);
 }
+

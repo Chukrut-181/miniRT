@@ -11,14 +11,14 @@ void render_lit_sphere(t_scene *s)
 	t_color color;
 	t_sphere *sphere;
 	int x, y;
-	
+
 	sphere = (t_sphere *)s->objects->content;
 //	sphere->material = ft_create_material(1, 0.2, 1);  con estos valores si que funciona pero en el archivo .rt
 //      los valores son en rgb.
-	
+
 //	eye_pos = ft_create_point(0, 0, -1000); si introduzco los valores a mano, no se ve el reflejo de luz, sin embarg
 //	si los meto con ft_create_point() si funciona, creo que es por el valor de la w.
-	
+
 	// Render the sphere with lighting
 	y = 0;
 	while(y < 1800)
@@ -68,5 +68,6 @@ void render_lit_sphere(t_scene *s)
 		}
 		y++;
 	}
+	printf("Finish");
 }
 

@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/08 16:03:16 by eandres          ###   ########.fr       */
+/*   Updated: 2025/04/10 11:25:18 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void ft_testprinter(t_scene *scene)
 {
-	t_sphere	*aux;
+//	t_sphere	*aux;
 	
 	if (scene->ambient)
 	{
@@ -46,23 +46,22 @@ static void ft_testprinter(t_scene *scene)
 	}
 	else
 		printf("No camera detected\n");
-	if (!scene->objects)
-		printf("No objects detected\n");
-	else
-		printf("Parsing object list:\n");
-	while (scene->objects)
-		{
-			aux = (t_sphere *)scene->objects->content;
-			if (aux->type == SPHERE)
-				printf ("Sphere detected!\n");
-			else if (aux->type == CYLINDER)
-				printf ("Cylinder detected!\n");
-			else if (aux->type == PLANE)
-				printf ("Plane detected!\n");
-			scene->objects = scene->objects->next;
-		}
-		printf("End of object list reached\n");
-
+//	if (!scene->objects)
+//		printf("No objects detected\n");
+//	else
+//		printf("Parsing object list:\n");
+//	while (scene->objects)
+//	{
+//		aux = (t_sphere *)scene->objects->content;
+//		if (aux->type == SPHERE)
+//			printf ("Sphere detected!\n");
+//		else if (aux->type == CYLINDER)
+//			printf ("Cylinder detected!\n");
+//		else if (aux->type == PLANE)
+//			printf ("Plane detected!\n");
+//		scene->objects = scene->objects->next;
+//	}
+//	printf("End of object list reached\n");
 }
 
 static	void	init_mlx(t_scene *s)
@@ -92,7 +91,7 @@ int	main(int argc, char **argv)
 	init_mlx(&scene);
 	render_lit_sphere(&scene);
 
-//	mlx_loop_hook(scene->mlx, ft_hook, scene->mlx);
+//	mlx_loop_hook(scene.mlx, ft_hook, scene.mlx);
 	mlx_loop(scene.mlx);
 	mlx_terminate(scene.mlx);
 	return (0);
