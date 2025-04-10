@@ -6,13 +6,13 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 12:18:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/09 13:52:19 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/10 17:16:38 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-bool	ft_apply_rgb(t_color *color, char *original)
+bool	ft_apply_rgb(t_tuple *color, char *original)
 {
 	char	**split;
 	float	aux;
@@ -28,11 +28,11 @@ bool	ft_apply_rgb(t_color *color, char *original)
 		if (aux < 0 || 1 < aux)
 			return (free(split), false);
 		if (i == 0)
-			color->r = aux;
+			color->x = aux;
 		else if (i == 1)
-			color->g = aux;
+			color->y = aux;
 		else if (i == 2)
-			color->b = aux;
+			color->z = aux;
 		i++;
 	}
 	return (free(split), true);

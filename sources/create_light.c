@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 15:51:55 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/10 14:39:46 by eandres          ###   ########.fr       */
+/*   Updated: 2025/04/10 17:14:31 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ int	ft_create_light(t_scene *scene, char **light)
 	scene->light->intensity = ft_multiply_tuple_f(scene->light->intensity, aux);
 	if (!ft_check_rgb(light[3]))
 		return (free(scene->light), 1);
-	if (!ft_apply_rgb(&scene->light->color, light[3]))
+	if (!ft_apply_rgb(&scene->light->intensity, light[3]))
 		return (free(scene->light), 1);
-	scene->light->color = ft_multiply_color_f(scene->light->color, aux);
+	scene->light->intensity = ft_multiply_tuple_f(scene->light->intensity, aux);
 	return (0);
 }

@@ -19,7 +19,7 @@ static void ft_testprinter(t_scene *scene)
 	{
 		printf("Parsing Ambient:\n");
 		printf("Ratio %.4f\n", scene->ambient->ratio);
-		printf(" Color R = %.4f, G = %.4f, B = %.4f\n", scene->ambient->color.r, scene->ambient->color.g, scene->ambient->color.b);
+		printf(" Color R = %.4f, G = %.4f, B = %.4f\n", scene->ambient->color.x, scene->ambient->color.y, scene->ambient->color.z);
 	}
 	else
 	{
@@ -30,7 +30,7 @@ static void ft_testprinter(t_scene *scene)
 		printf("Parsing Light:\n");
 		printf("Source X = %.4f, Y = %.4f, Z = %.4f\n", scene->light->source.x, scene->light->source.y, scene->light->source.z);
 		printf("Intensity: %.4f\n", scene->light->intensity.x);
-		printf("Color: R = %.4f, G = %.4f, B = %.4f\n", scene->light->color.x, scene->light->color.y, scene->light->color.z);
+		printf("Color: R = %.4f, G = %.4f, B = %.4f\n", scene->light->intensity.x, scene->light->intensity.y, scene->light->intensity.z);
 	}
 	else
 	{
@@ -90,7 +90,7 @@ int	main(int argc, char **argv)
 	init_mlx(&scene);
 	render_lit_sphere(&scene);
 
-//	mlx_loop_hook(scene.mlx, ft_hook, scene.mlx);
+//	mlx_loop_hook(scene.mlx, ft_handle_key, scene.mlx);
 	mlx_loop(scene.mlx);
 	mlx_terminate(scene.mlx);
 	return (0);
