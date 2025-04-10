@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:08:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/08 16:39:39 by eandres          ###   ########.fr       */
+/*   Updated: 2025/04/09 10:05:27 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ t_4x4	rotation_y(float radians);
 t_ray	ft_create_ray(t_tuple origin, t_tuple direction);
 t_tuple	ft_position(t_ray ray, float t);
 t_list	*ft_intersection(t_ray ray, t_sphere sphere, t_list *xs_list);
+void	ft_identify_hit(t_list *xs_list);
 
 //	LIGHT
 t_material	ft_create_material(float x, float y, float z);
@@ -119,10 +120,6 @@ int	check_rgb(char *str, t_scene *data);
 //	EXECUTE
 void render_scene(t_scene *s);
 
-//	THINGS
-int		ft_create_cylinder(t_scene *scene, char **cyl);
-void	ft_identify_hit(t_list *xs_list);
-
 //	PARSE
 int	ft_get_scene(t_scene *scene, char *argv1);
 int ft_parse_line(t_scene *scene, char *line);
@@ -140,6 +137,12 @@ bool	ft_check_coords(char *coords);
 //	CREATE CAMERA
 int		ft_create_camera(t_scene *scene, char **cam);
 bool	ft_check_orientation_vector(char *orientation);
+
+//	CREATE SPHERE
+int	ft_create_sphere(t_scene *scene, char **ball);
+
+//	CREATE CYLINDER
+int		ft_create_cylinder(t_scene *scene, char **cyl);
 
 //	CREATE PLANE
 int	ft_create_plane(t_scene *scene, char **plane);

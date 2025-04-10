@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 15:51:55 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/08 11:06:27 by eandres          ###   ########.fr       */
+/*   Updated: 2025/04/09 13:55:20 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static bool	ft_apply_light_coords(t_scene *scene, char *coords)
 	while (i < 3)
 	{
 		aux = ft_atof(split[i]);
-		if(i == 0)
+		if (i == 0)
 			scene->light->source.x = aux;
 		else if (i == 1)
 			scene->light->source.y = aux;
@@ -53,7 +53,7 @@ bool	ft_check_coords(char *coords)
 	{
 		j = 0;
 		checker = 0;
-		while(temp[i][j])
+		while (temp[i][j])
 		{
 			if ((temp[i][j] == '-' && j != 0) || (temp[i][j] == '.' && checker == 1) || (!ft_isdigit(temp[i][j]) && j != 0 && (temp[i][j] != '.')))
 				return (ft_free_array(temp), false);
@@ -69,7 +69,7 @@ bool	ft_check_coords(char *coords)
 int	ft_create_light(t_scene *scene, char **light)
 {
 	float	aux;
-	
+
 	scene->light = malloc(sizeof(t_light));
 	if (!ft_check_coords(light[1]))
 		return (free(scene->light), 1);
