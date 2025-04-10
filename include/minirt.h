@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:08:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/10 15:57:05 by eandres          ###   ########.fr       */
+/*   Updated: 2025/04/10 17:03:24 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	ft_identify_hit(t_list *xs_list);
 t_material	ft_create_material(float x, float y, float z);
 t_tuple	normal_at(t_sphere sphere, t_tuple world_point);
 t_tuple	reflect(t_tuple in, t_tuple normal);
-t_light	point_light(t_tuple position, t_color color);
+t_light	point_light(t_tuple position, t_tuple color);
 t_tuple	lighting(t_material mat, t_light light, t_tuple point, t_tuple eyev, t_tuple normalv);
 
 //	CAMERA

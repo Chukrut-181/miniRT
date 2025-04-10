@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>		  +#+  +:+	   +#+		*/
 /*												+#+#+#+#+#+   +#+		   */
 /*   Created: 2025/03/05 12:43:31 by igchurru		  #+#	#+#			 */
-/*   Updated: 2025/04/10 15:57:04 by eandres          ###   ########.fr       */
+/*   Updated: 2025/04/10 17:03:34 by eandres          ###   ########.fr       */
 /*																			*/
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ typedef struct s_light
 {
 	t_tuple	source;
 	t_tuple	intensity;
-	t_color	color;
+	t_tuple	color;
 }	t_light;
 
 typedef struct s_world
