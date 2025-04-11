@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 10:05:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/10 14:56:13 by eandres          ###   ########.fr       */
+/*   Updated: 2025/04/11 10:19:55 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int	ft_create_sphere(t_scene *scene, char **ball)
 	new_node = ft_lstnew(sphere);
 	if (!new_node)
 		return (free(sphere), 1);
+	sphere->transform = ft_create_identity_matrix();
 	ft_lstadd_back(&(scene->objects), new_node);
 	return (0);
 }
