@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 10:05:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/11 10:19:55 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/11 10:56:56 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ int	ft_create_sphere(t_scene *scene, char **ball)
 	if (!ft_set_sphere_center(sphere, ball[1]))
 		return (free(sphere), 1);
 	aux = ft_atof(ball[2]);
-	//CONTROLAR SI ESTAMOS UTILIZANDO DIÁMETRO O RADIO Y RENOMBRAR O CORREGIR
 	sphere->diameter = aux;
 	if (!ft_check_rgb(ball[3]))
 		return (free(sphere), 1);
@@ -89,6 +88,10 @@ int	ft_create_sphere(t_scene *scene, char **ball)
 	if (!new_node)
 		return (free(sphere), 1);
 	sphere->transform = ft_create_identity_matrix();
+	sphere->material.ambient = 0.1;
+	sphere->material.diffuse = 0.7;
+	sphere->material.specular = 0.3;
+	sphere->material.shininess = 100.0;
 	ft_lstadd_back(&(scene->objects), new_node);
 	return (0);
 }
