@@ -77,6 +77,7 @@ void render_lit_sphere(t_scene *s)
 	sphere.material.diffuse = 0.7;
 	sphere.material.specular = 0.3;
 	sphere.material.shininess = 100.0;
+	sphere.transform = ft_create_identity_matrix();
 	
 	light = point_light(ft_create_point(-500, 500, -1000), ft_create_point(0.5, 1, 1));
 	// Eye position
