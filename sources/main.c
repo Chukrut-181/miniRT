@@ -11,9 +11,9 @@
 
 #include "../include/minirt.h"
 
-static void ft_testprinter(t_scene *scene)
+/* static void ft_testprinter(t_scene *scene)
 {
-//	t_sphere	*aux;
+	t_sphere	*aux;
 	
 	if (scene->ambient)
 	{
@@ -29,8 +29,8 @@ static void ft_testprinter(t_scene *scene)
 	{
 		printf("Parsing Light:\n");
 		printf("Source X = %.4f, Y = %.4f, Z = %.4f\n", scene->light->source.x, scene->light->source.y, scene->light->source.z);
-		printf("Intensity: %.4f\n", scene->light->intensity.x);
-		printf("Color: R = %.4f, G = %.4f, B = %.4f\n", scene->light->intensity.x, scene->light->intensity.y, scene->light->intensity.z);
+		printf("Intensity: %.4f\n", scene->light->intensity);
+		//printf("Color: R = %.4f, G = %.4f, B = %.4f\n", scene->light->, scene->light->intensity, scene->light->intensity.z);
 	}
 	else
 	{
@@ -45,33 +45,23 @@ static void ft_testprinter(t_scene *scene)
 	}
 	else
 		printf("No camera detected\n");
-//	if (!scene->objects)
-//		printf("No objects detected\n");
-//	else
-//		printf("Parsing object list:\n");
-//	while (scene->objects)
-//	{
-//		aux = (t_sphere *)scene->objects->content;
-//		if (aux->type == SPHERE)
-//			printf ("Sphere detected!\n");
-//		else if (aux->type == CYLINDER)
-//			printf ("Cylinder detected!\n");
-//		else if (aux->type == PLANE)
-//			printf ("Plane detected!\n");
-//		scene->objects = scene->objects->next;
-//	}
-//	printf("End of object list reached\n");
-}
-
-static	void	init_mlx(t_scene *s)
-{
-	s->mlx = mlx_init(2400, 1800, "miniRT", NULL);
-	if (!s->mlx)
-		exit(1);
-	s->image = mlx_new_image(s->mlx, 2400, 1800);
-	if (!s->image || (mlx_image_to_window(s->mlx, s->image, 0, 0) < 0))
-		exit(1);
-}
+	if (!scene->objects)
+		printf("No objects detected\n");
+	else
+		printf("Parsing object list:\n");
+	while (scene->objects)
+	{
+		aux = (t_sphere *)scene->objects->content;
+		if (aux->type == SPHERE)
+			printf ("Sphere detected!\n");
+		else if (aux->type == CYLINDER)
+			printf ("Cylinder detected!\n");
+		else if (aux->type == PLANE)
+			printf ("Plane detected!\n");
+		scene->objects = scene->objects->next;
+	}
+	printf("End of object list reached\n");
+} */
 
 int	main(int argc, char **argv)
 {
@@ -86,28 +76,7 @@ int	main(int argc, char **argv)
 	scene.light = NULL;
 	scene.objects = NULL;
 	ft_get_scene(&scene, argv[1]);
-	ft_testprinter(&scene);	
-	init_mlx(&scene);
-	render_lit_sphere(&scene);
-
-//	mlx_loop_hook(scene.mlx, ft_handle_key, scene.mlx);
-	mlx_loop(scene.mlx);
-	mlx_terminate(scene.mlx);
+	//ft_testprinter(&scene);
+	ft_minirt(&scene);
 	return (0);
 }
-
-// 	Esto es un main para comprobar el funcionamiento de ligthing.
-
-//int main()
-//{
-//	t_tuple eye_v = ft_create_vector(0, 0, -1);
-//	t_tuple normalv = ft_create_vector(0, 0, -1);
-//	t_light light = point_light(ft_create_point(0, 10, 10), ft_create_point(1, 1, 1));
-//	t_tuple res;
-//	t_tuple pos = ft_create_point(0, 0, 0);
-//	t_material mat = ft_create_material(1, 0.2, 1);
-//
-//	res = lighting(mat, light, pos, eye_v, normalv);
-//	printf("x-> %f, y-> %f, z->%f\n", res.x, res.y, res.z);
-//	return (0);
-//}

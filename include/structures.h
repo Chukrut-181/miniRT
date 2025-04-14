@@ -128,7 +128,7 @@ typedef struct s_quadratic_equation_data
 typedef struct s_light
 {
 	t_tuple	source;
-	t_tuple	intensity;
+	float	intensity;
 }	t_light;
 
 typedef struct s_world

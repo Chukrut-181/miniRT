@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:08:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/10 17:33:50 by eandres          ###   ########.fr       */
+/*   Updated: 2025/04/14 15:39:40 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@
 int	main(int argc, char **argv);
 
 //	MINIRT
-int	ft_minirt(void);
+int		ft_minirt(t_scene *scene);
+void	ft_render_scene(t_scene *scene);
 
 //	TUPLE CREATION
 t_tuple	ft_create_point(float x, float y, float z);
@@ -84,6 +85,7 @@ t_ray	ft_create_ray(t_tuple origin, t_tuple direction);
 t_tuple	ft_position(t_ray ray, float t);
 t_list	*ft_intersection(t_ray ray, t_sphere sphere, t_list *xs_list);
 void	ft_identify_hit(t_list *xs_list);
+t_list	*ft_intersect_plane(t_ray ray, t_plane plane, t_list *xs_list);
 
 //	LIGHT
 t_material	ft_create_material(float x, float y, float z);
@@ -148,7 +150,7 @@ int		ft_create_cylinder(t_scene *scene, char **cyl);
 int	ft_create_plane(t_scene *scene, char **plane);
 
 //	HOOKS
-void	*ft_handle_key(mlx_key_data_t keydata, void *param);
+void	ft_handle_key(mlx_key_data_t keydata, void *param);
 
 //	ERROR EXIT
 int		ft_error_exit(char *err_msg, int err_code);
