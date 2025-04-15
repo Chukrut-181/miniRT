@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:08:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/15 12:38:04 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/15 13:42:06 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ int	main(int argc, char **argv);
 char	*get_one_line(int fd);
 int		ft_parse_line(t_scene *scene, char *line);
 int		ft_create_scene(t_scene *scene, char *filename);
+
+//	CREATE SPHERE
+int	ft_create_sphere(t_scene *scene, char **sphere_data);
 
 //	MINIRT
 int		ft_minirt(t_scene *scene);
@@ -77,8 +80,8 @@ float	ft_determinant_3x3(t_3x3 submx);
 
 // MATRIX TRANSFOMATION
 t_4x4	ft_create_identity_matrix(void);
-t_4x4	translation(t_tuple tuple);
-t_4x4	scaling(t_tuple tuple);
+t_4x4	create_translation_mx(t_tuple tuple);
+t_4x4	create_scalation_mx(t_tuple tuple);
 t_4x4	ft_create_shearing_mx(float Xy, float Xz, float Yx, float Yz, float Zx, float Zy);
 
 // 	ROTATION
@@ -94,7 +97,7 @@ t_tuple	ft_position(t_ray ray, float t);
 //	CREATE AMBIENT
 int		ft_create_ambient(t_scene *scene, char **ambient);
 bool	ft_check_rgb(char *colorcode);
-bool	ft_apply_rgb(t_tuple *color, char *original);
+bool	ft_apply_rgb(t_color *color, char *original);
 
 //	CREATE LIGHT
 int		ft_create_light(t_scene *scene, char **light);
