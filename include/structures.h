@@ -77,7 +77,7 @@ typedef struct s_object
 {
 	t_type		type;
 	t_color		color;
-	t_tuple		orientation;
+	t_tuple		center;
 	t_4x4		transform;
 	t_material	mat;
 }	t_object;
