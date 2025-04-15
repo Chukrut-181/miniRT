@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 11:09:31 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/14 16:08:16 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/15 12:38:33 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int ft_minirt(t_scene *scene)
 		mlx_terminate(mlx);
 		return (1);
 	}
-	ft_render_scene(scene);
 	mlx_image_to_window(mlx, image, 0, 0);
 	mlx_key_hook(mlx, ft_handle_key, mlx);
 	mlx_loop(mlx);

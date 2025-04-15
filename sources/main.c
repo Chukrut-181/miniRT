@@ -75,7 +75,7 @@ int	main(int argc, char **argv)
 	scene.ambient = NULL;
 	scene.light = NULL;
 	scene.objects = NULL;
-	ft_get_scene(&scene, argv[1]);
+	ft_create_scene(&scene, argv[1]);
 	//ft_testprinter(&scene);
 	ft_minirt(&scene);
 	return (0);
