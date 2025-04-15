@@ -68,7 +68,7 @@ int	main(int argc, char **argv)
 	t_scene	scene;
 	
 	if (argc != 2)
-		ft_error_exit("Error\nUsage: ./miniRT <arg1>", 1);
+		ft_error_exit("Error\nUsage: ./miniRT <arg1>\n", 1);
 	scene.mlx = NULL;
 	scene.image = NULL;
 	scene.camera = NULL;

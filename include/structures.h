@@ -73,35 +73,14 @@ typedef enum e_object_type
 	TORUS,
 }	t_type;
 
-typedef struct s_sphere
+typedef struct s_object
 {
 	t_type		type;
-	t_tuple		center;
-	float		diameter;
+	t_color		color;
+	t_tuple		orientation;
 	t_4x4		transform;
-	t_tuple		color;
-	t_material	material;
-}	t_sphere;
-
-typedef struct s_cylinder
-{
-	t_type		type;
-	t_tuple		center;
-	t_tuple		axis_vector;
-	float		diameter;
-	float		height;
-	t_4x4		*transform;
-	t_material	material;
-}	t_cyl;
-
-typedef struct s_plane
-{
-	t_type		type;
-	t_tuple		point_in_plane;
-	t_tuple		n_n_vector;
-	t_4x4		*transform;
-	t_material	material;
-}	t_plane;
+	t_material	mat;
+}	t_object;
 
 typedef struct s_intersection
 {
@@ -118,12 +97,7 @@ typedef struct s_quadratic_equation_data
 	float	b;
 	float	c;
 }	t_abcd;
-//
-//typedef struct s_light
-//{
-//	t_tuple	intensity;
-//	t_tuple position;
-//}	t_light;
+
 
 typedef struct s_light
 {
