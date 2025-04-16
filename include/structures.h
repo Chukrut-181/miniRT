@@ -136,7 +136,7 @@ typedef struct s_camera
 
 typedef struct s_ambient
 {
-	t_tuple	color;
+	t_color	color;
 	float	ratio;
 }	t_ambient;
 

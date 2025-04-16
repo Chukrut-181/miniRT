@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 11:09:31 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/15 15:45:53 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/16 09:12:51 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void ft_testprinter(t_scene *scene)
 	{
 		printf("Parsing Ambient:\n");
 		printf("Ratio %.4f\n", scene->ambient->ratio);
-		printf(" Color R = %.4f, G = %.4f, B = %.4f\n", scene->ambient->color.x, scene->ambient->color.y, scene->ambient->color.z);
+		printf(" Color R = %.4f, G = %.4f, B = %.4f\n", scene->ambient->color.r, scene->ambient->color.g, scene->ambient->color.b);
 	}
 	else
 	{
