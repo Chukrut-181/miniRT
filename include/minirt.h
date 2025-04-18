@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:08:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/10 17:33:50 by eandres          ###   ########.fr       */
+/*   Updated: 2025/04/17 20:36:47 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ t_world ft_default_world(void);
 t_list *ft_find_hit(t_list *intersections);
 t_comps	prepare_computations(t_list *intersection, t_ray ray);
 t_list *ft_intersect_world(t_world world, t_ray ray);
-t_tuple	shade_hit(t_world world, t_comps comps);
+//t_tuple	shade_hit(t_world world, t_comps comps);
 t_tuple	color_at(t_world world, t_ray ray);
 t_list *ft_sort_intersections(t_list *intersections);
 
@@ -119,6 +119,11 @@ int	check_rgb(char *str, t_scene *data);
 
 //	EXECUTE
 void render_scene(t_scene *s);
+void render_plane(t_scene *s);
+t_list	*intersect_plane(t_ray ray, t_plane plane, t_list *xs_list);
+t_tuple	normal_at_plane(t_plane plane, t_tuple world_point);
+t_xs	intersect(t_plane *plane, t_ray *ray);
+t_tuple	shade_hit(t_scene s, t_comps comps);
 
 //	PARSE
 int	ft_get_scene(t_scene *scene, char *argv1);
@@ -165,5 +170,6 @@ void	test_lighting(void);
 void	render_lit_sphere(t_scene *s);
 void	ft_render_billiard_ball(mlx_image_t *image);
 t_tuple	ft_multiply_tuple(t_tuple c1, t_tuple c2);
+void render_plane(t_scene *s);
 
 #endif

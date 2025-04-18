@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 11:07:45 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/10 14:40:00 by eandres          ###   ########.fr       */
+/*   Updated: 2025/04/14 10:44:23 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,10 @@ int	ft_create_plane(t_scene *scene, char **plane)
 		return (free(plane), 1);
 	if (!ft_check_rgb(plane[3]) || !ft_apply_rgb_to_plane(surface, plane[3]))
 		return (free(surface), 1);
+	surface->material.ambient = 1;
+	surface->material.diffuse = 0.7;
+	surface->material.specular = 0.3;
+	surface->material.shininess = 200.0;
 	new_node = ft_lstnew(surface);
 	if (!new_node)
 		return (free(surface), 1);

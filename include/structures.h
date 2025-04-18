@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*																			*/
-/*														:::	  ::::::::   */
+/*									      */
+/*						       	:::	  ::::::::    */
 /*   structures.h                                       :+:      :+:    :+:   */
-/*													+:+ +:+		 +:+	 */
-/*   By: igchurru <igchurru@student.42.fr>		  +#+  +:+	   +#+		*/
-/*												+#+#+#+#+#+   +#+		   */
-/*   Created: 2025/03/05 12:43:31 by igchurru		  #+#	#+#			 */
-/*   Updated: 2025/04/10 17:33:51 by eandres          ###   ########.fr       */
-/*																			*/
+/*							+:+ +:+		 +:+	      */
+/*   By: igchurru <igchurru@student.42.fr>     	  +#+  +:+	   +#+*/
+/*							+#+#+#+#+#+   +#+     */
+/*   Created: 2025/03/05 12:43:31 by igchurru		  #+#	#+#	      */
+/*   Updated: 2025/04/17 12:26:08 by eandres          ###   ########.fr       */
+/*            							              */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
@@ -175,5 +175,11 @@ typedef struct s_scene
 	t_light		*light;
 	t_list		*objects;
 }	t_scene;
+
+typedef struct s_object
+{
+	t_4x4		*matrix;
+	t_material	*material;
+}	t_object;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 10:23:12 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/14 14:17:17 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/15 12:18:55 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,3 +137,4 @@ t_4x4	ft_create_shearing_mx(float Xy, float Xz, float Yx, float Yz, float Zx, fl
 	shearing_mx.data[2][1] = Zy;
 	return (shearing_mx);
 }
+

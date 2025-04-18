@@ -3,9 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */ /*                                                +#+#+#+#+#+   +#+           */
+/*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/10 15:57:03 by eandres          ###   ########.fr       */
+/*   Updated: 2025/04/17 21:08:38 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +46,10 @@ static void ft_testprinter(t_scene *scene)
 	}
 	else
 		printf("No camera detected\n");
-//	if (!scene->objects)
-//		printf("No objects detected\n");
-//	else
-//		printf("Parsing object list:\n");
+	if (!scene->objects)
+		printf("No objects detected\n");
+	else
+		printf("Parsing object list:\n");
 //	while (scene->objects)
 //	{
 //		aux = (t_sphere *)scene->objects->content;
@@ -88,7 +89,8 @@ int	main(int argc, char **argv)
 	ft_get_scene(&scene, argv[1]);
 	ft_testprinter(&scene);	
 	init_mlx(&scene);
-	render_lit_sphere(&scene);
+	render_plane(&scene);
+//	render_lit_sphere(&scene);
 
 //	mlx_loop_hook(scene.mlx, ft_handle_key, scene.mlx);
 	mlx_loop(scene.mlx);
