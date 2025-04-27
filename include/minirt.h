@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
+/*   By: v0                                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/12 14:08:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/17 20:36:47 by eandres          ###   ########.fr       */
+/*   Created: 2025/04/19 18:08:55 by v0                #+#    #+#             */
+/*   Updated: 2025/04/22 15:25:07 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ t_tuple	ft_multiply_colors(t_tuple c1, t_tuple c2);
 t_color	ft_multiply_color_f(t_color tuple, float scalar);
 t_color	ft_add_color(t_color tuple1, t_color tuple2);
 t_color	ft_multiply_color(t_color c1, t_color c2);
+t_tuple	ft_multiply_tuple(t_tuple c1, t_tuple c2);
 
 //	VECTOR OPERATIONS
 float	ft_calculate_magnitude(t_tuple v);
@@ -94,7 +95,6 @@ t_tuple	lighting(t_material mat, t_light light, t_tuple point, t_tuple eyev, t_t
 
 //	CAMERA
 t_4x4		view_transform(t_tuple from, t_tuple to, t_tuple up);
-//t_camera	ft_create_camera(int hsize, int vsize, float field_of_view);
 t_camera	ft_camera(int hsize, int vsize, float field_of_view);
 t_ray	ray_for_pixel(t_camera c, float px, float py);
 mlx_image_t *ft_render(mlx_t *mlx, t_camera camera, t_world world);
@@ -105,7 +105,6 @@ t_world ft_default_world(void);
 t_list *ft_find_hit(t_list *intersections);
 t_comps	prepare_computations(t_list *intersection, t_ray ray);
 t_list *ft_intersect_world(t_world world, t_ray ray);
-//t_tuple	shade_hit(t_world world, t_comps comps);
 t_tuple	color_at(t_world world, t_ray ray);
 t_list *ft_sort_intersections(t_list *intersections);
 
@@ -119,11 +118,18 @@ int	check_rgb(char *str, t_scene *data);
 
 //	EXECUTE
 void render_scene(t_scene *s);
-void render_plane(t_scene *s);
 t_list	*intersect_plane(t_ray ray, t_plane plane, t_list *xs_list);
 t_tuple	normal_at_plane(t_plane plane, t_tuple world_point);
 t_xs	intersect(t_plane *plane, t_ray *ray);
 t_tuple	shade_hit(t_scene s, t_comps comps);
+void render_lit_plane(t_scene *s);
+void	render_lit_sphere(t_scene *s);
+void render_single_plane(t_scene *s, t_plane *plane);
+void render_single_sphere(t_scene *s, t_sphere *sphere);
+
+// CYLINDER
+t_list	*ft_intersect_cylinder(t_ray ray, t_cyl cylinder, t_list *xs_list);
+t_tuple	normal_at_cylinder(t_cyl cylinder, t_tuple world_point);
 
 //	PARSE
 int	ft_get_scene(t_scene *scene, char *argv1);
@@ -153,7 +159,7 @@ int		ft_create_cylinder(t_scene *scene, char **cyl);
 int	ft_create_plane(t_scene *scene, char **plane);
 
 //	HOOKS
-void	*ft_handle_key(mlx_key_data_t keydata, void *param);
+void	ft_handle_key(mlx_key_data_t keydata, void *param);
 
 //	ERROR EXIT
 int		ft_error_exit(char *err_msg, int err_code);
@@ -164,12 +170,10 @@ void	ft_draw_clock(mlx_image_t *image);
 int		ft_test_matrix_functions(void);
 int		ft_test_ray(void);
 int		ft_test_intersection(void);
-void	ft_render_sphere(mlx_image_t *image);
 void	test_reflection(void);
 void	test_lighting(void);
-void	render_lit_sphere(t_scene *s);
 void	ft_render_billiard_ball(mlx_image_t *image);
-t_tuple	ft_multiply_tuple(t_tuple c1, t_tuple c2);
-void render_plane(t_scene *s);
+t_4x4	create_translation_mx(t_tuple tuple);
 
 #endif
+

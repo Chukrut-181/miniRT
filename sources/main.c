@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/17 21:08:38 by eandres          ###   ########.fr       */
+/*   Updated: 2025/04/22 10:29:58 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,17 @@ static void ft_testprinter(t_scene *scene)
 		printf("No objects detected\n");
 	else
 		printf("Parsing object list:\n");
-//	while (scene->objects)
-//	{
-//		aux = (t_sphere *)scene->objects->content;
-//		if (aux->type == SPHERE)
-//			printf ("Sphere detected!\n");
-//		else if (aux->type == CYLINDER)
-//			printf ("Cylinder detected!\n");
-//		else if (aux->type == PLANE)
-//			printf ("Plane detected!\n");
-//		scene->objects = scene->objects->next;
-//	}
-//	printf("End of object list reached\n");
+	// Contar objetos por tipo
+	int sphere_count = 0;
+	int plane_count = 0;
+	t_list *current = scene->objects;
+	while (current) {
+		t_type obj_type = *(t_type *)(current->content);
+		if (obj_type == SPHERE) sphere_count++;
+		else if (obj_type == PLANE) plane_count++;
+		current = current->next;
+	}
+	printf("Objects in scene: %d spheres, %d planes\n", sphere_count, plane_count);
 }
 
 static	void	init_mlx(t_scene *s)
@@ -89,27 +88,12 @@ int	main(int argc, char **argv)
 	ft_get_scene(&scene, argv[1]);
 	ft_testprinter(&scene);	
 	init_mlx(&scene);
-	render_plane(&scene);
+	render_scene(&scene);
 //	render_lit_sphere(&scene);
 
-//	mlx_loop_hook(scene.mlx, ft_handle_key, scene.mlx);
+//	mlx_loop_hook(scene.mlx, &ft_handle_key, scene.mlx);
 	mlx_loop(scene.mlx);
 	mlx_terminate(scene.mlx);
 	return (0);
 }
 
-// 	Esto es un main para comprobar el funcionamiento de ligthing.
-
-//int main()
-//{
-//	t_tuple eye_v = ft_create_vector(0, 0, -1);
-//	t_tuple normalv = ft_create_vector(0, 0, -1);
-//	t_light light = point_light(ft_create_point(0, 10, 10), ft_create_point(1, 1, 1));
-//	t_tuple res;
-//	t_tuple pos = ft_create_point(0, 0, 0);
-//	t_material mat = ft_create_material(1, 0.2, 1);
-//
-//	res = lighting(mat, light, pos, eye_v, normalv);
-//	printf("x-> %f, y-> %f, z->%f\n", res.x, res.y, res.z);
-//	return (0);
-//}

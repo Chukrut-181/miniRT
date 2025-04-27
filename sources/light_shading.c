@@ -12,17 +12,6 @@ t_material	ft_create_material(float x, float y, float z)
 	return (m);
 }
 
-//t_tuple	normal_at(t_sphere sphere, t_tuple world_point)
-//{
-//	t_tuple	object_normal;
-//	t_tuple	world_normal;
-//
-//	object_normal = ft_substract_tuples(world_point, sphere.center);
-//	world_normal = ft_normalize(object_normal);
-//	world_normal.w = 0;
-//	return (world_normal);
-//}
-
 t_tuple normal_at(t_sphere sphere, t_tuple world_point)
 {
 	t_tuple object_point;

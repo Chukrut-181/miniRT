@@ -1,78 +1,158 @@
 #include "../include/minirt.h"
 
-//void render_scene(t_scene *s)
-//{
-//	t_list *current_obj;
-//	t_type obj_type;
+void render_scene(t_scene *s)
+{
+	t_list *current = s->objects;
+
+	current = s->objects;
+	while (current) {
+		t_type obj_type = *(t_type *)(current->content);
+		
+		if (obj_type == PLANE) {
+			render_single_plane(s, (t_plane *)current->content);
+		} else if (obj_type == SPHERE) {
+			render_single_sphere(s, (t_sphere *)current->content);
+		}
+		
+		current = current->next;
+	}
+}
+
+static t_ray ray_pixel(t_camera *camera, int x, int y)
+{
+	// convertir coordenadas de pixel a coordenadas normalizadas (-1 a 1)
+	float pixel_x = (float)x / WIDTH * 2 - 1;
+	float pixel_y = 1 - (float)y / HEIGHT * 2;
+	
+	// ajustar según el campo de vision (FOV)
+//	float aspect_ratio = (float)WIDTH / HEIGHT;
+//	float fov_factor = tanf(camera->field_of_view / 2);
 //	
-//	if (!s->objects)
-//		return;
-//	current_obj = s->objects;
-//	obj_type = *(t_type *)(current_obj->content);
-//	if (obj_type == PLANE)
-//		render_plane(s);
-//	else if (obj_type == SPHERE)
-//		render_lit_sphere(s);
-//}
-//
-//void render_plane(t_scene *s)
-//{
-//	t_plane *plane;
-//	t_ray ray;
-//	t_xs intersection;
-//	t_tuple point;
-//	t_tuple normal;
-//	t_tuple eye_v;
-//	t_tuple color;
-//	int x, y;
-//	
-//	// Get the plane from the scene objects
-//	// Assuming the first object in the list is a plane
-//	plane = (t_plane *)s->objects->content;
-//	
-//	y = 0;
-//	while (y < WIDTH)
-//	{
-//		x = 0;
-//		while (x < HEIGHT)
-//		{
-//			t_tuple pixel_point = ft_create_point(x - (WIDTH/2), (HEIGHT/2) - y, 0);
-//			t_tuple direction = ft_normalize(ft_substract_tuples(pixel_point, s->camera->viewpoint));
-//			ray = ft_create_ray(s->camera->viewpoint, direction);
-//			intersection = intersect(plane, &ray);
-//			
-//			if (intersection.hit)
-//			{
-//				// Calculate the actual point of intersection
-//				point = ft_position(ray, intersection.time);
-//				// Get the normal at the intersection point (for a plane, this is constant)
-//				normal = plane->n_n_vector;
-//				// If the plane has a transform, apply it to the normal
-//				if (plane->transform)
-//				{
-//					t_4x4 inverse_transform = ft_find_inverse(*plane->transform);
-//					t_4x4 transpose_inverse = ft_transpose(inverse_transform);
-//					normal = ft_multiply_mat_and_tuple(transpose_inverse, normal);
-//					normal.w = 0;
-//					normal = ft_normalize(normal);
-//				}
-//				// Calculate the eye vector
-//				eye_v = ft_normalize(ft_negate_tuple(ray.direction));
-//				// Calculate the color using the lighting function
-//				color = lighting(plane->material, *s->light, point, eye_v, normal);
-//				// Convert color to uint32_t for MLX
-//				uint32_t pixel_color = ((uint32_t)(color.x * 255) << 24) | 
-//									 ((uint32_t)(color.y * 255) << 16) | 
-//									 ((uint32_t)(color.z * 255) << 8) | 
-//									 0xFF;
-//				mlx_put_pixel(s->image, x, y, pixel_color);
-//			}
-//			x++;
-//		}
-//		y++;
-//	}
-//}
-//	
+//	pixel_x *= fov_factor * aspect_ratio;
+//	pixel_y *= fov_factor;
+	
+	// crear un punto en el espacio de la camara
+	// usamos -1 para la coordenada z para que el rayo apunte hacia adelante (-Z)
+	t_tuple pixel_point = ft_create_point(pixel_x, pixel_y, -1);
+	
+	// transformar el punto al espacio mundial usando la matriz de transformacion de la camara
+	t_tuple world_point = ft_multiply_mat_and_tuple(camera->transform, pixel_point);
+	
+	// crear el rayo desde la posicion de la camara hacia el punto mundial
+	t_tuple direction = ft_normalize(ft_substract_tuples(world_point, camera->viewpoint));
+	return (ft_create_ray(camera->viewpoint, direction));
+}
+
+void render_single_plane(t_scene *s, t_plane *plane)
+{
+	t_ray ray;
+	t_xs intersection;
+	t_tuple point;
+	t_tuple normal;
+	t_tuple eye_v;
+	t_tuple color;
+	int x, y;
+	
+	printf("Rendering plane at position (%f, %f, %f) with normal (%f, %f, %f)\n", 
+		   plane->point_in_plane.x, plane->point_in_plane.y, plane->point_in_plane.z,
+		   plane->n_n_vector.x, plane->n_n_vector.y, plane->n_n_vector.z);
+	y = 0;
+	while (y < HEIGHT)
+	{
+		x = 0;
+		while (x < WIDTH)
+		{
+			ray = ray_pixel(s->camera, x, y);
+			intersection = intersect(plane, &ray);
+			
+			if (intersection.hit)
+			{
+				// Calcular el punto real de intersección
+				point = ft_position(ray, intersection.time);
+				// Obtener la normal en el punto de intersección
+				normal = normal_at_plane(*plane, point);
+				// Calcular el vector de vista
+				eye_v = ft_normalize(ft_negate_tuple(ray.direction));
+				// Calcular el color usando la función de iluminación
+				color = lighting(plane->material, *s->light, point, eye_v, normal);
+				// Convertir color a uint32_t para MLX
+				uint32_t pixel_color = ((uint32_t)(color.x * 255) << 24) | 
+									 ((uint32_t)(color.y * 255) << 16) | 
+									 ((uint32_t)(color.z * 255) << 8) | 
+									 0xFF;
+				mlx_put_pixel(s->image, x, y, pixel_color);
+			}
+			x++;
+		}
+		y++;
+	}
+}
+
+void render_single_sphere(t_scene *s, t_sphere *sphere)
+{
+	t_ray ray;
+	t_list *xs_list;
+	t_xs *intersection;
+	t_tuple point;
+	t_tuple normal;
+	t_tuple eye_v;
+	t_tuple color;
+	int x, y;
+	int hit_count = 0; // para debugear
+	
+	printf("Rendering sphere at position (%f, %f, %f) with diameter %f\n", 
+		   sphere->center.x, sphere->center.y, sphere->center.z, sphere->diameter);
+	
+	y = 0;
+	while(y < HEIGHT)
+	{
+		x = 0;
+		while(x < WIDTH)
+		{
+			ray = ray_pixel(s->camera, x, y);
+			xs_list = ft_intersection(ray, *sphere, NULL);
+			
+			if (xs_list)
+			{
+				intersection = NULL;
+				while (xs_list)
+				{
+					t_xs *current = (t_xs *)xs_list->content;
+					if (current->hit)
+					{
+						intersection = current;
+						hit_count++;
+						break;
+					}
+					xs_list = xs_list->next;
+				}
+				if (intersection)
+				{
+					// Calcular el punto real de intersección
+					point = ft_position(ray, intersection->time);
+					// Calcular la normal en el punto de intersección
+					normal = normal_at(*sphere, point);
+					// Calcular el vector de vista
+					eye_v = ft_normalize(ft_negate_tuple(ray.direction));
+					// Calcular el color usando la función de iluminación
+					color = lighting(sphere->material, *s->light, point, eye_v, normal);
+					// Convertir color a uint32_t para MLX
+					uint32_t pixel_color = ((uint32_t)(color.x * 255) << 24) | 
+										 ((uint32_t)(color.y * 255) << 16) | 
+										 ((uint32_t)(color.z * 255) << 8) | 
+										 0xFF;
+					mlx_put_pixel(s->image, x, y, pixel_color);
+				}
+				ft_lstclear(&xs_list, free);
+			}
+			x++;
+		}
+		y++;
+	}
+	printf("Total sphere hits: %d\n", hit_count); // Imprimir número total de hits para depuración
+}
+
+
 //void render_lit_sphere(t_scene *s)
 //{
 //	t_sphere *sphere;

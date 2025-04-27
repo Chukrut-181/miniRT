@@ -6,14 +6,13 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 11:07:45 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/14 10:44:23 by eandres          ###   ########.fr       */
+/*   Updated: 2025/04/22 15:21:19 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-static bool	ft_apply_rgb_to_plane(t_plane *surface, char *rgb)
-{
+static bool	ft_apply_rgb_to_plane(t_plane *surface, char *rgb) {
 	char	**split;
 	float	aux;
 	int		i;
@@ -111,9 +110,11 @@ int	ft_create_plane(t_scene *scene, char **plane)
 	surface->material.diffuse = 0.7;
 	surface->material.specular = 0.3;
 	surface->material.shininess = 200.0;
+	surface->n_n_vector = ft_normalize(surface->n_n_vector);
 	new_node = ft_lstnew(surface);
 	if (!new_node)
 		return (free(surface), 1);
 	ft_lstadd_back(&(scene->objects), new_node);
 	return (0);
 }
+
