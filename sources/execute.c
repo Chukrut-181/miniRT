@@ -5,15 +5,14 @@ void render_scene(t_scene *s)
 	t_list *current = s->objects;
 
 	current = s->objects;
-	while (current) {
+	while (current)
+	{
 		t_type obj_type = *(t_type *)(current->content);
 		
-		if (obj_type == PLANE) {
+		if (obj_type == PLANE)
 			render_single_plane(s, (t_plane *)current->content);
-		} else if (obj_type == SPHERE) {
+		else if (obj_type == SPHERE)
 			render_single_sphere(s, (t_sphere *)current->content);
-		}
-		
 		current = current->next;
 	}
 }
@@ -43,6 +42,20 @@ static t_ray ray_pixel(t_camera *camera, int x, int y)
 	return (ft_create_ray(camera->viewpoint, direction));
 }
 
+//t_xs	calculate_intersection(t_scene *s, t_ray *ray)
+//{
+//	t_list *current;
+//	t_type obj_type;
+//
+//	current = s->objects;
+//	while (current)
+//	{
+//		obj_type = *(t_type *)(current->content);
+//		if (obj_type == PLANE)
+//			res = intersect((t_plane *)current->content, ray);
+//	}
+//}
+
 void render_single_plane(t_scene *s, t_plane *plane)
 {
 	t_ray ray;
@@ -53,9 +66,6 @@ void render_single_plane(t_scene *s, t_plane *plane)
 	t_tuple color;
 	int x, y;
 	
-	printf("Rendering plane at position (%f, %f, %f) with normal (%f, %f, %f)\n", 
-		   plane->point_in_plane.x, plane->point_in_plane.y, plane->point_in_plane.z,
-		   plane->n_n_vector.x, plane->n_n_vector.y, plane->n_n_vector.z);
 	y = 0;
 	while (y < HEIGHT)
 	{
@@ -98,10 +108,6 @@ void render_single_sphere(t_scene *s, t_sphere *sphere)
 	t_tuple eye_v;
 	t_tuple color;
 	int x, y;
-	int hit_count = 0; // para debugear
-	
-	printf("Rendering sphere at position (%f, %f, %f) with diameter %f\n", 
-		   sphere->center.x, sphere->center.y, sphere->center.z, sphere->diameter);
 	
 	y = 0;
 	while(y < HEIGHT)
@@ -121,7 +127,6 @@ void render_single_sphere(t_scene *s, t_sphere *sphere)
 					if (current->hit)
 					{
 						intersection = current;
-						hit_count++;
 						break;
 					}
 					xs_list = xs_list->next;
@@ -149,7 +154,6 @@ void render_single_sphere(t_scene *s, t_sphere *sphere)
 		}
 		y++;
 	}
-	printf("Total sphere hits: %d\n", hit_count); // Imprimir número total de hits para depuración
 }
 
 
