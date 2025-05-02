@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 11:43:31 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/10 14:37:40 by eandres          ###   ########.fr       */
+/*   Updated: 2025/05/02 11:04:41 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ static bool	ft_apply_rgb_to_cylinder(t_cyl *cylinder, char *rgb)
 		if (aux < 0 || 1 < aux)
 			return (free(split), false);
 		if (i == 0)
-			cylinder->material.color.x = aux;
+			cylinder->material.color.r = aux;
 		else if (i == 1)
-			cylinder->material.color.y = aux;
+			cylinder->material.color.g = aux;
 		else if (i == 2)
-			cylinder->material.color.z = aux;
+			cylinder->material.color.b = aux;
 		i++;
 	}
 	return (free(split), true);
