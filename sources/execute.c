@@ -86,9 +86,9 @@ void render_single_plane(t_scene *s, t_plane *plane)
 				// Calcular el color usando la función de iluminación
 				color = lighting(plane->material, *s->light, point, eye_v, normal);
 				// Convertir color a uint32_t para MLX
-				uint32_t pixel_color = ((uint32_t)(color.r * 255) << 24) | 
-									 ((uint32_t)(color.g * 255) << 16) | 
-									 ((uint32_t)(color.b * 255) << 8) | 
+				uint32_t pixel_color = ((uint32_t)(color.r) << 24) | 
+									 ((uint32_t)(color.g) << 16) | 
+									 ((uint32_t)(color.b) << 8) | 
 									 0xFF;
 				mlx_put_pixel(s->image, x, y, pixel_color);
 			}

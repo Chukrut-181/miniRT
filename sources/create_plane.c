@@ -6,13 +6,13 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 11:07:45 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/02 11:58:13 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/02 12:11:13 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-static bool	ft_apply_rgb_to_plane(t_plane *surface, char *rgb) {
+/* static bool	ft_apply_rgb_to_plane(t_plane *surface, char *rgb) {
 	char	**split;
 	float	aux;
 	int		i;
@@ -35,7 +35,7 @@ static bool	ft_apply_rgb_to_plane(t_plane *surface, char *rgb) {
 		i++;
 	}
 	return (free(split), true);
-}
+} */
 
 static bool	ft_apply_orientation_vector(t_plane *surface, char *n_n_vector)
 {
@@ -104,12 +104,13 @@ int	ft_create_plane(t_scene *scene, char **plane)
 		return (free(plane), 1);
 	if (!ft_apply_orientation_vector(surface, plane[2]))
 		return (free(plane), 1);
-	if (!ft_check_rgb(plane[3]) || !ft_apply_rgb_to_plane(surface, plane[3]))
+	if (!ft_check_rgb(plane[3])) // || !ft_apply_rgb_to_plane(surface, plane[3]))
 		return (free(surface), 1);
-	surface->material.ambient = 0.2;
-	surface->material.diffuse = 0.7;
-	surface->material.specular = 0.9;
-	surface->material.shininess = 150.0;
+	surface->material = ft_create_material(255, 255, 255);
+	// surface->material.ambient = 0.2;
+	// surface->material.diffuse = 0.7;
+	// surface->material.specular = 0.9;
+	// surface->material.shininess = 150.0;
 	surface->n_n_vector = ft_normalize(surface->n_n_vector);
 	new_node = ft_lstnew(surface);
 	if (!new_node)
