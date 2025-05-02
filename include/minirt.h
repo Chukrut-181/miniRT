@@ -87,7 +87,7 @@ t_list	*ft_intersection(t_ray ray, t_sphere sphere, t_list *xs_list);
 void	ft_identify_hit(t_list *xs_list);
 
 //	LIGHT
-t_material	ft_create_material(float x, float y, float z);
+t_material	ft_create_material(char *rgb_code);
 t_tuple	normal_at(t_sphere sphere, t_tuple world_point);
 t_tuple	reflect(t_tuple in, t_tuple normal);
 t_light	point_light(t_tuple position, t_tuple color);

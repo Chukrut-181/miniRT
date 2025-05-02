@@ -1,14 +1,20 @@
 #include "../include/minirt.h"
 
-t_material	ft_create_material(float x, float y, float z)
+t_material	ft_create_material(char *rgb_code)
 {
 	t_material m;
+	char **split;
 
-	m.color = ft_create_color(x, y, z);
 	m.ambient = 0.2;
 	m.diffuse = 0.7;
 	m.specular = 0.9;
 	m.shininess = 150.0;
+	split = ft_split(rgb_code, ',');
+	if (!split[0] || !split[1] || !split[2] || !split)
+		m.color = ft_create_color(255, 255, 255);
+	else
+		m.color = ft_create_color(ft_atof(split[0]), ft_atof(split[1]), ft_atof(split[2]));
+	free(split);
 	return (m);
 }
 

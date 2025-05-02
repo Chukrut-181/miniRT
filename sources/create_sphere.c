@@ -80,7 +80,7 @@ int	ft_create_sphere(t_scene *scene, char **ball)
 	sphere->diameter = aux;
 	if (!ft_check_rgb(ball[3]))
 		return (free(sphere), 1);
-	sphere->material = ft_create_material(255, 255, 255);
+	sphere->material = ft_create_material(ball[3]);
 	// if (!ft_apply_rgb_to_sphere(sphere, ball[3]))
 	// 	return (free(sphere), 1);
 	sphere->transform = ft_create_identity_matrix();
