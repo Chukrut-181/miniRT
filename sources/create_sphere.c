@@ -10,7 +10,7 @@
 
 #include "../include/minirt.h"
 
-static bool	ft_apply_rgb_to_sphere(t_sphere *sphere, char *rgb)
+/* static bool	ft_apply_rgb_to_sphere(t_sphere *sphere, char *rgb)
 {
 	char	**split;
 	float	aux;
@@ -34,7 +34,7 @@ static bool	ft_apply_rgb_to_sphere(t_sphere *sphere, char *rgb)
 		i++;
 	}
 	return (free(split), true);
-}
+} */
 
 static bool	ft_set_sphere_center(t_sphere *sphere, char *coords)
 {
@@ -80,16 +80,17 @@ int	ft_create_sphere(t_scene *scene, char **ball)
 	sphere->diameter = aux;
 	if (!ft_check_rgb(ball[3]))
 		return (free(sphere), 1);
-	if (!ft_apply_rgb_to_sphere(sphere, ball[3]))
-		return (free(sphere), 1);
+	sphere->material = ft_create_material(255, 255, 255);
+	// if (!ft_apply_rgb_to_sphere(sphere, ball[3]))
+	// 	return (free(sphere), 1);
+	sphere->transform = ft_create_identity_matrix();
+	// sphere->material.ambient = 0.1;
+	// sphere->material.diffuse = 0.7;
+	// sphere->material.specular = 0.9;
+	// sphere->material.shininess = 150.0;
 	new_node = ft_lstnew(sphere);
 	if (!new_node)
 		return (free(sphere), 1);
-	sphere->transform = ft_create_identity_matrix();
-	sphere->material.ambient = 0.1;
-	sphere->material.diffuse = 0.7;
-	sphere->material.specular = 0.3;
-	sphere->material.shininess = 100.0;
 	ft_lstadd_back(&(scene->objects), new_node);
 	return (0);
 }

@@ -5,10 +5,10 @@ t_material	ft_create_material(float x, float y, float z)
 	t_material m;
 
 	m.color = ft_create_color(x, y, z);
-	m.ambient = 0.1;
+	m.ambient = 0.2;
 	m.diffuse = 0.7;
 	m.specular = 0.9;
-	m.shininess = 100.0;
+	m.shininess = 150.0;
 	return (m);
 }
 

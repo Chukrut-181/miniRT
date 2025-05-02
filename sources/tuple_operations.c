@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:36:49 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/10 15:57:07 by eandres          ###   ########.fr       */
+/*   Updated: 2025/05/02 12:03:13 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,13 @@ t_color	ft_multiply_color(t_color c1, t_color c2)
 	t_color	result;
 
 	result.r = c1.r * c2.r;
+	if (result.r > 255)
+		result.r = 255;
 	result.g = c1.g * c2.g;
+	if (result.g > 255)
+		result.g = 255;
 	result.b = c1.b * c2.b;
+	if (result.b > 255)
+		result.b = 255;
 	return (result);
 }
