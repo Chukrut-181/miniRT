@@ -87,11 +87,11 @@ t_list	*ft_intersection(t_ray ray, t_sphere sphere, t_list *xs_list);
 void	ft_identify_hit(t_list *xs_list);
 
 //	LIGHT
-t_material	ft_create_material(float x, float y, float z);
+t_material	ft_create_material(char *rgb_code);
 t_tuple	normal_at(t_sphere sphere, t_tuple world_point);
 t_tuple	reflect(t_tuple in, t_tuple normal);
 t_light	point_light(t_tuple position, t_tuple color);
-t_tuple	lighting(t_material mat, t_light light, t_tuple point, t_tuple eyev, t_tuple normalv);
+t_color	lighting(t_material mat, t_light light, t_tuple point, t_tuple eyev, t_tuple normalv);
 
 //	CAMERA
 t_4x4		view_transform(t_tuple from, t_tuple to, t_tuple up);
@@ -139,7 +139,7 @@ char	*get_one_line(int fd);
 //	CREATE AMBIENT
 int		ft_create_ambient(t_scene *scene, char **ambient);
 bool	ft_check_rgb(char *colorcode);
-bool	ft_apply_rgb(t_tuple *color, char *original);
+bool	ft_apply_rgb(t_color *color, char *original);
 
 //	CREATE LIGHT
 int		ft_create_light(t_scene *scene, char **light);
@@ -176,4 +176,3 @@ void	ft_render_billiard_ball(mlx_image_t *image);
 t_4x4	create_translation_mx(t_tuple tuple);
 
 #endif
-

@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/22 10:29:58 by eandres          ###   ########.fr       */
+/*   Updated: 2025/05/02 11:24:27 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void ft_testprinter(t_scene *scene)
 	{
 		printf("Parsing Ambient:\n");
 		printf("Ratio %.4f\n", scene->ambient->ratio);
-		printf(" Color R = %.4f, G = %.4f, B = %.4f\n", scene->ambient->color.x, scene->ambient->color.y, scene->ambient->color.z);
+		printf(" Color R = %.4f, G = %.4f, B = %.4f\n", scene->ambient->a_color.r, scene->ambient->a_color.g, scene->ambient->a_color.b);
 	}
 	else
 	{
@@ -30,8 +30,8 @@ static void ft_testprinter(t_scene *scene)
 	{
 		printf("Parsing Light:\n");
 		printf("Source X = %.4f, Y = %.4f, Z = %.4f\n", scene->light->source.x, scene->light->source.y, scene->light->source.z);
-		printf("Intensity: %.4f\n", scene->light->intensity.x);
-		printf("Color: R = %.4f, G = %.4f, B = %.4f\n", scene->light->intensity.x, scene->light->intensity.y, scene->light->intensity.z);
+		//printf("Intensity: %.4f\n", scene->light->intensity.x);
+		printf("Color: R = %.4f, G = %.4f, B = %.4f\n", scene->light->l_color.r, scene->light->l_color.g, scene->light->l_color.b);
 	}
 	else
 	{
