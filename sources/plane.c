@@ -69,7 +69,7 @@ t_xs intersect(t_plane *plane, t_ray *ray)
 
 	return (intersection);
 }
-//
+
 //t_list	*intersect_plane(t_ray ray, t_plane plane, t_list *xs_list)
 //{
 //	t_xs	*intersection;
@@ -111,4 +111,4 @@ t_xs intersect(t_plane *plane, t_ray *ray)
 //	
 //	return (xs_list);
 //}
-//
+

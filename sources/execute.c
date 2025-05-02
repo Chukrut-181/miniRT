@@ -1,22 +1,5 @@
 #include "../include/minirt.h"
 
-void render_scene(t_scene *s)
-{
-	t_list *current = s->objects;
-
-	current = s->objects;
-	while (current)
-	{
-		t_type obj_type = *(t_type *)(current->content);
-		
-		if (obj_type == PLANE)
-			render_single_plane(s, (t_plane *)current->content);
-		else if (obj_type == SPHERE)
-			render_single_sphere(s, (t_sphere *)current->content);
-		current = current->next;
-	}
-}
-
 static t_ray ray_pixel(t_camera *camera, int x, int y)
 {
 	// convertir coordenadas de pixel a coordenadas normalizadas (-1 a 1)
@@ -42,10 +25,54 @@ static t_ray ray_pixel(t_camera *camera, int x, int y)
 	return (ft_create_ray(camera->viewpoint, direction));
 }
 
-//t_xs	calculate_intersection(t_scene *s, t_ray *ray)
+void render_scene(t_scene *s)
+{
+	t_list *current = s->objects;
+
+	current = s->objects;
+	while (current)
+	{
+		t_type obj_type = *(t_type *)(current->content);
+		
+		if (obj_type == PLANE)
+			render_single_plane(s, (t_plane *)current->content);
+		else if (obj_type == SPHERE)
+			render_single_sphere(s, (t_sphere *)current->content);
+		current = current->next;
+	}
+}
+
+//bool	calculate_intersection(t_scene *s, t_ray *ray, t_xs *inter)
+//{
+//	t_xs temp;
+//	t_list object;
+//
+//	temp.time = INFINITY;
+//	temp.object = NULL;
+//	temp.hit = 0;
+//	object = s->objects
+//	while (object)
+//	{
+//		if (intersection(ray, objects->content, inter))
+//		{
+//			if (inter.time < temp.time)
+//			{
+//				temp = *inter;
+//			}
+//		}
+//		objects = objects->next;
+//	}
+//	*inter = temp;
+//	if (temp.object != NULL)
+//		return (true);
+//	return (false);
+//}
+//
+//bool	intersection(t_scene *s, t_ray *ray)
 //{
 //	t_list *current;
 //	t_type obj_type;
+//	t_xs	res;
 //
 //	current = s->objects;
 //	while (current)
@@ -53,7 +80,25 @@ static t_ray ray_pixel(t_camera *camera, int x, int y)
 //		obj_type = *(t_type *)(current->content);
 //		if (obj_type == PLANE)
 //			res = intersect((t_plane *)current->content, ray);
+//		else if (obj_type == SPHERE)
+//			t_xs *xs_list = ft_intersection(ray, (t_sphere *)current->content, xs_list);
+//		current = current->next;
 //	}
+//	if (xs_list)
+//	{
+//		res = NULL;
+//		while (xs_list)
+//		{
+//			t_xs *current = (t_xs *)xs_list->content;
+//			if (current->hit)
+//			{
+//				res = current;
+//				break;
+//			}
+//			xs_list = xs_list->next;
+//		}
+//	}
+//	
 //}
 
 void render_single_plane(t_scene *s, t_plane *plane)
@@ -74,6 +119,7 @@ void render_single_plane(t_scene *s, t_plane *plane)
 		{
 			ray = ray_pixel(s->camera, x, y);
 			intersection = intersect(plane, &ray);
+			//calculate-intersection(s, &ray, &intersection);
 			
 			if (intersection.hit)
 			{
