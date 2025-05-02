@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 11:07:45 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/22 15:21:19 by eandres          ###   ########.fr       */
+/*   Updated: 2025/05/02 10:02:53 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ static bool	ft_apply_rgb_to_plane(t_plane *surface, char *rgb) {
 		if (aux < 0 || 1 < aux)
 			return (free(split), false);
 		if (i == 0)
-			surface->material.color.x = aux;
+			surface->material.color.r = aux;
 		else if (i == 1)
-			surface->material.color.y = aux;
+			surface->material.color.g = aux;
 		else if (i == 2)
-			surface->material.color.z = aux;
+			surface->material.color.b = aux;
 		i++;
 	}
 	return (free(split), true);

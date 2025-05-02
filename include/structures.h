@@ -55,7 +55,7 @@ typedef struct s_color
 
 typedef struct s_material
 {
-	t_tuple	color;
+	t_color	color;
 	float	ambient;   // 0-1
 	float	diffuse;   // 0-1
 	float	specular;  // 0-1
@@ -79,7 +79,7 @@ typedef struct s_sphere
 	t_tuple		center;
 	float		diameter;
 	t_4x4		transform;
-	t_tuple		color;
+	//t_tuple		color;
 	t_material	material;
 }	t_sphere;
 
@@ -128,7 +128,7 @@ typedef struct s_quadratic_equation_data
 typedef struct s_light
 {
 	t_tuple	source;
-	t_tuple	intensity;
+	t_color	l_color;
 }	t_light;
 
 typedef struct s_world
@@ -162,7 +162,7 @@ typedef struct s_camera
 
 typedef struct s_ambient
 {
-	t_tuple	color;
+	t_color	a_color;
 	float	ratio;
 }	t_ambient;
 

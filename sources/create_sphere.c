@@ -26,11 +26,11 @@ static bool	ft_apply_rgb_to_sphere(t_sphere *sphere, char *rgb)
 		if (aux < 0 || 1 < aux)
 			return (free(split), false);
 		if (i == 0)
-			sphere->material.color.x = aux;
+			sphere->material.color.r = aux;
 		else if (i == 1)
-			sphere->material.color.y = aux;
+			sphere->material.color.g = aux;
 		else if (i == 2)
-			sphere->material.color.z = aux;
+			sphere->material.color.b = aux;
 		i++;
 	}
 	return (free(split), true);

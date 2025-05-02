@@ -6,13 +6,13 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 12:18:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/10 17:16:38 by eandres          ###   ########.fr       */
+/*   Updated: 2025/05/02 09:57:01 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-bool	ft_apply_rgb(t_tuple *color, char *original)
+bool	ft_apply_rgb(t_color *color, char *original)
 {
 	char	**split;
 	float	aux;
@@ -28,11 +28,11 @@ bool	ft_apply_rgb(t_tuple *color, char *original)
 		if (aux < 0 || 1 < aux)
 			return (free(split), false);
 		if (i == 0)
-			color->x = aux;
+			color->r = aux;
 		else if (i == 1)
-			color->y = aux;
+			color->g = aux;
 		else if (i == 2)
-			color->z = aux;
+			color->b = aux;
 		i++;
 	}
 	return (free(split), true);
@@ -77,7 +77,7 @@ int	ft_create_ambient(t_scene *scene, char **ambient)
 	scene->ambient->ratio = aux;
 	if (!ft_check_rgb(ambient[2]))
 		return (free(scene->ambient), 1);
-	if (!ft_apply_rgb(&scene->ambient->color, ambient[2]))
+	if (!ft_apply_rgb(&scene->ambient->a_color, ambient[2]))
 		return (free(scene->ambient), 1);
 	return (0);
 }

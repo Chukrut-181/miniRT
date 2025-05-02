@@ -4,11 +4,11 @@ t_material	ft_create_material(float x, float y, float z)
 {
 	t_material m;
 
-	m.color = ft_create_point(x, y, z);
+	m.color = ft_create_color(x, y, z);
 	m.ambient = 0.1;
-	m.diffuse = 0.9;
+	m.diffuse = 0.7;
 	m.specular = 0.9;
-	m.shininess = 200.0;
+	m.shininess = 100.0;
 	return (m);
 }
 
@@ -43,52 +43,52 @@ t_tuple	reflect(t_tuple in, t_tuple normal)
 	return (result);
 }
 
-t_light	point_light(t_tuple position, t_tuple color)
-{
-	t_light light;
+// t_light	point_light(t_tuple position, t_tuple color)
+// {
+// 	t_light light;
 
-	light.source = position;
-	light.intensity = color;
-	return (light);
-}
+// 	light.source = position;
+// 	light.intensity = color;
+// 	return (light);
+// }
 
-t_tuple	lighting(t_material mat, t_light light, t_tuple point, t_tuple eyev, t_tuple normalv)
+t_color	lighting(t_material mat, t_light light, t_tuple point, t_tuple eyev, t_tuple normalv)
 {
-	t_tuple	effective_color;
+	t_color	effective_color;
 	t_tuple	lightv;
-	t_tuple	ambient;
-	t_tuple	diffuse;
-	t_tuple	specular;
+	t_color	ambient;
+	t_color	diffuse;
+	t_color	specular;
 	t_tuple	reflectv;
-	t_tuple	res;
+	t_color	res;
 	float	light_dot_normal;
 	float	reflect_dot_eye = 0.0;
 	float	factor;
 
-	effective_color = ft_multiply_tuple(mat.color, light.intensity);
+	effective_color = ft_multiply_color(mat.color, light.l_color);
 	lightv = ft_substract_tuples(light.source, point);
 	lightv = ft_normalize(lightv);
-	ambient = ft_multiply_tuple_f(effective_color, mat.ambient);
+	ambient = ft_multiply_color_f(effective_color, mat.ambient);
 	light_dot_normal = ft_dot_product(lightv, normalv);
 	if (light_dot_normal < 0)
 	{
-		diffuse = ft_create_point(0, 0, 0);
-		specular = ft_create_point(0, 0, 0);
+		diffuse = ft_create_color(0, 0, 0);
+		specular = ft_create_color(0, 0, 0);
 	}
 	else
 	{
-		diffuse = ft_multiply_tuple_f(effective_color, mat.diffuse * light_dot_normal);
+		diffuse = ft_multiply_color_f(effective_color, mat.diffuse * light_dot_normal);
 		reflectv = reflect(ft_negate_tuple(lightv), normalv);
 		reflect_dot_eye = ft_dot_product(reflectv, eyev);
 	}
 	if (reflect_dot_eye <= 0)
-		specular = ft_create_point(0, 0, 0);
+		specular = ft_create_color(0, 0, 0);
 	else
 	{
 		factor = powf(reflect_dot_eye, mat.shininess);
-		specular = ft_multiply_tuple_f(light.intensity, (mat.specular * factor));
+		specular = ft_multiply_color_f(light.l_color, (mat.specular * factor));
 	}
-	res = ft_add_tuples(ambient, ft_add_tuples(diffuse, specular));
+	res = ft_add_color(ambient, ft_add_color(diffuse, specular));
 	return (res);
 }
 
