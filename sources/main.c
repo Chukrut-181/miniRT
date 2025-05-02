@@ -3,29 +3,74 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */ /*                                                +#+#+#+#+#+   +#+           */
+/*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/10 15:57:03 by eandres          ###   ########.fr       */
+/*   Updated: 2025/05/02 11:24:27 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-static void	ft_initialize_mlx(t_scene *scene)
+static void ft_testprinter(t_scene *scene)
 {
-	scene->mlx = mlx_init(WIDTH, HEIGHT, "miniRT", true);
-	if (!scene->mlx)
+//	t_sphere	*aux;
+	
+	if (scene->ambient)
 	{
-		ft_free_scene(scene);
-		ft_error_exit("Error\nFailed to initialize MLX", 1);
+		printf("Parsing Ambient:\n");
+		printf("Ratio %.4f\n", scene->ambient->ratio);
+		printf(" Color R = %.4f, G = %.4f, B = %.4f\n", scene->ambient->a_color.r, scene->ambient->a_color.g, scene->ambient->a_color.b);
 	}
-	scene->image = mlx_new_image(scene->mlx, WIDTH, HEIGHT);
-	if (!scene->image)
+	else
 	{
-		ft_free_scene(scene);
-		mlx_terminate(scene->mlx);
-		ft_error_exit("Error\nFailed to initialize image", 1);
+		printf("No ambient detected\n");
 	}
+	if (scene->light)
+	{
+		printf("Parsing Light:\n");
+		printf("Source X = %.4f, Y = %.4f, Z = %.4f\n", scene->light->source.x, scene->light->source.y, scene->light->source.z);
+		//printf("Intensity: %.4f\n", scene->light->intensity.x);
+		printf("Color: R = %.4f, G = %.4f, B = %.4f\n", scene->light->l_color.r, scene->light->l_color.g, scene->light->l_color.b);
+	}
+	else
+	{
+		printf("No light detected\n");
+	}
+	if (scene->camera)
+	{
+		printf("Parsing Camera:\n");
+		printf("Viewpoint X = %.4f, Y = %.4f, Z = %.4f\n", scene->camera->viewpoint.x, scene->camera->viewpoint.y, scene->camera->viewpoint.z);
+		printf("Orientation X = %.4f, Y = %.4f, Z = %.4f\n", scene->camera->v_orientation.x, scene->camera->v_orientation.y, scene->camera->v_orientation.z);
+		printf("FOV: %.4f\n", scene->camera->field_of_view);
+	}
+	else
+		printf("No camera detected\n");
+	if (!scene->objects)
+		printf("No objects detected\n");
+	else
+		printf("Parsing object list:\n");
+	// Contar objetos por tipo
+	int sphere_count = 0;
+	int plane_count = 0;
+	t_list *current = scene->objects;
+	while (current) {
+		t_type obj_type = *(t_type *)(current->content);
+		if (obj_type == SPHERE) sphere_count++;
+		else if (obj_type == PLANE) plane_count++;
+		current = current->next;
+	}
+	printf("Objects in scene: %d spheres, %d planes\n", sphere_count, plane_count);
+}
+
+static	void	init_mlx(t_scene *s)
+{
+	s->mlx = mlx_init(2400, 1800, "miniRT", NULL);
+	if (!s->mlx)
+		exit(1);
+	s->image = mlx_new_image(s->mlx, 2400, 1800);
+	if (!s->image || (mlx_image_to_window(s->mlx, s->image, 0, 0) < 0))
+		exit(1);
 }
 
 int	main(int argc, char **argv)
@@ -33,16 +78,22 @@ int	main(int argc, char **argv)
 	t_scene	scene;
 	
 	if (argc != 2)
-		ft_error_exit("Error\nUsage: ./miniRT <arg1>\n", 1);
+		ft_error_exit("Error\nUsage: ./miniRT <arg1>", 1);
 	scene.mlx = NULL;
 	scene.image = NULL;
 	scene.camera = NULL;
 	scene.ambient = NULL;
 	scene.light = NULL;
 	scene.objects = NULL;
-	ft_create_scene(&scene, argv[1]);
-	ft_initialize_mlx(&scene);
-	ft_minirt(&scene);
-	//ft_testprinter(&scene);
+	ft_get_scene(&scene, argv[1]);
+	ft_testprinter(&scene);	
+	init_mlx(&scene);
+	render_scene(&scene);
+//	render_lit_sphere(&scene);
+
+//	mlx_loop_hook(scene.mlx, &ft_handle_key, scene.mlx);
+	mlx_loop(scene.mlx);
+	mlx_terminate(scene.mlx);
 	return (0);
 }
+

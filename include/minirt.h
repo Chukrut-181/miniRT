@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
+/*   By: v0                                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:08:57 by igchurru          #+#    #+#             */
 /*   Updated: 2025/04/15 15:46:05 by igchurru         ###   ########.fr       */
@@ -60,6 +60,7 @@ t_tuple	ft_multiply_colors(t_tuple c1, t_tuple c2);
 t_color	ft_multiply_color_f(t_color tuple, float scalar);
 t_color	ft_add_color(t_color tuple1, t_color tuple2);
 t_color	ft_multiply_color(t_color c1, t_color c2);
+t_tuple	ft_multiply_tuple(t_tuple c1, t_tuple c2);
 
 //	VECTOR OPERATIONS
 float	ft_calculate_magnitude(t_tuple v);
@@ -98,6 +99,7 @@ t_tuple	ft_position(t_ray ray, float t);
 int		ft_create_ambient(t_scene *scene, char **ambient);
 bool	ft_check_rgb(char *colorcode);
 bool	ft_apply_rgb(t_color *color, char *original);
+bool	ft_apply_rgb(t_color *color, char *original);
 
 //	CREATE LIGHT
 int		ft_create_light(t_scene *scene, char **light);
@@ -108,6 +110,7 @@ int		ft_create_camera(t_scene *scene, char **cam);
 bool	ft_check_orientation_vector(char *orientation);
 
 //	HOOKS
+void	ft_handle_key(mlx_key_data_t keydata, void *param);
 void	ft_handle_key(mlx_key_data_t keydata, void *param);
 
 //	ERROR EXIT
@@ -120,11 +123,9 @@ void	ft_draw_clock(mlx_image_t *image);
 int		ft_test_matrix_functions(void);
 int		ft_test_ray(void);
 int		ft_test_intersection(void);
-void	ft_render_sphere(mlx_image_t *image);
 void	test_reflection(void);
 void	test_lighting(void);
-void	render_lit_sphere(t_scene *s);
 void	ft_render_billiard_ball(mlx_image_t *image);
-t_tuple	ft_multiply_tuple(t_tuple c1, t_tuple c2);
+t_4x4	create_translation_mx(t_tuple tuple);
 
 #endif

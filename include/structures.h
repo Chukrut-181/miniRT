@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*																			*/
-/*														:::	  ::::::::   */
+/*									      */
+/*						       	:::	  ::::::::    */
 /*   structures.h                                       :+:      :+:    :+:   */
-/*													+:+ +:+		 +:+	 */
-/*   By: igchurru <igchurru@student.42.fr>		  +#+  +:+	   +#+		*/
-/*												+#+#+#+#+#+   +#+		   */
-/*   Created: 2025/03/05 12:43:31 by igchurru		  #+#	#+#			 */
-/*   Updated: 2025/04/10 17:33:51 by eandres          ###   ########.fr       */
-/*																			*/
+/*							+:+ +:+		 +:+	      */
+/*   By: igchurru <igchurru@student.42.fr>     	  +#+  +:+	   +#+*/
+/*							+#+#+#+#+#+   +#+     */
+/*   Created: 2025/03/05 12:43:31 by igchurru		  #+#	#+#	      */
+/*   Updated: 2025/04/30 14:44:04 by eandres          ###   ########.fr       */
+/*            							              */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
@@ -55,7 +55,7 @@ typedef struct s_color
 
 typedef struct s_material
 {
-	t_tuple	color;
+	t_color	color;
 	float	ambient;   // 0-1
 	float	diffuse;   // 0-1
 	float	specular;  // 0-1
@@ -79,8 +79,29 @@ typedef struct s_object
 	t_color		color;
 	t_tuple		center;
 	t_4x4		transform;
-	t_material	mat;
-}	t_object;
+	//t_tuple		color;
+	t_material	material;
+}	t_sphere;
+
+typedef struct s_cylinder
+{
+	t_type		type;
+	t_tuple		center;
+	t_tuple		axis_vector;
+	float		diameter;
+	float		height;
+	t_4x4		*transform;
+	t_material	material;
+}	t_cyl;
+
+typedef struct s_plane
+{
+	t_type		type;
+	t_tuple		point_in_plane;
+	t_tuple		n_n_vector;
+	t_4x4		*transform;
+	t_material	material;
+}	t_plane;
 
 typedef struct s_intersection
 {
@@ -102,7 +123,7 @@ typedef struct s_quadratic_equation_data
 typedef struct s_light
 {
 	t_tuple	source;
-	float	intensity;
+	t_color	l_color;
 }	t_light;
 
 typedef struct s_world
@@ -136,7 +157,7 @@ typedef struct s_camera
 
 typedef struct s_ambient
 {
-	t_color	color;
+	t_color	a_color;
 	float	ratio;
 }	t_ambient;
 
@@ -149,5 +170,11 @@ typedef struct s_scene
 	t_light		*light;
 	t_list		*objects;
 }	t_scene;
+
+typedef struct s_object
+{
+	t_4x4		*matrix;
+	t_material	*material;
+}	t_object;
 
 #endif

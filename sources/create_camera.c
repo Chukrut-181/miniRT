@@ -6,11 +6,49 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:07:46 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/09 13:53:23 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/04/22 15:23:32 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
+
+static void	setup_camera_transform(t_camera *camera)
+{
+	t_tuple	forward;
+	t_tuple	up;
+	t_tuple	right;
+	t_tuple	true_up;
+	t_4x4	rotation;
+	t_4x4	translation;
+
+	forward = ft_normalize(camera->v_orientation);
+	
+	if (fabsf(forward.y) > 0.99999f)
+		up = ft_create_vector(0, 0, 1);
+	else
+		up = ft_create_vector(0, 1, 0);
+	
+	right = ft_cross_product(forward, up);
+	right = ft_normalize(right);
+	true_up = ft_cross_product(right, forward);
+
+	rotation = ft_create_identity_matrix();
+
+	rotation.data[0][0] = right.x;
+	rotation.data[0][1] = right.y;
+	rotation.data[0][2] = right.z;
+	
+	rotation.data[1][0] = true_up.x;
+	rotation.data[1][1] = true_up.y;
+	rotation.data[1][2] = true_up.z;
+	
+	rotation.data[2][0] = -forward.x;
+	rotation.data[2][1] = -forward.y;
+	rotation.data[2][2] = -forward.z;
+	
+	translation = create_translation_mx(camera->viewpoint);
+	camera->transform = ft_multiply_matrices(translation, rotation);
+}
 
 static bool	ft_apply_fov(t_scene *scene, char *angle)
 {
@@ -110,5 +148,6 @@ int	ft_create_camera(t_scene *scene, char **cam)
 		return (free(scene->camera), 1);
 	if (!ft_apply_fov(scene, cam[3]))
 		return (free(scene->camera), 1);
+	setup_camera_transform(scene->camera);
 	return (0);
 }
