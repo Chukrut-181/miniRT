@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 11:07:45 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/02 12:54:01 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/06 17:12:38 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 	return (free(split), true);
 } */
 
-static bool	ft_apply_orientation_vector(t_plane *surface, char *n_n_vector)
+/* static bool	ft_apply_orientation_vector(t_plane *surface, char *n_n_vector)
 {
 	char	**split;
 	float	aux;
@@ -61,9 +61,9 @@ static bool	ft_apply_orientation_vector(t_plane *surface, char *n_n_vector)
 	surface->n_n_vector.w = 0;
 	ft_free_array(split);
 	return (true);
-}
+} */
 
-static bool	ft_set_plane_point(t_plane *surface, char *coords)
+/* static bool	ft_set_plane_point(t_plane *surface, char *coords)
 {
 	char	**split;
 	float	aux;
@@ -87,35 +87,31 @@ static bool	ft_set_plane_point(t_plane *surface, char *coords)
 	surface->point_in_plane.w = 1;
 	ft_free_array(split);
 	return (true);
-}
+} */
 
-int	ft_create_plane(t_scene *scene, char **plane)
+int	ft_create_plane(t_scene *scene, char **surface)
 {
-	t_plane	*surface;
-	t_list	*new_node;
+	t_shape	*plane;
+	char	**coords;
+	t_4x4	translate;
 
-	surface = malloc(sizeof(t_plane));
+	plane = malloc(sizeof(t_shape));
 	if (!surface)
 		return (1);
-	surface->type = PLANE;
-	if (!ft_check_coords(plane[1]) || !ft_set_plane_point(surface, plane[1]))
+	plane->type = PLANE;
+	if (!ft_check_coords(surface[1]))
 		return (free(plane), 1);
-	if (!ft_check_orientation_vector(plane[2]))
+	coords = ft_split(surface[1], ',');
+	translate = create_translation_mx(ft_atof(coords[0]),
+			ft_atof(coords[1]), ft_atof(coords[2]));
+	if (!ft_check_orientation_vector(surface[2]))
 		return (free(plane), 1);
-	if (!ft_apply_orientation_vector(surface, plane[2]))
-		return (free(plane), 1);
-	if (!ft_check_rgb(plane[3])) // || !ft_apply_rgb_to_plane(surface, plane[3]))
+	// if (!ft_apply_orientation_vector(plane, surface[2]))
+	// 	return (free(plane), 1);
+	if (!ft_check_rgb(surface[3]))
 		return (free(surface), 1);
-	surface->material = ft_create_material(plane[3]);
-	// surface->material.ambient = 0.2;
-	// surface->material.diffuse = 0.7;
-	// surface->material.specular = 0.9;
-	// surface->material.shininess = 150.0;
-	surface->n_n_vector = ft_normalize(surface->n_n_vector);
-	new_node = ft_lstnew(surface);
-	if (!new_node)
-		return (free(surface), 1);
-	ft_lstadd_back(&(scene->objects), new_node);
+	plane->material = ft_create_material(surface[3]);
+	ft_lstadd_back(&(scene->world), ft_lstnew(plane));
 	return (0);
 }
 
