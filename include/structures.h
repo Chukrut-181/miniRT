@@ -75,7 +75,7 @@ typedef enum e_object_type
 	TORUS,
 }	t_type;
 
-typedef struct s_sphere
+/* typedef struct s_sphere
 {
 	t_type		type;
 	t_tuple		center;
@@ -83,7 +83,7 @@ typedef struct s_sphere
 	t_4x4		transform;
 	//t_tuple		color;
 	t_material	material;
-}	t_sphere;
+}	t_sphere; */
 
 typedef struct s_cylinder
 {
@@ -105,18 +105,6 @@ typedef struct s_plane
 	t_material	material;
 }	t_plane;
 
-typedef struct s_intersection
-{
-	bool	intersec;
-	int		hit;
-	t_shape	*object;
-	float	time;
-	float	min;
-	float	max;
-	t_tuple	point;
-	t_tuple normal;
-	t_color color;
-}	t_xs;
 
 typedef struct s_quadratic_equation_data
 {
@@ -128,34 +116,34 @@ typedef struct s_quadratic_equation_data
 //
 //typedef struct s_light
 //{
-//	t_tuple	intensity;
-//	t_tuple position;
-//}	t_light;
-
-typedef struct s_light
-{
-	t_tuple	source;
-	t_color	l_color;
-}	t_light;
-
-typedef struct s_world
-{
-	t_list *objects;  // Lista de objetos (esferas, etc.)
-	t_light light;    // Fuente de luz
-	int		shape_count;
-}	t_world;
-
-typedef struct s_comps
-{
-	void	*object;
-	float	time;
-	t_tuple	point;
-	t_tuple	eyev;
-	t_tuple	normalv;
-	bool	inside;
-}	t_comps;
-
-typedef struct s_point
+	//	t_tuple	intensity;
+	//	t_tuple position;
+	//}	t_light;
+	
+	typedef struct s_light
+	{
+		t_tuple	source;
+		t_color	l_color;
+	}	t_light;
+	
+	typedef struct s_world
+	{
+		t_list *objects;  // Lista de objetos (esferas, etc.)
+		t_light light;    // Fuente de luz
+		int		shape_count;
+	}	t_world;
+	
+	typedef struct s_comps
+	{
+		void	*object;
+		float	time;
+		t_tuple	point;
+		t_tuple	eyev;
+		t_tuple	normalv;
+		bool	inside;
+	}	t_comps;
+	
+	typedef struct s_point
 {
 	double	x;
 	double	y;
@@ -187,7 +175,7 @@ typedef struct s_scene
 	mlx_image_t	*image;
 	t_camera	*camera;
 	t_ambient	*ambient;
-	t_world		world;
+	t_world		*world;
 }	t_scene;
 
 typedef struct s_object
@@ -198,11 +186,24 @@ typedef struct s_object
 
 typedef struct s_shape
 {
-	t_4x4		*inverse_matrix;
-	t_4x4		*transform_matrix;
+	t_4x4		inverse_matrix;
+	t_4x4		transform_matrix;
 	t_material	material;
 	t_ray		ray_in_obj_space;
 	t_type		type;
 }	t_shape;
+
+typedef struct s_intersection
+{
+	bool	intersec;
+	int		hit;
+	t_shape	*object;
+	float	time;
+	float	min;
+	float	max;
+	t_tuple	point;
+	t_tuple normal;
+	t_color color;
+}	t_xs;
 
 #endif

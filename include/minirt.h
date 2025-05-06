@@ -74,8 +74,8 @@ float	ft_determinant_3x3(t_3x3 submx);
 
 // MATRIX TRANSFOMATION
 t_4x4	ft_create_identity_matrix(void);
-t_4x4	translation(t_tuple tuple);
-t_4x4	scaling(t_tuple tuple);
+t_4x4	create_translation_mx(float x, float y, float z);
+t_4x4	create_scaling_mx(float x, float y, float z);
 t_4x4	ft_create_shearing_mx(float Xy, float Xz, float Yx, float Yz, float Zx, float Zy);
 
 // 	ROTATION
@@ -86,12 +86,12 @@ t_4x4	rotation_y(float radians);
 //	RAY
 t_ray	ft_create_ray(t_tuple origin, t_tuple direction);
 t_tuple	ft_position(t_ray ray, float t);
-t_list	*ft_intersection_sphere(t_ray ray, t_sphere sphere, t_list *xs_list);
+t_list	*ft_intersection_sphere(t_ray ray, t_shape sphere, t_list *xs_list);
 void	ft_identify_hit(t_list *xs_list);
 
 //	LIGHT
 t_material	ft_create_material(char *rgb_code);
-t_tuple	normal_at(t_sphere sphere, t_tuple world_point);
+t_tuple	normal_at(t_shape sphere, t_tuple world_point);
 t_tuple	reflect(t_tuple in, t_tuple normal);
 t_light	point_light(t_tuple position, t_tuple color);
 //t_color	lighting(t_material mat, t_light light, t_tuple point, t_tuple eyev, t_tuple normalv);
@@ -124,7 +124,7 @@ void render_scene(t_scene *s);
 t_tuple	normal_at_plane(t_plane plane, t_tuple world_point);
 t_xs	intersect(t_plane *plane, t_ray *ray);
 t_tuple	shade_hit(t_scene s, t_comps comps);
-bool	intersec_plane(t_shape *shape, t_list **inter)
+bool	intersec_plane(t_shape *shape, t_list **inter);
 bool	intersec_sphere(t_shape *shape, t_list **inter);
 
 // CYLINDER
@@ -173,6 +173,5 @@ int		ft_test_intersection(void);
 void	test_reflection(void);
 void	test_lighting(void);
 void	ft_render_billiard_ball(mlx_image_t *image);
-t_4x4	create_translation_mx(t_tuple tuple);
 
 #endif
