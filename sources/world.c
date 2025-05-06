@@ -2,39 +2,48 @@
 
 static t_list *ft_insert_sorted(t_list *sorted, t_xs *xs);
 
-t_world ft_default_world(void)
+static t_ray transform(t_ray ray, t_4x4	matrix)
 {
-	t_world world;
-	t_sphere *s1, *s2;
-	
-	world.light = point_light(ft_create_point(-500, 500, -1000), ft_create_point(1, 1, 1));
-	
-	s1 = ft_create_sphere(ft_create_point(0, 0, 0), 1.0);
-	s1->material.color = ft_create_point(0.8, 1.0, 0.6);
-	s1->material.diffuse = 0.7;
-	s1->material.specular = 0.2;
+	t_tuple	multi[2];
+	t_tuple p;
+	t_tuple vec;
+	t_ray	new_ray;
 
-	s2 = ft_create_sphere(ft_create_point(0, 0, 0), 0.5);
-	world.objects = NULL;
-	ft_lstadd_back(&world.objects, ft_lstnew(s1));
-	ft_lstadd_back(&world.objects, ft_lstnew(s2));
-	return (world);
+	multi[0] = ft_multiply_mat_and_tuple(matrix, ray.origin);
+	multi[1] = ft_multiply_mat_and_tuple(matrix, ray.direction);
+	p = ft_create_point(multi[0].x, multi[0].y, multi[0].z);
+	vec = ft_create_point(multi[1].x, multi[1].y, multi[1].z);
+	new_ray.origin = p;
+	new_ray.direction = vec;
+	return (new_ray);
+}
+
+static	t_list	*ft_intersections(t_ray ray, t_shape *shape, t_list **inter)
+{
+	shape->ray_in_obj_space = transform(ray, *shape->inverse_matrix);
+	if (shape->type == SPHERE)
+		intersec_sphere(shape, inter);
+	else if (shape->type == PLANE)
+		intersec_plane(shape, inter);
+//	else if (shape->type == CYLINDER)
+//		intersec_cylinder(shape, inter);
+	return (inter);
 }
 
 t_list *ft_intersect_world(t_world world, t_ray ray)
 {
 	t_list *intersections = NULL;
 	t_list *current;
-	t_sphere *sphere;
-	
+	t_shape *shape;
+
 	current = world.objects;
 	while (current)
 	{
-		sphere = (t_sphere *)current->content;
-		intersections = ft_intersection(ray, *sphere, intersections);
+		shape = (t_shape *)current->content;
+		intersections = ft_intersection(ray, shape, &intersections);
 		current = current->next;
 	}
-	intersections = ft_sort_intersections(intersections);
+	//intersections = ft_sort_intersections(intersections);
 	return (intersections);
 }
 
@@ -58,13 +67,13 @@ t_comps	prepare_computations(t_list *intersection, t_ray ray)
 	return (comps);
 }
 
-t_tuple	shade_hit(t_world world, t_comps comps)
-{
-	t_tuple	result;
-
-	result = lighting(((t_sphere *)comps.object)->material, world.light, comps.point, comps.eyev, comps.normalv);
-	return (result);
-}
+//tuple	shade_hit(t_world world, t_comps comps)
+//{
+//	t_tuple	result;
+//
+//	result = lighting(((t_sphere *)comps.object)->material, world.light, comps.point, comps.eyev, comps.normalv);
+//	return (result);
+//}
 
 t_list *ft_find_hit(t_list *intersections)
 {
@@ -116,7 +125,7 @@ t_tuple	color_at(t_world world, t_ray ray)
 		return (shade);
 	}
 	comps = prepare_computations(intersect, ray);
-	shade = shade_hit(world, comps);
+	//shade = shade_hit(world, comps);
 	t_list *current = intersect;
 	while (current)
 	{

@@ -46,7 +46,7 @@ static void	setup_camera_transform(t_camera *camera)
 	rotation.data[2][1] = -forward.y;
 	rotation.data[2][2] = -forward.z;
 	
-	translation = create_translation_mx(camera->viewpoint);
+	translation = create_translation_mx(*camera->viewpoint);
 	camera->transform = ft_multiply_matrices(translation, rotation);
 }
 
@@ -116,19 +116,20 @@ static bool	ft_apply_camera_coords(t_scene *scene, char *coords)
 	split = ft_split(coords, ',');
 	if (!split)
 		return (false);
+	scene->camera->viewpoint = malloc(sizeof(t_tuple));
 	i = 0;
 	while (i < 3)
 	{
 		aux = ft_atof(split[i]);
 		if (i == 0)
-			scene->camera->viewpoint.x = aux;
+			scene->camera->viewpoint->x = aux;
 		else if (i == 1)
-			scene->camera->viewpoint.y = aux;
+			scene->camera->viewpoint->y = aux;
 		else if (i == 2)
-			scene->camera->viewpoint.z = aux;
+			scene->camera->viewpoint->z = aux;
 		i++;
 	}
-	scene->camera->viewpoint.w = 1;
+	scene->camera->viewpoint->w = 1;
 	ft_free_array(split);
 	return (true);
 }

@@ -70,7 +70,7 @@ int	ft_create_ambient(t_scene *scene, char **ambient)
 
 	if (scene->ambient != NULL)
 		return (free(scene->ambient), 1);
-	scene->ambient = malloc(sizeof(t_ambient));
+	scene->ambient = (t_ambient *)malloc(sizeof(t_ambient));
 	aux = ft_atof(ambient[1]);
 	if (aux < 0 || 1 < aux)
 		return (free(scene->ambient), 1);
@@ -81,4 +81,3 @@ int	ft_create_ambient(t_scene *scene, char **ambient)
 		return (free(scene->ambient), 1);
 	return (0);
 }
-

@@ -12,7 +12,7 @@
 
 #include "../include/minirt.h"
 
-static void ft_testprinter(t_scene *scene)
+/* static void ft_testprinter(t_scene *scene)
 {
 //	t_sphere	*aux;
 	
@@ -61,7 +61,7 @@ static void ft_testprinter(t_scene *scene)
 		current = current->next;
 	}
 	printf("Objects in scene: %d spheres, %d planes\n", sphere_count, plane_count);
-}
+} */
 
 static	void	init_mlx(t_scene *s)
 {
@@ -86,7 +86,7 @@ int	main(int argc, char **argv)
 	scene.light = NULL;
 	scene.objects = NULL;
 	ft_get_scene(&scene, argv[1]);
-	ft_testprinter(&scene);	
+//	ft_testprinter(&scene);
 	init_mlx(&scene);
 	render_scene(&scene);
 //	render_lit_sphere(&scene);
@@ -96,4 +96,3 @@ int	main(int argc, char **argv)
 	mlx_terminate(scene.mlx);
 	return (0);
 }
-

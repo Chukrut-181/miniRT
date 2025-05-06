@@ -1,62 +1,66 @@
 #include "../include/minirt.h"
 
-void render_scene(t_scene *s)
+/* static void	write_pixel(t_color color, uint8_t *pixel)
 {
-	t_list *current = s->objects;
 
-	current = s->objects;
-	while (current)
+} */
+
+static	t_color	calculate_inter(t_world worl, t_ray ray)
+{
+	t_list	*inter_list;
+	t_comps	comps;
+	t_xs	*inter;
+
+	inter_list = ft_intersect_world(worl, ray);
+}
+
+static t_ray	ray_for_pixel(t_camera cam, int x, int y)
+{
+	double		xoffset;
+	double		yoffset;
+	double		world_x;
+	double		world_y;
+	t_tuple		p[2];
+	t_tuple		multil;
+	t_tuple		direction;
+
+	xoffset = (x + 0.5) * cam.pixel_size;
+	yoffset = (y + 0.5) * cam.pixel_size;
+	world_x = cam.half_width - xoffset;
+	world_y = cam.half_height - yoffset;
+	p[0] = ft_create_point(world_x, world_y, -1);
+	multil = ft_multiply_mat_and_tuple(cam.transform, (p[0]));
+	p[1] = ft_create_point(multil.x, multil.y, multil.z);
+	direction = ft_normalize(ft_substract_tuples(p[1], cam.origin));
+	return (ft_create_ray(cam.origin, direction));
+}
+
+void render_scene(t_scene *s, t_camera cam, t_world world)
+{
+	int y;
+	int x;
+	t_color color;
+	t_ray	ray;
+
+	y = 0;
+	while (y < HEIGHT)
 	{
-		t_type obj_type = *(t_type *)(current->content);
-		
-		if (obj_type == PLANE)
-			render_single_plane(s, (t_plane *)current->content);
-		else if (obj_type == SPHERE)
-			render_single_sphere(s, (t_sphere *)current->content);
-		current = current->next;
+		x = 0;
+		while (x < WIDTH)
+		{
+			ray = ray_for_pixel(cam, x, y);
+			color = calculate_inter(world, ray);
+			write_pixel(color);
+			x++;
+		}
+		y++;
 	}
+//	mlx_image_to_window(s->mlx, s->image, 0, 0);
+//	mlx_loop(s->mlx);
+//	mlx_terminate(s->mlx);
 }
 
-static t_ray ray_pixel(t_camera *camera, int x, int y)
-{
-	// convertir coordenadas de pixel a coordenadas normalizadas (-1 a 1)
-	float pixel_x = (float)x / WIDTH * 2 - 1;
-	float pixel_y = 1 - (float)y / HEIGHT * 2;
-	
-	// ajustar según el campo de vision (FOV)
-//	float aspect_ratio = (float)WIDTH / HEIGHT;
-//	float fov_factor = tanf(camera->field_of_view / 2);
-//	
-//	pixel_x *= fov_factor * aspect_ratio;
-//	pixel_y *= fov_factor;
-	
-	// crear un punto en el espacio de la camara
-	// usamos -1 para la coordenada z para que el rayo apunte hacia adelante (-Z)
-	t_tuple pixel_point = ft_create_point(pixel_x, pixel_y, -1);
-	
-	// transformar el punto al espacio mundial usando la matriz de transformacion de la camara
-	t_tuple world_point = ft_multiply_mat_and_tuple(camera->transform, pixel_point);
-	
-	// crear el rayo desde la posicion de la camara hacia el punto mundial
-	t_tuple direction = ft_normalize(ft_substract_tuples(world_point, camera->viewpoint));
-	return (ft_create_ray(camera->viewpoint, direction));
-}
-
-//t_xs	calculate_intersection(t_scene *s, t_ray *ray)
-//{
-//	t_list *current;
-//	t_type obj_type;
-//
-//	current = s->objects;
-//	while (current)
-//	{
-//		obj_type = *(t_type *)(current->content);
-//		if (obj_type == PLANE)
-//			res = intersect((t_plane *)current->content, ray);
-//	}
-//}
-
-void render_single_plane(t_scene *s, t_plane *plane)
+/* void render_single_plane(t_scene *s, t_plane *plane)
 {
 	t_ray ray;
 	t_xs intersection;
@@ -74,6 +78,7 @@ void render_single_plane(t_scene *s, t_plane *plane)
 		{
 			ray = ray_pixel(s->camera, x, y);
 			intersection = intersect(plane, &ray);
+			//calculate-intersection(s, &ray, &intersection);
 			
 			if (intersection.hit)
 			{
@@ -154,8 +159,7 @@ void render_single_sphere(t_scene *s, t_sphere *sphere)
 		}
 		y++;
 	}
-}
-
+} */
 
 //void render_lit_sphere(t_scene *s)
 //{

@@ -1,6 +1,0 @@
-Apr 20 20:21 -> he terminado la funcion normal_at, intersect y intersect_plane, me falta testearlo y luego crear la funcion que renderice un plano utilizandolas.
-Apr 27 21:02 -> he mejorado las funciones de interseccion para el plano y he mejorado mi logica respecto al programa.
-
-Pending task
-1. Tstear el plano a fondo.
-2. Mejorar la parte que se encarga de ejecutar el programa dependiendo del tipo que sea.

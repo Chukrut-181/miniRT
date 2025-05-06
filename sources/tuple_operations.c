@@ -69,6 +69,17 @@ t_tuple	ft_substract_tuples(t_tuple tuple1, t_tuple tuple2)
 	return (substraction);
 }
 
+t_tuple	ft_substract_point(t_point tuple1, t_point tuple2)
+{
+	t_tuple	substraction;
+
+	substraction.x = tuple1.x - tuple2.x;
+	substraction.y = tuple1.y - tuple2.y;
+	substraction.z = tuple1.z - tuple2.z;
+	substraction.w = 1.0;
+	return (substraction);
+}
+
 /*
  * ft_multiply_tuple - Multiplies each component of a t_tuple by a scalar.
  *

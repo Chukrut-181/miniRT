@@ -10,11 +10,12 @@ t_material	ft_create_material(char *rgb_code)
 	m.specular = 0.9;
 	m.shininess = 150.0;
 	split = ft_split(rgb_code, ',');
-	if (!split[0] || !split[1] || !split[2] || !split)
+	if (!split || !split[0] || !split[1] || !split[2])
 		m.color = ft_create_color(255, 255, 255);
 	else
 		m.color = ft_create_color(ft_atof(split[0]), ft_atof(split[1]), ft_atof(split[2]));
-	free(split);
+	if (split)
+		free(split);
 	return (m);
 }
 
@@ -58,7 +59,7 @@ t_tuple	reflect(t_tuple in, t_tuple normal)
 // 	return (light);
 // }
 
-t_color	lighting(t_material mat, t_light light, t_tuple point, t_tuple eyev, t_tuple normalv)
+/* t_color	lighting(t_material mat, t_light light, t_tuple point, t_tuple eyev, t_tuple normalv)
 {
 	t_color	effective_color;
 	t_tuple	lightv;
@@ -97,4 +98,4 @@ t_color	lighting(t_material mat, t_light light, t_tuple point, t_tuple eyev, t_t
 	res = ft_add_color(ambient, ft_add_color(diffuse, specular));
 	return (res);
 }
-
+ */
