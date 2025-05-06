@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/05 11:36:58 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/06 15:11:46 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,6 @@ int	main(int argc, char **argv)
 	scene.image = NULL;
 	scene.camera = NULL;
 	scene.ambient = NULL;
-	scene.light = NULL;
-	scene.objects = NULL;
 	ft_get_scene(&scene, argv[1]);
 //	ft_testprinter(&scene);
 	init_mlx(&scene);

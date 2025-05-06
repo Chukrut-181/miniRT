@@ -187,8 +187,7 @@ typedef struct s_scene
 	mlx_image_t	*image;
 	t_camera	*camera;
 	t_ambient	*ambient;
-	t_light		*light;
-	t_list		*objects;
+	t_world		world;
 }	t_scene;
 
 typedef struct s_object
