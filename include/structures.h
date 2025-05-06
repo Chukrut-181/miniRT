@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>     	  +#+  +:+	   +#+*/
 /*							+#+#+#+#+#+   +#+     */
 /*   Created: 2025/03/05 12:43:31 by igchurru		  #+#	#+#	      */
-/*   Updated: 2025/04/30 14:44:04 by eandres          ###   ########.fr       */
+/*   Updated: 2025/05/03 05:13:48 by eandres          ###   ########.fr       */
 /*            							              */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ typedef struct s_color
 typedef struct s_material
 {
 	t_color	color;
+	float	a_ratio;
+	t_color	a_color;
 	float	ambient;   // 0-1
 	float	diffuse;   // 0-1
 	float	specular;  // 0-1
@@ -73,15 +75,15 @@ typedef enum e_object_type
 	TORUS,
 }	t_type;
 
-typedef struct s_object
+/* typedef struct s_sphere
 {
 	t_type		type;
-	t_color		color;
 	t_tuple		center;
+	float		diameter;
 	t_4x4		transform;
 	//t_tuple		color;
 	t_material	material;
-}	t_sphere;
+}	t_sphere; */
 
 typedef struct s_cylinder
 {
@@ -94,22 +96,15 @@ typedef struct s_cylinder
 	t_material	material;
 }	t_cyl;
 
-typedef struct s_plane
+/* typedef struct s_plane
 {
 	t_type		type;
 	t_tuple		point_in_plane;
 	t_tuple		n_n_vector;
 	t_4x4		*transform;
 	t_material	material;
-}	t_plane;
+}	t_plane; */
 
-typedef struct s_intersection
-{
-	void	*object;
-	float	time;
-	t_tuple	point;
-	int	hit;
-}	t_xs;
 
 typedef struct s_quadratic_equation_data
 {
@@ -118,41 +113,54 @@ typedef struct s_quadratic_equation_data
 	float	b;
 	float	c;
 }	t_abcd;
-
-
-typedef struct s_light
+//
+//typedef struct s_light
+//{
+	//	t_tuple	intensity;
+	//	t_tuple position;
+	//}	t_light;
+	
+	typedef struct s_light
+	{
+		t_tuple	source;
+		t_color	l_color;
+	}	t_light;
+	
+	typedef struct s_world
+	{
+		t_list *objects;  // Lista de objetos (esferas, etc.)
+		t_light light;    // Fuente de luz
+		int		shape_count;
+	}	t_world;
+	
+	typedef struct s_comps
+	{
+		void	*object;
+		float	time;
+		t_tuple	point;
+		t_tuple	eyev;
+		t_tuple	normalv;
+		bool	inside;
+	}	t_comps;
+	
+	typedef struct s_point
 {
-	t_tuple	source;
-	t_color	l_color;
-}	t_light;
-
-typedef struct s_world
-{
-	t_list *objects;  // Lista de objetos (esferas, etc.)
-	t_light light;    // Fuente de luz
-}	t_world;
-
-typedef struct s_comps
-{
-	void	*object;
-	float	time;
-	t_tuple	point;
-	t_tuple	eyev;
-	t_tuple	normalv;
-	bool	inside;
-}	t_comps;
+	double	x;
+	double	y;
+	double	z;
+}	t_point;
 
 typedef struct s_camera
 {
-//	int	hsize;
-//	int	vsize;
-//	float	pixel_size;
-//	float	half_width;
-//	float	half_height;
-	t_tuple	viewpoint;
-	t_tuple	v_orientation;
-	float	field_of_view;
+	double	hsize;
+	double	vsize;
+	double	field_of_view;
+	double	pixel_size;
+	double	half_width;
+	double	half_height;
 	t_4x4	transform;
+	int		init;
+	t_tuple	origin;
 }	t_camera;
 
 typedef struct s_ambient
@@ -167,8 +175,7 @@ typedef struct s_scene
 	mlx_image_t	*image;
 	t_camera	*camera;
 	t_ambient	*ambient;
-	t_light		*light;
-	t_list		*objects;
+	t_world		*world;
 }	t_scene;
 
 typedef struct s_object
@@ -176,5 +183,27 @@ typedef struct s_object
 	t_4x4		*matrix;
 	t_material	*material;
 }	t_object;
+
+typedef struct s_shape
+{
+	t_4x4		inverse_matrix;
+	t_4x4		transform_matrix;
+	t_material	material;
+	t_ray		ray_in_obj_space;
+	t_type		type;
+}	t_shape;
+
+typedef struct s_intersection
+{
+	bool	intersec;
+	int		hit;
+	t_shape	*object;
+	float	time;
+	float	min;
+	float	max;
+	t_tuple	point;
+	t_tuple normal;
+	t_color color;
+}	t_xs;
 
 #endif

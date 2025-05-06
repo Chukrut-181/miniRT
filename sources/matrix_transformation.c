@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 10:23:12 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/15 12:18:55 by eandres          ###   ########.fr       */
+/*   Updated: 2025/05/06 16:36:46 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,14 @@ t_4x4	ft_create_identity_matrix(void)
  *         | 0 0 1 tuple.z |
  *         | 0 0 0   1     |
  */
-t_4x4	create_translation_mx(t_tuple tuple)
+t_4x4	create_translation_mx(float x, float y, float z)
 {
 	t_4x4	translation_mx;
 
 	translation_mx = ft_create_identity_matrix();
-	translation_mx.data[0][3] = tuple.x;
-	translation_mx.data[1][3] = tuple.y;
-	translation_mx.data[2][3] = tuple.z;
+	translation_mx.data[0][3] = x;
+	translation_mx.data[1][3] = y;
+	translation_mx.data[2][3] = z;
 	return (translation_mx);
 }
 
@@ -91,14 +91,14 @@ t_4x4	create_translation_mx(t_tuple tuple)
  *         | 0      0      tuple.z 0 |
  *         | 0      0      0      1 |
  */
-t_4x4	create_scalation_mx(t_tuple tuple)
+t_4x4	create_scalation_mx(float x, float y, float z)
 {
 	t_4x4	scalation_mx;
 
 	scalation_mx = ft_create_identity_matrix();
-	scalation_mx.data[0][0] = tuple.x;
-	scalation_mx.data[1][1] = tuple.y;
-	scalation_mx.data[2][2] = tuple.z;
+	scalation_mx.data[0][0] = x;
+	scalation_mx.data[1][1] = y;
+	scalation_mx.data[2][2] = z;
 	return (scalation_mx);
 }
 

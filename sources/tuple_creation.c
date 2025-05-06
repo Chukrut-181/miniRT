@@ -97,3 +97,22 @@ int	ft_check_equality(t_tuple tuple1, t_tuple tuple2)
 	else
 		return (1);
 }
+
+t_point	create_point(double x, double y, double z)
+{
+	t_point	new;
+
+	new.x = x;
+	new.y = y;
+	new.z = z;
+	return (new);
+}
+t_tuple	point_tp(t_point p)
+{
+	t_tuple	tp;
+	double	w;
+
+	w = 1.0;
+	tp = tuple(p.x, p.y, p.z, w);
+	return (tp);
+}

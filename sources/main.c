@@ -6,13 +6,13 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/02 11:24:27 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/06 15:11:46 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-static void ft_testprinter(t_scene *scene)
+/* static void ft_testprinter(t_scene *scene)
 {
 //	t_sphere	*aux;
 	
@@ -61,7 +61,7 @@ static void ft_testprinter(t_scene *scene)
 		current = current->next;
 	}
 	printf("Objects in scene: %d spheres, %d planes\n", sphere_count, plane_count);
-}
+} */
 
 static	void	init_mlx(t_scene *s)
 {
@@ -83,17 +83,14 @@ int	main(int argc, char **argv)
 	scene.image = NULL;
 	scene.camera = NULL;
 	scene.ambient = NULL;
-	scene.light = NULL;
-	scene.objects = NULL;
 	ft_get_scene(&scene, argv[1]);
-	ft_testprinter(&scene);	
+//	ft_testprinter(&scene);
 	init_mlx(&scene);
 	render_scene(&scene);
 //	render_lit_sphere(&scene);
 
-//	mlx_loop_hook(scene.mlx, &ft_handle_key, scene.mlx);
+	mlx_key_hook(scene.mlx, ft_handle_key, scene.mlx);
 	mlx_loop(scene.mlx);
 	mlx_terminate(scene.mlx);
 	return (0);
 }
-
