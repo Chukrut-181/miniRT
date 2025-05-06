@@ -39,6 +39,8 @@ t_tuple	ft_create_point(float x, float y, float z);
 t_color	ft_create_color(float x, float y, float z);
 t_tuple	ft_create_vector(float x, float y, float z);
 int		ft_check_equality(t_tuple tuple1, t_tuple tuple2);
+t_point	create_point(double x, double y, double z);
+t_tuple	point_tp(t_point p);
 
 //	TUPLE OPERATIONS
 t_tuple	ft_add_tuples(t_tuple tuple1, t_tuple tuple2);
@@ -51,6 +53,7 @@ t_color	ft_multiply_color_f(t_color tuple, float scalar);
 t_color	ft_add_color(t_color tuple1, t_color tuple2);
 t_color	ft_multiply_color(t_color c1, t_color c2);
 t_tuple	ft_multiply_tuple(t_tuple c1, t_tuple c2);
+t_tuple	ft_substract_point(t_tuple tuple1, t_point tuple2);
 
 //	VECTOR OPERATIONS
 float	ft_calculate_magnitude(t_tuple v);
@@ -83,7 +86,7 @@ t_4x4	rotation_y(float radians);
 //	RAY
 t_ray	ft_create_ray(t_tuple origin, t_tuple direction);
 t_tuple	ft_position(t_ray ray, float t);
-t_list	*ft_intersection(t_ray ray, t_sphere sphere, t_list *xs_list);
+t_list	*ft_intersection_sphere(t_ray ray, t_sphere sphere, t_list *xs_list);
 void	ft_identify_hit(t_list *xs_list);
 
 //	LIGHT
@@ -91,12 +94,12 @@ t_material	ft_create_material(char *rgb_code);
 t_tuple	normal_at(t_sphere sphere, t_tuple world_point);
 t_tuple	reflect(t_tuple in, t_tuple normal);
 t_light	point_light(t_tuple position, t_tuple color);
-t_color	lighting(t_material mat, t_light light, t_tuple point, t_tuple eyev, t_tuple normalv);
+//t_color	lighting(t_material mat, t_light light, t_tuple point, t_tuple eyev, t_tuple normalv);
 
 //	CAMERA
 t_4x4		view_transform(t_tuple from, t_tuple to, t_tuple up);
 t_camera	ft_camera(int hsize, int vsize, float field_of_view);
-t_ray	ray_for_pixel(t_camera c, float px, float py);
+//t_ray	ray_for_pixel(t_camera c, float px, float py);
 mlx_image_t *ft_render(mlx_t *mlx, t_camera camera, t_world world);
 t_4x4	ft_orientation(t_tuple left, t_tuple true_up, t_tuple forward);
 
@@ -118,14 +121,11 @@ int	check_rgb(char *str, t_scene *data);
 
 //	EXECUTE
 void render_scene(t_scene *s);
-t_list	*intersect_plane(t_ray ray, t_plane plane, t_list *xs_list);
 t_tuple	normal_at_plane(t_plane plane, t_tuple world_point);
 t_xs	intersect(t_plane *plane, t_ray *ray);
 t_tuple	shade_hit(t_scene s, t_comps comps);
-void render_lit_plane(t_scene *s);
-void	render_lit_sphere(t_scene *s);
-void render_single_plane(t_scene *s, t_plane *plane);
-void render_single_sphere(t_scene *s, t_sphere *sphere);
+bool	intersec_plane(t_shape *shape, t_list **inter)
+bool	intersec_sphere(t_shape *shape, t_list **inter);
 
 // CYLINDER
 t_list	*ft_intersect_cylinder(t_ray ray, t_cyl cylinder, t_list *xs_list);
