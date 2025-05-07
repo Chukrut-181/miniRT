@@ -20,7 +20,7 @@ static t_ray transform(t_ray ray, t_4x4	matrix)
 
 static	t_list	*ft_intersections(t_ray ray, t_shape *shape, t_list **inter)
 {
-	shape->ray_in_obj_space = transform(ray, *shape->inverse_matrix);
+	shape->ray_in_obj_space = transform(ray, shape->inverse_matrix);
 	if (shape->type == SPHERE)
 		intersec_sphere(shape, inter);
 	else if (shape->type == PLANE)

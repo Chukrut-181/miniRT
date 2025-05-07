@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:08:59 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/16 12:59:44 by eandres          ###   ########.fr       */
+/*   Updated: 2025/05/07 14:29:33 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,7 @@ t_point	create_point(double x, double y, double z)
 t_tuple	point_tp(t_point p)
 {
 	t_tuple	tp;
-	double	w;
 
-	w = 1.0;
-	tp = tuple(p.x, p.y, p.z, w);
+	tp = ft_create_point(p.x, p.y, p.z);
 	return (tp);
 }

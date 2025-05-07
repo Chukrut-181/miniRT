@@ -53,7 +53,7 @@ t_color	ft_multiply_color_f(t_color tuple, float scalar);
 t_color	ft_add_color(t_color tuple1, t_color tuple2);
 t_color	ft_multiply_color(t_color c1, t_color c2);
 t_tuple	ft_multiply_tuple(t_tuple c1, t_tuple c2);
-t_tuple	ft_substract_point(t_tuple tuple1, t_point tuple2);
+t_tuple	ft_substract_point(t_point tuple1, t_point tuple2);
 
 //	VECTOR OPERATIONS
 float	ft_calculate_magnitude(t_tuple v);
