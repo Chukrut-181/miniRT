@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 11:07:45 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/06 17:12:38 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/07 10:36:42 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ int	ft_create_plane(t_scene *scene, char **surface)
 	t_shape	*plane;
 	char	**coords;
 	t_4x4	translate;
+	t_4x4	rotate;
 
 	plane = malloc(sizeof(t_shape));
 	if (!surface)
@@ -106,8 +107,12 @@ int	ft_create_plane(t_scene *scene, char **surface)
 			ft_atof(coords[1]), ft_atof(coords[2]));
 	if (!ft_check_orientation_vector(surface[2]))
 		return (free(plane), 1);
-	// if (!ft_apply_orientation_vector(plane, surface[2]))
-	// 	return (free(plane), 1);
+	free(coords);
+	coords = ft_split(surface[2], ',');
+	rotate = ft_rotate_plane(ft_atof(coords[0]), ft_atof(coords[1]), ft_atof(coords[2]));
+	free(coords);
+	plane->transform_matrix = ft_multiply_matrices(translate, rotate);
+	plane->inverse_matrix = ft_find_inverse(plane->transform_matrix);
 	if (!ft_check_rgb(surface[3]))
 		return (free(surface), 1);
 	plane->material = ft_create_material(surface[3]);
