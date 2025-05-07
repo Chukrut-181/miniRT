@@ -75,7 +75,7 @@ typedef enum e_object_type
 	TORUS,
 }	t_type;
 
-/* typedef struct s_sphere
+typedef struct s_sphere
 {
 	t_type		type;
 	t_tuple		center;
@@ -83,7 +83,7 @@ typedef enum e_object_type
 	t_4x4		transform;
 	//t_tuple		color;
 	t_material	material;
-}	t_sphere; */
+}	t_sphere;
 
 typedef struct s_cylinder
 {
@@ -96,14 +96,14 @@ typedef struct s_cylinder
 	t_material	material;
 }	t_cyl;
 
-/* typedef struct s_plane
+ typedef struct s_plane
 {
 	t_type		type;
 	t_tuple		point_in_plane;
 	t_tuple		n_n_vector;
 	t_4x4		*transform;
 	t_material	material;
-}	t_plane; */
+}	t_plane;
 
 
 typedef struct s_quadratic_equation_data

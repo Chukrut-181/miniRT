@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 10:23:48 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/07 11:03:12 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/07 14:27:04 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,7 @@ t_4x4 ft_rotate_plane(float target_x, float target_y, float target_z)
 	target_normal = ft_normalize(ft_create_vector(target_x, target_y, target_z));
 
     // Calculate the axis of rotation
-    rotation_axis = ft_cross_product(initial_normal, target_normal);
-    normalize_vector(rotation_axis);
+    rotation_axis = ft_normalize(ft_cross_product(initial_normal, target_normal));
 
     // Calculate the angle of rotation
     cos_theta = (initial_normal.x * target_normal.x) + (initial_normal.y * target_normal.y) + (initial_normal.z * target_normal.z);

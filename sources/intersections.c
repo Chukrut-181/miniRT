@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 12:59:10 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/06 12:53:30 by eandres          ###   ########.fr       */
+/*   Updated: 2025/05/07 14:22:00 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static	void	update_plane_inter(t_list **inter, t_shape *shape, float time)
 	intersec = malloc(sizeof(t_xs));
 	if (!intersec)
 		return ;
-	intersec->object = &shape;
+	intersec->object = shape;
 	intersec->time = time;
 	intersec->hit = 1;
 	if (*inter == NULL)
@@ -53,7 +53,7 @@ static void	update_sphere_inter(float time, t_shape *shape, t_list **inter)
 	intersec = malloc(sizeof(t_xs));
 	if (!intersec)
 		return ;
-	intersec->object = &shape;
+	intersec->object = shape;
 	intersec->time = time;
 	intersec->hit = 1;
 	if (*inter == NULL)
@@ -82,6 +82,7 @@ bool	intersec_sphere(t_shape *shape, t_list **inter)
     t2 = (-b + sqrtf(discriminant)) / (2 * a);
 	update_sphere_inter(t2, shape, inter);
     update_sphere_inter(t1, shape, inter);
+	return (true);
 }
 
 void	ft_identify_hit(t_list *xs_list)

@@ -92,7 +92,7 @@ void	ft_identify_hit(t_list *xs_list);
 
 //	LIGHT
 t_material	ft_create_material(char *rgb_code);
-t_tuple	normal_at(t_shape sphere, t_tuple world_point);
+t_tuple	normal_at(t_sphere sphere, t_tuple world_point);
 t_tuple	reflect(t_tuple in, t_tuple normal);
 t_light	point_light(t_tuple position, t_tuple color);
 //t_color	lighting(t_material mat, t_light light, t_tuple point, t_tuple eyev, t_tuple normalv);
@@ -164,6 +164,7 @@ void	ft_handle_key(mlx_key_data_t keydata, void *param);
 
 //	ERROR EXIT
 int		ft_error_exit(char *err_msg, int err_code);
+void	ft_free_scene(t_scene *scene);
 
 //	TEST FUNCTIONS (to be removed)
 void	ft_minigun(mlx_image_t	*image);

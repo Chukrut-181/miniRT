@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/07 12:14:45 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/07 14:24:45 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,12 +111,12 @@ int	main(int argc, char **argv)
 	scene.ambient = NULL;
 	ft_get_scene(&scene, argv[1]);
 	ft_testprinter(&scene);
-//	init_mlx(&scene);
+	init_mlx(&scene);
 //	render_scene(&scene);
 //	render_lit_sphere(&scene);
 
 //	mlx_key_hook(scene.mlx, ft_handle_key, scene.mlx);
 //	mlx_loop(scene.mlx);
-//	mlx_terminate(scene.mlx);
+	mlx_terminate(scene.mlx);
 	return (0);
 }

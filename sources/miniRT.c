@@ -6,11 +6,11 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 11:09:31 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/16 09:12:51 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/07 14:24:22 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+/* #include "../include/minirt.h"
 
 static void	ft_print_matrix(t_4x4 matrix)
 {
@@ -113,3 +113,4 @@ int ft_minirt(t_scene *scene)
 	return (0);
 }
 
+ */
