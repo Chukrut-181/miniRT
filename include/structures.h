@@ -129,7 +129,7 @@ typedef struct s_quadratic_equation_data
 	typedef struct s_world
 	{
 		t_list *objects;  // Lista de objetos (esferas, etc.)
-		t_light light;    // Fuente de luz
+		t_light *light;    // Fuente de luz
 		int		shape_count;
 	}	t_world;
 	
@@ -178,11 +178,11 @@ typedef struct s_scene
 	t_world		*world;
 }	t_scene;
 
-typedef struct s_object
+/* typedef struct s_object
 {
 	t_4x4		*matrix;
 	t_material	*material;
-}	t_object;
+}	t_object; */
 
 typedef struct s_shape
 {

@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 10:23:48 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/07 10:32:51 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/07 11:03:12 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,38 +49,33 @@ t_4x4	rotation_z(float radians)
 }
 
 // Function to create the rotation matrix to align (0, 1, 0) to target_normal
-t_4x4 ft_rotate_plane(float target_normal[3])
+t_4x4 ft_rotate_plane(float target_x, float target_y, float target_z)
 {
-    float initial_normal[3] = {0.0f, 1.0f, 0.0f};
-    float rotation_axis[3];
+    t_tuple initial_normal;
+	t_tuple target_normal;
+    t_tuple rotation_axis;
     float cos_theta;
     float sin_theta;
     t_4x4 rotation_matrix;
 
-    // Normalize the target normal
-    normalize_vector(target_normal);
+	initial_normal = ft_create_vector(0, 1, 0);
+	target_normal = ft_normalize(ft_create_vector(target_x, target_y, target_z));
 
     // Calculate the axis of rotation
-    vector_cross(initial_normal, target_normal, rotation_axis);
+    rotation_axis = ft_cross_product(initial_normal, target_normal);
     normalize_vector(rotation_axis);
 
     // Calculate the angle of rotation
-    cos_theta = initial_normal[0] * target_normal[0] +
-                initial_normal[1] * target_normal[1] +
-                initial_normal[2] * target_normal[2];
-    sin_theta = sqrtf(1.0f - cos_theta * cos_theta); // sin(acos(x))
+    cos_theta = (initial_normal.x * target_normal.x) + (initial_normal.y * target_normal.y) + (initial_normal.z * target_normal.z);
+    sin_theta = sqrtf(1.0f - cos_theta * cos_theta);
 
     // Handle the case where the normals are the same or opposite
-    if (fabsf(sin_theta) < 1e-6)
+    if (fabsf(sin_theta) < EPSILON)
     {
-        if (cos_theta > 0)
+        if (cos_theta > 0)// No rotation needed, return identity
+            return (ft_create_identity_matrix());
+        else// 180 degree rotation around an arbitrary axis (e.g., X-axis)
         {
-            // No rotation needed, return identity
-            return (rotation_matrix);
-        }
-        else
-        {
-            // 180 degree rotation around an arbitrary axis (e.g., X-axis)
             rotation_matrix.data[0][0] = 1.0f;
             rotation_matrix.data[1][1] = -1.0f;
             rotation_matrix.data[2][2] = -1.0f;
@@ -88,9 +83,9 @@ t_4x4 ft_rotate_plane(float target_normal[3])
         }
     }
 
-    float kx = rotation_axis[0];
-    float ky = rotation_axis[1];
-    float kz = rotation_axis[2];
+    float kx = rotation_axis.x;
+    float ky = rotation_axis.y;
+    float kz = rotation_axis.z;
     float one_minus_cos = 1.0f - cos_theta;
 
     rotation_matrix.data[0][0] = cos_theta + kx * kx * one_minus_cos;

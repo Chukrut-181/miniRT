@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 11:07:45 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/07 10:36:42 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/07 12:23:19 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,20 +103,19 @@ int	ft_create_plane(t_scene *scene, char **surface)
 	if (!ft_check_coords(surface[1]))
 		return (free(plane), 1);
 	coords = ft_split(surface[1], ',');
-	translate = create_translation_mx(ft_atof(coords[0]),
-			ft_atof(coords[1]), ft_atof(coords[2]));
+	translate = create_translation_mx(ft_atof(coords[0]), ft_atof(coords[1]), ft_atof(coords[2]));
 	if (!ft_check_orientation_vector(surface[2]))
 		return (free(plane), 1);
-	free(coords);
+	ft_free_array(coords);
 	coords = ft_split(surface[2], ',');
 	rotate = ft_rotate_plane(ft_atof(coords[0]), ft_atof(coords[1]), ft_atof(coords[2]));
-	free(coords);
+	ft_free_array(coords);
 	plane->transform_matrix = ft_multiply_matrices(translate, rotate);
 	plane->inverse_matrix = ft_find_inverse(plane->transform_matrix);
 	if (!ft_check_rgb(surface[3]))
 		return (free(surface), 1);
 	plane->material = ft_create_material(surface[3]);
-	ft_lstadd_back(&(scene->world), ft_lstnew(plane));
+	ft_lstadd_back((t_list **)(scene->world), ft_lstnew(plane));
 	return (0);
 }
 

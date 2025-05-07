@@ -82,6 +82,7 @@ t_4x4	ft_create_shearing_mx(float Xy, float Xz, float Yx, float Yz, float Zx, fl
 t_4x4	rotation_z(float radians);
 t_4x4	rotation_x(float radians);
 t_4x4	rotation_y(float radians);
+t_4x4 ft_rotate_plane(float target_x, float target_y, float target_z);
 
 //	RAY
 t_ray	ft_create_ray(t_tuple origin, t_tuple direction);
@@ -121,8 +122,8 @@ int	check_rgb(char *str, t_scene *data);
 
 //	EXECUTE
 void render_scene(t_scene *s);
-t_tuple	normal_at_plane(t_plane plane, t_tuple world_point);
-t_xs	intersect(t_plane *plane, t_ray *ray);
+// t_tuple	normal_at_plane(t_plane plane, t_tuple world_point);
+// t_xs	intersect(t_plane *plane, t_ray *ray);
 t_tuple	shade_hit(t_scene s, t_comps comps);
 bool	intersec_plane(t_shape *shape, t_list **inter);
 bool	intersec_sphere(t_shape *shape, t_list **inter);

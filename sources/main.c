@@ -6,16 +6,32 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/06 15:11:46 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/07 12:14:45 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-/* static void ft_testprinter(t_scene *scene)
+static void ft_4x4_printer(t_4x4 matrix)
 {
-//	t_sphere	*aux;
-	
+    printf("4x4 Matrix:\n");
+    int i = 0;
+    while (i < 4)
+    {
+        printf("[ ");
+        int j = 0;
+        while (j < 4)
+        {
+            printf("%f ", matrix.data[i][j]);
+            j++;
+        }
+        printf("]\n");
+        i++;
+    }
+}
+
+static void ft_testprinter(t_scene *scene)
+{
 	if (scene->ambient)
 	{
 		printf("Parsing Ambient:\n");
@@ -26,12 +42,11 @@
 	{
 		printf("No ambient detected\n");
 	}
-	if (scene->light)
+	if (scene->world->light->source.w == 1)
 	{
 		printf("Parsing Light:\n");
-		printf("Source X = %.4f, Y = %.4f, Z = %.4f\n", scene->light->source.x, scene->light->source.y, scene->light->source.z);
-		//printf("Intensity: %.4f\n", scene->light->intensity.x);
-		printf("Color: R = %.4f, G = %.4f, B = %.4f\n", scene->light->l_color.r, scene->light->l_color.g, scene->light->l_color.b);
+		printf("Source coords: X = %.4f, Y = %.4f, Z = %.4f\n", scene->world->light->source.x, scene->world->light->source.y, scene->world->light->source.z);
+		printf("Color ratios:  R = %.4f, G = %.4f, B = %.4f\n", scene->world->light->l_color.r, scene->world->light->l_color.g, scene->world->light->l_color.b);
 	}
 	else
 	{
@@ -39,29 +54,40 @@
 	}
 	if (scene->camera)
 	{
-		printf("Parsing Camera:\n");
-		printf("Viewpoint X = %.4f, Y = %.4f, Z = %.4f\n", scene->camera->viewpoint.x, scene->camera->viewpoint.y, scene->camera->viewpoint.z);
-		printf("Orientation X = %.4f, Y = %.4f, Z = %.4f\n", scene->camera->v_orientation.x, scene->camera->v_orientation.y, scene->camera->v_orientation.z);
+		printf("Camera detected OK but not yet parsed properly\n");
 		printf("FOV: %.4f\n", scene->camera->field_of_view);
 	}
 	else
 		printf("No camera detected\n");
-	if (!scene->objects)
-		printf("No objects detected\n");
-	else
-		printf("Parsing object list:\n");
-	// Contar objetos por tipo
 	int sphere_count = 0;
 	int plane_count = 0;
-	t_list *current = scene->objects;
-	while (current) {
-		t_type obj_type = *(t_type *)(current->content);
-		if (obj_type == SPHERE) sphere_count++;
-		else if (obj_type == PLANE) plane_count++;
-		current = current->next;
-	}
+	if (!scene->world->objects)
+		printf("No objects detected\n");
+	else
+	{
+		printf("Parsing object list:\n");
+		t_list *current = scene->world->objects;
+		while (current) 
+		{
+			t_shape shape = *(t_shape *)(current->content);
+			if (shape.type == SPHERE)
+			{
+				sphere_count++;
+				printf("Sphere detected with associated transformation matrix:\n");
+				ft_4x4_printer(shape.transform_matrix);
+			}
+			else if (shape.type == PLANE)
+			{
+				plane_count++;
+				printf("Plane detected with associated transformation matrix:\n");
+				ft_4x4_printer(shape.transform_matrix);
+			}
+			current = current->next;
+		}
+	}	
 	printf("Objects in scene: %d spheres, %d planes\n", sphere_count, plane_count);
-} */
+	
+}
 
 static	void	init_mlx(t_scene *s)
 {
@@ -84,13 +110,13 @@ int	main(int argc, char **argv)
 	scene.camera = NULL;
 	scene.ambient = NULL;
 	ft_get_scene(&scene, argv[1]);
-//	ft_testprinter(&scene);
-	init_mlx(&scene);
-	render_scene(&scene);
+	ft_testprinter(&scene);
+//	init_mlx(&scene);
+//	render_scene(&scene);
 //	render_lit_sphere(&scene);
 
-	mlx_key_hook(scene.mlx, ft_handle_key, scene.mlx);
-	mlx_loop(scene.mlx);
-	mlx_terminate(scene.mlx);
+//	mlx_key_hook(scene.mlx, ft_handle_key, scene.mlx);
+//	mlx_loop(scene.mlx);
+//	mlx_terminate(scene.mlx);
 	return (0);
 }

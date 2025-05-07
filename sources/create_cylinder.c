@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 11:43:31 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/02 12:42:29 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/07 11:45:03 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,12 +109,12 @@ int	ft_create_cylinder(t_scene *scene, char **cyl)
 	cylinder->diameter = aux;
 	aux = ft_atof(cyl[4]);
 	cylinder->height = aux;
-	if (!ft_check_rgb(cyl[5])) //|| !ft_apply_rgb_to_cylinder(cylinder, cyl[5]))
+	if (!ft_check_rgb(cyl[5]))
 		return (free(cylinder), 1);
 	cylinder->material = ft_create_material(cyl[5]);
 	new_node = ft_lstnew(cylinder);
 	if (!new_node)
 		return (free(cylinder), 1);
-	ft_lstadd_back(&(scene->objects), new_node);
+	ft_lstadd_back(&(scene->world->objects), new_node);
 	return (0);
 }
