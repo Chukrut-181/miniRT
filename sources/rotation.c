@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 10:23:48 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/07 14:27:04 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/07 15:08:22 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,17 +70,7 @@ t_4x4 ft_rotate_plane(float target_x, float target_y, float target_z)
 
     // Handle the case where the normals are the same or opposite
     if (fabsf(sin_theta) < EPSILON)
-    {
-        if (cos_theta > 0)// No rotation needed, return identity
-            return (ft_create_identity_matrix());
-        else// 180 degree rotation around an arbitrary axis (e.g., X-axis)
-        {
-            rotation_matrix.data[0][0] = 1.0f;
-            rotation_matrix.data[1][1] = -1.0f;
-            rotation_matrix.data[2][2] = -1.0f;
-            return (rotation_matrix);
-        }
-    }
+        return (ft_create_identity_matrix());
 
     float kx = rotation_axis.x;
     float ky = rotation_axis.y;
