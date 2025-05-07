@@ -2,11 +2,9 @@
 /*									      */
 /*						       	:::	  ::::::::    */
 /*   structures.h                                       :+:      :+:    :+:   */
-/*							+:+ +:+		 +:+	      */
-/*   By: igchurru <igchurru@student.42.fr>     	  +#+  +:+	   +#+*/
-/*							+#+#+#+#+#+   +#+     */
+/*							+:+ +:+		 +:+	      */ /*   By: igchurru <igchurru@student.42.fr>     	  +#+  +:+	   +#+*/ /*							+#+#+#+#+#+   +#+     */
 /*   Created: 2025/03/05 12:43:31 by igchurru		  #+#	#+#	      */
-/*   Updated: 2025/05/03 05:13:48 by eandres          ###   ########.fr       */
+/*   Updated: 2025/05/07 11:08:16 by eandres          ###   ########.fr       */
 /*            							              */
 /* ************************************************************************** */
 
@@ -105,19 +103,6 @@ typedef struct s_plane
 	t_material	material;
 }	t_plane;
 
-typedef struct s_intersection
-{
-	bool	intersec;
-	int		hit;
-	t_shape	*object;
-	float	time;
-	float	min;
-	float	max;
-	t_tuple	point;
-	t_tuple normal;
-	t_color color;
-}	t_xs;
-
 typedef struct s_quadratic_equation_data
 {
 	float	discriminant;
@@ -125,12 +110,6 @@ typedef struct s_quadratic_equation_data
 	float	b;
 	float	c;
 }	t_abcd;
-//
-//typedef struct s_light
-//{
-//	t_tuple	intensity;
-//	t_tuple position;
-//}	t_light;
 
 typedef struct s_light
 {
@@ -140,16 +119,17 @@ typedef struct s_light
 
 typedef struct s_world
 {
-	t_list *objects;  // Lista de objetos (esferas, etc.)
+	t_list *objects;  // Lista de shapes
 	t_light light;    // Fuente de luz
 	int		shape_count;
 }	t_world;
 
 typedef struct s_comps
 {
-	void	*object;
+	t_shape	*object;
 	float	time;
 	t_tuple	point;
+	t_tuple	over_point;
 	t_tuple	eyev;
 	t_tuple	normalv;
 	bool	inside;
@@ -184,18 +164,13 @@ typedef struct s_ambient
 typedef struct s_scene
 {
 	mlx_t		*mlx;
+	t_img		img;
 	mlx_image_t	*image;
 	t_camera	*camera;
 	t_ambient	*ambient;
 	t_light		*light;
-	t_list		*objects;
+	t_world		*world;
 }	t_scene;
-
-typedef struct s_object
-{
-	t_4x4		*matrix;
-	t_material	*material;
-}	t_object;
 
 typedef struct s_shape
 {
@@ -205,5 +180,38 @@ typedef struct s_shape
 	t_ray		ray_in_obj_space;
 	t_type		type;
 }	t_shape;
+
+typedef struct s_intersection
+{
+	bool	intersec;
+	int		hit;
+	t_shape	*object;
+	float	time;
+	float	min;
+	float	max;
+	t_tuple	point;
+	t_tuple normal;
+	t_color color;
+}	t_xs;
+
+typedef struct s_lighting
+{
+	t_tuple	lightv;
+	t_color	ambient;
+	t_color diffuse;
+	t_color specular;
+	t_tuple reflectv;
+	float	factor;
+	float	reflect_dot_eye;
+}	t_lighting;
+
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}			t_img;
 
 #endif

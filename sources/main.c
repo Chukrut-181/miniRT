@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/02 11:24:27 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/07 11:37:56 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,14 +84,11 @@ int	main(int argc, char **argv)
 	scene.camera = NULL;
 	scene.ambient = NULL;
 	scene.light = NULL;
-	scene.objects = NULL;
 	ft_get_scene(&scene, argv[1]);
 //	ft_testprinter(&scene);
 	init_mlx(&scene);
-	render_scene(&scene);
-//	render_lit_sphere(&scene);
-
-//	mlx_loop_hook(scene.mlx, &ft_handle_key, scene.mlx);
+	render_scene(&scene, *scene.camera, *scene.world);
+	mlx_image_to_window(scene.mlx, scene.image, 0, 0);
 	mlx_loop(scene.mlx);
 	mlx_terminate(scene.mlx);
 	return (0);

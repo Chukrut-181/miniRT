@@ -1,17 +1,27 @@
 #include "../include/minirt.h"
 
-/* static void	write_pixel(t_color color, uint8_t *pixel)
+static	void	write_pixel(t_color color, uint8_t *pixel)
 {
-
-} */
+	ft_memset(pixel, color.r * 255, 1);
+	ft_memset(pixel + 1, color.g * 255, 1);
+	ft_memset(pixel + 2, color.b * 255, 1);
+	ft_memset(pixel + 3, 255, 1);
+}
 
 static	t_color	calculate_inter(t_world worl, t_ray ray)
 {
 	t_list	*inter_list;
+	t_list	*hit_list;
 	t_comps	comps;
-	t_xs	*inter;
 
 	inter_list = ft_intersect_world(worl, ray);
+	if (inter_list == NULL)
+		return (ft_create_color(0, 0, 0));
+	hit_list = ft_find_hit(inter_list);
+	if (hit_list == NULL)
+		return (ft_create_color(0, 0, 0));
+	comps = prepare_computations(hit_list, ray);
+	return (shade_hit(worl, comps));
 }
 
 static t_ray	ray_for_pixel(t_camera cam, int x, int y)
@@ -39,6 +49,7 @@ void render_scene(t_scene *s, t_camera cam, t_world world)
 {
 	int y;
 	int x;
+	int p;
 	t_color color;
 	t_ray	ray;
 
@@ -50,14 +61,12 @@ void render_scene(t_scene *s, t_camera cam, t_world world)
 		{
 			ray = ray_for_pixel(cam, x, y);
 			color = calculate_inter(world, ray);
-			write_pixel(color);
+			write_pixel(color, s->image->pixels + p);
 			x++;
+			p += 4;
 		}
 		y++;
 	}
-//	mlx_image_to_window(s->mlx, s->image, 0, 0);
-//	mlx_loop(s->mlx);
-//	mlx_terminate(s->mlx);
 }
 
 /* void render_single_plane(t_scene *s, t_plane *plane)

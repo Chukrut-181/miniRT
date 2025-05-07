@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:36:49 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/02 12:03:13 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/07 11:32:39 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,16 @@ t_tuple	ft_substract_tuples(t_tuple tuple1, t_tuple tuple2)
 	return (substraction);
 }
 
-t_tuple	ft_substract_point(t_point tuple1, t_point tuple2)
-{
-	t_tuple	substraction;
-
-	substraction.x = tuple1.x - tuple2.x;
-	substraction.y = tuple1.y - tuple2.y;
-	substraction.z = tuple1.z - tuple2.z;
-	substraction.w = 1.0;
-	return (substraction);
-}
+//t_tuple	ft_substract_point(t_point tuple1, t_point tuple2)
+//{
+//	t_tuple	substraction;
+//
+//	substraction.x = tuple1.x - tuple2.x;
+//	substraction.y = tuple1.y - tuple2.y;
+//	substraction.z = tuple1.z - tuple2.z;
+//	substraction.w = 1.0;
+//	return (substraction);
+//}
 
 /*
  * ft_multiply_tuple - Multiplies each component of a t_tuple by a scalar.
