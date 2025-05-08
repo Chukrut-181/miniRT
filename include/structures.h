@@ -125,17 +125,6 @@ typedef struct s_world
 	int		shape_count;
 }	t_world;
 
-typedef struct s_comps
-{
-	t_shape	*object;
-	float	time;
-	t_tuple	point;
-	t_tuple	over_point;
-	t_tuple	eyev;
-	t_tuple	normalv;
-	bool	inside;
-}	t_comps;
-
 typedef struct s_point
 {
 	double	x;
@@ -165,7 +154,6 @@ typedef struct s_ambient
 typedef struct s_scene
 {
 	mlx_t		*mlx;
-	t_img		img;
 	mlx_image_t	*image;
 	t_camera	*camera;
 	t_ambient	*ambient;
@@ -195,6 +183,17 @@ typedef struct s_intersection
 	t_color color;
 }	t_xs;
 
+typedef struct s_comps
+{
+	t_shape	*object;
+	float	time;
+	t_tuple	point;
+	t_tuple	over_point;
+	t_tuple	eyev;
+	t_tuple	normalv;
+	bool	inside;
+}	t_comps;
+
 typedef struct s_lighting
 {
 	t_tuple	lightv;
@@ -205,14 +204,5 @@ typedef struct s_lighting
 	float	factor;
 	float	reflect_dot_eye;
 }	t_lighting;
-
-typedef struct s_img
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}			t_img;
 
 #endif

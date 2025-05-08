@@ -95,7 +95,7 @@ t_material	ft_create_material(char *rgb_code);
 t_tuple	normal_at(t_shape *shape, t_tuple point);
 t_tuple	reflect(t_tuple in, t_tuple normal);
 t_light	point_light(t_tuple position, t_tuple color);
-t_color	lighting(t_material mat, t_light light, t_tuple point, t_tuple eyev, t_tuple normalv);
+t_color	lighting(t_comps comp, t_light light, bool in_shadow);
 
 //	CAMERA
 t_4x4		view_transform(t_tuple from, t_tuple to, t_tuple up);
@@ -111,6 +111,7 @@ t_comps	prepare_computations(t_list *intersection, t_ray ray);
 t_list *ft_intersect_world(t_world world, t_ray ray);
 t_tuple	color_at(t_world world, t_ray ray);
 t_list *ft_sort_intersections(t_list *intersections);
+t_list *ft_intersect_world(t_world world, t_ray ray);
 
 //	PARSE
 void	parse(t_scene *s, char **argv);

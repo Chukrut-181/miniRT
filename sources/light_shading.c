@@ -26,36 +26,17 @@ t_tuple	normal_at(t_shape *shape, t_tuple point)
 	t_4x4	world_normal;
 	t_tuple	normal_at;
 
-	object_point = ft_multiply_mat_and_tuple(*shape->inverse_matrix, point);
+	object_point = ft_multiply_mat_and_tuple(shape->inverse_matrix, point);
 	if (shape->type == SPHERE)
 		object_normal = ft_substract_tuples(object_point, ft_create_point(0, 0, 0));
 	if (shape->type == PLANE)
 		object_normal = ft_create_point(0, 1, 0);
 //	if (shape->type == CYLINDER)
 //		object_normal = ft_normal_cylinder();
-	world_normal = ft_transpose(*shape->inverse_matrix);
+	world_normal = ft_transpose(shape->inverse_matrix);
 	normal_at = ft_multiply_mat_and_tuple(world_normal, object_normal);
 	return (ft_normalize(normal_at));
 }
-
-//t_tuple normal_at(t_shape sphere, t_tuple world_point)
-//{
-//	t_tuple object_point;
-//	t_tuple object_normal;
-//	t_tuple world_normal;
-//	t_4x4 inverse_transform;
-//	t_4x4 transpose_inverse;
-//	
-//	inverse_transform = ft_find_inverse(*sphere.transform_matrix);
-//	object_point = ft_multiply_mat_and_tuple(inverse_transform, world_point);
-//	object_normal = ft_substract_tuples(object_point, sphere.center);
-//	transpose_inverse = ft_transpose(inverse_transform);
-//	world_normal = ft_multiply_mat_and_tuple(transpose_inverse, object_normal);
-//	world_normal.w = 0;
-//	world_normal = ft_normalize(world_normal);
-//	
-//	return (world_normal);
-//}
 
 t_tuple	reflect(t_tuple in, t_tuple normal)
 {
@@ -68,53 +49,6 @@ t_tuple	reflect(t_tuple in, t_tuple normal)
 	result = ft_substract_tuples(in, scaled);
 	return (result);
 }
-
-// t_light	point_light(t_tuple position, t_tuple color)
-// {
-// 	t_light light;
-
-// 	light.source = position;
-// 	light.intensity = color;
-// 	return (light);
-// }
-
-/* t_color	lighting(t_material mat, t_light light, t_tuple point, t_tuple eyev, t_tuple normalv)
-{
-	t_color	effective_color;
-	t_tuple	lightv;
-	t_color	ambient;
-	t_color	diffuse;
-	t_color	specular;
-	t_tuple	reflectv;
-	float	light_dot_normal;
-	float	reflect_dot_eye = 0.0;
-	float	factor;
-
-	effective_color = ft_multiply_color(mat.color, light.l_color);
-	lightv = ft_substract_tuples(light.source, point);
-	lightv = ft_normalize(lightv);
-	ambient = ft_multiply_color_f(effective_color, mat.ambient);
-	light_dot_normal = ft_dot_product(lightv, normalv);
-	if (light_dot_normal < 0)
-	{
-		diffuse = ft_create_color(0, 0, 0);
-		specular = ft_create_color(0, 0, 0);
-	}
-	else
-	{
-		diffuse = ft_multiply_color_f(effective_color, mat.diffuse * light_dot_normal);
-		reflectv = reflect(ft_negate_tuple(lightv), normalv);
-		reflect_dot_eye = ft_dot_product(reflectv, eyev);
-		if (reflect_dot_eye <= 0)
-		specular = ft_create_color(0, 0, 0);
-		else
-		{
-			factor = powf(reflect_dot_eye, mat.shininess);
-			specular = ft_multiply_color_f(light.l_color, (mat.specular * factor));
-		}
-	}
-	return (ft_add_color(ambient, ft_add_color(diffuse, specular)));
-} */
 
 static t_color		get_ambient(t_comps copm, t_light light)
 {
@@ -167,3 +101,50 @@ t_color	lighting(t_comps comp, t_light light, bool in_shadow)
 	}
 	return (ft_add_color(l.ambient, ft_add_color(l.diffuse, l.specular)));
 }
+
+// t_light	point_light(t_tuple position, t_tuple color)
+// {
+// 	t_light light;
+
+// 	light.source = position;
+// 	light.intensity = color;
+// 	return (light);
+// }
+
+/* t_color	lighting(t_material mat, t_light light, t_tuple point, t_tuple eyev, t_tuple normalv)
+{
+	t_color	effective_color;
+	t_tuple	lightv;
+	t_color	ambient;
+	t_color	diffuse;
+	t_color	specular;
+	t_tuple	reflectv;
+	float	light_dot_normal;
+	float	reflect_dot_eye = 0.0;
+	float	factor;
+
+	effective_color = ft_multiply_color(mat.color, light.l_color);
+	lightv = ft_substract_tuples(light.source, point);
+	lightv = ft_normalize(lightv);
+	ambient = ft_multiply_color_f(effective_color, mat.ambient);
+	light_dot_normal = ft_dot_product(lightv, normalv);
+	if (light_dot_normal < 0)
+	{
+		diffuse = ft_create_color(0, 0, 0);
+		specular = ft_create_color(0, 0, 0);
+	}
+	else
+	{
+		diffuse = ft_multiply_color_f(effective_color, mat.diffuse * light_dot_normal);
+		reflectv = reflect(ft_negate_tuple(lightv), normalv);
+		reflect_dot_eye = ft_dot_product(reflectv, eyev);
+		if (reflect_dot_eye <= 0)
+		specular = ft_create_color(0, 0, 0);
+		else
+		{
+			factor = powf(reflect_dot_eye, mat.shininess);
+			specular = ft_multiply_color_f(light.l_color, (mat.specular * factor));
+		}
+	}
+	return (ft_add_color(ambient, ft_add_color(diffuse, specular)));
+} */

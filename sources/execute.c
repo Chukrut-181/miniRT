@@ -53,6 +53,7 @@ void render_scene(t_scene *s, t_camera cam, t_world world)
 	t_color color;
 	t_ray	ray;
 
+	p = 0;
 	y = 0;
 	while (y < HEIGHT)
 	{
