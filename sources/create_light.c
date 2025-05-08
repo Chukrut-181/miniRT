@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 15:51:55 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/07 11:47:48 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/08 13:04:28 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ static bool	ft_apply_light_coords(t_scene *scene, char *coords)
 	{
 		aux = ft_atof(split[i]);
 		if (i == 0)
-			scene->world->light->source.x = aux;
+			scene->world->light.source.x = aux;
 		else if (i == 1)
-			scene->world->light->source.y = aux;
+			scene->world->light.source.y = aux;
 		else if (i == 2)
-			scene->world->light->source.z = aux;
+			scene->world->light.source.z = aux;
 		i++;
 	}
-	scene->world->light->source.w = 1;
+	scene->world->light.source.w = 1;
 	ft_free_array(split);
 	return (true);
 }
