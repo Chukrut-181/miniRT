@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
+/*																			*/
+/*														:::	  ::::::::   */
 /*   intersections.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/07 12:59:10 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/07 14:22:00 by igchurru         ###   ########.fr       */
-/*                                                                            */
+/*													+:+ +:+		 +:+	 */
+/*   By: igchurru <igchurru@student.42.fr>		  +#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2025/03/07 12:59:10 by igchurru		  #+#	#+#			 */
+/*   Updated: 2025/05/07 11:18:32 by eandres          ###   ########.fr       */
+/*																			*/
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
@@ -64,24 +64,24 @@ static void	update_sphere_inter(float time, t_shape *shape, t_list **inter)
 
 bool	intersec_sphere(t_shape *shape, t_list **inter)
 {
-    t_tuple	sphere_to_ray;
+	t_tuple	sphere_to_ray;
 	t_tuple origin;
-    float	a, b, c, discriminant;
-    float	t1;
+	float	a, b, c, discriminant;
+	float	t1;
 	float	t2;
 
 	origin = ft_create_point(0, 0, 0);
-    sphere_to_ray = ft_substract_tuples(shape->ray_in_obj_space.origin, origin);
-    a = ft_dot_product(shape->ray_in_obj_space.direction, shape->ray_in_obj_space.direction);
-    b = 2 * ft_dot_product(shape->ray_in_obj_space.direction, sphere_to_ray);
-    c = ft_dot_product(sphere_to_ray, sphere_to_ray) - 1;
-    discriminant = pow(b, 2) - 4 * a * c;
-    if (discriminant < 0)
-        return (false);
-    t1 = (-b - sqrtf(discriminant)) / (2 * a);
-    t2 = (-b + sqrtf(discriminant)) / (2 * a);
+	sphere_to_ray = ft_substract_tuples(shape->ray_in_obj_space.origin, origin);
+	a = ft_dot_product(shape->ray_in_obj_space.direction, shape->ray_in_obj_space.direction);
+	b = 2 * ft_dot_product(shape->ray_in_obj_space.direction, sphere_to_ray);
+	c = ft_dot_product(sphere_to_ray, sphere_to_ray) - 1;
+	discriminant = pow(b, 2) - 4 * a * c;
+	if (discriminant < 0)
+		return (false);
+	t1 = (-b - sqrtf(discriminant)) / (2 * a);
+	t2 = (-b + sqrtf(discriminant)) / (2 * a);
 	update_sphere_inter(t2, shape, inter);
-    update_sphere_inter(t1, shape, inter);
+	update_sphere_inter(t1, shape, inter);
 	return (true);
 }
 

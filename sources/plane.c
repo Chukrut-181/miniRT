@@ -1,26 +1,25 @@
 #include "../include/minirt.h"
 
-// esta bien
-t_tuple	normal_at_plane(t_plane plane, t_tuple world_point)
-{
-	t_tuple	world_normal;
-	t_4x4	inverse_transform;
-	t_4x4	transpose_inverse;
-
-	// para el plano la normal es constante
-	if (plane.transform)
-	{
-		(void)world_point;
-		inverse_transform = ft_find_inverse(*plane.transform);
-		transpose_inverse = ft_transpose(inverse_transform);
-		world_normal = ft_multiply_mat_and_tuple(transpose_inverse, plane.n_n_vector);
-		world_normal.w = 0;
-	}
-	// no estoy seguro de que esto sea necesario, porque creo que siempre va a entrar en el if
-	else
-		world_normal = plane.n_n_vector;
-	return (ft_normalize(world_normal));
-}
+//t_tuple	normal_at_plane(t_plane plane, t_tuple world_point)
+//{
+//	t_tuple	world_normal;
+//	t_4x4	inverse_transform;
+//	t_4x4	transpose_inverse;
+//
+//	// para el plano la normal es constante
+//	if (plane.transform)
+//	{
+//		(void)world_point;
+//		inverse_transform = ft_find_inverse(*plane.transform);
+//		transpose_inverse = ft_transpose(inverse_transform);
+//		world_normal = ft_multiply_mat_and_tuple(transpose_inverse, plane.n_n_vector);
+//		world_normal.w = 0;
+//	}
+//	// no estoy seguro de que esto sea necesario, porque creo que siempre va a entrar en el if
+//	else
+//		world_normal = plane.n_n_vector;
+//	return (ft_normalize(world_normal));
+//}
 
 //t_list	*intersect_plane(t_ray ray, t_plane plane, t_list *xs_list)
 //{

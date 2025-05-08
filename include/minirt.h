@@ -6,7 +6,7 @@
 /*   By: v0                                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 18:08:55 by v0                #+#    #+#             */
-/*   Updated: 2025/04/22 15:25:07 by eandres          ###   ########.fr       */
+/*   Updated: 2025/05/07 13:02:00 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ t_tuple	ft_create_vector(float x, float y, float z);
 int		ft_check_equality(t_tuple tuple1, t_tuple tuple2);
 t_point	create_point(double x, double y, double z);
 t_tuple	point_tp(t_point p);
+t_tuple	color_tp(t_color p);
 
 //	TUPLE OPERATIONS
 t_tuple	ft_add_tuples(t_tuple tuple1, t_tuple tuple2);
@@ -53,7 +54,6 @@ t_color	ft_multiply_color_f(t_color tuple, float scalar);
 t_color	ft_add_color(t_color tuple1, t_color tuple2);
 t_color	ft_multiply_color(t_color c1, t_color c2);
 t_tuple	ft_multiply_tuple(t_tuple c1, t_tuple c2);
-t_tuple	ft_substract_point(t_point tuple1, t_point tuple2);
 
 //	VECTOR OPERATIONS
 float	ft_calculate_magnitude(t_tuple v);
@@ -92,10 +92,10 @@ void	ft_identify_hit(t_list *xs_list);
 
 //	LIGHT
 t_material	ft_create_material(char *rgb_code);
-t_tuple	normal_at(t_sphere sphere, t_tuple world_point);
+t_tuple	normal_at(t_shape *shape, t_tuple point);
 t_tuple	reflect(t_tuple in, t_tuple normal);
 t_light	point_light(t_tuple position, t_tuple color);
-//t_color	lighting(t_material mat, t_light light, t_tuple point, t_tuple eyev, t_tuple normalv);
+t_color	lighting(t_material mat, t_light light, t_tuple point, t_tuple eyev, t_tuple normalv);
 
 //	CAMERA
 t_4x4		view_transform(t_tuple from, t_tuple to, t_tuple up);
@@ -121,10 +121,10 @@ int	create_sphere(char **res, t_scene *s);
 int	check_rgb(char *str, t_scene *data);
 
 //	EXECUTE
-void render_scene(t_scene *s);
-// t_tuple	normal_at_plane(t_plane plane, t_tuple world_point);
-// t_xs	intersect(t_plane *plane, t_ray *ray);
-t_tuple	shade_hit(t_scene s, t_comps comps);
+void render_scene(t_scene *s, t_camera cam, t_world world);
+t_tuple	normal_at_plane(t_plane plane, t_tuple world_point);
+t_xs	intersect(t_plane *plane, t_ray *ray);
+t_color	shade_hit(t_world w, t_comps comps);
 bool	intersec_plane(t_shape *shape, t_list **inter);
 bool	intersec_sphere(t_shape *shape, t_list **inter);
 
