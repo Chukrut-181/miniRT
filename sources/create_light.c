@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 15:51:55 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/08 13:04:28 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/08 13:40:55 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,22 +69,18 @@ bool	ft_check_coords(char *coords)
 int	ft_create_light(t_scene *scene, char **light)
 {
 	float	aux;
-	t_light	*aux_light;
 
-	aux_light = malloc(sizeof(t_light));
-
-	scene->world->light = aux_light;
 	if (!ft_check_coords(light[1]))
-		return (free(scene->world->light), 1);
+		return (1);
 	if (!ft_apply_light_coords(scene, light[1]))
-		return (free(scene->world->light), 1);
+		return (1);
 	aux = ft_atof(light[2]);
 	if (aux < 0 || 1 < aux)
-		return (free(scene->world->light), 1);
-	//scene->world->light->intensity = aux;
+		return (1);
+	scene->world->light.intensity = aux;
 	if (!ft_check_rgb(light[3]))
-		return (free(scene->world->light), 1);
-	if (!ft_apply_rgb(&scene->world->light->l_color, light[3]))
-		return (free(scene->world->light), 1);
+		return (free(&scene->world->light), 1);
+	if (!ft_apply_rgb(&scene->world->light.l_color, light[3]))
+		return (free(&scene->world->light), 1);
 	return (0);
 }

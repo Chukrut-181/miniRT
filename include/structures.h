@@ -115,6 +115,7 @@ typedef struct s_light
 {
 	t_tuple	source;
 	t_color	l_color;
+	float	intensity; // 0-1
 }	t_light;
 
 typedef struct s_world
