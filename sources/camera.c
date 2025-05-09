@@ -52,7 +52,7 @@ t_camera	ft_camera(int hsize, int vsize, float field_of_view)
 {
 	t_camera	c;
 	float		half_view;
-	int		aspect;
+	int			aspect;
 
 	c = ft_create_camera(hsize, vsize, field_of_view);
 	half_view = tanf(c.field_of_view / 2);
