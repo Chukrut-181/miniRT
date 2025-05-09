@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 15:51:55 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/08 13:40:55 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/08 13:47:05 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ int	ft_create_light(t_scene *scene, char **light)
 		return (1);
 	scene->world->light.intensity = aux;
 	if (!ft_check_rgb(light[3]))
-		return (free(&scene->world->light), 1);
+		return (1);
 	if (!ft_apply_rgb(&scene->world->light.l_color, light[3]))
-		return (free(&scene->world->light), 1);
+		return (1);
 	return (0);
 }

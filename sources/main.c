@@ -12,7 +12,7 @@
 
 #include "../include/minirt.h"
 
-static void ft_4x4_printer(t_4x4 matrix)
+/* static void ft_4x4_printer(t_4x4 matrix)
 {
     printf("4x4 Matrix:\n");
     int i = 0;
@@ -87,7 +87,7 @@ static void ft_testprinter(t_scene *scene)
 	}	
 	printf("Objects in scene: %d spheres, %d planes\n", sphere_count, plane_count);
 	
-}
+} */
 
 static	void	init_mlx(t_scene *s)
 {
@@ -111,7 +111,7 @@ int	main(int argc, char **argv)
 	scene.ambient = NULL;
 	scene.light = NULL;
 	ft_get_scene(&scene, argv[1]);
-	ft_testprinter(&scene);
+//	ft_testprinter(&scene);
 	init_mlx(&scene);
 	render_scene(&scene, *scene.camera, *scene.world);
 	mlx_image_to_window(scene.mlx, scene.image, 0, 0);

@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 15:03:48 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/07 12:16:19 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/08 13:48:01 by eandres          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	ft_free_scene(t_scene *scene)
 		free(scene->ambient);
 	if (scene->camera)
 		free(scene->camera);
-	if (scene->world->light)
-		free(scene->world->light);
+//	if (scene->world->light)
+//		free(scene->world->light);
 	if (scene->world->objects)
 	{
 		ft_lstclear(&scene->world->objects, free);

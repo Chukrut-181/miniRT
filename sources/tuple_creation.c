@@ -111,6 +111,7 @@ t_point	create_point(double x, double y, double z)
 t_tuple	color_tp(t_color p)
 {
 	t_tuple	tp;
+	float	w;
 
 	w = 1.0;
 	tp = ft_create_point(p.r, p.g, p.b);
