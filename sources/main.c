@@ -110,7 +110,7 @@ int	main(int argc, char **argv)
 	scene.camera = NULL;
 	scene.ambient = NULL;
 	scene.light = NULL;
-	ft_get_scene(&scene, argv[1]);
+	ft_create_scene(&scene, argv[1]);
 //	ft_testprinter(&scene);
 	init_mlx(&scene);
 	render_scene(&scene, *scene.camera, *scene.world);

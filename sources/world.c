@@ -25,8 +25,8 @@ static	t_list	*ft_intersections(t_ray ray, t_shape *shape, t_list **inter)
 		intersec_sphere(shape, inter);
 	else if (shape->type == PLANE)
 		intersec_plane(shape, inter);
-//	else if (shape->type == CYLINDER)
-//		intersec_cylinder(shape, inter);
+	else if (shape->type == CYLINDER)
+		intersec_cylinder(shape, inter, shape->ray_in_obj_space);
 	return (*inter);
 }
 

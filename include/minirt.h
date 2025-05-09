@@ -75,8 +75,8 @@ float	ft_determinant_3x3(t_3x3 submx);
 // MATRIX TRANSFOMATION
 t_4x4	ft_create_identity_matrix(void);
 t_4x4	create_translation_mx(float x, float y, float z);
-t_4x4	create_scaling_mx(float x, float y, float z);
 t_4x4	ft_create_shearing_mx(float Xy, float Xz, float Yx, float Yz, float Zx, float Zy);
+t_4x4	create_scalation_mx(float x, float y, float z);
 
 // 	ROTATION
 t_4x4	rotation_z(float radians);
@@ -134,7 +134,7 @@ t_list	*ft_intersect_cylinder(t_ray ray, t_cyl cylinder, t_list *xs_list);
 t_tuple	normal_at_cylinder(t_cyl cylinder, t_tuple world_point);
 
 //	PARSE
-int	ft_get_scene(t_scene *scene, char *argv1);
+int	ft_create_scene(t_scene *scene, char *argv1);
 int ft_parse_line(t_scene *scene, char *line);
 char	*get_one_line(int fd);
 

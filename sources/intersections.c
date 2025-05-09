@@ -12,7 +12,36 @@
 
 #include "../include/minirt.h"
 
-static	void	update_plane_inter(t_list **inter, t_shape *shape, float time)
+bool	intersec_cylinder(t_shape *shape, t_list **inter, t_ray ray)
+{
+	double	a;
+	double	b;
+	double	c;
+	double	disc;
+	double	temp;
+	double	t[2];
+	t_xs	*inter;
+
+	a = powf(shape->ray_in_obj_space.direction.x, 2) + powf(shape->ray_in_obj_space.direction.z, 2);
+	if (fabs(a) < EPSILON)
+		return (inter);
+	b = (2 * ray.origin.x * ray.direction.x) + (2 * ray.origin.z * ray.origin.z);
+	c = powf(ray.origin.x, 2) + powf(ray.origin.z, 2) - 1.0;
+	disc = pow(b, 2) - (4 * a * c);
+	if (disc < 0)
+		return (false);
+	t[0] = (((-1 * b) - sqrt(disc)) / (2 * a));
+	t[1] = (((-1 * b) + sqrt(disc)) / (2 * a));
+	if (t[0] > t[1])
+	{
+		temp = t[1];
+		t[1] = t[0];
+		t[0] = temp;
+	}
+	return (true);
+}
+
+static	void	update_inter(t_list **inter, t_shape *shape, float time)
 {
 	t_xs	*intersec;
 
@@ -40,26 +69,10 @@ bool	intersec_plane(t_shape *shape, t_list **inter)
 	intersec.hit = 1;
 	intersec.time = -1 * shape->ray_in_obj_space.origin.y / shape->ray_in_obj_space.direction.y;
 	if (intersec.time > EPSILON)
-		update_plane_inter(inter, shape, intersec.time);
+		update_inter(inter, shape, intersec.time);
 	else
 		return (false);
 	return (true);
-}
-
-static void	update_sphere_inter(float time, t_shape *shape, t_list **inter)
-{
-	t_xs	*intersec;
-
-	intersec = malloc(sizeof(t_xs));
-	if (!intersec)
-		return ;
-	intersec->object = shape;
-	intersec->time = time;
-	intersec->hit = 1;
-	if (*inter == NULL)
-		*inter = ft_lstnew(intersec);
-	else
-		ft_lstadd_back(inter, ft_lstnew(intersec));
 }
 
 bool	intersec_sphere(t_shape *shape, t_list **inter)
@@ -80,8 +93,8 @@ bool	intersec_sphere(t_shape *shape, t_list **inter)
 		return (false);
 	t1 = (-b - sqrtf(discriminant)) / (2 * a);
 	t2 = (-b + sqrtf(discriminant)) / (2 * a);
-	update_sphere_inter(t2, shape, inter);
-	update_sphere_inter(t1, shape, inter);
+	update_inter(inter, shape, t2);
+	update_inter(inter, shape, t1);
 	return (true);
 }
 
