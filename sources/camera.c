@@ -19,42 +19,85 @@ t_4x4	ft_orientation(t_tuple left, t_tuple true_up, t_tuple forward)
 	return (matrix);
 }
 
-t_4x4	view_transform(t_tuple from, t_tuple to, t_tuple up)
+t_4x4	view_transform(t_tuple origin, t_tuple direction)
 {
-	t_tuple forward;
-	t_tuple upn;
-	t_tuple left;
-	t_tuple true_up;
+	t_tuple up_normal;
+	t_tuple left_vector;
+	t_tuple neg_or;
+	//t_tuple true_up;
 	t_4x4	orientation;
 	t_4x4	res;
 
-	forward = ft_normalize(ft_substract_tuples(to, from));
-	upn = ft_normalize(up);
-	left = ft_cross_product(forward, upn);
-	true_up = ft_cross_product(left, forward);
-	orientation = ft_orientation(left, true_up, forward);
-	res = ft_multiply_matrices(orientation, translation(ft_negate_tuple(from)));
+	direction = ft_normalize(direction);
+	up_normal = ft_create_vector(0, 1, 0);
+	left_vector = ft_cross_product(direction, up_normal);
+	//true_up = ft_cross_product(left, forward);
+	orientation = ft_orientation(left_vector, up_normal, direction);
+	neg_or = ft_negate_tuple(origin);
+	res = ft_multiply_matrices(orientation, create_translation_mx(neg_or.x, neg_or.y, neg_or.z));
 	return (res);
 }
 
-t_camera	ft_create_camera(int hsize, int vsize, float field_of_view)
+bool	ft_camera(t_scene *scene, float field_of_view, char *point_of_view, char *orientation_vector)
 {
-	t_camera	c;
+	t_camera	*c;
+	t_tuple		origin;
+	t_tuple		direction;
+	char		**aux;
 
-	c.hsize = hsize;
-	c.vsize = vsize;
-	c.field_of_view = field_of_view;
-	c.transform = ft_create_identity_matrix();
-	return (c);
+	c = malloc(sizeof(t_camera));
+	if (!c)
+		return (false);
+	c->hsize = WIDTH;
+	c->vsize = HEIGHT;
+	c->field_of_view = field_of_view;
+	if (!ft_check_coords(orientation_vector) || !ft_check_coords(point_of_view))
+		return (free(c), false);
+	aux = ft_split(point_of_view, ',');
+	origin = ft_create_point(ft_atof(aux[0]), ft_atof(aux[1]), ft_atof(aux[2]));
+	free(aux);
+	aux = ft_split(orientation_vector, ',');
+	direction = ft_create_vector(ft_atof(aux[0]), ft_atof(aux[1]), ft_atof(aux[2]));
+	free(aux);
+	c->transform = view_transform(origin, direction);
+	scene->camera = c;
+	return (true);
 }
 
-t_camera	ft_camera(int hsize, int vsize, float field_of_view)
+int	ft_create_camera(t_scene *scene, char **cam_data)
+{
+	float		fov;
+	float		half_view;
+	int			aspect;
+
+	if (scene->camera)
+		return (1);
+	fov = ft_atof(cam_data[3]);
+	if(!ft_camera(scene, fov, cam_data[1], cam_data[2]))
+		return (1);
+	half_view = tanf(fov / 2);
+	aspect = ((float)HEIGHT / WIDTH);
+	if (aspect >= 1)
+	{
+		scene->camera->half_width = half_view;
+		scene->camera->half_height = half_view / aspect;
+	}
+	else
+	{
+		scene->camera->half_width = half_view * aspect;
+		scene->camera->half_height = half_view;
+	}
+	scene->camera->pixel_size = (scene->camera->half_width * 2) / scene->camera->hsize;
+	return (0);
+}
+
+/* t_camera	ft_create_camera(int hsize, int vsize, float field_of_view)
 {
 	t_camera	c;
 	float		half_view;
 	int			aspect;
 
-	c = ft_create_camera(hsize, vsize, field_of_view);
+	c = ft_camera(hsize, vsize, field_of_view);
 	half_view = tanf(c.field_of_view / 2);
 	aspect = ((float)c.hsize / c.vsize);
 	if (aspect >= 1)
@@ -69,7 +112,7 @@ t_camera	ft_camera(int hsize, int vsize, float field_of_view)
 	}
 	c.pixel_size = (c.half_width * 2) / c.hsize;
 	return (c);
-}
+} */
 
 t_ray	ray_for_pixel(t_camera c, float px, float py)
 {

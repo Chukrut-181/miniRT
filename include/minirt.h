@@ -97,13 +97,6 @@ t_tuple	reflect(t_tuple in, t_tuple normal);
 t_light	point_light(t_tuple position, t_tuple color);
 t_color	lighting(t_comps comp, t_light light, bool in_shadow);
 
-//	CAMERA
-t_4x4		view_transform(t_tuple from, t_tuple to, t_tuple up);
-t_camera	ft_camera(int hsize, int vsize, float field_of_view);
-//t_ray	ray_for_pixel(t_camera c, float px, float py);
-mlx_image_t *ft_render(mlx_t *mlx, t_camera camera, t_world world);
-t_4x4	ft_orientation(t_tuple left, t_tuple true_up, t_tuple forward);
-
 //	WORLD
 t_world ft_default_world(void);
 t_list *ft_find_hit(t_list *intersections);
@@ -148,8 +141,14 @@ int		ft_create_light(t_scene *scene, char **light);
 bool	ft_check_coords(char *coords);
 
 //	CREATE CAMERA
-int		ft_create_camera(t_scene *scene, char **cam);
-bool	ft_check_orientation_vector(char *orientation);
+int			ft_create_camera(t_scene *scene, char **cam);
+bool		ft_check_orientation_vector(char *orientation);
+//t_4x4		view_transform(t_tuple from, t_tuple to, t_tuple up);
+t_4x4		view_transform(t_tuple origin, t_tuple direction);
+bool	ft_camera(t_scene *scene, float field_of_view, char *point_of_view, char *orientation_vector);
+//t_ray	ray_for_pixel(t_camera c, float px, float py);
+mlx_image_t	*ft_render(mlx_t *mlx, t_camera camera, t_world world);
+t_4x4		ft_orientation(t_tuple left, t_tuple true_up, t_tuple forward);
 
 //	CREATE SPHERE
 int	ft_create_sphere(t_scene *scene, char **ball);
