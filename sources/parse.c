@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:44:53 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/07 14:25:30 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/09 13:41:40 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void ft_open_scene(char *argv1, int *fd)
 	free(aux);
 }
 
-int	ft_create_scene(t_scene *scene, char *argv1)
+int	ft_get_scene(t_scene *scene, char *argv1)
 {
 	int		fd;
 	char	*line;

@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 11:07:45 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/08 13:35:09 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/09 13:47:16 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_create_plane(t_scene *scene, char **surface)
 		return (free(plane), 1);
 	coords = ft_split(surface[1], ',');
 	translate = create_translation_mx(ft_atof(coords[0]), ft_atof(coords[1]), ft_atof(coords[2]));
-	if (!ft_check_orientation_vector(surface[2]))
+	if (!ft_check_coords(surface[2]))
 		return (free(plane), 1);
 	ft_free_array(coords);
 	coords = ft_split(surface[2], ',');

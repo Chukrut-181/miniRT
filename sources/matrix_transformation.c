@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 10:23:12 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/06 16:36:46 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/09 13:43:45 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,15 +91,15 @@ t_4x4	create_translation_mx(float x, float y, float z)
  *         | 0      0      tuple.z 0 |
  *         | 0      0      0      1 |
  */
-t_4x4	create_scalation_mx(float x, float y, float z)
+t_4x4	create_scaling_mx(float x, float y, float z)
 {
-	t_4x4	scalation_mx;
+	t_4x4	scaling_mx;
 
-	scalation_mx = ft_create_identity_matrix();
-	scalation_mx.data[0][0] = x;
-	scalation_mx.data[1][1] = y;
-	scalation_mx.data[2][2] = z;
-	return (scalation_mx);
+	scaling_mx = ft_create_identity_matrix();
+	scaling_mx.data[0][0] = x;
+	scaling_mx.data[1][1] = y;
+	scaling_mx.data[2][2] = z;
+	return (scaling_mx);
 }
 
 /**
