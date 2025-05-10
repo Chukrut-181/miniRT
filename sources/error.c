@@ -24,11 +24,13 @@ void	ft_free_scene(t_scene *scene)
 		free(scene->ambient);
 	if (scene->camera)
 		free(scene->camera);
-//	if (scene->world->light)
-//		free(scene->world->light);
-	if (scene->world->objects)
+	if (scene->light)
+		free(scene->light);
+	if (scene->world)
 	{
-		ft_lstclear(&scene->world->objects, free);
-		free(scene->world->objects);
+		if (scene->world->objects)
+			ft_lstclear(&scene->world->objects, free);
+		free(scene->world);
 	}
+	free(scene);
 }

@@ -76,7 +76,7 @@ float	ft_determinant_3x3(t_3x3 submx);
 t_4x4	ft_create_identity_matrix(void);
 t_4x4	create_translation_mx(float x, float y, float z);
 t_4x4	ft_create_shearing_mx(float Xy, float Xz, float Yx, float Yz, float Zx, float Zy);
-t_4x4	create_scalation_mx(float x, float y, float z);
+t_4x4	create_scaling_mx(float x, float y, float z);
 
 // 	ROTATION
 t_4x4	rotation_z(float radians);
@@ -94,8 +94,8 @@ void	ft_identify_hit(t_list *xs_list);
 t_material	ft_create_material(char *rgb_code);
 t_tuple	normal_at(t_shape *shape, t_tuple point);
 t_tuple	reflect(t_tuple in, t_tuple normal);
-t_light	point_light(t_tuple position, t_tuple color);
 t_color	lighting(t_comps comp, t_light light, bool in_shadow);
+t_light	point_light(t_tuple position, t_color color);
 
 //	WORLD
 t_world ft_default_world(void);
@@ -115,7 +115,7 @@ int	create_sphere(char **res, t_scene *s);
 int	check_rgb(char *str, t_scene *data);
 
 //	EXECUTE
-void render_scene(t_scene *s, t_camera cam, t_world world);
+void render_scene(t_scene *s);
 t_tuple	normal_at_plane(t_plane plane, t_tuple world_point);
 t_xs	intersect(t_plane *plane, t_ray *ray);
 t_color	shade_hit(t_world w, t_comps comps);
@@ -127,7 +127,7 @@ t_list	*ft_intersect_cylinder(t_ray ray, t_cyl cylinder, t_list *xs_list);
 t_tuple	normal_at_cylinder(t_cyl cylinder, t_tuple world_point);
 
 //	PARSE
-int	ft_create_scene(t_scene *scene, char *argv1);
+int	ft_get_scene(t_scene *scene, char *argv1);
 int ft_parse_line(t_scene *scene, char *line);
 char	*get_one_line(int fd);
 

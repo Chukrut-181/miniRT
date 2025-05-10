@@ -12,7 +12,7 @@
 
 #include "../include/minirt.h"
 
-bool	intersec_cylinder(t_shape *shape, t_list **inter, t_ray ray)
+/* bool	intersec_cylinder(t_shape *shape, t_ray ray)
 {
 	double	a;
 	double	b;
@@ -39,7 +39,7 @@ bool	intersec_cylinder(t_shape *shape, t_list **inter, t_ray ray)
 		t[0] = temp;
 	}
 	return (true);
-}
+} */
 
 static	void	update_inter(t_list **inter, t_shape *shape, float time)
 {

@@ -26,14 +26,14 @@ static bool	ft_apply_light_coords(t_scene *scene, char *coords)
 	{
 		aux = ft_atof(split[i]);
 		if (i == 0)
-			scene->world->light.source.x = aux;
+			scene->light->source.x = aux;
 		else if (i == 1)
-			scene->world->light.source.y = aux;
+			scene->light->source.y = aux;
 		else if (i == 2)
-			scene->world->light.source.z = aux;
+			scene->light->source.z = aux;
 		i++;
 	}
-	scene->world->light.source.w = 1;
+	scene->light->source.w = 1;
 	ft_free_array(split);
 	return (true);
 }
@@ -77,10 +77,12 @@ int	ft_create_light(t_scene *scene, char **light)
 	aux = ft_atof(light[2]);
 	if (aux < 0 || 1 < aux)
 		return (1);
-	scene->world->light.intensity = aux;
+	scene->light->intensity = aux;
 	if (!ft_check_rgb(light[3]))
 		return (1);
-	if (!ft_apply_rgb(&scene->world->light.l_color, light[3]))
+	if (!ft_apply_rgb(&scene->light->l_color, light[3]))
 		return (1);
+	scene->world->light = point_light(scene->light->source, 
+		ft_create_color(scene->light->intensity, scene->light->intensity, scene->light->intensity));
 	return (0);
 }

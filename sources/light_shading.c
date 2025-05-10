@@ -1,5 +1,14 @@
 #include "../include/minirt.h"
 
+t_light	point_light(t_tuple position, t_color color)
+{
+	t_light light;
+
+	light.source = position;
+	light.l_color = color;
+	return (light);
+}
+
 t_material	ft_create_material(char *rgb_code)
 {
 	t_material m;
@@ -11,7 +20,7 @@ t_material	ft_create_material(char *rgb_code)
 	m.shininess = 150.0;
 	split = ft_split(rgb_code, ',');
 	if (!split || !split[0] || !split[1] || !split[2])
-		m.color = ft_create_color(255, 255, 255);
+		m.color = ft_create_color(1.0, 1.0, 1.0);
 	else
 		m.color = ft_create_color(ft_atof(split[0]), ft_atof(split[1]), ft_atof(split[2]));
 	if (split)

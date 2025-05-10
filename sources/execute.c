@@ -45,11 +45,11 @@ static t_ray	ray_for_pixel(t_camera cam, int x, int y)
 	return (ft_create_ray(cam.origin, direction));
 }
 
-void render_scene(t_scene *s, t_camera cam, t_world world)
+void render_scene(t_scene *s)
 {
-	int y;
-	int x;
-	int p;
+	size_t y;
+	size_t x;
+	size_t p;
 	t_color color;
 	t_ray	ray;
 
@@ -60,8 +60,8 @@ void render_scene(t_scene *s, t_camera cam, t_world world)
 		x = 0;
 		while (x < WIDTH)
 		{
-			ray = ray_for_pixel(cam, x, y);
-			color = calculate_inter(world, ray);
+			ray = ray_for_pixel(*s->camera, x, y);
+			color = calculate_inter(*s->world, ray);
 			write_pixel(color, s->image->pixels + p);
 			x++;
 			p += 4;

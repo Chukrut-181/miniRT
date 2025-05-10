@@ -12,7 +12,7 @@ static t_ray transform(t_ray ray, t_4x4	matrix)
 	multi[0] = ft_multiply_mat_and_tuple(matrix, ray.origin);
 	multi[1] = ft_multiply_mat_and_tuple(matrix, ray.direction);
 	p = ft_create_point(multi[0].x, multi[0].y, multi[0].z);
-	vec = ft_create_point(multi[1].x, multi[1].y, multi[1].z);
+	vec = ft_create_vector(multi[1].x, multi[1].y, multi[1].z);
 	new_ray.origin = p;
 	new_ray.direction = vec;
 	return (new_ray);
@@ -25,8 +25,8 @@ static	t_list	*ft_intersections(t_ray ray, t_shape *shape, t_list **inter)
 		intersec_sphere(shape, inter);
 	else if (shape->type == PLANE)
 		intersec_plane(shape, inter);
-	else if (shape->type == CYLINDER)
-		intersec_cylinder(shape, inter, shape->ray_in_obj_space);
+//	else if (shape->type == CYLINDER)
+//		intersec_cylinder(shape, inter, shape->ray_in_obj_space);
 	return (*inter);
 }
 
@@ -86,7 +86,11 @@ bool	is_shadowed(t_world world, t_tuple point)
 	ray = ft_create_ray(point, direction);
 	xs = ft_intersect_world(world, ray);
 	hit = ft_find_hit(xs);
+	if (!hit)
+		return (false);
 	inter = (t_xs *)hit->content;
+	if (!inter)
+		return (false);
 	if (inter->time && inter->time < distance)
 		return (true);
 	else

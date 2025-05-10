@@ -54,12 +54,12 @@ t_tuple	reflect(t_tuple in, t_tuple normal)
 	return (result);
 }
 
-t_light	point_light(t_tuple position, t_tuple color)
+t_light	point_light(t_tuple position, t_color color)
 {
 	t_light light;
 
 	light.source = position;
-	light.intensity = color;
+	light.l_color = color;
 	return (light);
 }
 

@@ -36,9 +36,8 @@ int	ft_create_plane(t_scene *scene, char **surface)
 	plane->transform_matrix = ft_multiply_matrices(translate, rotate);
 	plane->inverse_matrix = ft_find_inverse(plane->transform_matrix);
 	if (!ft_check_rgb(surface[3]))
-		return (free(surface), 1);
+		return (free(plane), 1);
 	plane->material = ft_create_material(surface[3]);
 	ft_lstadd_back((&scene->world->objects), ft_lstnew(plane));
 	return (0);
 }
-

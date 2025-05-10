@@ -70,7 +70,7 @@ int	ft_create_camera(t_scene *scene, char **cam_data)
 	float		half_view;
 	int			aspect;
 
-	if (scene->camera)
+	if (!scene->camera)
 		return (1);
 	fov = ft_atof(cam_data[3]);
 	if(!ft_camera(scene, fov, cam_data[1], cam_data[2]))
