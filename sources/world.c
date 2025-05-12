@@ -18,7 +18,7 @@ static t_ray transform(t_ray ray, t_4x4	matrix)
 	return (new_ray);
 }
 
-static	t_list	*ft_intersections(t_ray ray, t_shape *shape, t_list **inter)
+static	void	ft_intersections(t_ray ray, t_shape *shape, t_list **inter)
 {
 	shape->ray_in_obj_space = transform(ray, shape->inverse_matrix);
 	if (shape->type == SPHERE)
@@ -27,7 +27,6 @@ static	t_list	*ft_intersections(t_ray ray, t_shape *shape, t_list **inter)
 		intersec_plane(shape, inter);
 //	else if (shape->type == CYLINDER)
 //		intersec_cylinder(shape, inter, shape->ray_in_obj_space);
-	return (*inter);
 }
 
 t_list *ft_intersect_world(t_world world, t_ray ray)
@@ -40,17 +39,16 @@ t_list *ft_intersect_world(t_world world, t_ray ray)
 	while (current)
 	{
 		shape = (t_shape *)current->content;
-		intersections = ft_intersections(ray, shape, &intersections);
+		ft_intersections(ray, shape, &intersections);
 		current = current->next;
 	}
 	//intersections = ft_sort_intersections(intersections);
 	return (intersections);
 }
 
-t_comps	prepare_computations(t_list *intersection, t_ray ray)
+t_comps	prepare_computations(t_xs *hit, t_ray ray)
 {
 	t_comps	comps;
-	t_xs	*hit = (t_xs *)intersection->content;
 
 	comps.time = hit->time;
 	comps.object = hit->object;
@@ -77,8 +75,7 @@ bool	is_shadowed(t_world world, t_tuple point)
 	t_ray	ray;
 	t_list	*xs;
 	t_tuple	v;
-	t_list	*hit;
-	t_xs	*inter;
+	t_xs	*hit;
 
 	v = ft_substract_tuples(world.light.source, point);
 	distance = ft_calculate_magnitude(v);
@@ -86,12 +83,7 @@ bool	is_shadowed(t_world world, t_tuple point)
 	ray = ft_create_ray(point, direction);
 	xs = ft_intersect_world(world, ray);
 	hit = ft_find_hit(xs);
-	if (!hit)
-		return (false);
-	inter = (t_xs *)hit->content;
-	if (!inter)
-		return (false);
-	if (inter->time && inter->time < distance)
+	if (hit->time && hit->time < distance)
 		return (true);
 	else
 		return (false);
@@ -107,29 +99,27 @@ t_color	shade_hit(t_world world, t_comps comps)
 	return (result);
 }
 
-t_list *ft_find_hit(t_list *intersections)
+t_xs *ft_find_hit(t_list *intersections)
 {
 	t_list *current;
-	t_list *hit;
+	t_xs 	*hit;
 	t_xs	*xs;
 	float	min_time;
 
 	current = intersections;
-	hit = NULL;
+	hit = malloc(sizeof(t_xs));
 	min_time = INFINITY;
 	while (current)
 	{
 		xs = (t_xs *)current->content;
-		
 		if (xs->time > 0 && xs->time < min_time)
 		{
 			min_time = xs->time;
-			hit = current;
+			xs->intersec = true;
+			hit = xs;
 		}
-		
 		current = current->next;
 	}
-	
 	return (hit);
 }
 
