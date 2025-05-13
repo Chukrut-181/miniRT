@@ -82,6 +82,7 @@ int	ft_create_light(t_scene *scene, char **light)
 		return (1);
 	if (!ft_apply_rgb(&scene->light->l_color, light[3]))
 		return (1);
+	scene->world = malloc(sizeof(t_world));
 	scene->world->light = point_light(scene->light->source, 
 		ft_create_color(scene->light->intensity, scene->light->intensity, scene->light->intensity));
 	return (0);

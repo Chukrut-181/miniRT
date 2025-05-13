@@ -18,15 +18,16 @@ static t_ray transform(t_ray ray, t_4x4	matrix)
 	return (new_ray);
 }
 
-static	void	ft_intersections(t_ray ray, t_shape *shape, t_list **inter)
+static	bool	ft_intersections(t_ray ray, t_shape *shape, t_list **inter)
 {
 	shape->ray_in_obj_space = transform(ray, shape->inverse_matrix);
 	if (shape->type == SPHERE)
-		intersec_sphere(shape, inter);
+		return (intersec_sphere(shape, inter));
 	else if (shape->type == PLANE)
-		intersec_plane(shape, inter);
+		return (intersec_plane(shape, inter));
 //	else if (shape->type == CYLINDER)
 //		intersec_cylinder(shape, inter, shape->ray_in_obj_space);
+	return (false);
 }
 
 t_list *ft_intersect_world(t_world world, t_ray ray)
@@ -39,7 +40,11 @@ t_list *ft_intersect_world(t_world world, t_ray ray)
 	while (current)
 	{
 		shape = (t_shape *)current->content;
-		ft_intersections(ray, shape, &intersections);
+		if (ft_intersections(ray, shape, &intersections) == false)
+		{
+			intersections->content = NULL;
+			return (intersections);
+		}
 		current = current->next;
 	}
 	//intersections = ft_sort_intersections(intersections);

@@ -1,11 +1,19 @@
 #include "../include/minirt.h"
 
-static	void	write_pixel(t_color color, uint8_t *pixel)
+static void	write_pixel(double w, double h, t_color color, t_scene *scene)
 {
-	ft_memset(pixel, color.r * 255, 1);
-	ft_memset(pixel + 1, color.g * 255, 1);
-	ft_memset(pixel + 2, color.b * 255, 1);
-	ft_memset(pixel + 3, 255, 1);
+	int				rr;
+	int				gg;
+	int				bb;
+	int				color_code;
+	unsigned char	*dst;
+
+	rr = color.r * 255;
+	gg = color.g * 255;
+	bb = color.b * 255;
+	color_code = rr << 16 | gg << 8 | bb;
+	dst = scene->img->data + (int)h * scene->img->size_line + (int)w * (scene->img->bits_per_pixel / 8);
+	*(unsigned int *)dst = color_code;
 }
 
 static	t_color	calculate_inter(t_world worl, t_ray ray)
@@ -15,6 +23,8 @@ static	t_color	calculate_inter(t_world worl, t_ray ray)
 	t_comps	comps;
 
 	inter_list = ft_intersect_world(worl, ray);
+	if (inter_list->content == NULL)
+		return (ft_create_color(0, 0, 0));
 	hit = ft_find_hit(inter_list);
 	if (hit->time <= EPSILON || hit->intersec == false)
 		return (free(hit), ft_create_color(0, 0, 0));
@@ -45,13 +55,11 @@ static t_ray	ray_for_pixel(t_camera cam, int x, int y)
 
 void render_scene(t_scene *s)
 {
-	size_t y;
-	size_t x;
-	size_t p;
-	t_color color = ft_create_color(0, 0, 0);
+	double y;
+	double x;
+	t_color color;
 	t_ray	ray;
 
-	p = 0;
 	y = 0;
 	while (y < HEIGHT)
 	{
@@ -60,9 +68,8 @@ void render_scene(t_scene *s)
 		{
 			ray = ray_for_pixel(*s->camera, x, y);
 			color = calculate_inter(*s->world, ray); //color deberia de ser (0, 0, 0) pero nunca lo es.
-			write_pixel(color, s->image->pixels + p);
+			write_pixel(x, y, color, s);
 			x++;
-			p += 4;
 		}
 		y++;
 	}

@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>		  +#+  +:+	   +#+		*/
 /*												+#+#+#+#+#+   +#+		   */
 /*   Created: 2025/03/07 12:59:10 by igchurru		  #+#	#+#			 */
-/*   Updated: 2025/05/07 11:18:32 by eandres          ###   ########.fr       */
+/*   Updated: 2025/05/13 14:02:58 by eandres          ###   ########.fr       */
 /*																			*/
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ bool	intersec_sphere(t_shape *shape, t_list **inter)
 		return (false);
 	t1 = (-b - sqrtf(discriminant)) / (2 * a);
 	t2 = (-b + sqrtf(discriminant)) / (2 * a);
+	if (t1 < EPSILON || t2 < EPSILON)
+		return (false);
 	update_inter(inter, shape, t2);
 	update_inter(inter, shape, t1);
 	return (true);

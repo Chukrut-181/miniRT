@@ -12,11 +12,13 @@
 
 #include "../include/minirt.h"
 
-void	ft_handle_key(mlx_key_data_t keydata, void *param)
+int	key(int keycode, t_scene *scene)
 {
-	mlx_t	*mlx;
-
-	mlx = (mlx_t *)param;
-	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
-		mlx_close_window(mlx);
+	if (keycode == 53)
+	{
+		mlx_destroy_window(scene->mlx, scene->mlx);
+		ft_free_scene(scene);
+		exit (0);
+	}
+	return (0);
 }

@@ -14,7 +14,7 @@
 # define MINIRT_H
 
 # include "../libft/libft.h"
-# include "../MLX42/include/MLX42/MLX42.h"
+# include "../minilibx/mlx.h"
 # include <math.h>
 # include <stdio.h>
 # include <unistd.h>
@@ -99,8 +99,8 @@ t_light	point_light(t_tuple position, t_color color);
 
 //	WORLD
 t_world ft_default_world(void);
-t_list *ft_find_hit(t_list *intersections);
-t_comps	prepare_computations(t_list *intersection, t_ray ray);
+t_xs *ft_find_hit(t_list *intersections);
+t_comps	prepare_computations(t_xs *hit, t_ray ray);
 t_list *ft_intersect_world(t_world world, t_ray ray);
 t_tuple	color_at(t_world world, t_ray ray);
 t_list *ft_sort_intersections(t_list *intersections);
@@ -147,7 +147,7 @@ bool		ft_check_orientation_vector(char *orientation);
 t_4x4		view_transform(t_tuple origin, t_tuple direction);
 bool	ft_camera(t_scene *scene, float field_of_view, char *point_of_view, char *orientation_vector);
 //t_ray	ray_for_pixel(t_camera c, float px, float py);
-mlx_image_t	*ft_render(mlx_t *mlx, t_camera camera, t_world world);
+//mlx_image_t	*ft_render(mlx_t *mlx, t_camera camera, t_world world);
 t_4x4		ft_orientation(t_tuple left, t_tuple true_up, t_tuple forward);
 
 //	CREATE SPHERE
@@ -160,20 +160,17 @@ int		ft_create_cylinder(t_scene *scene, char **cyl);
 int	ft_create_plane(t_scene *scene, char **plane);
 
 //	HOOKS
-void	ft_handle_key(mlx_key_data_t keydata, void *param);
+int	key(int keycode, t_scene *scene);
 
 //	ERROR EXIT
 int		ft_error_exit(char *err_msg, int err_code);
 void	ft_free_scene(t_scene *scene);
 
 //	TEST FUNCTIONS (to be removed)
-void	ft_minigun(mlx_image_t	*image);
-void	ft_draw_clock(mlx_image_t *image);
 int		ft_test_matrix_functions(void);
 int		ft_test_ray(void);
 int		ft_test_intersection(void);
 void	test_reflection(void);
 void	test_lighting(void);
-void	ft_render_billiard_ball(mlx_image_t *image);
 
 #endif
