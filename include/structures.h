@@ -92,7 +92,7 @@ typedef struct s_light
 typedef struct s_world
 {
 	t_list *objects;  // Lista de shapes
-	t_light light;    // Fuente de luz
+	t_light *light;    // Fuente de luz
 	int		shape_count;
 }	t_world;
 
@@ -128,7 +128,6 @@ typedef struct s_scene
 	mlx_image_t	*image;
 	t_camera	*camera;
 	t_ambient	*ambient;
-	t_light		*light;
 	t_world		*world;
 }	t_scene;
 

@@ -24,43 +24,36 @@ t_4x4	view_transform(t_tuple origin, t_tuple direction)
 	t_tuple up_normal;
 	t_tuple left_vector;
 	t_tuple neg_or;
-	//t_tuple true_up;
 	t_4x4	orientation;
 	t_4x4	res;
 
 	direction = ft_normalize(direction);
 	up_normal = ft_create_vector(0, 1, 0);
 	left_vector = ft_cross_product(direction, up_normal);
-	//true_up = ft_cross_product(left, forward);
 	orientation = ft_orientation(left_vector, up_normal, direction);
 	neg_or = ft_negate_tuple(origin);
 	res = ft_multiply_matrices(orientation, create_translation_mx(neg_or.x, neg_or.y, neg_or.z));
 	return (res);
 }
 
-bool	ft_camera(t_scene *scene, float field_of_view, char *point_of_view, char *orientation_vector)
+bool	ft_aim_camera(t_camera *cam1, float fov, char *point_of_view, char *orientation_vector)
 {
-	t_camera	*c;
 	t_tuple		origin;
 	t_tuple		direction;
 	char		**aux;
 
-	c = malloc(sizeof(t_camera));
-	if (!c)
-		return (false);
-	c->hsize = WIDTH;
-	c->vsize = HEIGHT;
-	c->field_of_view = field_of_view;
+	cam1->hsize = WIDTH;
+	cam1->vsize = HEIGHT;
+	cam1->field_of_view = fov;
 	if (!ft_check_coords(orientation_vector) || !ft_check_coords(point_of_view))
-		return (free(c), false);
+		return (free(cam1), false);
 	aux = ft_split(point_of_view, ',');
 	origin = ft_create_point(ft_atof(aux[0]), ft_atof(aux[1]), ft_atof(aux[2]));
 	free(aux);
 	aux = ft_split(orientation_vector, ',');
 	direction = ft_create_vector(ft_atof(aux[0]), ft_atof(aux[1]), ft_atof(aux[2]));
 	free(aux);
-	c->transform = view_transform(origin, direction);
-	scene->camera = c;
+	cam1->transform = view_transform(origin, direction);
 	return (true);
 }
 
@@ -70,10 +63,11 @@ int	ft_create_camera(t_scene *scene, char **cam_data)
 	float		half_view;
 	int			aspect;
 
+	scene->camera = malloc(sizeof(t_camera));
 	if (!scene->camera)
 		return (1);
 	fov = ft_atof(cam_data[3]);
-	if(!ft_camera(scene, fov, cam_data[1], cam_data[2]))
+	if(!ft_aim_camera(scene->camera, fov, cam_data[1], cam_data[2]))
 		return (1);
 	half_view = tanf(fov / 2);
 	aspect = ((float)HEIGHT / WIDTH);

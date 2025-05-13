@@ -128,7 +128,7 @@ bool	ft_check_rgb(char *colorcode);
 bool	ft_apply_rgb(t_color *color, char *original);
 
 //	CREATE LIGHT
-int		ft_create_light(t_scene *scene, char **light);
+int		ft_create_light(t_world *world, char **light);
 bool	ft_check_coords(char *coords);
 
 //	CREATE CAMERA

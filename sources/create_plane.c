@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 11:07:45 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/09 13:47:16 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/13 13:16:18 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ int	ft_create_plane(t_scene *scene, char **surface)
 	if (!ft_check_rgb(surface[3]))
 		return (free(plane), 1);
 	plane->material = ft_create_material(surface[3]);
-	ft_lstadd_back((&scene->world->objects), ft_lstnew(plane));
+	ft_lstadd_back(&scene->world->objects, ft_lstnew(plane));
 	return (0);
 }

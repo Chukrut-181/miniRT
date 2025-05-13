@@ -6,24 +6,23 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/13 10:40:05 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/13 13:06:52 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-static bool ft_init_scene(t_scene *scene)
+static t_scene *ft_init_scene(void)
 {
-	scene = malloc(sizeof(t_scene));
-	if (!scene)
-		return (false);
-	scene->ambient = NULL;
-	scene->camera = NULL;
-	scene->light = NULL;
-	scene->world = NULL;
-	scene->mlx = NULL;
-	scene->image = NULL;
-	return (true);
+	t_scene *new_scene = malloc(sizeof(t_scene));
+	if (!new_scene)
+		return (NULL);
+	new_scene->ambient = NULL;
+	new_scene->camera = NULL;
+	new_scene->world = malloc(sizeof(t_world));
+	new_scene->mlx = NULL;
+	new_scene->image = NULL;
+	return (new_scene);
 }
 
 
@@ -43,8 +42,8 @@ int	main(int argc, char **argv)
 	
 	if (argc != 2)
 		ft_error_exit("Error\nUsage: ./miniRT <arg1>", 1);
-	scene = NULL;
-	if (!ft_init_scene(scene))
+	scene = ft_init_scene();
+	if (scene == NULL)
 		ft_error_exit("Error\nFailed to initialize scene", 1);
 	ft_get_scene(scene, argv[1]);
 	//init_mlx(scene);

@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 12:18:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/02 09:57:01 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/13 12:39:15 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ int	ft_create_ambient(t_scene *scene, char **ambient)
 {
 	float	aux;
 
-	if (scene->ambient == NULL)
-		return (free(scene->ambient), 1);
 	scene->ambient = (t_ambient *)malloc(sizeof(t_ambient));
+	if (scene->ambient == NULL)
+		return (1);
 	aux = ft_atof(ambient[1]);
 	if (aux < 0 || 1 < aux)
 		return (free(scene->ambient), 1);

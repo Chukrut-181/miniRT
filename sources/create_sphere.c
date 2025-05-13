@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 10:05:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/13 12:31:35 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/13 13:15:35 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_create_sphere(t_scene *scene, char **ball)
 	sphere->material = ft_create_material(ball[3]);
 	sphere->transform_matrix = ft_multiply_matrices(translate, scalate);
 	sphere->inverse_matrix = ft_find_inverse(sphere->transform_matrix);
-	ft_lstadd_back(&(scene->world->objects), ft_lstnew(sphere));
+	ft_lstadd_back(&scene->world->objects, ft_lstnew(sphere));
 	ft_free_array(center);
 	return (0);
 }
