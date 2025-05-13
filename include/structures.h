@@ -112,7 +112,6 @@ typedef struct s_camera
 	double	half_width;
 	double	half_height;
 	t_4x4	transform;
-	int		init;
 	t_tuple	origin;
 }	t_camera;
 

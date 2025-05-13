@@ -38,7 +38,6 @@ t_4x4	view_transform(t_tuple origin, t_tuple direction)
 
 bool	ft_aim_camera(t_camera *cam1, float fov, char *point_of_view, char *orientation_vector)
 {
-	t_tuple		origin;
 	t_tuple		direction;
 	char		**aux;
 
@@ -48,12 +47,12 @@ bool	ft_aim_camera(t_camera *cam1, float fov, char *point_of_view, char *orienta
 	if (!ft_check_coords(orientation_vector) || !ft_check_coords(point_of_view))
 		return (free(cam1), false);
 	aux = ft_split(point_of_view, ',');
-	origin = ft_create_point(ft_atof(aux[0]), ft_atof(aux[1]), ft_atof(aux[2]));
-	free(aux);
+	cam1->origin = ft_create_point(ft_atof(aux[0]), ft_atof(aux[1]), ft_atof(aux[2]));
+	ft_free_array(aux);
 	aux = ft_split(orientation_vector, ',');
 	direction = ft_create_vector(ft_atof(aux[0]), ft_atof(aux[1]), ft_atof(aux[2]));
-	free(aux);
-	cam1->transform = view_transform(origin, direction);
+	ft_free_array(aux);
+	cam1->transform = view_transform(cam1->origin, direction);
 	return (true);
 }
 
