@@ -115,20 +115,14 @@ int	create_sphere(char **res, t_scene *s);
 int	check_rgb(char *str, t_scene *data);
 
 //	EXECUTE
-void render_scene(t_scene *s);
-t_tuple	normal_at_plane(t_plane plane, t_tuple world_point);
-t_xs	intersect(t_plane *plane, t_ray *ray);
+void	render_scene(t_scene *s);
 t_color	shade_hit(t_world w, t_comps comps);
 bool	intersec_plane(t_shape *shape, t_list **inter);
 bool	intersec_sphere(t_shape *shape, t_list **inter);
 
-// CYLINDER
-t_list	*ft_intersect_cylinder(t_ray ray, t_cyl cylinder, t_list *xs_list);
-t_tuple	normal_at_cylinder(t_cyl cylinder, t_tuple world_point);
-
 //	PARSE
-int	ft_get_scene(t_scene *scene, char *argv1);
-int ft_parse_line(t_scene *scene, char *line);
+int		ft_get_scene(t_scene *scene, char *argv1);
+int		ft_parse_line(t_scene *scene, char *line);
 char	*get_one_line(int fd);
 
 //	CREATE AMBIENT
@@ -142,12 +136,8 @@ bool	ft_check_coords(char *coords);
 
 //	CREATE CAMERA
 int			ft_create_camera(t_scene *scene, char **cam);
-bool		ft_check_orientation_vector(char *orientation);
-//t_4x4		view_transform(t_tuple from, t_tuple to, t_tuple up);
 t_4x4		view_transform(t_tuple origin, t_tuple direction);
-bool	ft_camera(t_scene *scene, float field_of_view, char *point_of_view, char *orientation_vector);
-//t_ray	ray_for_pixel(t_camera c, float px, float py);
-mlx_image_t	*ft_render(mlx_t *mlx, t_camera camera, t_world world);
+bool		ft_camera(t_scene *scene, float field_of_view, char *point_of_view, char *orientation_vector);
 t_4x4		ft_orientation(t_tuple left, t_tuple true_up, t_tuple forward);
 
 //	CREATE SPHERE

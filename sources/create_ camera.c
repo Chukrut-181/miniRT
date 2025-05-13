@@ -91,48 +91,4 @@ int	ft_create_camera(t_scene *scene, char **cam_data)
 	return (0);
 }
 
-/* t_camera	ft_create_camera(int hsize, int vsize, float field_of_view)
-{
-	t_camera	c;
-	float		half_view;
-	int			aspect;
-
-	c = ft_camera(hsize, vsize, field_of_view);
-	half_view = tanf(c.field_of_view / 2);
-	aspect = ((float)c.hsize / c.vsize);
-	if (aspect >= 1)
-	{
-		c.half_width = half_view;
-		c.half_height = half_view / aspect;
-	}
-	else
-	{
-		c.half_width = half_view * aspect;
-		c.half_height = half_view;
-	}
-	c.pixel_size = (c.half_width * 2) / c.hsize;
-	return (c);
-} */
-
-t_ray	ray_for_pixel(t_camera c, float px, float py)
-{
-	float	 xoffset;
-	float	 yoffset;
-	float	 world_x;
-	float	 world_y;
-	t_tuple	pixel;
-	t_tuple	origin;
-	t_tuple	direction;
-
-	xoffset = (px + 0.5) * c.pixel_size;
-	yoffset = (py + 0.5) * c.pixel_size;
-	
-	world_x = c.half_width - xoffset;
-	world_y = c.half_height - yoffset;
-	
-	pixel = ft_multiply_mat_and_tuple(ft_find_inverse(c.transform), ft_create_point(world_x, world_y, -1));
-	origin = ft_multiply_mat_and_tuple(ft_find_inverse(c.transform), ft_create_point(0, 0, 0));
-	direction = ft_normalize(ft_substract_tuples(pixel, origin));
-	return (ft_create_ray(origin, direction));
-}
 
