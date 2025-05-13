@@ -63,6 +63,8 @@ int	ft_create_camera(t_scene *scene, char **cam_data)
 	float		half_view;
 	int			aspect;
 
+	if (scene->camera != NULL)
+		return (1);
 	scene->camera = malloc(sizeof(t_camera));
 	if (!scene->camera)
 		return (1);

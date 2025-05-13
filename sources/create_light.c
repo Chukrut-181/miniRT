@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 15:51:55 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/13 13:12:58 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/13 13:57:04 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ int	ft_create_light(t_world *world, char **light)
 {
 	float	aux;
 
+	if (world->light != NULL)
+		return (1);
 	world->light = malloc(sizeof(t_light));
 	if (world->light == NULL)
 		return (1);
