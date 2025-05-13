@@ -6,7 +6,7 @@
 #    By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/19 10:29:45 by igchurru          #+#    #+#              #
-#    Updated: 2025/04/03 10:50:32 by igchurru         ###   ########.fr        #
+#    Updated: 2025/05/13 10:33:05 by igchurru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,17 +40,7 @@ $(NAME): $(OBJS) $(LIBS)
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
-# Create the operations subdirectory
-$(OBJ_DIR)/operations:
-	@mkdir -p $(OBJ_DIR)/operations
-
-$(OBJ_DIR)/parse:
-	@mkdir -p $(OBJ_DIR)/parse
-
-$(OBJ_DIR)/test:
-	@mkdir -p $(OBJ_DIR)/test
-
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR) $(OBJ_DIR)/operations $(OBJ_DIR)/parse $(OBJ_DIR)/test
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

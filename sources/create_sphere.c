@@ -6,11 +6,30 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 10:05:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/07 14:19:23 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/13 12:31:35 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
+
+t_material	ft_create_material(char *rgb_code)
+{
+	t_material m;
+	char **split;
+
+	m.ambient = 0.2;
+	m.diffuse = 0.7;
+	m.specular = 0.9;
+	m.shininess = 150.0;
+	split = ft_split(rgb_code, ',');
+	if (!split || !split[0] || !split[1] || !split[2])
+		m.color = ft_create_color(1.0, 1.0, 1.0);
+	else
+		m.color = ft_create_color(ft_atof(split[0]), ft_atof(split[1]), ft_atof(split[2]));
+	if (split)
+		free(split);
+	return (m);
+}
 
 int	ft_create_sphere(t_scene *scene, char **ball)
 {

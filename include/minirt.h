@@ -31,9 +31,6 @@
 
 int	main(int argc, char **argv);
 
-//	MINIRT
-int	ft_minirt(void);
-
 //	TUPLE CREATION
 t_tuple	ft_create_point(float x, float y, float z);
 t_color	ft_create_color(float x, float y, float z);
