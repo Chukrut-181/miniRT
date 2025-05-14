@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 10:05:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/13 13:15:35 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/14 11:50:49 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_material	ft_create_material(char *rgb_code)
 	else
 		m.color = ft_create_color(ft_atof(split[0]), ft_atof(split[1]), ft_atof(split[2]));
 	if (split)
-		free(split);
+		ft_free_array(split);
 	return (m);
 }
 
