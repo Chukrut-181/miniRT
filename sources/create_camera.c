@@ -62,12 +62,11 @@ int	ft_create_camera(t_scene *scene, char **cam_data)
 	float		half_view;
 	int			aspect;
 
-	if (scene->camera != NULL)
-		return (1);
-	scene->camera = malloc(sizeof(t_camera));
-	if (!scene->camera)
+	if (scene->camera->field_of_view != 0)
 		return (1);
 	fov = ft_atof(cam_data[3]);
+	if (fov <= 0 || 180 < fov)
+		return (1);
 	if(!ft_aim_camera(scene->camera, fov, cam_data[1], cam_data[2]))
 		return (1);
 	half_view = tanf(fov / 2);
