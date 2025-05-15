@@ -56,21 +56,21 @@ bool	ft_aim_camera(t_camera *cam1, float fov, char *point_of_view, char *orienta
 	return (true);
 }
 
-int	ft_create_camera(t_scene *scene, char **cam_data)
+bool	ft_create_camera(t_scene *scene, char **cam_data)
 {
 	float		fov;
 	float		half_view;
-	int			aspect;
+	float		aspect;
 
 	if (scene->camera->field_of_view != 0)
-		return (1);
+		return (false);
 	fov = ft_atof(cam_data[3]);
 	if (fov <= 0 || 180 < fov)
-		return (1);
+		return (false);
 	if(!ft_aim_camera(scene->camera, fov, cam_data[1], cam_data[2]))
-		return (1);
-	half_view = tanf(fov / 2);
-	aspect = ((float)HEIGHT / WIDTH);
+		return (false);
+	half_view = tanf((fov * M_PI / 180) / 2);
+	aspect = (float)HEIGHT / (float)WIDTH;
 	if (aspect >= 1)
 	{
 		scene->camera->half_width = half_view;
@@ -82,7 +82,7 @@ int	ft_create_camera(t_scene *scene, char **cam_data)
 		scene->camera->half_height = half_view;
 	}
 	scene->camera->pixel_size = (scene->camera->half_width * 2) / scene->camera->hsize;
-	return (0);
+	return (true);
 }
 
 

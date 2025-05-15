@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/15 11:31:40 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/15 12:08:22 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ static void ft_parsingcheckerprinter(t_scene *scene)
 		printf("Origin: (%.4f, %.4f, %.4f)\n", scene->camera->origin.x, scene->camera->origin.y, scene->camera->origin.z);
 		printf("Direction: (%.4f, %.4f, %.4f)\n", scene->camera->transform.data[2][0], scene->camera->transform.data[2][1], scene->camera->transform.data[2][2]);
 		printf("Field of view: %f\n", scene->camera->field_of_view);
+		printf("Pixel size: %f\n", scene->camera->pixel_size);
+		printf("Half width: %f\n", scene->camera->half_width);
+		printf("Half height: %f\n", scene->camera->half_height);
+		printf("Horizontal size: %.4f\n", scene->camera->hsize);
+		printf("Vertical size: %.4f\n", scene->camera->vsize);	
 		printf("Associated Transformation Matrix:\n");
 		ft_4x4_checkprinter(scene->camera->transform);
 		printf("\n");
@@ -57,8 +62,8 @@ static void ft_parsingcheckerprinter(t_scene *scene)
 	{
 		if (scene->world->light)
 		{
-			printf("WORLD\n");
-			printf("Light:\n");
+			printf("WORLD\n\n");
+			printf("LIGHT in WORLD:\n");
 			printf("Source XYZ: (%.4f, %.4f, %.4f)\n", scene->world->light->source.x, scene->world->light->source.y, scene->world->light->source.z);
 			printf("Color RGB[0-1]: (%.4f, %.4f, %.4f)\n", scene->world->light->l_color.r, scene->world->light->l_color.g, scene->world->light->l_color.b);
 			printf("Intensity: %.4f\n", scene->world->light->intensity);
@@ -66,7 +71,7 @@ static void ft_parsingcheckerprinter(t_scene *scene)
 		}
 		if (scene->world->objects)
 		{
-			printf("OBJECTS detected in world:\n");
+			printf("OBJECTS present in WORLD:\n");
 			while (scene->world->objects)
 			{
 				t_shape *shape = scene->world->objects->content;

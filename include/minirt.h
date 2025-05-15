@@ -108,7 +108,7 @@ int		ft_get_scene(t_scene *scene, char *argv1);
 bool		ft_parse_line(t_scene *scene, char *line);
 char	*get_one_line(int fd);
 int	create_ambient_light(t_scene *s, char **res);
-int	create_camera(char **str, t_scene *s);
+
 int	create_light(char **res, t_scene *s);
 int	create_sphere(char **res, t_scene *s);
 int	check_rgb(char *str, t_scene *data);
@@ -132,7 +132,7 @@ int		ft_create_light(t_world *world, char **light);
 bool	ft_check_coords(char *coords);
 
 //	CREATE CAMERA
-int			ft_create_camera(t_scene *scene, char **cam);
+bool		ft_create_camera(t_scene *scene, char **cam);
 t_4x4		view_transform(t_tuple origin, t_tuple direction);
 bool		ft_camera(t_scene *scene, float field_of_view, char *point_of_view, char *orientation_vector);
 t_4x4		ft_orientation(t_tuple left, t_tuple true_up, t_tuple forward);
