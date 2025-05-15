@@ -130,7 +130,7 @@ bool	ft_create_sphere(t_scene *scene, char **ball);
 bool	ft_create_plane(t_scene *scene, char **plane);
 
 //	CREATE CYLINDER
-int		ft_create_cylinder(t_scene *scene, char **cyl);
+bool	ft_create_cylinder(t_scene *scene, char **cyl_data);
 
 //	HOOKS
 void	ft_handle_key(mlx_key_data_t keydata, void *param);

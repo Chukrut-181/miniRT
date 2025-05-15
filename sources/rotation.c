@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 10:23:48 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/15 14:16:17 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/15 14:44:29 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,26 +51,26 @@ t_4x4	rotation_z(float radians)
 t_4x4 ft_rodriguez_rotation(float target_x, float target_y, float target_z)
 {
 	t_tuple target_n;
-    t_tuple axis;
-    float cos_th;
-    float sin_th;
-    t_4x4 rot_mx;
+	t_tuple axis;
+	float cos_th;
+	float sin_th;
+	t_4x4 rot_mx;
 
 	rot_mx = ft_create_identity_matrix();
 	target_n = ft_normalize(ft_create_vector(target_x, target_y, target_z));
-    axis = ft_normalize(ft_cross_product(ft_create_vector(0, 1, 0), target_n));
-    cos_th = (0 * target_n.x) + (1 * target_n.y) + (0 * target_n.z);
+	axis = ft_normalize(ft_cross_product(ft_create_vector(0, 1, 0), target_n));
+	cos_th = (0 * target_n.x) + (1 * target_n.y) + (0 * target_n.z);
 	sin_th = ft_calculate_magnitude(ft_cross_product(ft_create_vector(0, 1, 0), target_n));
-    if (fabsf(sin_th) < EPSILON)
-        return (rot_mx);
+	if (fabsf(sin_th) < EPSILON)
+		return (rot_mx);
 	rot_mx.data[0][0] = cos_th + axis.x * axis.x * (1.0f - cos_th);
 	rot_mx.data[0][1] = axis.x * axis.y * (1.0f - cos_th) - axis.z * sin_th;
 	rot_mx.data[0][2] = axis.x * axis.z * (1.0f - cos_th) + axis.y * sin_th;
 	rot_mx.data[1][0] = axis.y * axis.x * (1.0f - cos_th) + axis.z * sin_th;
-    rot_mx.data[1][1] = cos_th + axis.y * axis.y * (1.0f - cos_th);
-    rot_mx.data[1][2] = axis.y * axis.z * (1.0f - cos_th) - axis.x * sin_th;
-    rot_mx.data[2][0] = axis.z * axis.x * (1.0f - cos_th) - axis.y * sin_th;
-    rot_mx.data[2][1] = axis.z * axis.y * (1.0f - cos_th) + axis.x * sin_th;
-    rot_mx.data[2][2] = cos_th + axis.z * axis.z * (1.0f - cos_th);
-    return (rot_mx);
+	rot_mx.data[1][1] = cos_th + axis.y * axis.y * (1.0f - cos_th);
+	rot_mx.data[1][2] = axis.y * axis.z * (1.0f - cos_th) - axis.x * sin_th;
+	rot_mx.data[2][0] = axis.z * axis.x * (1.0f - cos_th) - axis.y * sin_th;
+	rot_mx.data[2][1] = axis.z * axis.y * (1.0f - cos_th) + axis.x * sin_th;
+	rot_mx.data[2][2] = cos_th + axis.z * axis.z * (1.0f - cos_th);
+	return (rot_mx);
 }
