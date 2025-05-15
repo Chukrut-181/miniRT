@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/15 12:55:31 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/15 13:21:20 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,12 @@ static void ft_parsingcheckerprinter(t_scene *scene)
 			printf("No objects in the world.\n");
 	}
 }
-static t_scene *ft_init_scene(void)
+
+static t_scene	*ft_init_scene(void)
 {
-	t_scene *new_scene = ft_calloc(1, sizeof(t_scene));
+	t_scene *new_scene;
+
+	new_scene = ft_calloc(1, sizeof(t_scene));
 	new_scene->ambient = ft_calloc(1, sizeof(t_ambient));
 	new_scene->camera = ft_calloc(1, sizeof(t_camera));
 	new_scene->world = ft_calloc(1, sizeof(t_world));
@@ -113,11 +116,10 @@ static t_scene *ft_init_scene(void)
 	return (new_scene);
 }
 
-
 int	main(int argc, char **argv)
 {
 	t_scene	*scene;
-	
+
 	if (argc != 2)
 		ft_error_exit(NULL, "Error\nUsage: ./miniRT <arg1>", 1);
 	scene = ft_init_scene();
@@ -125,7 +127,7 @@ int	main(int argc, char **argv)
 	ft_parsingcheckerprinter(scene);
 	//write(1, "Rendering..\n", 13); 
 	//render_scene(scene);
-    //write(1, "Finished\n", 9);
+	//write(1, "Finished\n", 9);
 	//mlx_image_to_window(scene->mlx, scene->image, 0, 0);
 	//mlx_loop(scene->mlx);
 	//mlx_terminate(scene->mlx);

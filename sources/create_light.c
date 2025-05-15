@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 15:51:55 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/15 12:34:00 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/15 13:15:28 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,21 @@ bool	ft_check_coords(char *coords)
 	temp = ft_split(coords, ',');
 	if (ft_arraylen(temp) != 3)
 		return (ft_free_array(temp), false);
-	i = 0;
-	while (i < 3)
+	i = -1;
+	while (++i < 3)
 	{
-		j = 0;
+		j = -1;
 		checker = 0;
-		while (temp[i][j])
+		while (temp[i][++j])
 		{
-			if ((temp[i][j] == '-' && j != 0) || (temp[i][j] == '.' && checker == 1) || (!ft_isdigit(temp[i][j]) && j != 0 && (temp[i][j] != '.')))
+			if ((temp[i][j] == '-' && j != 0)
+				|| (temp[i][j] == '.' && checker == 1)
+				|| (!ft_isdigit(temp[i][j]) && j != 0
+				&& (temp[i][j] != '.')))
 				return (ft_free_array(temp), false);
 			if (temp[i][j] == '.')
 				checker = 1;
-			j++;
 		}
-		i++;
 	}
 	return (ft_free_array(temp), true);
 }

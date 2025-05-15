@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_camera.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/15 13:11:13 by igchurru          #+#    #+#             */
+/*   Updated: 2025/05/15 13:13:30 by igchurru         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minirt.h"
 
 t_4x4	ft_orientation(t_tuple left, t_tuple true_up, t_tuple forward)
@@ -8,11 +20,9 @@ t_4x4	ft_orientation(t_tuple left, t_tuple true_up, t_tuple forward)
 	matrix.data[0][0] = left.x;
 	matrix.data[0][1] = left.y;
 	matrix.data[0][2] = left.z;
-
 	matrix.data[1][0] = true_up.x;
 	matrix.data[1][1] = true_up.y;
 	matrix.data[1][2] = true_up.z;
-
 	matrix.data[2][0] = forward.x;
 	matrix.data[2][1] = forward.y;
 	matrix.data[2][2] = forward.z;
@@ -21,9 +31,9 @@ t_4x4	ft_orientation(t_tuple left, t_tuple true_up, t_tuple forward)
 
 t_4x4	view_transform(t_tuple origin, t_tuple direction)
 {
-	t_tuple up_normal;
-	t_tuple left_vector;
-	t_tuple neg_or;
+	t_tuple	up_normal;
+	t_tuple	left_vector;
+	t_tuple	neg_or;
 	t_4x4	orientation;
 	t_4x4	res;
 
@@ -67,7 +77,7 @@ bool	ft_create_camera(t_scene *scene, char **cam_data)
 	fov = ft_atof(cam_data[3]);
 	if (fov <= 0 || 180 < fov)
 		return (false);
-	if(!ft_aim_camera(scene->camera, fov, cam_data[1], cam_data[2]))
+	if (!ft_aim_camera(scene->camera, fov, cam_data[1], cam_data[2]))
 		return (false);
 	half_view = tanf((fov * M_PI / 180) / 2);
 	aspect = (float)HEIGHT / (float)WIDTH;
@@ -84,5 +94,3 @@ bool	ft_create_camera(t_scene *scene, char **cam_data)
 	scene->camera->pixel_size = (scene->camera->half_width * 2) / scene->camera->hsize;
 	return (true);
 }
-
-

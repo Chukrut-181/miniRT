@@ -118,10 +118,10 @@ bool	ft_create_light(t_scene *scene, char **light);
 bool	ft_check_coords(char *coords);
 
 //	CREATE CAMERA
-bool		ft_create_camera(t_scene *scene, char **cam);
-bool		ft_aim_camera(t_scene *scene, float field_of_view, char *point_of_view, char *orientation_vector);
-t_4x4		view_transform(t_tuple origin, t_tuple direction);
-t_4x4		ft_orientation(t_tuple left, t_tuple true_up, t_tuple forward);
+bool	ft_create_camera(t_scene *scene, char **cam);
+bool	ft_aim_camera(t_camera *cam1, float fov, char *point_of_view, char *orientation_vector);
+t_4x4	view_transform(t_tuple origin, t_tuple direction);
+t_4x4	ft_orientation(t_tuple left, t_tuple true_up, t_tuple forward);
 
 //	CREATE SPHERE
 bool	ft_create_sphere(t_scene *scene, char **ball);
