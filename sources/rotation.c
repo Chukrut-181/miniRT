@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 10:23:48 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/07 15:08:22 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/15 14:16:17 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,54 +48,29 @@ t_4x4	rotation_z(float radians)
 	return (rotation_z);
 }
 
-// Function to create the rotation matrix to align (0, 1, 0) to target_normal
-t_4x4 ft_rotate_plane(float target_x, float target_y, float target_z)
+t_4x4 ft_rodriguez_rotation(float target_x, float target_y, float target_z)
 {
-    t_tuple initial_normal;
-	t_tuple target_normal;
-    t_tuple rotation_axis;
-    float cos_theta;
-    float sin_theta;
-    t_4x4 rotation_matrix;
+	t_tuple target_n;
+    t_tuple axis;
+    float cos_th;
+    float sin_th;
+    t_4x4 rot_mx;
 
-	initial_normal = ft_create_vector(0, 1, 0);
-	target_normal = ft_normalize(ft_create_vector(target_x, target_y, target_z));
-
-    // Calculate the axis of rotation
-    rotation_axis = ft_normalize(ft_cross_product(initial_normal, target_normal));
-
-    // Calculate the angle of rotation
-    cos_theta = (initial_normal.x * target_normal.x) + (initial_normal.y * target_normal.y) + (initial_normal.z * target_normal.z);
-    sin_theta = sqrtf(1.0f - cos_theta * cos_theta);
-
-    // Handle the case where the normals are the same or opposite
-    if (fabsf(sin_theta) < EPSILON)
-        return (ft_create_identity_matrix());
-
-    float kx = rotation_axis.x;
-    float ky = rotation_axis.y;
-    float kz = rotation_axis.z;
-    float one_minus_cos = 1.0f - cos_theta;
-
-    rotation_matrix.data[0][0] = cos_theta + kx * kx * one_minus_cos;
-    rotation_matrix.data[0][1] = kx * ky * one_minus_cos - kz * sin_theta;
-    rotation_matrix.data[0][2] = kx * kz * one_minus_cos + ky * sin_theta;
-    rotation_matrix.data[0][3] = 0.0f;
-
-    rotation_matrix.data[1][0] = ky * kx * one_minus_cos + kz * sin_theta;
-    rotation_matrix.data[1][1] = cos_theta + ky * ky * one_minus_cos;
-    rotation_matrix.data[1][2] = ky * kz * one_minus_cos - kx * sin_theta;
-    rotation_matrix.data[1][3] = 0.0f;
-
-    rotation_matrix.data[2][0] = kz * kx * one_minus_cos - ky * sin_theta;
-    rotation_matrix.data[2][1] = kz * ky * one_minus_cos + kx * sin_theta;
-    rotation_matrix.data[2][2] = cos_theta + kz * kz * one_minus_cos;
-    rotation_matrix.data[2][3] = 0.0f;
-
-    rotation_matrix.data[3][0] = 0.0f;
-    rotation_matrix.data[3][1] = 0.0f;
-    rotation_matrix.data[3][2] = 0.0f;
-    rotation_matrix.data[3][3] = 1.0f;
-
-    return (rotation_matrix);
+	rot_mx = ft_create_identity_matrix();
+	target_n = ft_normalize(ft_create_vector(target_x, target_y, target_z));
+    axis = ft_normalize(ft_cross_product(ft_create_vector(0, 1, 0), target_n));
+    cos_th = (0 * target_n.x) + (1 * target_n.y) + (0 * target_n.z);
+	sin_th = ft_calculate_magnitude(ft_cross_product(ft_create_vector(0, 1, 0), target_n));
+    if (fabsf(sin_th) < EPSILON)
+        return (rot_mx);
+	rot_mx.data[0][0] = cos_th + axis.x * axis.x * (1.0f - cos_th);
+	rot_mx.data[0][1] = axis.x * axis.y * (1.0f - cos_th) - axis.z * sin_th;
+	rot_mx.data[0][2] = axis.x * axis.z * (1.0f - cos_th) + axis.y * sin_th;
+	rot_mx.data[1][0] = axis.y * axis.x * (1.0f - cos_th) + axis.z * sin_th;
+    rot_mx.data[1][1] = cos_th + axis.y * axis.y * (1.0f - cos_th);
+    rot_mx.data[1][2] = axis.y * axis.z * (1.0f - cos_th) - axis.x * sin_th;
+    rot_mx.data[2][0] = axis.z * axis.x * (1.0f - cos_th) - axis.y * sin_th;
+    rot_mx.data[2][1] = axis.z * axis.y * (1.0f - cos_th) + axis.x * sin_th;
+    rot_mx.data[2][2] = cos_th + axis.z * axis.z * (1.0f - cos_th);
+    return (rot_mx);
 }

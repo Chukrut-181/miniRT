@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 11:07:45 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/15 13:07:08 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/15 14:18:35 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ bool	ft_create_plane(t_scene *scene, char **surface)
 	if (!ft_check_coords(surface[2]))
 		return (free(plane), false);
 	coords = ft_split(surface[2], ',');
-	rotate = ft_rotate_plane(ft_atof(coords[0]), ft_atof(coords[1]), ft_atof(coords[2]));
+	rotate = ft_rodriguez_rotation(ft_atof(coords[0]), ft_atof(coords[1]), ft_atof(coords[2]));
 	ft_free_array(coords);
 	plane->transform_matrix = ft_multiply_matrices(translate, rotate);
 	plane->inverse_matrix = ft_find_inverse(plane->transform_matrix);
