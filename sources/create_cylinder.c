@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:52:50 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/15 15:16:43 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/15 15:51:18 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ bool	ft_create_cylinder(t_scene *scene, char **cyl_data)
 	t_4x4	translation_matrix;
 	t_4x4	rotation_matrix;
 	t_4x4	scalation_matrix;
-    char	**coords;
-    float	radius;
-    float	height;
+	char	**coords;
+	float	radius;
+	float	height;
 
 	cylinder = malloc(sizeof(t_shape));
 	if (!cylinder)
@@ -39,7 +39,7 @@ bool	ft_create_cylinder(t_scene *scene, char **cyl_data)
 	radius = (ft_atof(cyl_data[3]) / 2.0);
 	height = ft_atof(cyl_data[4]);
 	if (radius <= 0 || height <= 0)
-		return(free(cylinder), false);
+		return (free(cylinder), false);
 	scalation_matrix = create_scaling_mx(radius, radius, height);
 	cylinder->transform_matrix = ft_multiply_matrices(translation_matrix, ft_multiply_matrices(scalation_matrix, rotation_matrix));
 	cylinder->inverse_matrix = ft_find_inverse(cylinder->transform_matrix);

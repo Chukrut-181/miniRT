@@ -101,7 +101,8 @@ t_4x4	view_transform(t_tuple origin, t_tuple direction);
 t_4x4	ft_orientation(t_tuple left, t_tuple true_up, t_tuple forward);
 
 //	CREATE SPHERE
-bool	ft_create_sphere(t_scene *scene, char **ball);
+bool		ft_create_sphere(t_scene *scene, char **ball);
+t_material	ft_create_material(char *rgb_code);
 
 //	CREATE PLANE
 bool	ft_create_plane(t_scene *scene, char **plane);

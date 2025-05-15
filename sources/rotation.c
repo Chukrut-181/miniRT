@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 10:23:48 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/15 14:44:29 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/15 15:49:05 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ t_4x4	rotation_z(float radians)
 
 t_4x4 ft_rodriguez_rotation(float target_x, float target_y, float target_z)
 {
-	t_tuple target_n;
-	t_tuple axis;
-	float cos_th;
-	float sin_th;
-	t_4x4 rot_mx;
+	t_tuple	target_n;
+	t_tuple	axis;
+	float	cos_th;
+	float	sin_th;
+	t_4x4	rot_mx;
 
 	rot_mx = ft_create_identity_matrix();
 	target_n = ft_normalize(ft_create_vector(target_x, target_y, target_z));
