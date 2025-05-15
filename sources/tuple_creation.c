@@ -6,27 +6,12 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:08:59 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/08 13:00:59 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/15 15:40:24 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-/*
- * ft_create_point - Creates a point in a 3D space using the given
- *                   coordinates (x, y, z).
- *
- * @x: The x-coordinate of the point.
- * @y: The y-coordinate of the point.
- * @z: The z-coordinate of the point.
- *
- * This function initializes a t_tuple structure with the provided
- * x, y, and z values. The 'w' component is set to 1, which
- * indicates that the tuple represents a point (not a vector) in
- * homogeneous coordinates.
- *
- * Return: A t_tuple structure representing a point in 3D space.
- */
 t_color	ft_create_color(float x, float y, float z)
 {
 	t_color	new_point;
@@ -48,21 +33,6 @@ t_tuple	ft_create_point(float x, float y, float z)
 	return (new_point);
 }
 
-/*
- * ft_create_vector - Creates a vector in a 3D space using the given
- *                    components (x, y, z).
- *
- * @x: The x-component of the vector.
- * @y: The y-component of the vector.
- * @z: The z-component of the vector.
- *
- * This function initializes a t_tuple structure with the provided
- * x, y, and z values. The 'w' component is set to 0, which
- * indicates that the tuple represents a vector (not a point) in
- * homogeneous coordinates.
- *
- * Return: A t_tuple structure representing a vector in 3D space.
- */
 t_tuple	ft_create_vector(float x, float y, float z)
 {
 	t_tuple	new_vector;
@@ -74,20 +44,6 @@ t_tuple	ft_create_vector(float x, float y, float z)
 	return (new_vector);
 }
 
-/**
- * ft_check_equality - 	Compares two t_tuple structures for equality
- * 						within a small tolerance.
- * 
- * This function checks if the x, y, and z components of two given t_tuple 
- * structures are approximately equal within the defined EPSILON threshold.
- * This approach accounts for floating-point precision errors.
- * 
- * param tuple1: The first tuple to compare.
- * param tuple2: The second tuple to compare.
- * 
- * Return: Returns 0 if the tuples are considered equal within EPSILON,
- *         otherwise returns 1.
- */
 int	ft_check_equality(t_tuple tuple1, t_tuple tuple2)
 {
 	if ((fabsf(tuple1.x - tuple2.x) < EPSILON)
@@ -98,23 +54,10 @@ int	ft_check_equality(t_tuple tuple1, t_tuple tuple2)
 		return (1);
 }
 
-t_point	create_point(double x, double y, double z)
-{
-	t_point	new;
-
-	new.x = x;
-	new.y = y;
-	new.z = z;
-	return (new);
-}
-
 t_tuple	color_tp(t_color p)
 {
 	t_tuple	tp;
-	float	w;
 
-	w = 1.0;
 	tp = ft_create_point(p.r, p.g, p.b);
-	tp.w = w;
 	return (tp);
 }
