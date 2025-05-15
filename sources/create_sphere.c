@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 10:05:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/15 13:00:18 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/15 13:02:43 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,17 @@ bool	ft_create_sphere(t_scene *scene, char **ball)
 
 	sphere = malloc(sizeof(t_shape));
 	if (!sphere)
-		ft_error_exit(scene, "Failed to allocate sphere", 1);
+		ft_error_exit(scene, "Failed to allocate memory for sphere", 1);
 	sphere->type = SPHERE;
 	if (!ft_check_coords(ball[1]))
-		return (false);
+		return (free(sphere), false);
 	center = ft_split(ball[1], ',');
 	translate = create_translation_mx(ft_atof(center[0]), ft_atof(center[1]), ft_atof(center[2]));
 	ft_free_array(center);
 	diameter = ft_atof(ball[2]);
 	scalate = create_scaling_mx(diameter, diameter, diameter);
 	if (!ft_check_rgb(ball[3]))
-		return (false);
+		return (free(sphere), false);
 	sphere->material = ft_create_material(ball[3]);
 	sphere->transform_matrix = ft_multiply_matrices(translate, scalate);
 	sphere->inverse_matrix = ft_find_inverse(sphere->transform_matrix);
