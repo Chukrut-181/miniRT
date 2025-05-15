@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:44:53 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/15 11:20:27 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/15 11:27:32 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,26 +40,26 @@ char	*get_one_line(int fd)
 	return (str);
 }
 
-int	ft_parse_line(t_scene *scene, char *line)
+bool	ft_parse_line(t_scene *scene, char *line)
 {
 	char	**temp;
 
 	temp = ft_split(line, ' ');
 	if (!ft_strncmp(temp[0], "A", 1) && ft_arraylen(temp) == 3 && ft_create_ambient(scene, temp))
-		return (ft_free_array(temp), 0);
+		return (ft_free_array(temp), true);
 	else if (!ft_strncmp(temp[0], "C", 1) && ft_arraylen(temp) == 4	&& !ft_create_camera(scene, temp))
-		return (ft_free_array(temp), 0);
+		return (ft_free_array(temp), true);
 	else if (!ft_strncmp(temp[0], "L", 1) && ft_arraylen(temp) == 4	&& !ft_create_light(scene->world, temp))
-		return (ft_free_array(temp), 0);
+		return (ft_free_array(temp), true);
 	else if (!ft_strncmp(temp[0], "sp", 2) && ft_arraylen(temp) == 4 && !ft_create_sphere(scene, temp))
-		return (ft_free_array(temp), 0);
+		return (ft_free_array(temp), true);
 	else if (!ft_strncmp(temp[0], "pl", 2) && ft_arraylen(temp) == 4 && !ft_create_plane(scene, temp))
-		return (ft_free_array(temp), 0);
+		return (ft_free_array(temp), true);
 	// else if (!ft_strncmp(temp[0], "cy", 2) && ft_arraylen(temp) == 6
 	// 	&& !ft_create_cylinder(scene, temp))
 	// 	return (ft_free_array(temp), 0);
 	else
-		return (ft_free_array(temp), 1);
+		return (ft_free_array(temp), false);
 }
 
 static void ft_open_scene(t_scene *scene, char *argv1, int *fd)
@@ -86,7 +86,7 @@ int	ft_get_scene(t_scene *scene, char *argv1)
 	line = get_one_line(fd);
 	while (line && ft_strlen(line) > 0)
 	{
-		if (*line != '\n' && ft_parse_line(scene, line))
+		if (*line != '\n' && !ft_parse_line(scene, line))
 		{
 			free(line);
 			ft_error_exit(scene, "Error\nIncorrect format encountered", 1);

@@ -104,7 +104,9 @@ t_list *ft_sort_intersections(t_list *intersections);
 t_list *ft_intersect_world(t_world world, t_ray ray);
 
 //	PARSE
-void	parse(t_scene *s, char **argv);
+int		ft_get_scene(t_scene *scene, char *argv1);
+bool		ft_parse_line(t_scene *scene, char *line);
+char	*get_one_line(int fd);
 int	create_ambient_light(t_scene *s, char **res);
 int	create_camera(char **str, t_scene *s);
 int	create_light(char **res, t_scene *s);
@@ -117,10 +119,8 @@ t_color	shade_hit(t_world w, t_comps comps);
 bool	intersec_plane(t_shape *shape, t_list **inter);
 bool	intersec_sphere(t_shape *shape, t_list **inter);
 
-//	PARSE
-int		ft_get_scene(t_scene *scene, char *argv1);
-int		ft_parse_line(t_scene *scene, char *line);
-char	*get_one_line(int fd);
+
+
 
 //	CREATE AMBIENT
 bool	ft_create_ambient(t_scene *scene, char **ambient);
