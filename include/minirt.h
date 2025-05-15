@@ -119,16 +119,13 @@ t_color	shade_hit(t_world w, t_comps comps);
 bool	intersec_plane(t_shape *shape, t_list **inter);
 bool	intersec_sphere(t_shape *shape, t_list **inter);
 
-
-
-
 //	CREATE AMBIENT
 bool	ft_create_ambient(t_scene *scene, char **ambient);
 bool	ft_check_rgb(char *colorcode);
 bool	ft_apply_rgb(t_color *color, char *original);
 
 //	CREATE LIGHT
-int		ft_create_light(t_world *world, char **light);
+bool		ft_create_light(t_scene *scene, char **light);
 bool	ft_check_coords(char *coords);
 
 //	CREATE CAMERA

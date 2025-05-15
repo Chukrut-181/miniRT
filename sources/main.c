@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/15 12:08:22 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/15 12:35:26 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ static void ft_parsingcheckerprinter(t_scene *scene)
 		{
 			printf("WORLD\n\n");
 			printf("LIGHT in WORLD:\n");
-			printf("Source XYZ: (%.4f, %.4f, %.4f)\n", scene->world->light->source.x, scene->world->light->source.y, scene->world->light->source.z);
+			printf("Source XYZ: (%.2f, %.2f, %.2f)\n", scene->world->light->source.x, scene->world->light->source.y, scene->world->light->source.z);
 			printf("Color RGB[0-1]: (%.4f, %.4f, %.4f)\n", scene->world->light->l_color.r, scene->world->light->l_color.g, scene->world->light->l_color.b);
-			printf("Intensity: %.4f\n", scene->world->light->intensity);
+			printf("Intensity: %.2f\n", scene->world->light->intensity);
 			printf("\n");
 		}
 		if (scene->world->objects)

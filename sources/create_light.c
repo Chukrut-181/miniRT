@@ -6,13 +6,13 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 15:51:55 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/13 13:57:04 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/15 12:34:00 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-static bool	ft_apply_light_coords(t_world *world, char *coords)
+static bool	ft_apply_light_coords(t_scene *scene, char *coords)
 {
 	char	**split;
 	float	aux;
@@ -26,14 +26,14 @@ static bool	ft_apply_light_coords(t_world *world, char *coords)
 	{
 		aux = ft_atof(split[i]);
 		if (i == 0)
-			world->light->source.x = aux;
+			scene->world->light->source.x = aux;
 		else if (i == 1)
-			world->light->source.y = aux;
+			scene->world->light->source.y = aux;
 		else if (i == 2)
-			world->light->source.z = aux;
+			scene->world->light->source.z = aux;
 		i++;
 	}
-	world->light->source.w = 1;
+	scene->world->light->source.w = 1;
 	ft_free_array(split);
 	return (true);
 }
@@ -66,26 +66,24 @@ bool	ft_check_coords(char *coords)
 	return (ft_free_array(temp), true);
 }
 
-int	ft_create_light(t_world *world, char **light)
+bool	ft_create_light(t_scene *scene, char **light)
 {
 	float	aux;
 
-	if (world->light != NULL)
-		return (1);
-	world->light = malloc(sizeof(t_light));
-	if (world->light == NULL)
-		return (1);
+	scene->world->light = malloc(sizeof(t_light));
+	if (scene->world->light == NULL)
+		return (false);
 	if (!ft_check_coords(light[1]))
-		return (1);
-	if (!ft_apply_light_coords(world, light[1]))
-		return (1);
+		return (false);
+	if (!ft_apply_light_coords(scene, light[1]))
+		return (false);
 	aux = ft_atof(light[2]);
 	if (aux < 0 || 1 < aux)
-		return (1);
-	world->light->intensity = aux;
+		return (false);
+	scene->world->light->intensity = aux;
 	if (!ft_check_rgb(light[3]))
-		return (1);
-	if (!ft_apply_rgb(&world->light->l_color, light[3]))
-		return (1);
-	return (0);
+		return (false);
+	if (!ft_apply_rgb(&scene->world->light->l_color, light[3]))
+		return (false);
+	return (true);
 }
