@@ -123,7 +123,7 @@ int		ft_parse_line(t_scene *scene, char *line);
 char	*get_one_line(int fd);
 
 //	CREATE AMBIENT
-int		ft_create_ambient(t_scene *scene, char **ambient);
+bool	ft_create_ambient(t_scene *scene, char **ambient);
 bool	ft_check_rgb(char *colorcode);
 bool	ft_apply_rgb(t_color *color, char *original);
 
@@ -150,7 +150,7 @@ int	ft_create_plane(t_scene *scene, char **plane);
 void	ft_handle_key(mlx_key_data_t keydata, void *param);
 
 //	ERROR EXIT
-int		ft_error_exit(char *err_msg, int err_code);
+int		ft_error_exit(t_scene *scene, char *err_msg, int err_code);
 void	ft_free_scene(t_scene *scene);
 
 //	TEST FUNCTIONS (to be removed)

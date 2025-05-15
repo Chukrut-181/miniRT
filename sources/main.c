@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/14 13:52:01 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/15 11:13:20 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,40 +95,27 @@ static void ft_parsingcheckerprinter(t_scene *scene)
 }
 static t_scene *ft_init_scene(void)
 {
-	t_scene *new_scene = malloc(sizeof(t_scene));
-	if (!new_scene)
-		return (NULL);
-	new_scene->ambient = NULL;
+	t_scene *new_scene = ft_calloc(1, sizeof(t_scene));
+	new_scene->ambient = ft_calloc(1, sizeof(t_ambient));
 	new_scene->camera = ft_calloc(1, sizeof(t_camera));
-	new_scene->world = malloc(sizeof(t_world));
-	new_scene->mlx = NULL;
-	new_scene->image = NULL;
+	new_scene->world = ft_calloc(1, sizeof(t_world));
+	new_scene->mlx = mlx_init(WIDTH, HEIGHT, "miniRT", false);
+	new_scene->image = mlx_new_image(new_scene->mlx, WIDTH, HEIGHT);
+	if (!new_scene || !new_scene->ambient || !new_scene->camera || !new_scene->world || !new_scene->mlx || !new_scene->image)
+		ft_error_exit(new_scene, "Error\nFailed to initialize scene", 1);
 	return (new_scene);
 }
 
-
-/* static	void	init_mlx(t_scene *s)
-{
-	s->mlx = mlx_init(2400, 1800, "miniRT", NULL);
-	if (!s->mlx)
-		exit(1);
-	s->image = mlx_new_image(s->mlx, 2400, 1800);
-	if (!s->image)
-		exit(1);
-} */
 
 int	main(int argc, char **argv)
 {
 	t_scene	*scene;
 	
 	if (argc != 2)
-		ft_error_exit("Error\nUsage: ./miniRT <arg1>", 1);
+		ft_error_exit(NULL, "Error\nUsage: ./miniRT <arg1>", 1);
 	scene = ft_init_scene();
-	if (scene == NULL)
-		ft_error_exit("Error\nFailed to initialize scene", 1);
 	ft_get_scene(scene, argv[1]);
 	ft_parsingcheckerprinter(scene);
-	//init_mlx(scene);
 	//write(1, "Rendering..\n", 13); 
 	//render_scene(scene);
     //write(1, "Finished\n", 9);

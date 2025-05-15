@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:44:53 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/13 13:14:17 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/15 11:20:27 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,15 @@ int	ft_parse_line(t_scene *scene, char *line)
 	char	**temp;
 
 	temp = ft_split(line, ' ');
-	if (!ft_strncmp(temp[0], "A", 1) && ft_arraylen(temp) == 3
-		&& !ft_create_ambient(scene, temp))
+	if (!ft_strncmp(temp[0], "A", 1) && ft_arraylen(temp) == 3 && ft_create_ambient(scene, temp))
 		return (ft_free_array(temp), 0);
-	else if (!ft_strncmp(temp[0], "C", 1) && ft_arraylen(temp) == 4
-		&& !ft_create_camera(scene, temp))
+	else if (!ft_strncmp(temp[0], "C", 1) && ft_arraylen(temp) == 4	&& !ft_create_camera(scene, temp))
 		return (ft_free_array(temp), 0);
-	else if (!ft_strncmp(temp[0], "L", 1) && ft_arraylen(temp) == 4
-		&& !ft_create_light(scene->world, temp))
+	else if (!ft_strncmp(temp[0], "L", 1) && ft_arraylen(temp) == 4	&& !ft_create_light(scene->world, temp))
 		return (ft_free_array(temp), 0);
-	else if (!ft_strncmp(temp[0], "sp", 2) && ft_arraylen(temp) == 4
-		&& !ft_create_sphere(scene, temp))
+	else if (!ft_strncmp(temp[0], "sp", 2) && ft_arraylen(temp) == 4 && !ft_create_sphere(scene, temp))
 		return (ft_free_array(temp), 0);
-	else if (!ft_strncmp(temp[0], "pl", 2) && ft_arraylen(temp) == 4
-		&& !ft_create_plane(scene, temp))
+	else if (!ft_strncmp(temp[0], "pl", 2) && ft_arraylen(temp) == 4 && !ft_create_plane(scene, temp))
 		return (ft_free_array(temp), 0);
 	// else if (!ft_strncmp(temp[0], "cy", 2) && ft_arraylen(temp) == 6
 	// 	&& !ft_create_cylinder(scene, temp))
@@ -67,7 +62,7 @@ int	ft_parse_line(t_scene *scene, char *line)
 		return (ft_free_array(temp), 1);
 }
 
-static void ft_open_scene(char *argv1, int *fd)
+static void ft_open_scene(t_scene *scene, char *argv1, int *fd)
 {
 	char	*aux;
 
@@ -76,7 +71,7 @@ static void ft_open_scene(char *argv1, int *fd)
 	if (*fd <= 0)
 	{
 		free(aux);
-		ft_error_exit("Error\nCould not open scene", 1);
+		ft_error_exit(scene, "Error\nCould not open scene description", 1);
 	}
 	free(aux);
 }
@@ -87,23 +82,20 @@ int	ft_get_scene(t_scene *scene, char *argv1)
 	char	*line;
 
 	fd = 0;
-	ft_open_scene(argv1, &fd);
+	ft_open_scene(scene, argv1, &fd);
 	line = get_one_line(fd);
 	while (line && ft_strlen(line) > 0)
 	{
 		if (*line != '\n' && ft_parse_line(scene, line))
 		{
 			free(line);
-			ft_error_exit("Error\nIncorrect format encountered", 1);
+			ft_error_exit(scene, "Error\nIncorrect format encountered", 1);
 		}
 		free(line);
 		line = get_one_line(fd);
 	}
 	close(fd);
-	if (!scene->ambient || !scene->camera || !scene->world->light || !scene->world->objects)
-	{
-		ft_free_scene(scene);
-		ft_error_exit("Error\nMissing mandatory elements", 1);
-	}
+	if (!scene || !scene->ambient || !scene->camera || !scene->world->light || !scene->world->objects)
+		ft_error_exit(scene, "Error\nMissing mandatory elements", 1);
 	return (0);
 }
