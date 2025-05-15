@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/15 13:21:20 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/15 15:27:47 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void ft_4x4_checkprinter(t_4x4 matrix)
 
 static void ft_parsingcheckerprinter(t_scene *scene)
 {
-	printf("\n*** SCENE PARSING CHECK ***\n\n");
+	printf("\n**** SCENE PARSING AND CREATION CHECK ****\n\n");
 	if (scene->ambient)
 	{
 		printf("AMBIENT LIGHT\n");
@@ -91,8 +91,14 @@ static void ft_parsingcheckerprinter(t_scene *scene)
 					ft_4x4_checkprinter(shape->transform_matrix);
 					printf("\n");
 				}
-				else
-					printf("Unknown shape detected!\n");
+				else if (shape->type == CYLINDER)
+				{
+					printf("Cylinder\n");
+					printf("Colors RGB[0-1]: %.3f, %.3f, %.3f\n", shape->material.color.r, shape->material.color.g, shape->material.color.b);
+					printf("Associated Transformation Matrix:\n");
+					ft_4x4_checkprinter(shape->transform_matrix);
+					printf("\n");
+				}		
 				scene->world->objects = scene->world->objects->next;
 			}
 		}
@@ -113,7 +119,9 @@ static t_scene	*ft_init_scene(void)
 	new_scene->image = mlx_new_image(new_scene->mlx, WIDTH, HEIGHT);
 	if (!new_scene || !new_scene->ambient || !new_scene->camera || !new_scene->world || !new_scene->mlx || !new_scene->image)
 		ft_error_exit(new_scene, "Error\nFailed to initialize scene", 1);
-	return (new_scene);
+	new_scene->ambient->ratio = -1;
+	new_scene->camera->field_of_view = -1;
+	return (new_scene);;
 }
 
 int	main(int argc, char **argv)

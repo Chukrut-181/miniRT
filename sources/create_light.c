@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 15:51:55 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/15 13:15:28 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/15 15:30:03 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ bool	ft_create_light(t_scene *scene, char **light)
 {
 	float	aux;
 
+	if (scene->world->light != NULL)
+		ft_error_exit(scene, "Error\nDuplicated light", 1);
 	scene->world->light = malloc(sizeof(t_light));
 	if (scene->world->light == NULL)
 		return (false);

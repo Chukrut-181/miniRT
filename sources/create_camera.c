@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 13:11:13 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/15 13:13:30 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/15 15:28:13 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ bool	ft_create_camera(t_scene *scene, char **cam_data)
 	float		half_view;
 	float		aspect;
 
-	if (scene->camera->field_of_view != 0)
-		return (false);
+	if (scene->camera->field_of_view != -1)
+		ft_error_exit(scene, "Error\nDuplicated camera", 1);
 	fov = ft_atof(cam_data[3]);
 	if (fov <= 0 || 180 < fov)
 		return (false);

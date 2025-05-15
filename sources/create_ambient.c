@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 12:18:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/15 11:16:44 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/15 15:26:54 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,9 @@ bool	ft_check_rgb(char *colorcode)
 bool	ft_create_ambient(t_scene *scene, char **ambient)
 {
 	float	aux;
-
+	
+	if (scene->ambient->ratio != -1)
+		ft_error_exit(scene, "Error\nDuplicated ambient light", 1);
 	aux = ft_atof(ambient[1]);
 	if (aux < 0 || 1 < aux)
 		return (false);
