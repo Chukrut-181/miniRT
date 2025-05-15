@@ -22,8 +22,8 @@
 
 # define EPSILON 0.00001
 
-# define HEIGHT 1800
-# define WIDTH 2400
+# define HEIGHT 900
+# define WIDTH 1200
 
 # ifndef M_PI
 #  define M_PI 3.1415926
@@ -149,6 +149,7 @@ bool	ft_camera(t_scene *scene, float field_of_view, char *point_of_view, char *o
 //t_ray	ray_for_pixel(t_camera c, float px, float py);
 //mlx_image_t	*ft_render(mlx_t *mlx, t_camera camera, t_world world);
 t_4x4		ft_orientation(t_tuple left, t_tuple true_up, t_tuple forward);
+t_camera	camera(int hsize, int vsize, double field_of_view);
 
 //	CREATE SPHERE
 int	ft_create_sphere(t_scene *scene, char **ball);

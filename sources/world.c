@@ -35,17 +35,21 @@ t_list *ft_intersect_world(t_world world, t_ray ray)
 	t_list *intersections = NULL;
 	t_list *current;
 	t_shape *shape;
+	bool	found_inter;
 
 	current = world.objects;
+	found_inter = false;
 	while (current)
 	{
 		shape = (t_shape *)current->content;
-		if (ft_intersections(ray, shape, &intersections) == false)
-		{
-			intersections->content = NULL;
-			return (intersections);
-		}
+		if (ft_intersections(ray, shape, &intersections))
+			found_inter = true;
 		current = current->next;
+	}
+	if (found_inter == false)
+	{
+		ft_lstclear(&intersections, free);
+		return (NULL);
 	}
 	//intersections = ft_sort_intersections(intersections);
 	return (intersections);
@@ -88,7 +92,7 @@ bool	is_shadowed(t_world world, t_tuple point)
 	ray = ft_create_ray(point, direction);
 	xs = ft_intersect_world(world, ray);
 	hit = ft_find_hit(xs);
-	if (hit->time && hit->time < distance)
+	if (hit && hit->time && hit->time < distance)
 		return (true);
 	else
 		return (false);
@@ -111,17 +115,19 @@ t_xs *ft_find_hit(t_list *intersections)
 	t_xs	*xs;
 	float	min_time;
 
+	if (!intersections)
+		return (NULL);
 	current = intersections;
-	hit = malloc(sizeof(t_xs));
+	hit = NULL;
 	min_time = INFINITY;
 	while (current)
 	{
 		xs = (t_xs *)current->content;
-		if (xs->time > 0 && xs->time < min_time)
+		if (xs && xs->time > EPSILON && xs->time < min_time)
 		{
 			min_time = xs->time;
-			xs->intersec = true;
 			hit = xs;
+			xs->intersec = true;
 		}
 		current = current->next;
 	}

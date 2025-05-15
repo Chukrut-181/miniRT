@@ -12,7 +12,7 @@ static void	write_pixel(double w, double h, t_color color, t_scene *scene)
 	gg = color.g * 255;
 	bb = color.b * 255;
 	color_code = rr << 16 | gg << 8 | bb;
-	dst = scene->img->data + (int)h * scene->img->size_line + (int)w * (scene->img->bits_per_pixel / 8);
+	dst = scene->img.data + (int)h * scene->img.size_line + (int)w * (scene->img.bits_per_pixel / 8);
 	*(unsigned int *)dst = color_code;
 }
 
@@ -23,16 +23,16 @@ static	t_color	calculate_inter(t_world worl, t_ray ray)
 	t_comps	comps;
 
 	inter_list = ft_intersect_world(worl, ray);
-	if (inter_list->content == NULL)
+	if (!inter_list)
 		return (ft_create_color(0, 0, 0));
 	hit = ft_find_hit(inter_list);
-	if (hit->time <= EPSILON || hit->intersec == false)
+	if (!hit || hit->time <= EPSILON || hit->intersec == false)
 		return (free(hit), ft_create_color(0, 0, 0));
 	comps = prepare_computations(hit, ray);
 	return (shade_hit(worl, comps));
 }
 
-static t_ray	ray_for_pixel(t_camera cam, int x, int y)
+static t_ray	ray_for_pixel(t_camera cam, double x, double y)
 {
 	double		xoffset;
 	double		yoffset;
@@ -67,7 +67,7 @@ void render_scene(t_scene *s)
 		while (x < WIDTH)
 		{
 			ray = ray_for_pixel(*s->camera, x, y);
-			color = calculate_inter(*s->world, ray); //color deberia de ser (0, 0, 0) pero nunca lo es.
+			color = calculate_inter(*s->world, ray);
 			write_pixel(x, y, color, s);
 			x++;
 		}

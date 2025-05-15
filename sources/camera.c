@@ -13,9 +13,9 @@ t_4x4	ft_orientation(t_tuple left, t_tuple true_up, t_tuple forward)
 	matrix.data[1][1] = true_up.y;
 	matrix.data[1][2] = true_up.z;
 
-	matrix.data[2][0] = forward.x;
-	matrix.data[2][1] = forward.y;
-	matrix.data[2][2] = forward.z;
+	matrix.data[2][0] = forward.x * -1;
+	matrix.data[2][1] = forward.y * -1;
+	matrix.data[2][2] = forward.z * -1;
 	return (matrix);
 }
 
@@ -45,12 +45,10 @@ bool	ft_camera(t_scene *scene, float field_of_view, char *point_of_view, char *o
 	t_tuple		direction;
 	char		**aux;
 
+	(void)field_of_view;
 	c = malloc(sizeof(t_camera));
 	if (!c)
 		return (false);
-	c->hsize = WIDTH;
-	c->vsize = HEIGHT;
-	c->field_of_view = field_of_view;
 	if (!ft_check_coords(orientation_vector) || !ft_check_coords(point_of_view))
 		return (free(c), false);
 	aux = ft_split(point_of_view, ',');
@@ -67,39 +65,29 @@ bool	ft_camera(t_scene *scene, float field_of_view, char *point_of_view, char *o
 int	ft_create_camera(t_scene *scene, char **cam_data)
 {
 	float		fov;
-	float		half_view;
-	int			aspect;
 
 	if (!scene->camera)
 		return (1);
 	fov = ft_atof(cam_data[3]);
 	if(!ft_camera(scene, fov, cam_data[1], cam_data[2]))
 		return (1);
-	half_view = tanf(fov / 2);
-	aspect = ((float)HEIGHT / WIDTH);
-	if (aspect >= 1)
-	{
-		scene->camera->half_width = half_view;
-		scene->camera->half_height = half_view / aspect;
-	}
-	else
-	{
-		scene->camera->half_width = half_view * aspect;
-		scene->camera->half_height = half_view;
-	}
-	scene->camera->pixel_size = (scene->camera->half_width * 2) / scene->camera->hsize;
+	*scene->camera = camera(HEIGHT, WIDTH, fov);
+	t_tuple	origin_tp = ft_multiply_mat_and_tuple(scene->camera->transform, ft_create_vector(0, 0, 0));
+	scene->camera->origin = ft_create_point(origin_tp.x, origin_tp.y, origin_tp.z);
 	return (0);
 }
 
-/* t_camera	ft_create_camera(int hsize, int vsize, float field_of_view)
+t_camera	camera(int hsize, int vsize, double field_of_view)
 {
 	t_camera	c;
 	float		half_view;
-	int			aspect;
+	float			aspect;
 
-	c = ft_camera(hsize, vsize, field_of_view);
-	half_view = tanf(c.field_of_view / 2);
-	aspect = ((float)c.hsize / c.vsize);
+	c.hsize = hsize;
+	c.vsize = vsize;
+	c.field_of_view = field_of_view;
+	half_view = tan(((field_of_view * M_PI) / 180.0) / 2);
+	aspect = (c.hsize / c.vsize);
 	if (aspect >= 1)
 	{
 		c.half_width = half_view;
@@ -112,27 +100,4 @@ int	ft_create_camera(t_scene *scene, char **cam_data)
 	}
 	c.pixel_size = (c.half_width * 2) / c.hsize;
 	return (c);
-} */
-
-t_ray	ray_for_pixel(t_camera c, float px, float py)
-{
-	float	 xoffset;
-	float	 yoffset;
-	float	 world_x;
-	float	 world_y;
-	t_tuple	pixel;
-	t_tuple	origin;
-	t_tuple	direction;
-
-	xoffset = (px + 0.5) * c.pixel_size;
-	yoffset = (py + 0.5) * c.pixel_size;
-	
-	world_x = c.half_width - xoffset;
-	world_y = c.half_height - yoffset;
-	
-	pixel = ft_multiply_mat_and_tuple(ft_find_inverse(c.transform), ft_create_point(world_x, world_y, -1));
-	origin = ft_multiply_mat_and_tuple(ft_find_inverse(c.transform), ft_create_point(0, 0, 0));
-	direction = ft_normalize(ft_substract_tuples(pixel, origin));
-	return (ft_create_ray(origin, direction));
 }
-

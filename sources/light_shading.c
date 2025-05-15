@@ -23,8 +23,9 @@ t_material	ft_create_material(char *rgb_code)
 		m.color = ft_create_color(1.0, 1.0, 1.0);
 	else
 		m.color = ft_create_color(ft_atof(split[0]), ft_atof(split[1]), ft_atof(split[2]));
+	m.a_color = m.color;
 	if (split)
-		free(split);
+		ft_free_array(split);
 	return (m);
 }
 

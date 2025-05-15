@@ -18,6 +18,7 @@ static bool	ft_apply_light_coords(t_scene *scene, char *coords)
 	float	aux;
 	int		i;
 
+	scene->light = malloc(sizeof(t_light));
 	split = ft_split(coords, ',');
 	if (!split)
 		return (false);

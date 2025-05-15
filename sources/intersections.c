@@ -51,6 +51,7 @@ static	void	update_inter(t_list **inter, t_shape *shape, float time)
 	intersec->object = shape;
 	intersec->time = time;
 	intersec->hit = 1;
+	intersec->intersec = true;
 	if (*inter == NULL)
 		*inter = ft_lstnew(intersec);
 	else

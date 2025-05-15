@@ -163,8 +163,8 @@ typedef struct s_img
 typedef struct s_scene
 {
 	void		*mlx;
-	void		*win_ptr;
-	t_img		*img;
+	void		*win;
+	t_img		img;
 	t_camera	*camera;
 	t_ambient	*ambient;
 	t_light		*light;
