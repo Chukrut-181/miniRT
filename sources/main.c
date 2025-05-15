@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/15 12:35:26 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/15 12:55:31 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ static void ft_parsingcheckerprinter(t_scene *scene)
 				if (shape->type == SPHERE)
 				{
 					printf("Sphere\n");
+					printf("Colors RGB[0-1]: %.3f, %.3f, %.3f\n", shape->material.color.r, shape->material.color.g, shape->material.color.b);
 					printf("Associated Transformation Matrix:\n");
 					ft_4x4_checkprinter(shape->transform_matrix);
 					printf("\n");
@@ -85,6 +86,7 @@ static void ft_parsingcheckerprinter(t_scene *scene)
 				else if (shape->type == PLANE)
 				{
 					printf("Plane\n");
+					printf("Colors RGB[0-1]: %.3f, %.3f, %.3f\n", shape->material.color.r, shape->material.color.g, shape->material.color.b);
 					printf("Associated Transformation Matrix:\n");
 					ft_4x4_checkprinter(shape->transform_matrix);
 					printf("\n");

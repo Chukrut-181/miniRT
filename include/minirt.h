@@ -105,19 +105,8 @@ t_list *ft_intersect_world(t_world world, t_ray ray);
 
 //	PARSE
 int		ft_get_scene(t_scene *scene, char *argv1);
-bool		ft_parse_line(t_scene *scene, char *line);
+bool	ft_parse_line(t_scene *scene, char *line);
 char	*get_one_line(int fd);
-int	create_ambient_light(t_scene *s, char **res);
-
-int	create_light(char **res, t_scene *s);
-int	create_sphere(char **res, t_scene *s);
-int	check_rgb(char *str, t_scene *data);
-
-//	EXECUTE
-void	render_scene(t_scene *s);
-t_color	shade_hit(t_world w, t_comps comps);
-bool	intersec_plane(t_shape *shape, t_list **inter);
-bool	intersec_sphere(t_shape *shape, t_list **inter);
 
 //	CREATE AMBIENT
 bool	ft_create_ambient(t_scene *scene, char **ambient);
@@ -125,17 +114,17 @@ bool	ft_check_rgb(char *colorcode);
 bool	ft_apply_rgb(t_color *color, char *original);
 
 //	CREATE LIGHT
-bool		ft_create_light(t_scene *scene, char **light);
+bool	ft_create_light(t_scene *scene, char **light);
 bool	ft_check_coords(char *coords);
 
 //	CREATE CAMERA
 bool		ft_create_camera(t_scene *scene, char **cam);
+bool		ft_aim_camera(t_scene *scene, float field_of_view, char *point_of_view, char *orientation_vector);
 t_4x4		view_transform(t_tuple origin, t_tuple direction);
-bool		ft_camera(t_scene *scene, float field_of_view, char *point_of_view, char *orientation_vector);
 t_4x4		ft_orientation(t_tuple left, t_tuple true_up, t_tuple forward);
 
 //	CREATE SPHERE
-int	ft_create_sphere(t_scene *scene, char **ball);
+bool	ft_create_sphere(t_scene *scene, char **ball);
 
 //	CREATE CYLINDER
 int		ft_create_cylinder(t_scene *scene, char **cyl);
@@ -149,6 +138,13 @@ void	ft_handle_key(mlx_key_data_t keydata, void *param);
 //	ERROR EXIT
 int		ft_error_exit(t_scene *scene, char *err_msg, int err_code);
 void	ft_free_scene(t_scene *scene);
+
+//	EXECUTE
+void	render_scene(t_scene *s);
+t_color	shade_hit(t_world w, t_comps comps);
+bool	intersec_plane(t_shape *shape, t_list **inter);
+bool	intersec_sphere(t_shape *shape, t_list **inter);
+
 
 //	TEST FUNCTIONS (to be removed)
 void	ft_minigun(mlx_image_t	*image);
