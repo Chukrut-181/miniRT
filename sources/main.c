@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/15 15:27:47 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/16 10:15:45 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,11 @@ static void ft_parsingcheckerprinter(t_scene *scene)
 		}
 		if (scene->world->objects)
 		{
+			t_list *current = scene->world->objects;
 			printf("OBJECTS present in WORLD:\n");
-			while (scene->world->objects)
+			while (current)
 			{
-				t_shape *shape = scene->world->objects->content;
+				t_shape *shape = current->content;
 				if (shape->type == SPHERE)
 				{
 					printf("Sphere\n");
@@ -99,7 +100,7 @@ static void ft_parsingcheckerprinter(t_scene *scene)
 					ft_4x4_checkprinter(shape->transform_matrix);
 					printf("\n");
 				}		
-				scene->world->objects = scene->world->objects->next;
+				current = current->next;
 			}
 		}
 		else
@@ -115,9 +116,9 @@ static t_scene	*ft_init_scene(void)
 	new_scene->ambient = ft_calloc(1, sizeof(t_ambient));
 	new_scene->camera = ft_calloc(1, sizeof(t_camera));
 	new_scene->world = ft_calloc(1, sizeof(t_world));
-	new_scene->mlx = mlx_init(WIDTH, HEIGHT, "miniRT", false);
-	new_scene->image = mlx_new_image(new_scene->mlx, WIDTH, HEIGHT);
-	if (!new_scene || !new_scene->ambient || !new_scene->camera || !new_scene->world || !new_scene->mlx || !new_scene->image)
+	// new_scene->mlx = mlx_init(WIDTH, HEIGHT, "miniRT", false);
+	// new_scene->image = mlx_new_image(new_scene->mlx, WIDTH, HEIGHT);
+	if (!new_scene || !new_scene->ambient || !new_scene->camera || !new_scene->world)// || !new_scene->mlx || !new_scene->image)
 		ft_error_exit(new_scene, "Error\nFailed to initialize scene", 1);
 	new_scene->ambient->ratio = -1;
 	new_scene->camera->field_of_view = -1;
