@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/16 10:15:45 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/16 10:28:04 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,17 @@ static void ft_parsingcheckerprinter(t_scene *scene)
 	}
 }
 
+/* static void ft_initialize_mlx42(t_scene *scene)
+{
+	scene->mlx = mlx_init(WIDTH, HEIGHT, "miniRT", false);
+	if (!scene->mlx)
+		ft_error_exit(scene, "Error\nFailed to initialize MLX42 instance", 1);
+	scene->image = mlx_new_image(scene->mlx, WIDTH, HEIGHT);
+	if (!scene->image)
+		ft_error_exit(scene, "Error\nFailed to create image buffer", 1);
+	return ;
+} */
+
 static t_scene	*ft_init_scene(void)
 {
 	t_scene *new_scene;
@@ -116,9 +127,9 @@ static t_scene	*ft_init_scene(void)
 	new_scene->ambient = ft_calloc(1, sizeof(t_ambient));
 	new_scene->camera = ft_calloc(1, sizeof(t_camera));
 	new_scene->world = ft_calloc(1, sizeof(t_world));
-	// new_scene->mlx = mlx_init(WIDTH, HEIGHT, "miniRT", false);
-	// new_scene->image = mlx_new_image(new_scene->mlx, WIDTH, HEIGHT);
-	if (!new_scene || !new_scene->ambient || !new_scene->camera || !new_scene->world)// || !new_scene->mlx || !new_scene->image)
+	new_scene->mlx = NULL;
+	new_scene->image = NULL;
+	if (!new_scene || !new_scene->ambient || !new_scene->camera || !new_scene->world)
 		ft_error_exit(new_scene, "Error\nFailed to initialize scene", 1);
 	new_scene->ambient->ratio = -1;
 	new_scene->camera->field_of_view = -1;
@@ -134,6 +145,7 @@ int	main(int argc, char **argv)
 	scene = ft_init_scene();
 	ft_get_scene(scene, argv[1]);
 	ft_parsingcheckerprinter(scene);
+	//ft_initialize_mlx42(scene);
 	//write(1, "Rendering..\n", 13); 
 	//render_scene(scene);
 	//write(1, "Finished\n", 9);
