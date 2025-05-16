@@ -6,33 +6,33 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/16 10:28:04 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/16 13:01:12 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-static void ft_4x4_checkprinter(t_4x4 matrix)
+static void	ft_4x4_checkprinter(t_4x4 matrix)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-    i = 0;
-    while (i < 4)
-    {
-        printf("[");
-        j = 0;
-        while (j < 4)
-        {
-            printf("%8.3f ", matrix.data[i][j]);
-            j++;
-        }
-        printf("]\n");
-        i++;
-    }
+	i = 0;
+	while (i < 4)
+	{
+		printf("[");
+		j = 0;
+		while (j < 4)
+		{
+			printf("%8.3f ", matrix.data[i][j]);
+			j++;
+		}
+		printf("]\n");
+		i++;
+	}
 }
 
-static void ft_parsingcheckerprinter(t_scene *scene)
+static void	ft_parsingcheckerprinter(t_scene *scene)
 {
 	printf("\n**** SCENE PARSING AND CREATION CHECK ****\n\n");
 	if (scene->ambient)

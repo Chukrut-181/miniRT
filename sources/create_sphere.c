@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 10:05:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/15 13:18:34 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/16 13:05:10 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,33 @@ t_material	ft_create_material(char *rgb_code)
 	if (!split || !split[0] || !split[1] || !split[2])
 		m.color = ft_create_color(1.0, 1.0, 1.0);
 	else
-		m.color = ft_create_color((ft_atof(split[0]) / 255.0), (ft_atof(split[1]) / 255.0), (ft_atof(split[2]) / 255.0));
+		m.color = ft_create_color((ft_atof(split[0]) / 255.0),
+				(ft_atof(split[1]) / 255.0), (ft_atof(split[2]) / 255.0));
 	if (split)
 		ft_free_array(split);
 	return (m);
 }
 
+static t_4x4	ft_transform_sphere(char *center, float radius)
+{
+	t_4x4	translate;
+	t_4x4	scalate;
+	t_4x4	transform;
+	char	**aux;
+
+	aux = ft_split(center, ',');
+	translate = create_translation_mx(ft_atof(aux[0]),
+			ft_atof(aux[1]), ft_atof(aux[2]));
+	ft_free_array(aux);
+	scalate = create_scaling_mx(radius, radius, radius);
+	transform = ft_multiply_matrices(translate, scalate);
+	return (transform);
+}
+
 bool	ft_create_sphere(t_scene *scene, char **ball)
 {
 	t_shape	*sphere;
-	t_4x4	translate;
-	t_4x4	scalate;
-	char	**center;
-	float	diameter;
+	float	radius;
 
 	sphere = malloc(sizeof(t_shape));
 	if (!sphere)
@@ -45,16 +59,14 @@ bool	ft_create_sphere(t_scene *scene, char **ball)
 	sphere->type = SPHERE;
 	if (!ft_check_coords(ball[1]))
 		return (free(sphere), false);
-	center = ft_split(ball[1], ',');
-	translate = create_translation_mx(ft_atof(center[0]), ft_atof(center[1]), ft_atof(center[2]));
-	ft_free_array(center);
-	diameter = ft_atof(ball[2]);
-	scalate = create_scaling_mx(diameter, diameter, diameter);
+	radius = ft_atof(ball[2]) / 2.0;
+	if (radius <= EPSILON)
+		return (free(sphere), false);
+	sphere->transform_matrix = ft_transform_sphere(ball[1], radius);
+	sphere->inverse_matrix = ft_find_inverse(sphere->transform_matrix);
 	if (!ft_check_rgb(ball[3]))
 		return (free(sphere), false);
 	sphere->material = ft_create_material(ball[3]);
-	sphere->transform_matrix = ft_multiply_matrices(translate, scalate);
-	sphere->inverse_matrix = ft_find_inverse(sphere->transform_matrix);
 	ft_lstadd_back(&scene->world->objects, ft_lstnew(sphere));
 	return (true);
 }

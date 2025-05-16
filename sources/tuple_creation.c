@@ -6,21 +6,11 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:08:59 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/15 15:40:24 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/16 13:02:25 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
-
-t_color	ft_create_color(float x, float y, float z)
-{
-	t_color	new_point;
-
-	new_point.r = x;
-	new_point.g = y;
-	new_point.b = z;
-	return (new_point);
-}
 
 t_tuple	ft_create_point(float x, float y, float z)
 {
@@ -54,10 +44,26 @@ int	ft_check_equality(t_tuple tuple1, t_tuple tuple2)
 		return (1);
 }
 
-t_tuple	color_tp(t_color p)
+/**
+ * ft_negate_tuple - Negates each component of a 4D tuple.
+ * 
+ * This function takes a tuple of four floating-point values (`tuple`) and
+ * negates the `x`, `y`, and `z` components by multiplying each by -1. The
+ * `w` component remains unchanged. The function returns a new tuple with the
+ * negated values for `x`, `y`, and `z`, and the original `w` value.
+ *
+ * param tuple: A t_tuple structure containing the 4D vector to be negated.
+ * 
+ * Return: A new t_tuple structure with the negated values for `x`, `y`, and
+ *         `z`, and the unchanged `w` value.
+ */
+t_tuple	ft_negate_tuple(t_tuple tuple)
 {
-	t_tuple	tp;
+	t_tuple	negated;
 
-	tp = ft_create_point(p.r, p.g, p.b);
-	return (tp);
+	negated.x = tuple.x * -1;
+	negated.y = tuple.y * -1;
+	negated.z = tuple.z * -1;
+	negated.w = tuple.w;
+	return (negated);
 }

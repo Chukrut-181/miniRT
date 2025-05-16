@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 12:18:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/16 11:01:10 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/16 11:38:42 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ bool	ft_check_rgb(char *colorcode)
 		ft_free_array(split);
 		return (false);
 	}
-	i = 0;
-	while (i < 3)
+	i = -1;
+	while (++i < 3)
 	{
 		j = 0;
 		while (split[i][j] && split[i][j] != '\n')
@@ -62,12 +62,10 @@ bool	ft_check_rgb(char *colorcode)
 			else
 				j++;
 		}
-		if (ft_atof(split[i]) >255)
+		if (ft_atof(split[i]) > 255)
 			return (ft_free_array(split), false);
-		i++;
 	}
-	ft_free_array(split);
-	return (true);
+	return (ft_free_array(split), true);
 }
 
 bool	ft_create_ambient(t_scene *scene, char **ambient)

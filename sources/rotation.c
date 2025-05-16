@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 10:23:48 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/15 15:49:05 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/16 12:56:07 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_4x4	rotation_z(float radians)
 	return (rotation_z);
 }
 
-t_4x4 ft_rodriguez_rotation(float target_x, float target_y, float target_z)
+t_4x4	ft_rodriguez_rotation(float target_x, float target_y, float target_z)
 {
 	t_tuple	target_n;
 	t_tuple	axis;
@@ -60,7 +60,8 @@ t_4x4 ft_rodriguez_rotation(float target_x, float target_y, float target_z)
 	target_n = ft_normalize(ft_create_vector(target_x, target_y, target_z));
 	axis = ft_normalize(ft_cross_product(ft_create_vector(0, 1, 0), target_n));
 	cos_th = (0 * target_n.x) + (1 * target_n.y) + (0 * target_n.z);
-	sin_th = ft_calculate_magnitude(ft_cross_product(ft_create_vector(0, 1, 0), target_n));
+	sin_th = ft_calculate_magnitude
+		(ft_cross_product(ft_create_vector(0, 1, 0), target_n));
 	if (fabsf(sin_th) < EPSILON)
 		return (rot_mx);
 	rot_mx.data[0][0] = cos_th + axis.x * axis.x * (1.0f - cos_th);

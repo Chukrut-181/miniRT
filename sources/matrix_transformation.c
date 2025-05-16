@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 10:23:12 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/09 13:43:45 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/16 12:52:33 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,8 @@ t_4x4	create_scaling_mx(float x, float y, float z)
  *         | Zx Zy 1 0 |
  *         | 0  0  0 1 |
  */
-t_4x4	ft_create_shearing_mx(float Xy, float Xz, float Yx, float Yz, float Zx, float Zy)
+/* t_4x4	ft_create_shearing_mx
+		(float Xy, float Xz, float Yx, float Yz, float Zx, float Zy)
 {
 	t_4x4	shearing_mx;
 
@@ -136,5 +137,4 @@ t_4x4	ft_create_shearing_mx(float Xy, float Xz, float Yx, float Yz, float Zx, fl
 	shearing_mx.data[2][0] = Zx;
 	shearing_mx.data[2][1] = Zy;
 	return (shearing_mx);
-}
-
+} */
