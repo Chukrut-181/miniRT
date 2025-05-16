@@ -117,4 +117,34 @@ void	ft_handle_key(mlx_key_data_t keydata, void *param);
 int		ft_error_exit(t_scene *scene, char *err_msg, int err_code);
 void	ft_free_scene(t_scene *scene);
 
+//	EXECUTE
+void	render_scene(t_scene *scene);
+
+//	INTERSECTIONS
+bool	intersec_plane(t_shape *shape, t_list **inter);
+bool	intersec_sphere(t_shape *shape, t_list **inter);
+bool	intersec_cylinder(t_shape *shape, t_ray ray);
+void	ft_identify_hit(t_list *xs_list);
+
+//	LIGHT SHADING
+t_light	point_light(t_tuple position, t_color color);
+t_tuple	normal_at(t_shape *shape, t_tuple point);
+t_tuple	reflect(t_tuple in, t_tuple normal);
+t_color	lighting(t_comps comp, t_light light, bool in_shadow);
+
+//	RAY
+t_ray	ft_create_ray(t_tuple origin, t_tuple direction);
+t_tuple	ft_position(t_ray ray, float t);
+void	transform_ray(t_ray	*ray, t_4x4 mat, t_ray *new_ray);
+
+//	WORLD
+t_list *ft_intersect_world(t_world world, t_ray ray);
+t_comps	prepare_computations(t_xs *hit, t_ray ray);
+bool	is_shadowed(t_world world, t_tuple point);
+t_color	shade_hit(t_world world, t_comps comps);
+t_xs	*ft_find_hit(t_list *intersection_list);
+
+
+
+
 #endif

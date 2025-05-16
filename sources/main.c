@@ -6,13 +6,13 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/16 13:01:12 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/16 15:22:52 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-static void	ft_4x4_checkprinter(t_4x4 matrix)
+/* static void	ft_4x4_checkprinter(t_4x4 matrix)
 {
 	int	i;
 	int	j;
@@ -106,9 +106,9 @@ static void	ft_parsingcheckerprinter(t_scene *scene)
 		else
 			printf("No objects in the world.\n");
 	}
-}
+} */
 
-/* static void ft_initialize_mlx42(t_scene *scene)
+static void ft_initialize_mlx42(t_scene *scene)
 {
 	scene->mlx = mlx_init(WIDTH, HEIGHT, "miniRT", false);
 	if (!scene->mlx)
@@ -117,7 +117,7 @@ static void	ft_parsingcheckerprinter(t_scene *scene)
 	if (!scene->image)
 		ft_error_exit(scene, "Error\nFailed to create image buffer", 1);
 	return ;
-} */
+}
 
 static t_scene	*ft_init_scene(void)
 {
@@ -144,14 +144,14 @@ int	main(int argc, char **argv)
 		ft_error_exit(NULL, "Error\nUsage: ./miniRT <arg1>", 1);
 	scene = ft_init_scene();
 	ft_get_scene(scene, argv[1]);
-	ft_parsingcheckerprinter(scene);
-	//ft_initialize_mlx42(scene);
-	//write(1, "Rendering..\n", 13); 
-	//render_scene(scene);
-	//write(1, "Finished\n", 9);
-	//mlx_image_to_window(scene->mlx, scene->image, 0, 0);
-	//mlx_loop(scene->mlx);
-	//mlx_terminate(scene->mlx);
+	//ft_parsingcheckerprinter(scene);
+	ft_initialize_mlx42(scene);
+	write(1, "Rendering..\n", 13); 
+	render_scene(scene);
+	write(1, "Finished\n", 9);
+	mlx_image_to_window(scene->mlx, scene->image, 0, 0);
+	mlx_loop(scene->mlx);
+	mlx_terminate(scene->mlx);
 	ft_free_scene(scene);
 	return (0);
 }
