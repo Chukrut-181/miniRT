@@ -13,8 +13,8 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# include "../libft/libft.h"
-# include "../minilibx/mlx.h"
+# include "../lib/libft/libft.h"
+# include "../lib/minilibx/mlx.h"
 # include <math.h>
 # include <stdio.h>
 # include <unistd.h>
@@ -22,8 +22,8 @@
 
 # define EPSILON 0.00001
 
-# define HEIGHT 900
-# define WIDTH 1200
+# define HEIGHT 1200
+# define WIDTH 1800
 
 # ifndef M_PI
 #  define M_PI 3.1415926
@@ -82,7 +82,7 @@ t_4x4	create_scaling_mx(float x, float y, float z);
 t_4x4	rotation_z(float radians);
 t_4x4	rotation_x(float radians);
 t_4x4	rotation_y(float radians);
-t_4x4 ft_rotate_plane(float target_x, float target_y, float target_z);
+t_4x4 ft_rotate_plane(t_tuple);
 
 //	RAY
 t_ray	ft_create_ray(t_tuple origin, t_tuple direction);
@@ -137,7 +137,7 @@ bool	ft_check_rgb(char *colorcode);
 bool	ft_apply_rgb(t_color *color, char *original);
 
 //	CREATE LIGHT
-int		ft_create_light(t_scene *scene, char **light);
+int	ft_create_light(t_world *world, char **light);
 bool	ft_check_coords(char *coords);
 
 //	CREATE CAMERA

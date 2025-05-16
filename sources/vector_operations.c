@@ -25,7 +25,7 @@
  */
 float	ft_calculate_magnitude(t_tuple v)
 {
-	return (sqrtf(v.x * v.x + v.y * v.y + v.z * v.z + v.w * v.w));
+	return (sqrtf(v.x * v.x + v.y * v.y + v.z * v.z));
 }
 
 /**
@@ -49,7 +49,6 @@ t_tuple	ft_normalize(t_tuple v)
 	normalized.x = v.x / mag;
 	normalized.y = v.y / mag;
 	normalized.z = v.z / mag;
-	normalized.w = v.w;
 	return (normalized);
 }
 

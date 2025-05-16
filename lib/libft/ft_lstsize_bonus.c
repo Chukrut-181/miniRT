@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks.c                                            :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/14 15:03:36 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/15 12:36:41 by igchurru         ###   ########.fr       */
+/*   Created: 2024/04/19 14:58:16 by igchurru          #+#    #+#             */
+/*   Updated: 2024/11/28 11:23:55 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "libft.h"
 
-int	key(int keycode, t_scene *scene)
+/*	ft_lstsize:
+		Counts the number of nodes in a linked list.
+	Parameters:
+		lst - A pointer to the first node of the linked list.
+	Return:
+		The number of nodes in the linked list.
+*/
+int	ft_lstsize(t_list *lst)
 {
-	if (keycode == 53)
+	int	list_size;
+
+	list_size = 0;
+	while (lst)
 	{
-		mlx_destroy_window(scene->mlx, scene->mlx);
-		ft_free_scene(scene);
-		exit (0);
+		list_size++;
+		lst = lst->next;
 	}
-	return (0);
+	return (list_size);
 }

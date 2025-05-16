@@ -11,8 +11,8 @@
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
 
-# include "../minilibx/mlx.h"
-# include "../libft/libft.h"
+# include "../lib/minilibx/mlx.h"
+# include "../lib/libft/libft.h"
 # include <stdbool.h>
 
 typedef struct s_tuple
@@ -121,7 +121,7 @@ typedef struct s_light
 typedef struct s_world
 {
 	t_list *objects;  // Lista de shapes
-	t_light light;    // Fuente de luz
+	t_light *light;    // Fuente de luz
 	int		shape_count;
 }	t_world;
 

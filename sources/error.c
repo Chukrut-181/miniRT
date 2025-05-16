@@ -6,11 +6,22 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 15:03:48 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/08 13:48:01 by eandres          ###   ########.fr       */
+/*   Updated: 2025/05/13 13:49:27 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
+
+int	key(int keycode, t_scene *scene)
+{
+	if (keycode == 53)
+	{
+		mlx_destroy_window(scene->mlx, scene->win);
+		ft_free_scene(scene);
+		exit (0);
+	}
+	return (0);
+}
 
 int	ft_error_exit(char *err_msg, int err_code)
 {
@@ -24,12 +35,12 @@ void	ft_free_scene(t_scene *scene)
 		free(scene->ambient);
 	if (scene->camera)
 		free(scene->camera);
-	if (scene->light)
-		free(scene->light);
 	if (scene->world)
 	{
 		if (scene->world->objects)
 			ft_lstclear(&scene->world->objects, free);
+		if (scene->world->light)
+			free(scene->world->light);
 		free(scene->world);
 	}
 	free(scene);

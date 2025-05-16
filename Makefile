@@ -23,7 +23,7 @@ OBJ_DIR = objects
 SRCS = $(wildcard $(SRC_DIR)/**/*.c, $(SRC_DIR)/*.c)
 OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 
-LIBS = minilibx/libmlx.a libft/libft.a
+LIBS = lib/minilibx/libmlx.a lib/libft/libft.a
 
 GREEN = \033[0;32m
 RED = \033[0;31m
@@ -54,22 +54,22 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR) $(OBJ_DIR)/operations $(OBJ_DIR)/par
 
 clean:
 	@rm -rf $(OBJ_DIR)
-	@make clean -C ./libft
+	@make clean -C ./lib/libft
 	@echo "$(YELLOW)-> MiniRT: All .o files removed$(RESET)"
 
 fclean: clean
 	@rm -f $(NAME)
 	@rm -rf MLX42/build
-	@make fclean -C ./libft
+	@make fclean -C ./lib/libft
 	@echo "$(RED)-> MiniRT: miniRT removed$(RESET)"
 
 re: fclean all
 
 libft:
-	make bonus -s -C libft
+	make bonus -s -C lib/libft
 
 mlx42:
-	make -C minilibx
+	make -C lib/minilibx
 
 update:
 	@git submodule update --init --recursive --remote

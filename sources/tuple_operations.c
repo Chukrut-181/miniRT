@@ -100,7 +100,7 @@ t_tuple	ft_multiply_tuple_f(t_tuple tuple, float scalar)
 	product.x = tuple.x * scalar;
 	product.y = tuple.y * scalar;
 	product.z = tuple.z * scalar;
-	product.w = tuple.w;
+	product.w = tuple.w * scalar;
 	return (product);
 }
 

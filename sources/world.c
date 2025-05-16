@@ -1,7 +1,5 @@
 #include "../include/minirt.h"
 
-static t_list *ft_insert_sorted(t_list *sorted, t_xs *xs);
-
 static t_ray transform(t_ray ray, t_4x4	matrix)
 {
 	t_tuple	multi[2];
@@ -86,13 +84,13 @@ bool	is_shadowed(t_world world, t_tuple point)
 	t_tuple	v;
 	t_xs	*hit;
 
-	v = ft_substract_tuples(world.light.source, point);
+	v = ft_substract_tuples(world.light->source, point);
 	distance = ft_calculate_magnitude(v);
 	direction = ft_normalize(v);
 	ray = ft_create_ray(point, direction);
 	xs = ft_intersect_world(world, ray);
 	hit = ft_find_hit(xs);
-	if (hit && hit->time && hit->time < distance)
+	if (hit->time && hit->time < distance)
 		return (true);
 	else
 		return (false);
@@ -104,11 +102,52 @@ t_color	shade_hit(t_world world, t_comps comps)
 	bool	shadowed;
 
 	shadowed = is_shadowed(world, comps.over_point);
-	result = lighting(comps, world.light, shadowed);
+	result = lighting(comps, *world.light, shadowed);
 	return (result);
 }
 
-t_xs *ft_find_hit(t_list *intersections)
+static void	find_min(t_list *xs, t_xs **min_inter, double *min)
+{
+	t_xs	*temp;
+
+	while (xs)
+	{
+		temp = (t_xs *) xs->content;
+		if (*min > temp->time && temp->time > 0)
+		{
+			*min_inter = temp;
+			*min = temp->time;
+		}
+		xs = xs->next;
+	}
+}
+
+t_xs	*ft_find_hit(t_list *intersection_list)
+{
+	t_list		*current;
+	t_xs		*inter;
+	t_xs		*inte_min;
+	double		min;
+
+	inte_min = NULL;
+	min = 2147483647;
+	current = intersection_list;
+	inter = malloc(sizeof(t_xs));
+	if (current)
+	{
+		find_min(current, &inte_min, &min);
+		if (inte_min && inte_min->time > 0)
+		{
+			free(inter);
+			return (inte_min);
+		}
+	}
+	inter->hit = 0;
+	inter->time = 0;
+	return (inter);
+}
+
+/* t_xs *ft_find_hit(t_list *intersections)
 {
 	t_list *current;
 	t_xs 	*hit;
@@ -132,7 +171,7 @@ t_xs *ft_find_hit(t_list *intersections)
 		current = current->next;
 	}
 	return (hit);
-}
+} */
 
 /* t_color	color_at(t_world world, t_ray ray)
 {
@@ -169,7 +208,7 @@ t_xs *ft_find_hit(t_list *intersections)
 	return (shade);
 } */
 
-t_list *ft_sort_intersections(t_list *intersections)
+/* t_list *ft_sort_intersections(t_list *intersections)
 {
 	t_list *sorted = NULL;
 	t_list *current;
@@ -219,5 +258,5 @@ static t_list *ft_insert_sorted(t_list *sorted, t_xs *xs)
 	prev->next = new_node;
 	new_node->next = current;
 	return (sorted);
-}
+} */
 
