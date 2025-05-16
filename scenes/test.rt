@@ -1,5 +1,12 @@
+# AMBIENT:	A	<intensity [0.0 to 1.0]>	<color RGB [0-255]>
+# CAMERA:	C 	<point x,y,z>	<direction x,y,z>	<fov [0-180]>
+# LIGHT:	L	<point x,y,z>	<intensity [0.0 to 1.0]>	<color RGB [0-255]>
+# SPHERE:	sp	<point x,y,z>	<radius>	<color RGB [0-255]>
+# PLANE:	pl	<point x,y,z>	<normal x,y,z>	<color RGB [0-255]>
+# CYLINDER:	cy	<point x,y,z>	<direction x,y,z>	<radius>	<height>	<color RGB [0-255]>
+
 A 0.5 123,95,201
-pl 42,-42,10 7,-5,-6 990,41,255
+pl 42,-42,10 7,-5,-6 99,41,255
 C 16,42,-423 4,-52,8 120
 sp 120,21,-60 69 0,127,254
 sp -54,0,-98 47 255,10,208

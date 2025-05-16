@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:44:53 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/16 10:11:45 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/16 11:28:01 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ bool	ft_parse_line(t_scene *scene, char *line)
 {
 	char	**temp;
 
+	if (*line == '#' || *line == '\n')
+		return (true);
 	temp = ft_split(line, ' ');
 	if (!ft_strncmp(temp[0], "A", 1) && ft_arraylen(temp) == 3 && ft_create_ambient(scene, temp))
 		return (ft_free_array(temp), true);
@@ -85,7 +87,7 @@ int	ft_get_scene(t_scene *scene, char *argv1)
 	line = get_one_line(fd);
 	while (line && ft_strlen(line) > 0)
 	{
-		if (*line != '\n' && !ft_parse_line(scene, line))
+		if (!ft_parse_line(scene, line))
 		{
 			free(line);
 			ft_error_exit(scene, "Error\nIncorrect format encountered", 1);
@@ -95,7 +97,7 @@ int	ft_get_scene(t_scene *scene, char *argv1)
 	}
 	free(line);
 	close(fd);
-	if (!scene || !scene->ambient || !scene->camera || !scene->world->light || !scene->world->objects)
+	if (!scene->ambient || !scene->camera || !scene->world->light || !scene->world->objects)
 		ft_error_exit(scene, "Error\nMissing mandatory elements", 1);
 	return (0);
 }
