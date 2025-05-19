@@ -33,23 +33,16 @@ t_list *ft_intersect_world(t_world world, t_ray ray)
 	t_list *intersections = NULL;
 	t_list *current;
 	t_shape *shape;
-	bool	found_inter;
 
 	current = world.objects;
-	found_inter = false;
 	while (current)
 	{
 		shape = (t_shape *)current->content;
-		if (ft_intersections(ray, shape, &intersections))
-			found_inter = true;
+		ft_intersections(ray, shape, &intersections);
 		current = current->next;
 	}
-	if (found_inter == false)
-	{
-		ft_lstclear(&intersections, free);
-		return (NULL);
-	}
 	//intersections = ft_sort_intersections(intersections);
+	//free(intersections);
 	return (intersections);
 }
 
@@ -90,8 +83,6 @@ int is_shadowed(t_world world, t_tuple point)
 	direction = ft_normalize(v);
 	ray = ft_create_ray(point, direction);
 	xs = ft_intersect_world(world, ray);
-	if (!xs)
-		return (0);
 	hit = ft_find_hit(xs);
 	if (hit && hit->time > 0 && hit->time < distance)
 		shadowed = 1;

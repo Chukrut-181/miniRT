@@ -19,7 +19,7 @@ t_material	ft_create_material(char *rgb_code)
 
 	m.ambient = 0.2;
 	m.diffuse = 0.7;
-	m.specular = 0.9;
+	m.specular = 0.2;
 	m.shininess = 200;
 	split = ft_split(rgb_code, ',');
 	if (!split || !split[0] || !split[1] || !split[2])

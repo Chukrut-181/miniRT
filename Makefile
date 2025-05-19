@@ -71,8 +71,4 @@ libft:
 mlx42:
 	make -C lib/minilibx
 
-update:
-	@git submodule update --init --recursive --remote
-	@echo "$(BLUE)-> MiniRT: Submodules updated to last commit$(RESET)"
-
 .PHONY: all clean fclean re libft mlx42
