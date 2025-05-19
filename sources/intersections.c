@@ -124,7 +124,7 @@ void	ft_identify_hit(t_list *xs_list)
 		xs_list = xs_list->next;
 	}
 }
-/* 
+/*
 static void	ft_calculate_abcd(t_ray ray, t_sphere sphere, t_abcd *data)
 {
 	t_tuple	sphere_to_ray;

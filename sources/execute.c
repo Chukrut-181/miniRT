@@ -1,20 +1,25 @@
 #include "../include/minirt.h"
 
-static uint32_t color_to_uint32_t(t_color color)
+static int color_to_int(t_color color)
 {
 	int r;
 	int g;
 	int b;
-	uint32_t res;
+	int res;
+
+	color.r = fmaxf(0.0f, fminf(1.0f, color.r));
+	color.g = fmaxf(0.0f, fminf(1.0f, color.g));
+	color.b = fmaxf(0.0f, fminf(1.0f, color.b));
 
 	r = (int)(color.r * 255.0f);
 	g = (int)(color.g * 255.0f);
 	b = (int)(color.b * 255.0f);
-	res = ((0xFF << 24) | (r << 16) | (g << 8) | b);
+
+	res = ((0 << 24) | (r << 16) | (g << 8) | b);
 	return (res);
 }
 
-/* static void write_pixel(t_img *img, int x, int y, int color)
+static void write_pixel(t_img *img, int x, int y, int color)
 {
 	char *dst;
 	
@@ -33,7 +38,7 @@ static uint32_t color_to_uint32_t(t_color color)
 		dst[2] = (color >> 8) & 0xFF;
 		dst[3] = (color) & 0xFF;
 	}
-} */
+}
 
 static t_ray ray_for_pixel(t_camera camera, int px, int py)
 {
@@ -87,7 +92,7 @@ void render_scene(t_scene *s)
 	int			y;
 	t_ray		ray;
 	t_color		color;
-	//int			pixel_color;
+	int			pixel_color;
 
 	y = 0;
 	while (y < HEIGHT)
@@ -97,9 +102,8 @@ void render_scene(t_scene *s)
 		{
 			ray = ray_for_pixel(*s->camera, x, y);
 			color = calculate_inter(*s->world, ray);
-			//pixel_color = color_to_int(color);
-			//write_pixel(&s->image, x, y, pixel_color);
-			mlx_put_pixel(s->image, x, y, color_to_uint32_t(color));
+			pixel_color = color_to_int(color);
+			write_pixel(&s->img, x, y, pixel_color);
 			x++;
 		}
 		y++;

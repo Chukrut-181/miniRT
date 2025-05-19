@@ -11,8 +11,8 @@
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
 
-# include "../MLX42/include/MLX42/MLX42.h"
-# include "../libft/libft.h"
+# include "../lib/minilibx/mlx.h"
+# include "../lib/libft/libft.h"
 # include <stdbool.h>
 
 typedef struct s_tuple
@@ -121,10 +121,20 @@ typedef struct s_ambient
 	float	ratio;
 }	t_ambient;
 
+typedef struct s_img
+{
+	void		*img_ptr;
+	int		bits_per_pixel;
+	int		size_line;
+	int		endian;
+	void	*data;
+}			t_img;
+
 typedef struct s_scene
 {
-	mlx_t		*mlx;
-	mlx_image_t	*image;
+	void		*mlx;
+	void		*win;
+	t_img		img;
 	t_camera	*camera;
 	t_ambient	*ambient;
 	t_world		*world;

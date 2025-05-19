@@ -6,35 +6,36 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/16 15:22:52 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/19 16:41:01 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-/* static void	ft_4x4_checkprinter(t_4x4 matrix)
+/*
+static void ft_4x4_checkprinter(t_4x4 matrix)
 {
-	int	i;
-	int	j;
+    int i;
+    int j;
 
-	i = 0;
-	while (i < 4)
-	{
-		printf("[");
-		j = 0;
-		while (j < 4)
-		{
-			printf("%8.3f ", matrix.data[i][j]);
-			j++;
-		}
-		printf("]\n");
-		i++;
-	}
+    i = 0;
+    while (i < 4)
+    {
+        printf("[");
+        j = 0;
+        while (j < 4)
+        {
+            printf("%8.3f ", matrix.data[i][j]);
+            j++;
+        }
+        printf("]\n");
+        i++;
+    }
 }
 
-static void	ft_parsingcheckerprinter(t_scene *scene)
+static void ft_parsingcheckerprinter(t_scene *scene)
 {
-	printf("\n**** SCENE PARSING AND CREATION CHECK ****\n\n");
+	printf("\n*** SCENE PARSING CHECK ***\n\n");
 	if (scene->ambient)
 	{
 		printf("AMBIENT LIGHT\n");
@@ -48,11 +49,6 @@ static void	ft_parsingcheckerprinter(t_scene *scene)
 		printf("Origin: (%.4f, %.4f, %.4f)\n", scene->camera->origin.x, scene->camera->origin.y, scene->camera->origin.z);
 		printf("Direction: (%.4f, %.4f, %.4f)\n", scene->camera->transform.data[2][0], scene->camera->transform.data[2][1], scene->camera->transform.data[2][2]);
 		printf("Field of view: %f\n", scene->camera->field_of_view);
-		printf("Pixel size: %f\n", scene->camera->pixel_size);
-		printf("Half width: %f\n", scene->camera->half_width);
-		printf("Half height: %f\n", scene->camera->half_height);
-		printf("Horizontal size: %.4f\n", scene->camera->hsize);
-		printf("Vertical size: %.4f\n", scene->camera->vsize);	
 		printf("Associated Transformation Matrix:\n");
 		ft_4x4_checkprinter(scene->camera->transform);
 		printf("\n");
@@ -62,24 +58,22 @@ static void	ft_parsingcheckerprinter(t_scene *scene)
 	{
 		if (scene->world->light)
 		{
-			printf("WORLD\n\n");
-			printf("LIGHT in WORLD:\n");
-			printf("Source XYZ: (%.2f, %.2f, %.2f)\n", scene->world->light->source.x, scene->world->light->source.y, scene->world->light->source.z);
+			printf("WORLD\n");
+			printf("Light:\n");
+			printf("Source XYZ: (%.4f, %.4f, %.4f)\n", scene->world->light->source.x, scene->world->light->source.y, scene->world->light->source.z);
 			printf("Color RGB[0-1]: (%.4f, %.4f, %.4f)\n", scene->world->light->l_color.r, scene->world->light->l_color.g, scene->world->light->l_color.b);
-			printf("Intensity: %.2f\n", scene->world->light->intensity);
+			printf("Intensity: %.4f\n", scene->world->light->intensity);
 			printf("\n");
 		}
 		if (scene->world->objects)
 		{
-			t_list *current = scene->world->objects;
-			printf("OBJECTS present in WORLD:\n");
-			while (current)
+			printf("OBJECTS detected in world:\n");
+			while (scene->world->objects)
 			{
-				t_shape *shape = current->content;
+				t_shape *shape = scene->world->objects->content;
 				if (shape->type == SPHERE)
 				{
 					printf("Sphere\n");
-					printf("Colors RGB[0-1]: %.3f, %.3f, %.3f\n", shape->material.color.r, shape->material.color.g, shape->material.color.b);
 					printf("Associated Transformation Matrix:\n");
 					ft_4x4_checkprinter(shape->transform_matrix);
 					printf("\n");
@@ -87,20 +81,13 @@ static void	ft_parsingcheckerprinter(t_scene *scene)
 				else if (shape->type == PLANE)
 				{
 					printf("Plane\n");
-					printf("Colors RGB[0-1]: %.3f, %.3f, %.3f\n", shape->material.color.r, shape->material.color.g, shape->material.color.b);
 					printf("Associated Transformation Matrix:\n");
 					ft_4x4_checkprinter(shape->transform_matrix);
 					printf("\n");
 				}
-				else if (shape->type == CYLINDER)
-				{
-					printf("Cylinder\n");
-					printf("Colors RGB[0-1]: %.3f, %.3f, %.3f\n", shape->material.color.r, shape->material.color.g, shape->material.color.b);
-					printf("Associated Transformation Matrix:\n");
-					ft_4x4_checkprinter(shape->transform_matrix);
-					printf("\n");
-				}		
-				current = current->next;
+				else
+					printf("Unknown shape detected!\n");
+				scene->world->objects = scene->world->objects->next;
 			}
 		}
 		else
@@ -108,50 +95,50 @@ static void	ft_parsingcheckerprinter(t_scene *scene)
 	}
 } */
 
-static void ft_initialize_mlx42(t_scene *scene)
+static t_scene *ft_init_scene(void)
 {
-	scene->mlx = mlx_init(WIDTH, HEIGHT, "miniRT", false);
-	if (!scene->mlx)
-		ft_error_exit(scene, "Error\nFailed to initialize MLX42 instance", 1);
-	scene->image = mlx_new_image(scene->mlx, WIDTH, HEIGHT);
-	if (!scene->image)
-		ft_error_exit(scene, "Error\nFailed to create image buffer", 1);
-	return ;
+	t_scene *new_scene = malloc(sizeof(t_scene));
+	if (!new_scene)
+		return (NULL);
+	new_scene->ambient = NULL;
+	new_scene->camera = NULL;
+	new_scene->world = malloc(sizeof(t_world));
+	new_scene->mlx = NULL;
+	new_scene->win = NULL;
+	return (new_scene);
 }
 
-static t_scene	*ft_init_scene(void)
+static void init_mlx(t_scene *s)
 {
-	t_scene *new_scene;
-
-	new_scene = ft_calloc(1, sizeof(t_scene));
-	new_scene->ambient = ft_calloc(1, sizeof(t_ambient));
-	new_scene->camera = ft_calloc(1, sizeof(t_camera));
-	new_scene->world = ft_calloc(1, sizeof(t_world));
-	new_scene->mlx = NULL;
-	new_scene->image = NULL;
-	if (!new_scene || !new_scene->ambient || !new_scene->camera || !new_scene->world)
-		ft_error_exit(new_scene, "Error\nFailed to initialize scene", 1);
-	new_scene->ambient->ratio = -1;
-	new_scene->camera->field_of_view = -1;
-	return (new_scene);;
+	s->img.img_ptr = NULL;
+	s->img.bits_per_pixel = 0;
+	s->img.size_line = 0;
+	s->img.endian = 0;
+	s->mlx = mlx_init();
+	s->img.img_ptr = mlx_new_image(s->mlx, WIDTH, HEIGHT);
+	s->img.data = mlx_get_data_addr(s->img.img_ptr, &s->img.bits_per_pixel, &s->img.size_line, &s->img.endian);
+	s->win = mlx_new_window(s->mlx, WIDTH, HEIGHT, "miniRT");
 }
 
 int	main(int argc, char **argv)
 {
 	t_scene	*scene;
-
+	
 	if (argc != 2)
-		ft_error_exit(NULL, "Error\nUsage: ./miniRT <arg1>", 1);
+		ft_error_exit("Error\nUsage: ./miniRT <arg1>", 1);
 	scene = ft_init_scene();
+	if (scene == NULL)
+		ft_error_exit("Error\nFailed to initialize scene", 1);
 	ft_get_scene(scene, argv[1]);
-	//ft_parsingcheckerprinter(scene);
-	ft_initialize_mlx42(scene);
-	write(1, "Rendering..\n", 13); 
+//	ft_parsingcheckerprinter(scene);
+	init_mlx(scene);
+	write(1, "Rendering\n", 10); 
 	render_scene(scene);
-	write(1, "Finished\n", 9);
-	mlx_image_to_window(scene->mlx, scene->image, 0, 0);
+    write(1, "Finished!\n", 10);
+	mlx_put_image_to_window(scene->mlx, scene->win, scene->img.img_ptr, 0, 0);
+	mlx_key_hook(scene->win, key_hook, scene);
+	mlx_hook(scene->win, 33, 1L << 17, close_hook, scene);
 	mlx_loop(scene->mlx);
-	mlx_terminate(scene->mlx);
 	ft_free_scene(scene);
 	return (0);
 }

@@ -5,18 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/14 15:03:36 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/15 12:36:41 by igchurru         ###   ########.fr       */
+/*   Created: 2025/05/19 11:10:34 by igchurru          #+#    #+#             */
+/*   Updated: 2025/05/19 12:30:10 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-void	ft_handle_key(mlx_key_data_t keydata, void *param)
+int	key_hook(int keycode, t_scene *data)
 {
-	mlx_t	*mlx;
+	if (keycode == 65307)
+	{
+		printf("ESC key pressed. Exiting.\nThanks for using miniRT!\n");
+		mlx_destroy_image(data->mlx, data->img.img_ptr);
+		mlx_destroy_window(data->mlx, data->win);
+		mlx_destroy_display(data->mlx);
+		ft_free_scene(data);
+		exit (0);
+	}
+	else
+		return (0);
+}
 
-	mlx = (mlx_t *)param;
-	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
-		mlx_close_window(mlx);
+int	close_hook(t_scene *data)
+{
+	printf("X button pressed. Exiting.\nThanks for using miniRT!\n");
+	mlx_destroy_image(data->mlx, data->img.img_ptr);
+	mlx_destroy_window(data->mlx, data->win);
+	mlx_destroy_display(data->mlx);
+	ft_free_scene(data);
+	exit(0);
+	return (0);
 }
