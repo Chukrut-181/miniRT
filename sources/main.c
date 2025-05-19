@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/19 11:19:03 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/19 11:37:56 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ int	main(int argc, char **argv)
     write(1, "Finished\n", 9);
 	mlx_put_image_to_window(scene->mlx, scene->win, scene->img.img_ptr, 0, 0);
 	mlx_key_hook(scene->win, key_hook, scene);
+	mlx_hook(scene->win, 33, 1L << 17, close_hook, scene);
 	mlx_loop(scene->mlx);
 	ft_free_scene(scene);
 	return (0);

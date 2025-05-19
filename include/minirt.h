@@ -162,6 +162,7 @@ int	ft_create_plane(t_scene *scene, char **plane);
 
 //	HOOKS
 int	key_hook(int keycode, t_scene *data);
+int	close_hook(t_scene *data);
 
 //	ERROR EXIT
 int		ft_error_exit(char *err_msg, int err_code);
