@@ -6,13 +6,13 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 15:03:48 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/13 13:49:27 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/19 11:45:37 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-int	key(int keycode, t_scene *scene)
+/* int	key(int keycode, t_scene *scene)
 {
 	if (keycode == 53)
 	{
@@ -21,7 +21,7 @@ int	key(int keycode, t_scene *scene)
 		exit (0);
 	}
 	return (0);
-}
+} */
 
 int	ft_error_exit(char *err_msg, int err_code)
 {
