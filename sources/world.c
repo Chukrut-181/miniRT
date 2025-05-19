@@ -93,7 +93,7 @@ int is_shadowed(t_world world, t_tuple point)
 	if (!xs)
 		return (0);
 	hit = ft_find_hit(xs);
-	if (hit && hit->time > 0 && hit->time < distance)
+	if (hit && hit->time > 0 && hit->time < distance && hit->object->type != PLANE)
 		shadowed = 1;
 	else
 		shadowed = 0;

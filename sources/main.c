@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/19 15:44:40 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/19 16:41:01 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,9 +132,9 @@ int	main(int argc, char **argv)
 	ft_get_scene(scene, argv[1]);
 //	ft_parsingcheckerprinter(scene);
 	init_mlx(scene);
-	write(1, "Rendering\n", 11); 
+	write(1, "Rendering\n", 10); 
 	render_scene(scene);
-    write(1, "Finished!\n", 9);
+    write(1, "Finished!\n", 10);
 	mlx_put_image_to_window(scene->mlx, scene->win, scene->img.img_ptr, 0, 0);
 	mlx_key_hook(scene->win, key_hook, scene);
 	mlx_hook(scene->win, 33, 1L << 17, close_hook, scene);
