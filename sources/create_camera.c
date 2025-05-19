@@ -64,7 +64,7 @@ static	void camera_guie(t_scene *scene, char *pov)
 	scene->camera->hsize = WIDTH;
 	scene->camera->vsize = HEIGHT;
 	half_view = tanf(fov / 2);
-	aspect = ((float)HEIGHT / WIDTH);
+	aspect = ((float)WIDTH / HEIGHT);
 	if (aspect >= 1)
 	{
 		scene->camera->half_width = half_view;

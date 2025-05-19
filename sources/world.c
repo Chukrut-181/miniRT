@@ -75,31 +75,36 @@ t_comps	prepare_computations(t_xs *hit, t_ray ray)
 	return (comps);
 }
 
-bool	is_shadowed(t_world world, t_tuple point)
+int is_shadowed(t_world world, t_tuple point)
 {
 	float	distance;
-	t_tuple direction;
+	t_tuple	direction;
 	t_ray	ray;
 	t_list	*xs;
 	t_tuple	v;
 	t_xs	*hit;
+	int		shadowed;
 
 	v = ft_substract_tuples(world.light->source, point);
 	distance = ft_calculate_magnitude(v);
 	direction = ft_normalize(v);
 	ray = ft_create_ray(point, direction);
 	xs = ft_intersect_world(world, ray);
+	if (!xs)
+		return (0);
 	hit = ft_find_hit(xs);
-	if (hit->time && hit->time < distance)
-		return (true);
+	if (hit && hit->time > 0 && hit->time < distance)
+		shadowed = 1;
 	else
-		return (false);
+		shadowed = 0;
+	ft_lstclear(&xs, free);
+	return (shadowed);
 }
 
 t_color	shade_hit(t_world world, t_comps comps)
 {
 	t_color	result;
-	bool	shadowed;
+	int		shadowed;
 
 	shadowed = is_shadowed(world, comps.over_point);
 	result = lighting(comps, *world.light, shadowed);

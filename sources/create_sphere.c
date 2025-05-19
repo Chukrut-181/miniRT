@@ -49,7 +49,7 @@ int	ft_create_sphere(t_scene *scene, char **ball)
 	center = ft_split(ball[1], ',');
 	translate = create_translation_mx(ft_atof(center[0]),
 			ft_atof(center[1]), ft_atof(center[2]));
-	diameter = ft_atof(ball[2]);
+	diameter = ft_atof(ball[2]) / 2.0f;
 	scalate = create_scaling_mx(diameter, diameter, diameter);
 	if (!ft_check_rgb(ball[3]))
 		return (free(sphere), 1);

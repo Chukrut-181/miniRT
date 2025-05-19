@@ -94,7 +94,7 @@ void	ft_identify_hit(t_list *xs_list);
 t_material	ft_create_material(char *rgb_code);
 t_tuple	normal_at(t_shape *shape, t_tuple point);
 t_tuple	reflect(t_tuple in, t_tuple normal);
-t_color	lighting(t_comps comp, t_light light, bool in_shadow);
+t_color	lighting(t_comps comp, t_light light, int in_shadow);
 t_light	point_light(t_tuple position, t_color color);
 
 //	WORLD

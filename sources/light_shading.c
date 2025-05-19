@@ -85,15 +85,14 @@ static t_color	calc_specular(t_material m, t_light l, double reflect_dot_eye)
 	return (specular);
 }
 
-t_color	lighting(t_comps comp, t_light light, bool in_shadow)
+t_color	lighting(t_comps comp, t_light light, int in_shadow)
 {
 	t_lighting l;
 
-	(void)in_shadow;
 	l.lightv = ft_substract_tuples(light.source, comp.over_point);
 	l.lightv = ft_normalize(l.lightv);
 	l.ambient = get_ambient(comp, light);
-	if (ft_dot_product(l.lightv, comp.normalv) < 0)
+	if (ft_dot_product(l.lightv, comp.normalv) < 0 || in_shadow)
 	{
 		l.diffuse = ft_create_color(0, 0, 0);
 		l.specular = ft_create_color(0, 0, 0);
