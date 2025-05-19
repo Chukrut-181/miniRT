@@ -161,7 +161,7 @@ int		ft_create_cylinder(t_scene *scene, char **cyl);
 int	ft_create_plane(t_scene *scene, char **plane);
 
 //	HOOKS
-int	key(int keycode, t_scene *scene);
+int	key_hook(int keycode, t_scene *data);
 
 //	ERROR EXIT
 int		ft_error_exit(char *err_msg, int err_code);
