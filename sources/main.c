@@ -136,10 +136,9 @@ int	main(int argc, char **argv)
 	render_scene(scene);
     write(1, "Finished\n", 9);
 	mlx_put_image_to_window(scene->mlx, scene->win, scene->img.img_ptr, 0, 0);
-	mlx_key_hook(scene->win, key_hook, scene);
-	mlx_hook(scene->win, 33, 1L << 17, close_hook, scene);
+//	mlx_key_hook(scene->win, key_hook, scene);
+//	mlx_hook(scene->win, 33, 1L << 17, close_hook, scene);
 	mlx_loop(scene->mlx);
-	write(1, "olakease\n", 13);
 	ft_free_scene(scene);
 	return (0);
 }
