@@ -1,6 +1,8 @@
 A 0.1 255,255,255
-C 0,0,-100 0,0,1 70
-L -40,50,-100 1 255,255,255
+C 0,0,-150 0,0,1 90
+L 10,0,-100 1 255,255,255
 
 # Si el diámetro es menor que 47 no se renderiza bien.
-sp 10,10,15 47 200,0,255
+# Si el diámetro es mayor que 56 no se renderiza bien
+sp 10,10,15 200 255,0,0
+

@@ -13,9 +13,9 @@ t_4x4	ft_orientation(t_tuple left, t_tuple true_up, t_tuple forward)
 	matrix.data[1][1] = true_up.y;
 	matrix.data[1][2] = true_up.z;
 
-	matrix.data[2][0] = forward.x;
-	matrix.data[2][1] = forward.y;
-	matrix.data[2][2] = forward.z;
+	matrix.data[2][0] = -forward.x;
+	matrix.data[2][1] = -forward.y;
+	matrix.data[2][2] = -forward.z;
 	return (matrix);
 }
 
@@ -39,16 +39,17 @@ t_4x4 view_transform(t_tuple origin, t_tuple direction)
 	}
 	left = ft_normalize(ft_cross_product(forward, up));
 	true_up = ft_cross_product(left, forward);
-	orientation = ft_create_identity_matrix();
-	orientation.data[0][0] = left.x;
-	orientation.data[0][1] = left.y;
-	orientation.data[0][2] = left.z;
-	orientation.data[1][0] = true_up.x;
-	orientation.data[1][1] = true_up.y;
-	orientation.data[1][2] = true_up.z;
-	orientation.data[2][0] = -forward.x;
-	orientation.data[2][1] = -forward.y;
-	orientation.data[2][2] = -forward.z;
+	orientation = ft_orientation(left, true_up, forward);
+	// orientation = ft_create_identity_matrix();
+	// orientation.data[0][0] = left.x;
+	// orientation.data[0][1] = left.y;
+	// orientation.data[0][2] = left.z;
+	// orientation.data[1][0] = true_up.x;
+	// orientation.data[1][1] = true_up.y;
+	// orientation.data[1][2] = true_up.z;
+	// orientation.data[2][0] = -forward.x;
+	// orientation.data[2][1] = -forward.y;
+	// orientation.data[2][2] = -forward.z;
 	translation = create_translation_mx(-origin.x, -origin.y, -origin.z);
 	return (ft_multiply_matrices(orientation, translation));
 }
