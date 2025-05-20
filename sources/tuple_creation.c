@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:08:59 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/08 13:00:59 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/20 11:42:58 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
  *
  * Return: A t_tuple structure representing a point in 3D space.
  */
-t_color	ft_create_color(float x, float y, float z)
+/* t_color	ft_create_color(float x, float y, float z)
 {
 	t_color	new_point;
 
@@ -35,7 +35,7 @@ t_color	ft_create_color(float x, float y, float z)
 	new_point.g = y;
 	new_point.b = z;
 	return (new_point);
-}
+} */
 
 t_tuple	ft_create_point(float x, float y, float z)
 {
@@ -108,7 +108,7 @@ t_point	create_point(double x, double y, double z)
 	return (new);
 }
 
-t_tuple	color_tp(t_color p)
+/* t_tuple	color_tp(t_color p)
 {
 	t_tuple	tp;
 	float	w;
@@ -117,4 +117,4 @@ t_tuple	color_tp(t_color p)
 	tp = ft_create_point(p.r, p.g, p.b);
 	tp.w = w;
 	return (tp);
-}
+} */

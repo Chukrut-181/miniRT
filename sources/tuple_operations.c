@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:36:49 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/07 11:32:39 by eandres          ###   ########.fr       */
+/*   Updated: 2025/05/20 11:43:36 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_tuple	ft_add_tuples(t_tuple tuple1, t_tuple tuple2)
 	return (addition);
 }
 
-t_color	ft_add_color(t_color tuple1, t_color tuple2)
+/* t_color	ft_add_color(t_color tuple1, t_color tuple2)
 {
 	t_color	addition;
 
@@ -43,7 +43,7 @@ t_color	ft_add_color(t_color tuple1, t_color tuple2)
 	addition.g = tuple1.g + tuple2.g;
 	addition.b = tuple1.b + tuple2.b;
 	return (addition);
-}
+} */
 
 /*
  * ft_substract_tuples - Subtracts one t_tuple structure from another.
@@ -104,7 +104,7 @@ t_tuple	ft_multiply_tuple_f(t_tuple tuple, float scalar)
 	return (product);
 }
 
-t_color	ft_multiply_color_f(t_color tuple, float scalar)
+/* t_color	ft_multiply_color_f(t_color tuple, float scalar)
 {
 	t_color	product;
 
@@ -112,7 +112,7 @@ t_color	ft_multiply_color_f(t_color tuple, float scalar)
 	product.g = tuple.g * scalar;
 	product.b = tuple.b * scalar;
 	return (product);
-}
+} */
 
 /**
  * ft_divide_tuple - Divides each component of a 4D tuple by a scalar value.
@@ -186,7 +186,7 @@ t_tuple	ft_multiply_tuple(t_tuple c1, t_tuple c2)
 	return (result);
 }
 
-t_color	ft_multiply_color(t_color c1, t_color c2)
+/* t_color	ft_multiply_color(t_color c1, t_color c2)
 {
 	t_color	result;
 
@@ -200,4 +200,4 @@ t_color	ft_multiply_color(t_color c1, t_color c2)
 	if (result.b > 255)
 		result.b = 255;
 	return (result);
-}
+} */
