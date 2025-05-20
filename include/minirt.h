@@ -108,6 +108,7 @@ void render_scene(t_scene *s);
 t_color	shade_hit(t_world w, t_comps comps);
 bool	intersec_plane(t_shape *shape, t_list **inter);
 bool	intersec_sphere(t_shape *shape, t_list **inter);
+bool    intersec_cylinder(t_shape *shape, t_list **inter, t_ray ray);
 
 //	PARSE
 int	ft_get_scene(t_scene *scene, char *argv1);
