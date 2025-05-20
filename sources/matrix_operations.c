@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 09:50:24 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/17 10:51:11 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/16 13:04:29 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,25 +124,24 @@ t_tuple	ft_multiply_mat_and_tuple(t_4x4 mat, t_tuple tuple)
  */
 static t_3x3	ft_get_3x3_minor(t_4x4 matrix, int row, int col)
 {
-	int		i;
-	int		j;
+	int		i[2];
 	int		sub_i;
 	int		sub_j;
 	t_3x3	submatrix;
 
-	i = -1;
+	i[0] = -1;
 	sub_i = 0;
-	while (++i < 4)
+	while (++i[0] < 4)
 	{
-		if (i != row)
+		if (i[0] != row)
 		{
 			sub_j = 0;
-			j = -1;
-			while (++j < 4)
+			i[1] = -1;
+			while (++i[1] < 4)
 			{
-				if (j != col)
+				if (i[1] != col)
 				{
-					submatrix.data[sub_i][sub_j] = matrix.data[i][j];
+					submatrix.data[sub_i][sub_j] = matrix.data[i[0]][i[1]];
 					sub_j++;
 				}
 			}
@@ -189,35 +188,4 @@ t_4x4	ft_find_inverse(t_4x4 matrix)
 		}
 	}
 	return (inverse);
-}
-
-/**
- * ft_transpose - Transposes a 4x4 matrix and returns the resulting matrix.
- * 
- * Transposing a matrix involves swapping its rows and columns,
- * so the element at position `[i][j]` in the original matrix becomes
- * the element at position `[j][i]` in the transposed matrix. 
- * 
- * param matrix: A t_4x4 structure representing the matrix to be transposed.
- * 
- * Return: A t_4x4 structure representing the transposed matrix.
- */
-t_4x4	ft_transpose(t_4x4 matrix)
-{
-	t_4x4	transposed;
-	int		i;
-	int		j;
-
-	i = 0;
-	while (i < 4)
-	{
-		j = 0;
-		while (j < 4)
-		{
-			transposed.data[i][j] = matrix.data[j][i];
-			j++;
-		}
-		i++;
-	}
-	return (transposed);
 }
