@@ -82,8 +82,7 @@ t_4x4	create_scaling_mx(float x, float y, float z);
 t_4x4	rotation_z(float radians);
 t_4x4	rotation_x(float radians);
 t_4x4	rotation_y(float radians);
-//t_4x4 ft_rotate_plane(t_tuple);
-t_4x4	ft_rodriguez_rotation(float target_x, float target_y, float target_z);
+t_4x4 ft_rotate_plane(t_tuple);
 
 //	RAY
 t_ray	ft_create_ray(t_tuple origin, t_tuple direction);
