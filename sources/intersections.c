@@ -46,7 +46,7 @@ bool	intersec_plane(t_shape *shape, t_list **inter)
 	return (false);
 	return (true);
 }
-static void	ft_intersect_caps(t_shape *cy_shape, t_ray ray, t_list **intersections)
+/* static void	ft_intersect_caps(t_shape *cy_shape, t_ray ray, t_list **intersections)
 {
 	float t;
 	t_tuple p;
@@ -71,61 +71,44 @@ static void	ft_intersect_caps(t_shape *cy_shape, t_ray ray, t_list **intersectio
 		if (powf(p.x, 2) + powf(p.z, 2) <= 1) // Radius is 1 in object space
 			update_inter(intersections, cy_shape, t);
 	}
-}
+} */
 
 bool    intersec_cylinder(t_shape *shape, t_list **inter, t_ray ray)
 {
-	t_tuple oc;
-	float   a, b, c, discriminant;
-	float   t0, t1;
-	float   y0, y1;
+    t_abcd data;
+    float   t0, t1;
+    float   y0, y1;
 
-	oc = ft_create_vector(ray.origin.x, ray.origin.y, ray.origin.z); // Origin in object space
-	t_tuple direction = ft_create_vector(ray.direction.x, ray.direction.y, ray.direction.z); // Direction in object space
+    data.a = powf(ray.direction.x, 2) + powf(ray.direction.z, 2);
+    if (fabsf(data.a) < EPSILON)
+        return (false);
+    data.b = 2.0 * (ray.origin.x * ray.direction.x + ray.origin.z * ray.direction.z);
+    data.c = powf(ray.origin.x, 2) + powf(ray.origin.z, 2) - 1;
+    data.discriminant = data.b * data.b - 4.0 * data.a * data.c;
+     if (data.discriminant < 0)
+         return (false);
+    t0 = (-data.b - sqrtf(data.discriminant)) / (2.0 * data.a);
+    t1 = (-data.b + sqrtf(data.discriminant)) / (2.0 * data.a);
+    if (t0 > t1)
+    {
+        float temp = t0;
+        t0 = t1;
+        t1 = temp;
+    }
+    y0 = ray.origin.y + t0 * ray.direction.y;
+    if (t0 > EPSILON && y0 >= 0 && y0 <= 1)
+        update_inter(inter, shape, t0);
 
-	a = powf(direction.x, 2) + powf(direction.z, 2);
-
-	if (fabsf(a) < EPSILON) // Ray is parallel to the cylinder's axis (y-axis in object space)
-	{
-		return (ft_intersect_caps(shape, ray, inter), false);
-	}
-
-	b = 2.0 * (oc.x * direction.x + oc.z * direction.z);
-	c = powf(oc.x, 2) + powf(oc.z, 2) - 1; // Radius is 1 in object space after scaling
-
-	discriminant = b * b - 4.0 * a * c;
-
-	 if (discriminant < 0)
-		 return (ft_intersect_caps(shape, ray, inter), false); // Check caps even if no side intersection
-
-	t0 = (-b - sqrtf(discriminant)) / (2.0 * a);
-	t1 = (-b + sqrtf(discriminant)) / (2.0 * a);
-
-	if (t0 > t1)
-	{
-		float temp = t0;
-		t0 = t1;
-		t1 = temp;
-	}
-
-	y0 = ray.origin.y + t0 * ray.direction.y;
-	if (t0 > EPSILON && y0 >= 0 && y0 <= 1) // Height is 1 in object space after scaling
-		update_inter(inter, shape, t0);
-
-	y1 = ray.origin.y + t1 * ray.direction.y;
-	if (t1 > EPSILON && y1 >= 0 && y1 <= 1) // Height is 1 in object space after scaling
-		update_inter(inter, shape, t1);
-
-	ft_intersect_caps(shape, ray, inter); // Always check for cap intersections
-
-	return (*inter != NULL);
+    y1 = ray.origin.y + t1 * ray.direction.y;
+    if (t1 > EPSILON && y1 >= 0 && y1 <= 1)
+        update_inter(inter, shape, t1);
+    return (*inter != NULL);
 }
 
 bool	intersec_sphere(t_shape *shape, t_list **inter)
 {
 	t_tuple	sphere_to_ray;
 	t_tuple origin;
-	//float	a, b, c, discriminant;
 	t_abcd data;
 	float	t1;
 	float	t2;
@@ -170,16 +153,3 @@ void	ft_identify_hit(t_list *xs_list)
 		xs_list = xs_list->next;
 	}
 }
-/*
-static void	ft_calculate_abcd(t_ray ray, t_sphere sphere, t_abcd *data)
-{
-	t_tuple	sphere_to_ray;
-
-	sphere_to_ray = ft_substract_tuples(ray.origin, sphere.center);
-	data->a = ft_dot_product(ray.direction, ray.direction);
-	data->b = 2 * ft_dot_product(ray.direction, sphere_to_ray);
-	data->c = (ft_dot_product(sphere_to_ray, sphere_to_ray)
-			- (sphere.diameter/2 * sphere.diameter/2));
-	data->discriminant = (data->b * data->b) - (4 * data->a * data->c);
-	return ;
-}*/

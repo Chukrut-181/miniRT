@@ -6,32 +6,34 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:52:50 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/20 11:56:28 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/20 15:57:33 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-static t_4x4	ft_transform_cyl(char *center, char *axis, float r, float h)
+static t_4x4    ft_transform_cyl(char *center, char *axis, float r, float h)
 {
-	t_4x4	translate;
-	t_4x4	rotate;
-	t_4x4	scalate;
-	t_4x4	transform_matrix;
-	char	**aux;
+    t_4x4   translate;
+    t_4x4   rotate;
+    t_4x4   scalate;
+    t_4x4   transform_matrix;
+    char    **aux;
 
-	aux = ft_split(center, ',');
-	translate = create_translation_mx(ft_atof(aux[0]),
-			ft_atof(aux[1]), ft_atof(aux[2]));
-	ft_free_array(aux);
-	aux = ft_split(axis, ',');
-	rotate = ft_rodriguez_rotation(ft_atof(aux[0]),
-			ft_atof(aux[1]), ft_atof(aux[2]));
-	ft_free_array(aux);
-	scalate = create_scaling_mx(r, r, h);
-	transform_matrix = ft_multiply_matrices(translate,
-			ft_multiply_matrices(scalate, rotate));
-	return (transform_matrix);
+    aux = ft_split(center, ',');
+    translate = create_translation_mx(ft_atof(aux[0]),
+            ft_atof(aux[1]), ft_atof(aux[2]));
+    ft_free_array(aux);
+    aux = ft_split(axis, ',');
+    rotate = ft_rodriguez_rotation(ft_atof(aux[0]),
+            ft_atof(aux[1]), ft_atof(aux[2]));
+    ft_free_array(aux);
+    scalate = create_scaling_mx(1.0, 1.0, 1.0);
+    transform_matrix = ft_multiply_matrices(translate,
+            ft_multiply_matrices(rotate, scalate));
+    scalate = create_scaling_mx(r, h, r);
+    transform_matrix = ft_multiply_matrices(transform_matrix, scalate);
+    return (transform_matrix);
 }
 
 bool	ft_create_cylinder(t_scene *scene, char **cyl_data)
