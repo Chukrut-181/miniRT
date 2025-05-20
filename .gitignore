@@ -1,3 +1,5 @@
 objects/
 bonus_objects/
 miniRT
+lib/libft/Objects
+lib/libft/libft.a

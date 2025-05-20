@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:52:50 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/16 12:13:04 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/20 11:56:28 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ bool	ft_create_cylinder(t_scene *scene, char **cyl_data)
 
 	cylinder = malloc(sizeof(t_shape));
 	if (!cylinder)
-		ft_error_exit(scene,
-			"Error\nFailed to allocate memory for cylinder", 1);
+		ft_error_exit(scene, "Error\nFailed to allocate memory for cylinder", 1);
 	cylinder->type = CYLINDER;
 	if (!ft_check_coords(cyl_data[1]) || !ft_check_coords(cyl_data[2]))
 		return (free(cylinder), false);

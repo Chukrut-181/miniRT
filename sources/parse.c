@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:44:53 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/19 12:39:59 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/20 12:00:04 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void ft_open_scene(char *argv1, int *fd)
 	if (*fd <= 0)
 	{
 		free(aux);
-		ft_error_exit("Error\nCould not open scene", 1);
+		ft_error_exit(NULL, "Error\nCould not open scene", 1);
 	}
 	free(aux);
 }
@@ -96,16 +96,13 @@ int	ft_get_scene(t_scene *scene, char *argv1)
 		if (*line != '\n' && ft_parse_line(scene, line))
 		{
 			free(line);
-			ft_error_exit("Error\nIncorrect format encountered", 1);
+			ft_error_exit(scene, "Error\nIncorrect format encountered", 1);
 		}
 		free(line);
 		line = get_one_line(fd);
 	}
 	close(fd);
 	if (!scene->ambient || !scene->camera || !scene->world->light || !scene->world->objects)
-	{
-		ft_free_scene(scene);
-		ft_error_exit("Error\nMissing mandatory elements", 1);
-	}
+		ft_error_exit(scene, "Error\nMissing mandatory elements", 1);
 	return (0);
 }

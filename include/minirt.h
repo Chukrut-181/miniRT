@@ -82,7 +82,9 @@ t_4x4	create_scaling_mx(float x, float y, float z);
 t_4x4	rotation_z(float radians);
 t_4x4	rotation_x(float radians);
 t_4x4	rotation_y(float radians);
-t_4x4 ft_rotate_plane(t_tuple);
+//t_4x4 ft_rotate_plane(t_tuple);
+t_4x4 ft_rodriguez_rotation(float target_x, float target_y, float target_z);
+
 
 //	RAY
 t_ray	ft_create_ray(t_tuple origin, t_tuple direction);
@@ -116,15 +118,15 @@ int	check_rgb(char *str, t_scene *data);
 
 //	EXECUTE
 void render_scene(t_scene *s);
-t_tuple	normal_at_plane(t_plane plane, t_tuple world_point);
-t_xs	intersect(t_plane *plane, t_ray *ray);
+// t_tuple	normal_at_plane(t_plane plane, t_tuple world_point);
+// t_xs	intersect(t_plane *plane, t_ray *ray);
 t_color	shade_hit(t_world w, t_comps comps);
 bool	intersec_plane(t_shape *shape, t_list **inter);
 bool	intersec_sphere(t_shape *shape, t_list **inter);
 
 // CYLINDER
-t_list	*ft_intersect_cylinder(t_ray ray, t_cyl cylinder, t_list *xs_list);
-t_tuple	normal_at_cylinder(t_cyl cylinder, t_tuple world_point);
+// t_list	*ft_intersect_cylinder(t_ray ray, t_cyl cylinder, t_list *xs_list);
+// t_tuple	normal_at_cylinder(t_cyl cylinder, t_tuple world_point);
 
 //	PARSE
 int	ft_get_scene(t_scene *scene, char *argv1);
@@ -155,7 +157,7 @@ t_camera	camera(int hsize, int vsize, double field_of_view);
 int	ft_create_sphere(t_scene *scene, char **ball);
 
 //	CREATE CYLINDER
-int		ft_create_cylinder(t_scene *scene, char **cyl);
+bool	ft_create_cylinder(t_scene *scene, char **cyl_data);
 
 //	CREATE PLANE
 int	ft_create_plane(t_scene *scene, char **plane);
@@ -165,7 +167,7 @@ int	key_hook(int keycode, t_scene *data);
 int	close_hook(t_scene *data);
 
 //	ERROR EXIT
-int		ft_error_exit(char *err_msg, int err_code);
+int		ft_error_exit(t_scene *failed_scene, char *err_msg, int err_code);
 void	ft_free_scene(t_scene *scene);
 
 //	TEST FUNCTIONS (to be removed)

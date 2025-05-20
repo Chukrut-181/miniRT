@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/19 16:41:01 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/20 11:58:50 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,10 +125,10 @@ int	main(int argc, char **argv)
 	t_scene	*scene;
 	
 	if (argc != 2)
-		ft_error_exit("Error\nUsage: ./miniRT <arg1>", 1);
+		ft_error_exit(NULL, "Error\nUsage: ./miniRT <arg1>", 1);
 	scene = ft_init_scene();
 	if (scene == NULL)
-		ft_error_exit("Error\nFailed to initialize scene", 1);
+		ft_error_exit(NULL, "Error\nFailed to initialize scene", 1);
 	ft_get_scene(scene, argv[1]);
 //	ft_parsingcheckerprinter(scene);
 	init_mlx(scene);
