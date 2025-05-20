@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:36:49 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/07 11:32:39 by eandres          ###   ########.fr       */
+/*   Updated: 2025/05/16 13:02:48 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,6 @@ t_tuple	ft_add_tuples(t_tuple tuple1, t_tuple tuple2)
 	addition.y = tuple1.y + tuple2.y;
 	addition.z = tuple1.z + tuple2.z;
 	addition.w = tuple1.w + tuple2.w;
-	return (addition);
-}
-
-t_color	ft_add_color(t_color tuple1, t_color tuple2)
-{
-	t_color	addition;
-
-	addition.r = tuple1.r + tuple2.r;
-	addition.g = tuple1.g + tuple2.g;
-	addition.b = tuple1.b + tuple2.b;
 	return (addition);
 }
 
@@ -104,16 +94,6 @@ t_tuple	ft_multiply_tuple_f(t_tuple tuple, float scalar)
 	return (product);
 }
 
-t_color	ft_multiply_color_f(t_color tuple, float scalar)
-{
-	t_color	product;
-
-	product.r = tuple.r * scalar;
-	product.g = tuple.g * scalar;
-	product.b = tuple.b * scalar;
-	return (product);
-}
-
 /**
  * ft_divide_tuple - Divides each component of a 4D tuple by a scalar value.
  * 
@@ -142,30 +122,6 @@ t_tuple	ft_divide_tuple(t_tuple tuple, float scalar)
 }
 
 /**
- * ft_negate_tuple - Negates each component of a 4D tuple.
- * 
- * This function takes a tuple of four floating-point values (`tuple`) and
- * negates the `x`, `y`, and `z` components by multiplying each by -1. The
- * `w` component remains unchanged. The function returns a new tuple with the
- * negated values for `x`, `y`, and `z`, and the original `w` value.
- *
- * param tuple: A t_tuple structure containing the 4D vector to be negated.
- * 
- * Return: A new t_tuple structure with the negated values for `x`, `y`, and
- *         `z`, and the unchanged `w` value.
- */
-t_tuple	ft_negate_tuple(t_tuple tuple)
-{
-	t_tuple	negated;
-
-	negated.x = tuple.x * -1;
-	negated.y = tuple.y * -1;
-	negated.z = tuple.z * -1;
-	negated.w = tuple.w;
-	return (negated);
-}
-
-/**
  * ft_multiply_color - Multiplies corresponding components of two color tuples.
  * 
  * The function multiplies the `x`, `y`, and `z` components of the two tuples 
@@ -183,21 +139,5 @@ t_tuple	ft_multiply_tuple(t_tuple c1, t_tuple c2)
 	result.x = c1.x * c2.x;
 	result.y = c1.y * c2.y;
 	result.z = c1.z * c2.z;
-	return (result);
-}
-
-t_color	ft_multiply_color(t_color c1, t_color c2)
-{
-	t_color	result;
-
-	result.r = c1.r * c2.r;
-	if (result.r > 255)
-		result.r = 255;
-	result.g = c1.g * c2.g;
-	if (result.g > 255)
-		result.g = 255;
-	result.b = c1.b * c2.b;
-	if (result.b > 255)
-		result.b = 255;
 	return (result);
 }

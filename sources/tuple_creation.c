@@ -6,36 +6,11 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:08:59 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/08 13:00:59 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/16 13:02:25 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
-
-/*
- * ft_create_point - Creates a point in a 3D space using the given
- *                   coordinates (x, y, z).
- *
- * @x: The x-coordinate of the point.
- * @y: The y-coordinate of the point.
- * @z: The z-coordinate of the point.
- *
- * This function initializes a t_tuple structure with the provided
- * x, y, and z values. The 'w' component is set to 1, which
- * indicates that the tuple represents a point (not a vector) in
- * homogeneous coordinates.
- *
- * Return: A t_tuple structure representing a point in 3D space.
- */
-t_color	ft_create_color(float x, float y, float z)
-{
-	t_color	new_point;
-
-	new_point.r = x;
-	new_point.g = y;
-	new_point.b = z;
-	return (new_point);
-}
 
 t_tuple	ft_create_point(float x, float y, float z)
 {
@@ -48,21 +23,6 @@ t_tuple	ft_create_point(float x, float y, float z)
 	return (new_point);
 }
 
-/*
- * ft_create_vector - Creates a vector in a 3D space using the given
- *                    components (x, y, z).
- *
- * @x: The x-component of the vector.
- * @y: The y-component of the vector.
- * @z: The z-component of the vector.
- *
- * This function initializes a t_tuple structure with the provided
- * x, y, and z values. The 'w' component is set to 0, which
- * indicates that the tuple represents a vector (not a point) in
- * homogeneous coordinates.
- *
- * Return: A t_tuple structure representing a vector in 3D space.
- */
 t_tuple	ft_create_vector(float x, float y, float z)
 {
 	t_tuple	new_vector;
@@ -74,20 +34,6 @@ t_tuple	ft_create_vector(float x, float y, float z)
 	return (new_vector);
 }
 
-/**
- * ft_check_equality - 	Compares two t_tuple structures for equality
- * 						within a small tolerance.
- * 
- * This function checks if the x, y, and z components of two given t_tuple 
- * structures are approximately equal within the defined EPSILON threshold.
- * This approach accounts for floating-point precision errors.
- * 
- * param tuple1: The first tuple to compare.
- * param tuple2: The second tuple to compare.
- * 
- * Return: Returns 0 if the tuples are considered equal within EPSILON,
- *         otherwise returns 1.
- */
 int	ft_check_equality(t_tuple tuple1, t_tuple tuple2)
 {
 	if ((fabsf(tuple1.x - tuple2.x) < EPSILON)
@@ -98,23 +44,26 @@ int	ft_check_equality(t_tuple tuple1, t_tuple tuple2)
 		return (1);
 }
 
-t_point	create_point(double x, double y, double z)
+/**
+ * ft_negate_tuple - Negates each component of a 4D tuple.
+ * 
+ * This function takes a tuple of four floating-point values (`tuple`) and
+ * negates the `x`, `y`, and `z` components by multiplying each by -1. The
+ * `w` component remains unchanged. The function returns a new tuple with the
+ * negated values for `x`, `y`, and `z`, and the original `w` value.
+ *
+ * param tuple: A t_tuple structure containing the 4D vector to be negated.
+ * 
+ * Return: A new t_tuple structure with the negated values for `x`, `y`, and
+ *         `z`, and the unchanged `w` value.
+ */
+t_tuple	ft_negate_tuple(t_tuple tuple)
 {
-	t_point	new;
+	t_tuple	negated;
 
-	new.x = x;
-	new.y = y;
-	new.z = z;
-	return (new);
-}
-
-t_tuple	color_tp(t_color p)
-{
-	t_tuple	tp;
-	float	w;
-
-	w = 1.0;
-	tp = ft_create_point(p.r, p.g, p.b);
-	tp.w = w;
-	return (tp);
+	negated.x = tuple.x * -1;
+	negated.y = tuple.y * -1;
+	negated.z = tuple.z * -1;
+	negated.w = tuple.w;
+	return (negated);
 }
