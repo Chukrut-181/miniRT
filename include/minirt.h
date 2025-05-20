@@ -160,7 +160,7 @@ bool	ft_create_sphere(t_scene *scene, char **ball);
 bool	ft_create_cylinder(t_scene *scene, char **cyl_data);
 
 //	CREATE PLANE
-int	ft_create_plane(t_scene *scene, char **plane);
+bool	ft_create_plane(t_scene *scene, char **plane);
 
 //	HOOKS
 int	key_hook(int keycode, t_scene *data);
