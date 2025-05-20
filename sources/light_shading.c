@@ -9,7 +9,6 @@ t_light	point_light(t_tuple position, t_color color)
 	return (light);
 }
 
-// Falta implementar el cylindro
 t_tuple	normal_at(t_shape *shape, t_tuple point)
 {
 	t_tuple	object_point;
@@ -17,11 +16,22 @@ t_tuple	normal_at(t_shape *shape, t_tuple point)
 	t_4x4	world_normal;
 	t_tuple	normal_at;
 
+	object_normal = ft_create_vector(0, 0, 0);
 	object_point = ft_multiply_mat_and_tuple(shape->inverse_matrix, point);
 	if (shape->type == SPHERE)
 		object_normal = ft_substract_tuples(object_point, ft_create_point(0, 0, 0));
-	if (shape->type == PLANE)
+	else if (shape->type == PLANE)
 		object_normal = ft_create_vector(0, 1, 0);
+	else if (shape->type == CYLINDER)
+	{
+        object_normal = ft_create_vector(object_point.x, 0, object_point.z);
+        if (fabsf(object_point.y - 0) < EPSILON)
+            object_normal = ft_create_vector(0, -1, 0);
+        else if (fabsf(object_point.y - 1) < EPSILON)
+            object_normal = ft_create_vector(0, 1, 0);
+        else
+            object_normal = ft_create_vector(object_point.x, 0, object_point.z);
+    }
 	world_normal = ft_transpose(shape->inverse_matrix);
 	normal_at = ft_multiply_mat_and_tuple(world_normal, object_normal);
 	return (ft_normalize(normal_at));

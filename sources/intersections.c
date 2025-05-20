@@ -76,8 +76,10 @@ bool	intersec_plane(t_shape *shape, t_list **inter)
 bool    intersec_cylinder(t_shape *shape, t_list **inter, t_ray ray)
 {
     t_abcd data;
-    float   t0, t1;
-    float   y0, y1;
+    float   t0;
+	float   t1;
+    float   y0;
+	float	y1;
 
     data.a = powf(ray.direction.x, 2) + powf(ray.direction.z, 2);
     if (fabsf(data.a) < EPSILON)
@@ -98,7 +100,6 @@ bool    intersec_cylinder(t_shape *shape, t_list **inter, t_ray ray)
     y0 = ray.origin.y + t0 * ray.direction.y;
     if (t0 > EPSILON && y0 >= 0 && y0 <= 1)
         update_inter(inter, shape, t0);
-
     y1 = ray.origin.y + t1 * ray.direction.y;
     if (t1 > EPSILON && y1 >= 0 && y1 <= 1)
         update_inter(inter, shape, t1);
