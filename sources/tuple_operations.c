@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:36:49 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/20 11:48:04 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/20 12:12:25 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,17 @@ t_tuple	ft_divide_tuple(t_tuple tuple, float scalar)
 	quotient.z = tuple.z / scalar;
 	quotient.w = tuple.w;
 	return (quotient);
+}
+
+t_tuple	ft_negate_tuple(t_tuple tuple)
+{
+	t_tuple	negated;
+
+	negated.x = tuple.x * -1;
+	negated.y = tuple.y * -1;
+	negated.z = tuple.z * -1;
+	negated.w = tuple.w;
+	return (negated);
 }
 
 /**
