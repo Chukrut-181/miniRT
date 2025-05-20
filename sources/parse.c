@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:44:53 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/13 13:14:17 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/19 12:39:59 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	ft_parse_line(t_scene *scene, char *line)
 {
 	char	**temp;
 
+	if (*line == '#')
+		return (0);
 	temp = ft_split(line, ' ');
 	if (!ft_strncmp(temp[0], "A", 1) && ft_arraylen(temp) == 3
 		&& !ft_create_ambient(scene, temp))
