@@ -123,7 +123,7 @@ typedef struct s_ambient
 
 typedef struct s_img
 {
-	void		*img_ptr;
+	void	*img_ptr;
 	int		bits_per_pixel;
 	int		size_line;
 	int		endian;

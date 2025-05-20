@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:08:59 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/20 11:47:36 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/20 16:39:57 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,3 @@ t_point	create_point(double x, double y, double z)
 	new.z = z;
 	return (new);
 }
-
-/* t_tuple	color_tp(t_color p)
-{
-	t_tuple	negated;
-
-	w = 1.0;
-	tp = ft_create_point(p.r, p.g, p.b);
-	tp.w = w;
-	return (tp);
-} */
