@@ -154,7 +154,7 @@ t_4x4		ft_orientation(t_tuple left, t_tuple true_up, t_tuple forward);
 t_camera	camera(int hsize, int vsize, double field_of_view);
 
 //	CREATE SPHERE
-int	ft_create_sphere(t_scene *scene, char **ball);
+bool	ft_create_sphere(t_scene *scene, char **ball);
 
 //	CREATE CYLINDER
 bool	ft_create_cylinder(t_scene *scene, char **cyl_data);
