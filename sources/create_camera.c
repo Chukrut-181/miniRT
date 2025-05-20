@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_camera.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/20 13:51:00 by igchurru          #+#    #+#             */
+/*   Updated: 2025/05/20 13:51:01 by igchurru         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minirt.h"
 
 t_4x4	ft_orientation(t_tuple left, t_tuple true_up, t_tuple forward)
@@ -30,7 +42,6 @@ t_4x4 view_transform(t_tuple origin, t_tuple direction)
 	up = ft_create_vector(0, 1, 0);
 	if (fabsf(forward.y) > 0.9999f)
 	{
-		// Si miramos hacia arriba o abajo, usar otro vector como referencia
 		if (forward.y > 0)
 			z = -1;
 		else
@@ -40,16 +51,6 @@ t_4x4 view_transform(t_tuple origin, t_tuple direction)
 	left = ft_normalize(ft_cross_product(forward, up));
 	true_up = ft_cross_product(left, forward);
 	orientation = ft_orientation(left, true_up, forward);
-	// orientation = ft_create_identity_matrix();
-	// orientation.data[0][0] = left.x;
-	// orientation.data[0][1] = left.y;
-	// orientation.data[0][2] = left.z;
-	// orientation.data[1][0] = true_up.x;
-	// orientation.data[1][1] = true_up.y;
-	// orientation.data[1][2] = true_up.z;
-	// orientation.data[2][0] = -forward.x;
-	// orientation.data[2][1] = -forward.y;
-	// orientation.data[2][2] = -forward.z;
 	translation = create_translation_mx(-origin.x, -origin.y, -origin.z);
 	return (ft_multiply_matrices(orientation, translation));
 }
@@ -60,7 +61,7 @@ static	void camera_guie(t_scene *scene, char *pov)
 	float half_view;
 	float aspect;
 
-	fov = ft_atof(pov) * M_PI / 180.0; // Convertir de grados a radianes
+	fov = ft_atof(pov) * M_PI / 180.0;
 	scene->camera->field_of_view = fov;
 	scene->camera->hsize = WIDTH;
 	scene->camera->vsize = HEIGHT;
@@ -106,23 +107,3 @@ bool	ft_create_camera(t_scene *scene, char **cam_data)
 	camera_guie(scene, cam_data[3]);
 	return (true);
 }
-
-/* bool	ft_aim_camera(t_camera *cam1, float fov, char *point_of_view, char *orientation_vector)
-{
-	t_tuple		direction;
-	char		**aux;
-
-	cam1->hsize = WIDTH;
-	cam1->vsize = HEIGHT;
-	cam1->field_of_view = fov;
-	if (!ft_check_coords(orientation_vector) || !ft_check_coords(point_of_view))
-		return (free(cam1), false);
-	aux = ft_split(point_of_view, ',');
-	cam1->origin = ft_create_point(ft_atof(aux[0]), ft_atof(aux[1]), ft_atof(aux[2]));
-	ft_free_array(aux);
-	aux = ft_split(orientation_vector, ',');
-	direction = ft_create_vector(ft_atof(aux[0]), ft_atof(aux[1]), ft_atof(aux[2]));
-	ft_free_array(aux);
-	cam1->transform = view_transform(cam1->origin, direction);
-	return (true);
-} */

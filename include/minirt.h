@@ -29,10 +29,8 @@
 #  define M_PI 3.1415926
 # endif
 
+//	MAIN
 int	main(int argc, char **argv);
-
-//	MINIRT
-int	ft_minirt(void);
 
 //	TUPLE CREATION
 t_tuple	ft_create_point(float x, float y, float z);
@@ -82,9 +80,7 @@ t_4x4	create_scaling_mx(float x, float y, float z);
 t_4x4	rotation_z(float radians);
 t_4x4	rotation_x(float radians);
 t_4x4	rotation_y(float radians);
-//t_4x4 ft_rotate_plane(t_tuple);
 t_4x4 ft_rodriguez_rotation(float target_x, float target_y, float target_z);
-
 
 //	RAY
 t_ray	ft_create_ray(t_tuple origin, t_tuple direction);
@@ -93,7 +89,6 @@ t_list	*ft_intersection_sphere(t_ray ray, t_shape sphere, t_list *xs_list);
 void	ft_identify_hit(t_list *xs_list);
 
 //	LIGHT
-t_material	ft_create_material(char *rgb_code);
 t_tuple	normal_at(t_shape *shape, t_tuple point);
 t_tuple	reflect(t_tuple in, t_tuple normal);
 t_color	lighting(t_comps comp, t_light light, int in_shadow);
@@ -108,25 +103,11 @@ t_tuple	color_at(t_world world, t_ray ray);
 t_list *ft_sort_intersections(t_list *intersections);
 t_list *ft_intersect_world(t_world world, t_ray ray);
 
-//	PARSE
-void	parse(t_scene *s, char **argv);
-int	create_ambient_light(t_scene *s, char **res);
-int	create_camera(char **str, t_scene *s);
-int	create_light(char **res, t_scene *s);
-int	create_sphere(char **res, t_scene *s);
-int	check_rgb(char *str, t_scene *data);
-
 //	EXECUTE
 void render_scene(t_scene *s);
-// t_tuple	normal_at_plane(t_plane plane, t_tuple world_point);
-// t_xs	intersect(t_plane *plane, t_ray *ray);
 t_color	shade_hit(t_world w, t_comps comps);
 bool	intersec_plane(t_shape *shape, t_list **inter);
 bool	intersec_sphere(t_shape *shape, t_list **inter);
-
-// CYLINDER
-// t_list	*ft_intersect_cylinder(t_ray ray, t_cyl cylinder, t_list *xs_list);
-// t_tuple	normal_at_cylinder(t_cyl cylinder, t_tuple world_point);
 
 //	PARSE
 int	ft_get_scene(t_scene *scene, char *argv1);
@@ -144,23 +125,18 @@ bool	ft_check_coords(char *coords);
 
 //	CREATE CAMERA
 bool		ft_create_camera(t_scene *scene, char **cam);
-bool		ft_check_orientation_vector(char *orientation);
-//t_4x4		view_transform(t_tuple from, t_tuple to, t_tuple up);
 t_4x4		view_transform(t_tuple origin, t_tuple direction);
-bool	ft_camera(t_scene *scene, float field_of_view, char *point_of_view, char *orientation_vector);
-//t_ray	ray_for_pixel(t_camera c, float px, float py);
-//mlx_image_t	*ft_render(mlx_t *mlx, t_camera camera, t_world world);
 t_4x4		ft_orientation(t_tuple left, t_tuple true_up, t_tuple forward);
-t_camera	camera(int hsize, int vsize, double field_of_view);
 
 //	CREATE SPHERE
+t_material	ft_create_material(char *rgb_code);
 bool	ft_create_sphere(t_scene *scene, char **ball);
-
-//	CREATE CYLINDER
-bool	ft_create_cylinder(t_scene *scene, char **cyl_data);
 
 //	CREATE PLANE
 bool	ft_create_plane(t_scene *scene, char **plane);
+
+//	CREATE CYLINDER
+bool	ft_create_cylinder(t_scene *scene, char **cyl_data);
 
 //	HOOKS
 int	key_hook(int keycode, t_scene *data);
@@ -169,12 +145,5 @@ int	close_hook(t_scene *data);
 //	ERROR EXIT
 int		ft_error_exit(t_scene *failed_scene, char *err_msg, int err_code);
 void	ft_free_scene(t_scene *scene);
-
-//	TEST FUNCTIONS (to be removed)
-int		ft_test_matrix_functions(void);
-int		ft_test_ray(void);
-int		ft_test_intersection(void);
-void	test_reflection(void);
-void	test_lighting(void);
 
 #endif
