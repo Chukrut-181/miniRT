@@ -134,7 +134,7 @@ int ft_parse_line(t_scene *scene, char *line);
 char	*get_one_line(int fd);
 
 //	CREATE AMBIENT
-int		ft_create_ambient(t_scene *scene, char **ambient);
+bool	ft_create_ambient(t_scene *scene, char **ambient);
 bool	ft_check_rgb(char *colorcode);
 bool	ft_apply_rgb(t_color *color, char *original);
 

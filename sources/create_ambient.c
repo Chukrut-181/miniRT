@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 12:18:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/13 13:56:47 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/20 13:11:41 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,22 +64,22 @@ bool	ft_check_rgb(char *colorcode)
 	return (true);
 }
 
-int	ft_create_ambient(t_scene *scene, char **ambient)
+bool	ft_create_ambient(t_scene *scene, char **ambient)
 {
 	float	aux;
 
 	if (scene->ambient != NULL)
-		return (1);
+		return (false);
 	scene->ambient = (t_ambient *)malloc(sizeof(t_ambient));
 	if (scene->ambient == NULL)
-		return (1);
+		return (false);
 	aux = ft_atof(ambient[1]);
 	if (aux < 0 || 1 < aux)
-		return (free(scene->ambient), 1);
+		return (free(scene->ambient), false);
 	scene->ambient->ratio = aux;
 	if (!ft_check_rgb(ambient[2]))
-		return (free(scene->ambient), 1);
+		return (free(scene->ambient), false);
 	if (!ft_apply_rgb(&scene->ambient->a_color, ambient[2]))
-		return (free(scene->ambient), 1);
-	return (0);
+		return (free(scene->ambient), false);
+	return (true);
 }
