@@ -125,20 +125,21 @@ bool	intersec_sphere(t_shape *shape, t_list **inter)
 {
 	t_tuple	sphere_to_ray;
 	t_tuple origin;
-	float	a, b, c, discriminant;
+	//float	a, b, c, discriminant;
+	t_abcd data;
 	float	t1;
 	float	t2;
 
 	origin = ft_create_point(0, 0, 0);
 	sphere_to_ray = ft_substract_tuples(shape->ray_in_obj_space.origin, origin);
-	a = ft_dot_product(shape->ray_in_obj_space.direction, shape->ray_in_obj_space.direction);
-	b = 2 * ft_dot_product(shape->ray_in_obj_space.direction, sphere_to_ray);
-	c = ft_dot_product(sphere_to_ray, sphere_to_ray) - 1;
-	discriminant = pow(b, 2) - 4 * a * c;
-	if (discriminant < 0)
+	data.a = ft_dot_product(shape->ray_in_obj_space.direction, shape->ray_in_obj_space.direction);
+	data.b = 2 * ft_dot_product(shape->ray_in_obj_space.direction, sphere_to_ray);
+	data.c = ft_dot_product(sphere_to_ray, sphere_to_ray) - 1;
+	data.discriminant = pow(data.b, 2) - 4 * data.a * data.c;
+	if (data.discriminant < 0)
 		return (false);
-	t1 = (-b - sqrtf(discriminant)) / (2 * a);
-	t2 = (-b + sqrtf(discriminant)) / (2 * a);
+	t1 = (-data.b - sqrtf(data.discriminant)) / (2 * data.a);
+	t2 = (-data.b + sqrtf(data.discriminant)) / (2 * data.a);
 	if (t1 < EPSILON || t2 < EPSILON)
 		return (false);
 	update_inter(inter, shape, t2);
