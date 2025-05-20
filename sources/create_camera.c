@@ -79,35 +79,32 @@ static	void camera_guie(t_scene *scene, char *pov)
 	scene->camera->pixel_size = (scene->camera->half_width * 2) / scene->camera->hsize;
 }
 
-int ft_create_camera(t_scene *scene, char **cam_data)
+bool	ft_create_camera(t_scene *scene, char **cam_data)
 {
 	t_tuple	origin;
 	t_tuple	direction;
 	char	**coords;
 
 	if (scene->camera != NULL)
-		return (1);
+		return (false);
 	scene->camera = malloc(sizeof(t_camera));
 	if (!scene->camera)
-		return (1);
-	// Parsear la posicion de la camara
+		return (false);
 	if (!ft_check_coords(cam_data[1]))
-		return (free(scene->camera), 1);
+		return (free(scene->camera), false);
 	coords = ft_split(cam_data[1], ',');
 	origin = ft_create_point(ft_atof(coords[0]), ft_atof(coords[1]), ft_atof(coords[2]));
 	scene->camera->origin = origin;
 	ft_free_array(coords);
-	// Parsear el vector de orientacion
 	if (!ft_check_coords(cam_data[2]))
-		return (free(scene->camera), 1);
+		return (free(scene->camera), false);
 	coords = ft_split(cam_data[2], ',');
 	direction = ft_create_vector(ft_atof(coords[0]), ft_atof(coords[1]), ft_atof(coords[2]));
 	direction = ft_normalize(direction);
 	ft_free_array(coords);
 	scene->camera->transform = view_transform(origin, direction);
-	// Configurar el campo de visión y calcular parámetros de la cámara
 	camera_guie(scene, cam_data[3]);
-	return (0);
+	return (true);
 }
 
 /* bool	ft_aim_camera(t_camera *cam1, float fov, char *point_of_view, char *orientation_vector)

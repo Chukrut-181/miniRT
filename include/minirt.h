@@ -143,7 +143,7 @@ int	ft_create_light(t_world *world, char **light);
 bool	ft_check_coords(char *coords);
 
 //	CREATE CAMERA
-int			ft_create_camera(t_scene *scene, char **cam);
+bool		ft_create_camera(t_scene *scene, char **cam);
 bool		ft_check_orientation_vector(char *orientation);
 //t_4x4		view_transform(t_tuple from, t_tuple to, t_tuple up);
 t_4x4		view_transform(t_tuple origin, t_tuple direction);
