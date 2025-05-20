@@ -84,11 +84,10 @@ int is_shadowed(t_world world, t_tuple point)
 	ray = ft_create_ray(point, direction);
 	xs = ft_intersect_world(world, ray);
 	hit = ft_find_hit(xs);
-	if (hit && hit->time > 0 && hit->time < distance)
+	if (hit->time > EPSILON && hit->time < distance)
 		shadowed = 1;
 	else
 		shadowed = 0;
-	ft_lstclear(&xs, free);
 	return (shadowed);
 }
 

@@ -92,7 +92,7 @@ t_color	lighting(t_comps comp, t_light light, int in_shadow)
 	l.lightv = ft_substract_tuples(light.source, comp.over_point);
 	l.lightv = ft_normalize(l.lightv);
 	l.ambient = get_ambient(comp, light);
-	if (in_shadow || ft_dot_product(l.lightv, comp.normalv) < 0)
+	if (in_shadow == 1 || ft_dot_product(l.lightv, comp.normalv) < 0)
 	{
 		l.diffuse = ft_create_color(0, 0, 0);
 		l.specular = ft_create_color(0, 0, 0);
