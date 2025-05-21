@@ -6,26 +6,12 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 09:50:24 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/21 11:42:51 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/21 12:43:46 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-/**
- * check_matrix_equality - 	Checks if two 4x4 matrices are equal
- * 								within a given tolerance.
- * 
- * This function compares two 4x4 matrices element by element.
- * If all elements are sufficiently close (i.e., the difference is less than
- * or equal to `EPSILON`), the matrices are considered equal.
- * 
- * param matrix1: The first t_4x4 structure representing the first matrix.
- * param matrix2: The second t_4x4 structure representing the second matrix.
- * 
- * Return: `1` if the matrices are not equal, and `0` if they are equal within 
- *         the specified tolerance (`EPSILON`).
- */
 int	check_matrix_equality(t_4x4 matrix1, t_4x4 matrix2)
 {
 	int	i;
@@ -47,19 +33,6 @@ int	check_matrix_equality(t_4x4 matrix1, t_4x4 matrix2)
 	return (0);
 }
 
-/**
- * multiply_matrices - Multiplies two 4x4 matrices.
- * 
- * This function performs matrix multiplication according to the standard
- * matrix multiplication rules, where each element in the resulting matrix
- * is the sum of the products of the corresponding elements in the rows
- * of the first matrix and the columns of the second matrix.
- * 
- * param mat1: The first t_4x4 matrix to be multiplied.
- * param mat2: The second t_4x4 matrix to be multiplied.
- * 
- * Return: A t_4x4 structure representing the product of `mat1` and `mat2`.
- */
 t_4x4	multiply_matrices(t_4x4 mat1, t_4x4 mat2)
 {
 	t_4x4	product;
@@ -81,19 +54,6 @@ t_4x4	multiply_matrices(t_4x4 mat1, t_4x4 mat2)
 	return (product);
 }
 
-/**
- * multiply_mat_and_tuple - Multiplies a 4x4 matrix by a 4D tuple.
- *  
- * This function performs matrix-vector multiplication between a 4x4 matrix
- * and a 4D tuple (`tuple`), where each component of the resulting tuple
- * is the sum of the products of the corresponding row of the matrix and the 
- * components of the tuple.
- * 
- * param mat: A t_4x4 matrix.
- * param tuple: A t_tuple structure representing the 4D vector to be multiplied.
- * 
- * Return A t_tuple representing the product of the matrix and the tuple.
- */
 t_tuple	multiply_mat_and_tuple(t_4x4 mat, t_tuple tuple)
 {
 	t_tuple	product;
@@ -109,19 +69,6 @@ t_tuple	multiply_mat_and_tuple(t_4x4 mat, t_tuple tuple)
 	return (product);
 }
 
-/**
- * t_get_3x3_minor - 	Extracts a 3x3 minor matrix from a 4x4 matrix
- * 						by removing a row and a column.
- * 
- * This function calculates the 3x3 minor matrix by removing a specific row
- * and column from the given 4x4 matrix.
- * 
- * param matrix: A t_4x4 structure representing the original 4x4 matrix.
- * param row: The index of the row to be removed from the matrix (0 to 3).
- * param col: The index of the column to be removed from the matrix (0 to 3).
- * 
- * Return A t_3x3 structure representing the 3x3 minor matrix.
- */
 static t_3x3	ft_get_3x3_minor(t_4x4 matrix, int row, int col)
 {
 	int		i[2];
@@ -151,18 +98,6 @@ static t_3x3	ft_get_3x3_minor(t_4x4 matrix, int row, int col)
 	return (submatrix);
 }
 
-/**
- * find_inverse - Calculates the inverse of a 4x4 matrix.
- * 
- * This function computes the inverse of a 4x4 matrix using the method of 
- * cofactors and determinants. It first calculates the determinant of the 
- * input matrix. If the determinant is zero, the matrix is not invertible.
- * 
- * param matrix: A t_4x4 structure representing the matrix to be inverted.
- * 
- * Return: A t_4x4 structure representing the inverse of the matrix if the 
- *         determinant is non-zero, otherwise returns the original matrix.
- */
 t_4x4	find_inverse(t_4x4 matrix)
 {
 	t_4x4	inverse;

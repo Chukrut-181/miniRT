@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 18:08:55 by v0                #+#    #+#             */
-/*   Updated: 2025/05/21 11:56:25 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/21 12:44:50 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ float		determinant_3x3(t_3x3 submx);
 // MATRIX TRANSFOMATION
 t_4x4		create_identity_matrix(void);
 t_4x4		create_translation_mx(float x, float y, float z);
-t_4x4		create_shearing_mx(float Xy, float Xz, float Yx, float Yz, float Zx, float Zy);
 t_4x4		create_scaling_mx(float x, float y, float z);
 
 // 	ROTATION
