@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 13:51:00 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/21 10:35:27 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/21 10:40:36 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,19 @@ t_4x4	ft_orientation(t_tuple left, t_tuple true_up, t_tuple forward)
 
 t_4x4	view_transform(t_tuple origin, t_tuple direction)
 {
-	t_tuple	left, true_up, up;
+	t_tuple	left;
+	t_tuple	up;
+	t_tuple	true_up;
 	t_4x4	orientation;
 	t_4x4	translation;
-	float	z;
 
 	up = ft_create_vector(0, 1, 0);
 	if (fabsf(direction.y) > 0.9999f)
 	{
 		if (direction.y > 0)
-			z = -1;
+			up = ft_create_vector(0, 0, -1);
 		else
-			z = 1;
-		up = ft_create_vector(0, 0, z);
+			up = ft_create_vector(0, 0, 1);
 	}
 	left = ft_normalize(ft_cross_product(direction, up));
 	true_up = ft_cross_product(left, direction);
@@ -60,8 +60,6 @@ static void	camera_guie(t_scene *scene, char *pov)
 
 	fov = ft_atof(pov) * M_PI / 180.0;
 	scene->camera->field_of_view = fov;
-	// scene->camera->hsize = WIDTH;
-	// scene->camera->vsize = HEIGHT;
 	half_view = tanf(fov / 2);
 	aspect = ((float)WIDTH / (float)HEIGHT);
 	if (aspect >= 1)
