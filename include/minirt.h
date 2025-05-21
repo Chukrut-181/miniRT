@@ -97,8 +97,8 @@ t_light	point_light(t_tuple position, t_color color);
 
 
 //	PARSE
-int	get_scene(t_scene *scene, char *argv1);
-int parse_line(t_scene *scene, char *line);
+int		get_scene(t_scene *scene, char *argv1);
+int		parse_line(t_scene *scene, char *line);
 char	*get_one_line(int fd);
 
 //	CREATE AMBIENT
@@ -107,23 +107,23 @@ bool	check_rgb(char *colorcode);
 bool	apply_rgb(t_color *color, char *original);
 
 //	CREATE LIGHT
-bool	ft_create_light(t_world *world, char **light);
-bool	ft_check_coords(char *coords);
+bool	create_light(t_world *world, char **light);
+bool	check_coords(char *coords);
 
 //	CREATE CAMERA
-bool		ft_create_camera(t_scene *scene, char **cam);
+bool		create_camera(t_scene *scene, char **cam);
 t_4x4		view_transform(t_tuple origin, t_tuple direction);
 t_4x4		ft_orientation(t_tuple left, t_tuple true_up, t_tuple forward);
 
 //	CREATE SPHERE
-t_material	ft_create_material(char *rgb_code);
-bool	ft_create_sphere(t_scene *scene, char **ball);
+t_material	create_material(char *rgb_code);
+bool		create_sphere(t_scene *scene, char **ball);
 
 //	CREATE PLANE
-bool	ft_create_plane(t_scene *scene, char **plane);
+bool	create_plane(t_scene *scene, char **plane);
 
 //	CREATE CYLINDER
-bool	ft_create_cylinder(t_scene *scene, char **cyl_data);
+bool	create_cylinder(t_scene *scene, char **cyl_data);
 
 //	EXECUTE
 void 	render_scene(t_scene *s);

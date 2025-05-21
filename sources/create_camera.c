@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 13:51:00 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/21 11:41:45 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:45:16 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void	camera_guie(t_scene *scene, char *pov)
 	scene->camera->pixel_size = (scene->camera->half_width * 2) / WIDTH;
 }
 
-bool	ft_create_camera(t_scene *scene, char **cam_data)
+bool	create_camera(t_scene *scene, char **cam_data)
 {
 	t_tuple	origin;
 	t_tuple	direction;
@@ -86,7 +86,7 @@ bool	ft_create_camera(t_scene *scene, char **cam_data)
 	scene->camera = malloc(sizeof(t_camera));
 	if (!scene->camera)
 		return (false);
-	if (!ft_check_coords(cam_data[1]) || !ft_check_coords(cam_data[2]))
+	if (!check_coords(cam_data[1]) || !check_coords(cam_data[2]))
 		return (free(scene->camera), false);
 	coords = ft_split(cam_data[1], ',');
 	origin = ft_create_point(ft_atof(coords[0]),
