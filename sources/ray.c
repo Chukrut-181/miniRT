@@ -6,13 +6,13 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 11:23:47 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/21 11:22:27 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:31:28 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-t_ray	ft_create_ray(t_tuple origin, t_tuple direction)
+t_ray	create_ray(t_tuple origin, t_tuple direction)
 {
 	t_ray	ray;
 
@@ -31,7 +31,7 @@ t_tuple	ft_position(t_ray ray, float t)
 
 void	transform_ray(t_ray	*ray, t_4x4 mat, t_ray *new_ray)
 {
-	new_ray->direction = ft_multiply_mat_and_tuple(mat, ray->direction);
-	new_ray->origin = ft_multiply_mat_and_tuple(mat, ray->origin);
+	new_ray->direction = multiply_mat_and_tuple(mat, ray->direction);
+	new_ray->origin = multiply_mat_and_tuple(mat, ray->origin);
 }
 

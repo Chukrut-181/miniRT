@@ -58,11 +58,11 @@ static t_ray ray_for_pixel(t_camera camera, int px, int py)
 	pixel = ft_create_point(world_x, world_y, -1);
 	origin = ft_create_point(0, 0, 0);
 
-	inverse = ft_find_inverse(camera.transform);
-	pixel = ft_multiply_mat_and_tuple(inverse, pixel);
-	origin = ft_multiply_mat_and_tuple(inverse, origin);
+	inverse = find_inverse(camera.transform);
+	pixel = multiply_mat_and_tuple(inverse, pixel);
+	origin = multiply_mat_and_tuple(inverse, origin);
 	direction = ft_normalize(substract_tuples(pixel, origin));
-	return (ft_create_ray(origin, direction));
+	return (create_ray(origin, direction));
 }
 
 static	t_color calculate_inter(t_world world, t_ray ray)

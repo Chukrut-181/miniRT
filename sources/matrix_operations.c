@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 09:50:24 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/21 11:24:44 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:26:55 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ t_4x4	multiply_matrices(t_4x4 mat1, t_4x4 mat2)
 }
 
 /**
- * ft_multiply_mat_and_tuple - Multiplies a 4x4 matrix by a 4D tuple.
+ * multiply_mat_and_tuple - Multiplies a 4x4 matrix by a 4D tuple.
  *  
  * This function performs matrix-vector multiplication between a 4x4 matrix
  * and a 4D tuple (`tuple`), where each component of the resulting tuple
@@ -94,7 +94,7 @@ t_4x4	multiply_matrices(t_4x4 mat1, t_4x4 mat2)
  * 
  * Return A t_tuple representing the product of the matrix and the tuple.
  */
-t_tuple	ft_multiply_mat_and_tuple(t_4x4 mat, t_tuple tuple)
+t_tuple	multiply_mat_and_tuple(t_4x4 mat, t_tuple tuple)
 {
 	t_tuple	product;
 
@@ -152,7 +152,7 @@ static t_3x3	ft_get_3x3_minor(t_4x4 matrix, int row, int col)
 }
 
 /**
- * ft_find_inverse - Calculates the inverse of a 4x4 matrix.
+ * find_inverse - Calculates the inverse of a 4x4 matrix.
  * 
  * This function computes the inverse of a 4x4 matrix using the method of 
  * cofactors and determinants. It first calculates the determinant of the 
@@ -163,7 +163,7 @@ static t_3x3	ft_get_3x3_minor(t_4x4 matrix, int row, int col)
  * Return: A t_4x4 structure representing the inverse of the matrix if the 
  *         determinant is non-zero, otherwise returns the original matrix.
  */
-t_4x4	ft_find_inverse(t_4x4 matrix)
+t_4x4	find_inverse(t_4x4 matrix)
 {
 	t_4x4	inverse;
 	t_3x3	submatrix;

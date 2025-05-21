@@ -131,7 +131,7 @@ bool	intersec_sphere(t_shape *shape, t_list **inter)
 	return (true);
 }
 
-void	ft_identify_hit(t_list *xs_list)
+void	identify_hit(t_list *xs_list)
 {
 	float	reference;
 	t_xs	*aux;

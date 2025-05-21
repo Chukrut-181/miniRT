@@ -17,7 +17,7 @@ t_tuple	normal_at(t_shape *shape, t_tuple point)
 	t_tuple	normal_at;
 
 	object_normal = ft_create_vector(0, 0, 0);
-	object_point = ft_multiply_mat_and_tuple(shape->inverse_matrix, point);
+	object_point = multiply_mat_and_tuple(shape->inverse_matrix, point);
 	if (shape->type == SPHERE)
 		object_normal = substract_tuples(object_point, ft_create_point(0, 0, 0));
 	else if (shape->type == PLANE)
@@ -32,8 +32,8 @@ t_tuple	normal_at(t_shape *shape, t_tuple point)
         else
             object_normal = ft_create_vector(object_point.x, 0, object_point.z);
     }
-	world_normal = ft_transpose(shape->inverse_matrix);
-	normal_at = ft_multiply_mat_and_tuple(world_normal, object_normal);
+	world_normal = transpose(shape->inverse_matrix);
+	normal_at = multiply_mat_and_tuple(world_normal, object_normal);
 	return (ft_normalize(normal_at));
 }
 
@@ -119,5 +119,5 @@ t_color	lighting(t_comps comp, t_light light, int in_shadow)
 			l.specular = calc_specular(comp.object->material, light, l.reflect_dot_eye);
 		}
 	}
-	return (ft_add_color(l.ambient, ft_add_color(l.diffuse, l.specular)));
+	return (add_colors(l.ambient, add_colors(l.diffuse, l.specular)));
 }

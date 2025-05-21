@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:36:49 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/21 11:23:11 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:30:28 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_tuple	add_tuples(t_tuple tuple1, t_tuple tuple2)
 	return (addition);
 }
 
-/* t_color	ft_add_color(t_color tuple1, t_color tuple2)
+/* t_color	add_colors(t_color tuple1, t_color tuple2)
 {
 	t_color	addition;
 
@@ -104,7 +104,7 @@ t_tuple	multiply_tuple_f(t_tuple tuple, float scalar)
 	return (product);
 }
 
-/* t_color	ft_multiply_color_f(t_color tuple, float scalar)
+/* t_color	multiply_color_f(t_color tuple, float scalar)
 {
 	t_color	product;
 
@@ -153,7 +153,7 @@ t_tuple	negate_tuple(t_tuple tuple)
 }
 
 /**
- * ft_multiply_color - Multiplies corresponding components of two color tuples.
+ * multiply_colors - Multiplies corresponding components of two color tuples.
  * 
  * The function multiplies the `x`, `y`, and `z` components of the two tuples 
  * together. The `w` component is omitted from the result.
@@ -173,7 +173,7 @@ t_tuple	multiply_tuples(t_tuple c1, t_tuple c2)
 	return (result);
 }
 
-/* t_color	ft_multiply_color(t_color c1, t_color c2)
+/* t_color	multiply_colors(t_color c1, t_color c2)
 {
 	t_color	result;
 

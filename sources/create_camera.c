@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 13:51:00 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/21 11:24:44 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:31:04 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_4x4	ft_orientation(t_tuple left, t_tuple true_up, t_tuple forward)
 {
 	t_4x4	matrix;
 
-	matrix = ft_create_identity_matrix();
+	matrix = create_identity_matrix();
 	matrix.data[0][0] = left.x;
 	matrix.data[0][1] = left.y;
 	matrix.data[0][2] = left.z;

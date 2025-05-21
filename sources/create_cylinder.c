@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:52:50 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/21 11:24:44 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:26:55 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ bool	ft_create_cylinder(t_scene *scene, char **cyl_data)
 		return (free(cylinder), false);
 	cylinder->transform_matrix = ft_transform_cyl(cyl_data[1],
 			cyl_data[2], radius, height);
-	cylinder->inverse_matrix = ft_find_inverse(cylinder->transform_matrix);
+	cylinder->inverse_matrix = find_inverse(cylinder->transform_matrix);
 	if (!ft_check_rgb(cyl_data[5]))
 		return (free(cylinder), false);
 	cylinder->material = ft_create_material(cyl_data[5]);

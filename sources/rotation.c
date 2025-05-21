@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 10:23:48 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/21 11:24:15 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:31:04 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_4x4	rotation_x(float radians)
 {
 	t_4x4	rotation_x;
 
-	rotation_x = ft_create_identity_matrix();
+	rotation_x = create_identity_matrix();
 	rotation_x.data[1][1] = cosf(radians);
 	rotation_x.data[1][2] = -sinf(radians);
 	rotation_x.data[2][1] = sinf(radians);
@@ -28,7 +28,7 @@ t_4x4	rotation_y(float radians)
 {
 	t_4x4	rotation_y;
 
-	rotation_y = ft_create_identity_matrix();
+	rotation_y = create_identity_matrix();
 	rotation_y.data[0][0] = cosf(radians);
 	rotation_y.data[0][2] = sinf(radians);
 	rotation_y.data[2][0] = -sinf(radians);
@@ -40,7 +40,7 @@ t_4x4	rotation_z(float radians)
 {
 	t_4x4	rotation_z;
 
-	rotation_z = ft_create_identity_matrix();
+	rotation_z = create_identity_matrix();
 	rotation_z.data[0][0] = cosf(radians);
 	rotation_z.data[0][1] = -sinf(radians);
 	rotation_z.data[1][0] = sinf(radians);
@@ -56,7 +56,7 @@ t_4x4	rotation_z(float radians)
 	t_tuple 	axis;
 	t_4x4		rotation;
 
-	rotation = ft_create_identity_matrix();
+	rotation = create_identity_matrix();
 	angle = acos(dot_product(normal, ft_create_vector(0, 1, 0)));
 	axis = cross_product(ft_create_vector(normal.x, normal.y, normal.z), ft_create_vector(0, 1, 0));
 	vals[0] = cos(angle);
@@ -88,7 +88,7 @@ t_4x4	rotation_z(float radians)
 	normal = ft_normalize(normal);
 	reference = ft_create_vector(0, 1, 0);
 	cos_angle = dot_product(normal, reference);
-	rotation = ft_create_identity_matrix();
+	rotation = create_identity_matrix();
 	if (fabs(cos_angle) > 0.9999f)
 	{
 		if (cos_angle > 0)
@@ -121,7 +121,7 @@ t_4x4 ft_rodriguez_rotation(float target_x, float target_y, float target_z)
 	float sin_th;
 	t_4x4 rot_mx;
 
-	rot_mx = ft_create_identity_matrix();
+	rot_mx = create_identity_matrix();
 	target_n = ft_normalize(ft_create_vector(target_x, target_y, target_z));
 	axis = ft_normalize(cross_product(ft_create_vector(0, 1, 0), target_n));
 	cos_th = (0 * target_n.x) + (1 * target_n.y) + (0 * target_n.z);

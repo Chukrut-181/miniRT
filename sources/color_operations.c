@@ -6,13 +6,13 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 12:57:23 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/16 12:59:48 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:30:28 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-t_color	ft_multiply_color(t_color c1, t_color c2)
+t_color	multiply_colors(t_color c1, t_color c2)
 {
 	t_color	result;
 
@@ -28,7 +28,7 @@ t_color	ft_multiply_color(t_color c1, t_color c2)
 	return (result);
 }
 
-t_color	ft_multiply_color_f(t_color tuple, float scalar)
+t_color	multiply_color_f(t_color tuple, float scalar)
 {
 	t_color	product;
 
@@ -38,7 +38,7 @@ t_color	ft_multiply_color_f(t_color tuple, float scalar)
 	return (product);
 }
 
-t_color	ft_add_color(t_color tuple1, t_color tuple2)
+t_color	add_colors(t_color tuple1, t_color tuple2)
 {
 	t_color	addition;
 

@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:10:23 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/16 12:48:27 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:27:14 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ float	ft_calculate_determinant(t_4x4 matrix)
 }
 
 /**
- * ft_transpose - Transposes a 4x4 matrix and returns the resulting matrix.
+ * transpose - Transposes a 4x4 matrix and returns the resulting matrix.
  * 
  * Transposing a matrix involves swapping its rows and columns,
  * so the element at position `[i][j]` in the original matrix becomes
@@ -131,7 +131,7 @@ float	ft_calculate_determinant(t_4x4 matrix)
  * 
  * Return: A t_4x4 structure representing the transposed matrix.
  */
-t_4x4	ft_transpose(t_4x4 matrix)
+t_4x4	transpose(t_4x4 matrix)
 {
 	t_4x4	transposed;
 	int		i;

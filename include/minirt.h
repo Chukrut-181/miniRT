@@ -55,25 +55,24 @@ float	dot_product(t_tuple v1, t_tuple v2);
 t_tuple	cross_product(t_tuple v1, t_tuple v2);
 
 //	COLOR OPERATIONS
-t_tuple	ft_multiply_colors(t_tuple c1, t_tuple c2);
-t_color	ft_multiply_color_f(t_color tuple, float scalar);
-t_color	ft_add_color(t_color tuple1, t_color tuple2);
-t_color	ft_multiply_color(t_color c1, t_color c2);
+t_color	multiply_color_f(t_color tuple, float scalar);
+t_color	add_colors(t_color tuple1, t_color tuple2);
+t_color	multiply_colors(t_color c1, t_color c2);
 t_tuple	color_tp(t_color p);
 
 //	MATRIX OPERATIONS
 int		ft_check_matrix_equality(t_4x4 matrix1, t_4x4 matrix2);
 t_4x4	multiply_matrices(t_4x4 matrix1, t_4x4 matrix2);
-t_tuple	ft_multiply_mat_and_tuple(t_4x4 matrix, t_tuple tuple);
-t_4x4	ft_find_inverse(t_4x4 matrix);
-t_4x4	ft_transpose(t_4x4 matrix);
+t_tuple	multiply_mat_and_tuple(t_4x4 matrix, t_tuple tuple);
+t_4x4	find_inverse(t_4x4 matrix);
+t_4x4	transpose(t_4x4 matrix);
 
 // MATRIX DETERMINANT
 float	ft_calculate_determinant(t_4x4 matrix);
 float	ft_determinant_3x3(t_3x3 submx);
 
 // MATRIX TRANSFOMATION
-t_4x4	ft_create_identity_matrix(void);
+t_4x4	create_identity_matrix(void);
 t_4x4	create_translation_mx(float x, float y, float z);
 t_4x4	ft_create_shearing_mx(float Xy, float Xz, float Yx, float Yz, float Zx, float Zy);
 t_4x4	create_scaling_mx(float x, float y, float z);
@@ -85,10 +84,10 @@ t_4x4	rotation_y(float radians);
 t_4x4 ft_rodriguez_rotation(float target_x, float target_y, float target_z);
 
 //	RAY
-t_ray	ft_create_ray(t_tuple origin, t_tuple direction);
+t_ray	create_ray(t_tuple origin, t_tuple direction);
 t_tuple	ft_position(t_ray ray, float t);
 t_list	*ft_intersection_sphere(t_ray ray, t_shape sphere, t_list *xs_list);
-void	ft_identify_hit(t_list *xs_list);
+void	identify_hit(t_list *xs_list);
 
 //	LIGHT
 t_tuple	normal_at(t_shape *shape, t_tuple point);
