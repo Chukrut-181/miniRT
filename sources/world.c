@@ -49,7 +49,6 @@ t_list *ft_intersect_world(t_world world, t_ray ray)
 		ft_lstclear(&intersections, free);
 		return (NULL);
 	}
-	//intersections = ft_sort_intersections(intersections);
 	return (intersections);
 }
 
@@ -75,30 +74,35 @@ t_comps	prepare_computations(t_xs *hit, t_ray ray)
 	return (comps);
 }
 
-int is_shadowed(t_world world, t_tuple point)
+bool is_shadowed(t_world world, t_tuple point)
 {
-	float	distance;
-	t_tuple	direction;
-	t_ray	ray;
-	t_list	*xs;
-	t_tuple	v;
-	t_xs	*hit;
-	int		shadowed;
+    t_tuple v;
+    float   distance;
+    t_tuple direction;
+    t_ray   ray;
+    t_list  *xs;
+	t_list	*current;
+	t_xs	*intersection;
 
-	v = substract_tuples(world.light->source, point);
-	distance = calculate_magnitude(v);
-	direction = normalize(v);
-	ray = create_ray(point, direction);
-	xs = ft_intersect_world(world, ray);
-	if (!xs)
-		return (0);
-	hit = ft_find_hit(xs);
-	if (hit && hit->time > 0 && hit->time < distance && hit->object->type != PLANE)
-		shadowed = 1;
-	else
-		shadowed = 0;
-	ft_lstclear(&xs, free);
-	return (shadowed);
+    v = substract_tuples(point , world.light->source);
+    distance = calculate_magnitude(v);
+    direction = normalize(v);
+    ray = create_ray(point, direction);
+    xs = ft_intersect_world(world, ray);
+
+	current = xs;
+    while (current)
+    {
+        intersection = (t_xs *)current->content;
+        if (intersection->time > 0 && intersection->time < distance)
+        {
+			ft_lstclear(&xs, free);
+            return (true);
+        }
+        current = current->next;
+    }
+    ft_lstclear(&xs, free);
+    return (false);
 }
 
 t_color	shade_hit(t_world world, t_comps comps)
