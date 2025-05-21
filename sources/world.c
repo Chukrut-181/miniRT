@@ -84,7 +84,7 @@ int is_shadowed(t_world world, t_tuple point)
 	ray = ft_create_ray(point, direction);
 	xs = ft_intersect_world(world, ray);
 	hit = ft_find_hit(xs);
-	if (hit && hit->time > 0 && hit->time < distance && hit->object->type != PLANE)
+	if (hit->time && hit->time < distance)
 		shadowed = 1;
 	else
 		shadowed = 0;

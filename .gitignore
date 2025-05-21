@@ -1,3 +1,5 @@
 objects/
 bonus_objects/
 miniRT
+*.o
+a.out
