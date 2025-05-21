@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 09:50:24 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/16 13:04:29 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:24:44 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_check_matrix_equality(t_4x4 matrix1, t_4x4 matrix2)
 }
 
 /**
- * ft_multiply_matrices - Multiplies two 4x4 matrices.
+ * multiply_matrices - Multiplies two 4x4 matrices.
  * 
  * This function performs matrix multiplication according to the standard
  * matrix multiplication rules, where each element in the resulting matrix
@@ -60,7 +60,7 @@ int	ft_check_matrix_equality(t_4x4 matrix1, t_4x4 matrix2)
  * 
  * Return: A t_4x4 structure representing the product of `mat1` and `mat2`.
  */
-t_4x4	ft_multiply_matrices(t_4x4 mat1, t_4x4 mat2)
+t_4x4	multiply_matrices(t_4x4 mat1, t_4x4 mat2)
 {
 	t_4x4	product;
 	int		i;

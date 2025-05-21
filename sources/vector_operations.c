@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 10:04:30 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/14 14:05:23 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:24:15 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_tuple	ft_normalize(t_tuple v)
 }
 
 /**
- * ft_dot_product - Computes the dot product of two 3D vectors.
+ * dot_product - Computes the dot product of two 3D vectors.
  * 
  * This function calculates the dot product of two 3D vectors, `v1` and `v2`,
  * each represented by the `t_tuple` structure.The result is a floating-point
@@ -64,13 +64,13 @@ t_tuple	ft_normalize(t_tuple v)
  * 
  * Return A float representing the dot product of the vectors `v1` and `v2`.
  */
-float	ft_dot_product(t_tuple v1, t_tuple v2)
+float	dot_product(t_tuple v1, t_tuple v2)
 {
 	return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
 }
 
 /**
- * ft_cross_product - Computes the cross product of two 3D vectors.
+ * cross_product - Computes the cross product of two 3D vectors.
  * 
  * This function calculates the cross product of two 3D vectors, `v1` and `v2`,
  * each represented by the `t_tuple` structure. The cross product results in a
@@ -83,7 +83,7 @@ float	ft_dot_product(t_tuple v1, t_tuple v2)
  * 
  * Return: A new t_tuple containing the cross product of `v1` and `v2`.
  */
-t_tuple	ft_cross_product(t_tuple v1, t_tuple v2)
+t_tuple	cross_product(t_tuple v1, t_tuple v2)
 {
 	t_tuple	cross_vector;
 

@@ -41,18 +41,18 @@ t_point	create_point(double x, double y, double z);
 t_tuple	point_tp(t_point p);
 
 //	TUPLE OPERATIONS
-t_tuple	ft_add_tuples(t_tuple tuple1, t_tuple tuple2);
-t_tuple	ft_substract_tuples(t_tuple tuple1, t_tuple tuple2);
-t_tuple	ft_multiply_tuple(t_tuple c1, t_tuple c2);
-t_tuple	ft_multiply_tuple_f(t_tuple tuple, float scalar);
-t_tuple	ft_divide_tuple(t_tuple tuple, float scalar);
-t_tuple	ft_negate_tuple(t_tuple tuple);
+t_tuple	add_tuples(t_tuple tuple1, t_tuple tuple2);
+t_tuple	substract_tuples(t_tuple tuple1, t_tuple tuple2);
+t_tuple	multiply_tuples(t_tuple c1, t_tuple c2);
+t_tuple	multiply_tuple_f(t_tuple tuple, float scalar);
+t_tuple	divide_tuple(t_tuple tuple, float scalar);
+t_tuple	negate_tuple(t_tuple tuple);
 
 //	VECTOR OPERATIONS
 float	ft_calculate_magnitude(t_tuple v);
 t_tuple	ft_normalize(t_tuple v);
-float	ft_dot_product(t_tuple v1, t_tuple v2);
-t_tuple	ft_cross_product(t_tuple v1, t_tuple v2);
+float	dot_product(t_tuple v1, t_tuple v2);
+t_tuple	cross_product(t_tuple v1, t_tuple v2);
 
 //	COLOR OPERATIONS
 t_tuple	ft_multiply_colors(t_tuple c1, t_tuple c2);
@@ -63,7 +63,7 @@ t_tuple	color_tp(t_color p);
 
 //	MATRIX OPERATIONS
 int		ft_check_matrix_equality(t_4x4 matrix1, t_4x4 matrix2);
-t_4x4	ft_multiply_matrices(t_4x4 matrix1, t_4x4 matrix2);
+t_4x4	multiply_matrices(t_4x4 matrix1, t_4x4 matrix2);
 t_tuple	ft_multiply_mat_and_tuple(t_4x4 matrix, t_tuple tuple);
 t_4x4	ft_find_inverse(t_4x4 matrix);
 t_4x4	ft_transpose(t_4x4 matrix);

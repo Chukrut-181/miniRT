@@ -6,14 +6,14 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:36:49 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/20 12:12:25 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:23:11 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
 /*
- * ft_add_tuples - Adds two t_tuple structures component-wise.
+ * add_tuples - Adds two t_tuple structures component-wise.
  *
  * tuple1: The first tuple to add.
  * tuple2: The second tuple to add.
@@ -24,7 +24,7 @@
  *
  * Return: A t_tuple structure representing the sum of the input tuples.
  */
-t_tuple	ft_add_tuples(t_tuple tuple1, t_tuple tuple2)
+t_tuple	add_tuples(t_tuple tuple1, t_tuple tuple2)
 {
 	t_tuple	addition;
 
@@ -46,7 +46,7 @@ t_tuple	ft_add_tuples(t_tuple tuple1, t_tuple tuple2)
 } */
 
 /*
- * ft_substract_tuples - Subtracts one t_tuple structure from another.
+ * substract_tuples - Subtracts one t_tuple structure from another.
  *
  * tuple1: The tuple to subtract from (minuend).
  * tuple2: The tuple to subtract (subtrahend).
@@ -58,7 +58,7 @@ t_tuple	ft_add_tuples(t_tuple tuple1, t_tuple tuple2)
  * Return: A t_tuple structure representing the difference between
  *         the input tuples.
  */
-t_tuple	ft_substract_tuples(t_tuple tuple1, t_tuple tuple2)
+t_tuple	substract_tuples(t_tuple tuple1, t_tuple tuple2)
 {
 	t_tuple	substraction;
 
@@ -81,7 +81,7 @@ t_tuple	ft_substract_tuples(t_tuple tuple1, t_tuple tuple2)
 //}
 
 /*
- * ft_multiply_tuple - Multiplies each component of a t_tuple by a scalar.
+ * multiply_tuples - Multiplies each component of a t_tuple by a scalar.
  *
  * tuple: The tuple to be scaled.
  * scalar: The scalar value to multiply each component by.
@@ -93,7 +93,7 @@ t_tuple	ft_substract_tuples(t_tuple tuple1, t_tuple tuple2)
  *
  * Return: A t_tuple structure representing the scaled tuple.
  */
-t_tuple	ft_multiply_tuple_f(t_tuple tuple, float scalar)
+t_tuple	multiply_tuple_f(t_tuple tuple, float scalar)
 {
 	t_tuple	product;
 
@@ -115,7 +115,7 @@ t_tuple	ft_multiply_tuple_f(t_tuple tuple, float scalar)
 } */
 
 /**
- * ft_divide_tuple - Divides each component of a 4D tuple by a scalar value.
+ * divide_tuple - Divides each component of a 4D tuple by a scalar value.
  * 
  * This function takes a tuple of four floating-point values (`tuple`) and
  * divides each of the `x`, `y`, and `z` components by a scalar value
@@ -130,7 +130,7 @@ t_tuple	ft_multiply_tuple_f(t_tuple tuple, float scalar)
  * Return: A new t_tuple structure with the quotient values for `x`, `y`, and
  *         `z`, and the unchanged `w` value.
  */
-t_tuple	ft_divide_tuple(t_tuple tuple, float scalar)
+t_tuple	divide_tuple(t_tuple tuple, float scalar)
 {
 	t_tuple	quotient;
 
@@ -141,7 +141,7 @@ t_tuple	ft_divide_tuple(t_tuple tuple, float scalar)
 	return (quotient);
 }
 
-t_tuple	ft_negate_tuple(t_tuple tuple)
+t_tuple	negate_tuple(t_tuple tuple)
 {
 	t_tuple	negated;
 
@@ -163,7 +163,7 @@ t_tuple	ft_negate_tuple(t_tuple tuple)
  * 
  * Return: A new t_tuple containing the product of the `x`, `y`, and `z`.
  */
-t_tuple	ft_multiply_tuple(t_tuple c1, t_tuple c2)
+t_tuple	multiply_tuples(t_tuple c1, t_tuple c2)
 {
 	t_tuple	result;
 

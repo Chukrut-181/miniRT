@@ -58,7 +58,7 @@ bool	intersec_plane(t_shape *shape, t_list **inter)
 	t = -ray.origin.y / ray.direction.y;
 	if (t >= 0)
 	{
-		p = ft_add_tuples(ray.origin, ft_multiply_tuple_f(ray.direction, t));
+		p = add_tuples(ray.origin, multiply_tuple_f(ray.direction, t));
 		if (powf(p.x, 2) + powf(p.z, 2) <= 1) // Radius is 1 in object space
 			update_inter(intersections, cy_shape, t);
 	}
@@ -67,7 +67,7 @@ bool	intersec_plane(t_shape *shape, t_list **inter)
 	t = (1 - ray.origin.y) / ray.direction.y; // Height is 1 in object space
 	if (t >= 0)
 	{
-		p = ft_add_tuples(ray.origin, ft_multiply_tuple_f(ray.direction, t));
+		p = add_tuples(ray.origin, multiply_tuple_f(ray.direction, t));
 		if (powf(p.x, 2) + powf(p.z, 2) <= 1) // Radius is 1 in object space
 			update_inter(intersections, cy_shape, t);
 	}
@@ -115,10 +115,10 @@ bool	intersec_sphere(t_shape *shape, t_list **inter)
 	float	t2;
 
 	origin = ft_create_point(0, 0, 0);
-	sphere_to_ray = ft_substract_tuples(shape->ray_in_obj_space.origin, origin);
-	data.a = ft_dot_product(shape->ray_in_obj_space.direction, shape->ray_in_obj_space.direction);
-	data.b = 2 * ft_dot_product(shape->ray_in_obj_space.direction, sphere_to_ray);
-	data.c = ft_dot_product(sphere_to_ray, sphere_to_ray) - 1;
+	sphere_to_ray = substract_tuples(shape->ray_in_obj_space.origin, origin);
+	data.a = dot_product(shape->ray_in_obj_space.direction, shape->ray_in_obj_space.direction);
+	data.b = 2 * dot_product(shape->ray_in_obj_space.direction, sphere_to_ray);
+	data.c = dot_product(sphere_to_ray, sphere_to_ray) - 1;
 	data.discriminant = pow(data.b, 2) - 4 * data.a * data.c;
 	if (data.discriminant < 0)
 		return (false);

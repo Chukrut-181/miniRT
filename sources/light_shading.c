@@ -19,7 +19,7 @@ t_tuple	normal_at(t_shape *shape, t_tuple point)
 	object_normal = ft_create_vector(0, 0, 0);
 	object_point = ft_multiply_mat_and_tuple(shape->inverse_matrix, point);
 	if (shape->type == SPHERE)
-		object_normal = ft_substract_tuples(object_point, ft_create_point(0, 0, 0));
+		object_normal = substract_tuples(object_point, ft_create_point(0, 0, 0));
 	else if (shape->type == PLANE)
 		object_normal = ft_create_vector(0, 1, 0);
 	else if (shape->type == CYLINDER)
@@ -43,9 +43,9 @@ t_tuple	reflect(t_tuple in, t_tuple normal)
 	t_tuple	scaled;
 	t_tuple	result;
 
-	dop = ft_dot_product(in, normal);
-	scaled = ft_multiply_tuple_f(normal, 2.0 * dop);
-	result = ft_substract_tuples(in, scaled);
+	dop = dot_product(in, normal);
+	scaled = multiply_tuple_f(normal, 2.0 * dop);
+	result = substract_tuples(in, scaled);
 	return (result);
 }
 
@@ -64,7 +64,7 @@ static t_color		get_ambient(t_comps copm, t_light light)
 	t_tuple point;
 	t_color	ambient;
 
-	point = ft_multiply_tuple_f(color_tp(effective_color(copm.object->material, light)),
+	point = multiply_tuple_f(color_tp(effective_color(copm.object->material, light)),
 			copm.object->material.ambient);
 	ambient = ft_create_color(point.x, point.y, point.z);
 	return (ambient);
@@ -76,9 +76,9 @@ static t_color		get_diffuse(t_comps comp, t_light light, t_tuple lightv)
 	t_tuple tp2;
 	t_color	diffuse;
 
-	tp1 = ft_multiply_tuple_f(color_tp(effective_color(comp.object->material, light)),
+	tp1 = multiply_tuple_f(color_tp(effective_color(comp.object->material, light)),
 				comp.object->material.diffuse);
-	tp2 = ft_multiply_tuple_f(tp1, ft_dot_product(lightv, comp.normalv));
+	tp2 = multiply_tuple_f(tp1, dot_product(lightv, comp.normalv));
 	diffuse = ft_create_color(tp2.x, tp2.y, tp2.z);
 	return (diffuse);
 }
@@ -99,10 +99,10 @@ t_color	lighting(t_comps comp, t_light light, int in_shadow)
 {
 	t_lighting l;
 
-	l.lightv = ft_substract_tuples(light.source, comp.over_point);
+	l.lightv = substract_tuples(light.source, comp.over_point);
 	l.lightv = ft_normalize(l.lightv);
 	l.ambient = get_ambient(comp, light);
-	if (ft_dot_product(l.lightv, comp.normalv) < 0 || in_shadow)
+	if (dot_product(l.lightv, comp.normalv) < 0 || in_shadow)
 	{
 		l.diffuse = ft_create_color(0, 0, 0);
 		l.specular = ft_create_color(0, 0, 0);
@@ -110,8 +110,8 @@ t_color	lighting(t_comps comp, t_light light, int in_shadow)
 	else
 	{
 		l.diffuse = get_diffuse(comp, light, l.lightv);
-		l.reflectv = reflect(ft_negate_tuple(l.lightv), comp.normalv);
-		l.reflect_dot_eye = ft_dot_product(l.reflectv, comp.eyev);
+		l.reflectv = reflect(negate_tuple(l.lightv), comp.normalv);
+		l.reflect_dot_eye = dot_product(l.reflectv, comp.eyev);
 		if (l.reflect_dot_eye <= 0)
 			l.specular = ft_create_color(0, 0, 0);
 		else

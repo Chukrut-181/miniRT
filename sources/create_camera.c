@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 13:51:00 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/21 10:40:36 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:24:44 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ t_4x4	view_transform(t_tuple origin, t_tuple direction)
 		else
 			up = ft_create_vector(0, 0, 1);
 	}
-	left = ft_normalize(ft_cross_product(direction, up));
-	true_up = ft_cross_product(left, direction);
+	left = ft_normalize(cross_product(direction, up));
+	true_up = cross_product(left, direction);
 	orientation = ft_orientation(left, true_up, direction);
 	translation = create_translation_mx(-origin.x, -origin.y, -origin.z);
-	return (ft_multiply_matrices(orientation, translation));
+	return (multiply_matrices(orientation, translation));
 }
 
 static void	camera_guie(t_scene *scene, char *pov)

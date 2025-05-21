@@ -61,7 +61,7 @@ static t_ray ray_for_pixel(t_camera camera, int px, int py)
 	inverse = ft_find_inverse(camera.transform);
 	pixel = ft_multiply_mat_and_tuple(inverse, pixel);
 	origin = ft_multiply_mat_and_tuple(inverse, origin);
-	direction = ft_normalize(ft_substract_tuples(pixel, origin));
+	direction = ft_normalize(substract_tuples(pixel, origin));
 	return (ft_create_ray(origin, direction));
 }
 

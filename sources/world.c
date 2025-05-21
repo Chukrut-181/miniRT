@@ -60,12 +60,12 @@ t_comps	prepare_computations(t_xs *hit, t_ray ray)
 	comps.time = hit->time;
 	comps.object = hit->object;
 	comps.point = ft_position(ray, comps.time);
-	comps.eyev = ft_negate_tuple(ray.direction);
+	comps.eyev = negate_tuple(ray.direction);
 	comps.normalv = normal_at((t_shape *)comps.object, comps.point);
-	if (ft_dot_product(comps.normalv, comps.eyev) < 0)
+	if (dot_product(comps.normalv, comps.eyev) < 0)
 	{
 		comps.inside = true;
-		comps.normalv = ft_negate_tuple(comps.normalv);
+		comps.normalv = negate_tuple(comps.normalv);
 	}
 	else
 		comps.inside = false;
@@ -85,7 +85,7 @@ int is_shadowed(t_world world, t_tuple point)
 	t_xs	*hit;
 	int		shadowed;
 
-	v = ft_substract_tuples(world.light->source, point);
+	v = substract_tuples(world.light->source, point);
 	distance = ft_calculate_magnitude(v);
 	direction = ft_normalize(v);
 	ray = ft_create_ray(point, direction);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eandres <eandres@student.42urduliz.com>    +#+  +:+       +#+        */
+/*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 11:23:47 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/08 11:10:32 by eandres          ###   ########.fr       */
+/*   Updated: 2025/05/21 11:22:27 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_tuple	ft_position(t_ray ray, float t)
 {
 	t_tuple	pos;
 
-	pos = ft_add_tuples(ray.origin, ft_multiply_tuple_f(ray.direction, t));
+	pos = add_tuples(ray.origin, multiply_tuple_f(ray.direction, t));
 	return (pos);
 }
 

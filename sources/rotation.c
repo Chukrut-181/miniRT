@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 10:23:48 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/20 11:53:35 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:24:15 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ t_4x4	rotation_z(float radians)
 	t_4x4		rotation;
 
 	rotation = ft_create_identity_matrix();
-	angle = acos(ft_dot_product(normal, ft_create_vector(0, 1, 0)));
-	axis = ft_cross_product(ft_create_vector(normal.x, normal.y, normal.z), ft_create_vector(0, 1, 0));
+	angle = acos(dot_product(normal, ft_create_vector(0, 1, 0)));
+	axis = cross_product(ft_create_vector(normal.x, normal.y, normal.z), ft_create_vector(0, 1, 0));
 	vals[0] = cos(angle);
 	vals[1] = sin(angle);
 	vals[2] = 1.0 - vals[0];
@@ -87,7 +87,7 @@ t_4x4	rotation_z(float radians)
 	
 	normal = ft_normalize(normal);
 	reference = ft_create_vector(0, 1, 0);
-	cos_angle = ft_dot_product(normal, reference);
+	cos_angle = dot_product(normal, reference);
 	rotation = ft_create_identity_matrix();
 	if (fabs(cos_angle) > 0.9999f)
 	{
@@ -97,7 +97,7 @@ t_4x4	rotation_z(float radians)
 		rotation.data[2][2] = -1;
 		return (rotation);
 	}
-	axis = ft_normalize(ft_cross_product(reference, normal));
+	axis = ft_normalize(cross_product(reference, normal));
 	angle = acos(cos_angle);
 	sin_angle = sin(angle);
 	one_minus_cos = 1.0f - cos_angle;
@@ -123,9 +123,9 @@ t_4x4 ft_rodriguez_rotation(float target_x, float target_y, float target_z)
 
 	rot_mx = ft_create_identity_matrix();
 	target_n = ft_normalize(ft_create_vector(target_x, target_y, target_z));
-	axis = ft_normalize(ft_cross_product(ft_create_vector(0, 1, 0), target_n));
+	axis = ft_normalize(cross_product(ft_create_vector(0, 1, 0), target_n));
 	cos_th = (0 * target_n.x) + (1 * target_n.y) + (0 * target_n.z);
-	sin_th = ft_calculate_magnitude(ft_cross_product(ft_create_vector(0, 1, 0), target_n));
+	sin_th = ft_calculate_magnitude(cross_product(ft_create_vector(0, 1, 0), target_n));
 	if (fabsf(sin_th) < EPSILON)
 		return (rot_mx);
 	rot_mx.data[0][0] = cos_th + axis.x * axis.x * (1.0f - cos_th);
