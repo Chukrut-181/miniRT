@@ -6,14 +6,14 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:36:49 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/07 11:32:39 by eandres          ###   ########.fr       */
+/*   Updated: 2025/05/21 11:30:28 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
 /*
- * ft_add_tuples - Adds two t_tuple structures component-wise.
+ * add_tuples - Adds two t_tuple structures component-wise.
  *
  * tuple1: The first tuple to add.
  * tuple2: The second tuple to add.
@@ -24,7 +24,7 @@
  *
  * Return: A t_tuple structure representing the sum of the input tuples.
  */
-t_tuple	ft_add_tuples(t_tuple tuple1, t_tuple tuple2)
+t_tuple	add_tuples(t_tuple tuple1, t_tuple tuple2)
 {
 	t_tuple	addition;
 
@@ -35,7 +35,7 @@ t_tuple	ft_add_tuples(t_tuple tuple1, t_tuple tuple2)
 	return (addition);
 }
 
-t_color	ft_add_color(t_color tuple1, t_color tuple2)
+/* t_color	add_colors(t_color tuple1, t_color tuple2)
 {
 	t_color	addition;
 
@@ -43,10 +43,10 @@ t_color	ft_add_color(t_color tuple1, t_color tuple2)
 	addition.g = tuple1.g + tuple2.g;
 	addition.b = tuple1.b + tuple2.b;
 	return (addition);
-}
+} */
 
 /*
- * ft_substract_tuples - Subtracts one t_tuple structure from another.
+ * substract_tuples - Subtracts one t_tuple structure from another.
  *
  * tuple1: The tuple to subtract from (minuend).
  * tuple2: The tuple to subtract (subtrahend).
@@ -58,7 +58,7 @@ t_color	ft_add_color(t_color tuple1, t_color tuple2)
  * Return: A t_tuple structure representing the difference between
  *         the input tuples.
  */
-t_tuple	ft_substract_tuples(t_tuple tuple1, t_tuple tuple2)
+t_tuple	substract_tuples(t_tuple tuple1, t_tuple tuple2)
 {
 	t_tuple	substraction;
 
@@ -81,7 +81,7 @@ t_tuple	ft_substract_tuples(t_tuple tuple1, t_tuple tuple2)
 //}
 
 /*
- * ft_multiply_tuple - Multiplies each component of a t_tuple by a scalar.
+ * multiply_tuples - Multiplies each component of a t_tuple by a scalar.
  *
  * tuple: The tuple to be scaled.
  * scalar: The scalar value to multiply each component by.
@@ -93,7 +93,7 @@ t_tuple	ft_substract_tuples(t_tuple tuple1, t_tuple tuple2)
  *
  * Return: A t_tuple structure representing the scaled tuple.
  */
-t_tuple	ft_multiply_tuple_f(t_tuple tuple, float scalar)
+t_tuple	multiply_tuple_f(t_tuple tuple, float scalar)
 {
 	t_tuple	product;
 
@@ -104,7 +104,7 @@ t_tuple	ft_multiply_tuple_f(t_tuple tuple, float scalar)
 	return (product);
 }
 
-t_color	ft_multiply_color_f(t_color tuple, float scalar)
+/* t_color	multiply_color_f(t_color tuple, float scalar)
 {
 	t_color	product;
 
@@ -112,10 +112,10 @@ t_color	ft_multiply_color_f(t_color tuple, float scalar)
 	product.g = tuple.g * scalar;
 	product.b = tuple.b * scalar;
 	return (product);
-}
+} */
 
 /**
- * ft_divide_tuple - Divides each component of a 4D tuple by a scalar value.
+ * divide_tuple - Divides each component of a 4D tuple by a scalar value.
  * 
  * This function takes a tuple of four floating-point values (`tuple`) and
  * divides each of the `x`, `y`, and `z` components by a scalar value
@@ -130,7 +130,7 @@ t_color	ft_multiply_color_f(t_color tuple, float scalar)
  * Return: A new t_tuple structure with the quotient values for `x`, `y`, and
  *         `z`, and the unchanged `w` value.
  */
-t_tuple	ft_divide_tuple(t_tuple tuple, float scalar)
+t_tuple	divide_tuple(t_tuple tuple, float scalar)
 {
 	t_tuple	quotient;
 
@@ -141,20 +141,7 @@ t_tuple	ft_divide_tuple(t_tuple tuple, float scalar)
 	return (quotient);
 }
 
-/**
- * ft_negate_tuple - Negates each component of a 4D tuple.
- * 
- * This function takes a tuple of four floating-point values (`tuple`) and
- * negates the `x`, `y`, and `z` components by multiplying each by -1. The
- * `w` component remains unchanged. The function returns a new tuple with the
- * negated values for `x`, `y`, and `z`, and the original `w` value.
- *
- * param tuple: A t_tuple structure containing the 4D vector to be negated.
- * 
- * Return: A new t_tuple structure with the negated values for `x`, `y`, and
- *         `z`, and the unchanged `w` value.
- */
-t_tuple	ft_negate_tuple(t_tuple tuple)
+t_tuple	negate_tuple(t_tuple tuple)
 {
 	t_tuple	negated;
 
@@ -166,7 +153,7 @@ t_tuple	ft_negate_tuple(t_tuple tuple)
 }
 
 /**
- * ft_multiply_color - Multiplies corresponding components of two color tuples.
+ * multiply_colors - Multiplies corresponding components of two color tuples.
  * 
  * The function multiplies the `x`, `y`, and `z` components of the two tuples 
  * together. The `w` component is omitted from the result.
@@ -176,7 +163,7 @@ t_tuple	ft_negate_tuple(t_tuple tuple)
  * 
  * Return: A new t_tuple containing the product of the `x`, `y`, and `z`.
  */
-t_tuple	ft_multiply_tuple(t_tuple c1, t_tuple c2)
+t_tuple	multiply_tuples(t_tuple c1, t_tuple c2)
 {
 	t_tuple	result;
 
@@ -186,7 +173,7 @@ t_tuple	ft_multiply_tuple(t_tuple c1, t_tuple c2)
 	return (result);
 }
 
-t_color	ft_multiply_color(t_color c1, t_color c2)
+/* t_color	multiply_colors(t_color c1, t_color c2)
 {
 	t_color	result;
 
@@ -200,4 +187,4 @@ t_color	ft_multiply_color(t_color c1, t_color c2)
 	if (result.b > 255)
 		result.b = 255;
 	return (result);
-}
+} */

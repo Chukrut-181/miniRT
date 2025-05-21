@@ -56,10 +56,10 @@ static t_ray ray_for_pixel(t_camera camera, int px, int py)
 	world_y = camera.half_height - y_offset;
 	pixel = ft_create_point(world_x, world_y, -1);
 
-	inverse = ft_find_inverse(camera.transform);
-	pixel = ft_multiply_mat_and_tuple(inverse, pixel);
-	direction = ft_normalize(ft_substract_tuples(pixel, camera.origin));
-	return (ft_create_ray(camera.origin, direction));
+	inverse = find_inverse(camera.transform);
+	pixel = multiply_mat_and_tuple(inverse, pixel);
+	direction = normalize(substract_tuples(pixel, camera.origin));
+	return (create_ray(camera.origin, direction));
 }
 
 static	t_color calculate_inter(t_world world, t_ray ray)

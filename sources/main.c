@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/19 16:41:01 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:38:09 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ static t_scene *ft_init_scene(void)
 	new_scene->ambient = NULL;
 	new_scene->camera = NULL;
 	new_scene->world = malloc(sizeof(t_world));
+	new_scene->world->light = NULL;
 	new_scene->mlx = NULL;
 	new_scene->win = NULL;
 	return (new_scene);
@@ -125,11 +126,11 @@ int	main(int argc, char **argv)
 	t_scene	*scene;
 	
 	if (argc != 2)
-		ft_error_exit("Error\nUsage: ./miniRT <arg1>", 1);
+		ft_error_exit(NULL, "Error\nUsage: ./miniRT <arg1>", 1);
 	scene = ft_init_scene();
 	if (scene == NULL)
-		ft_error_exit("Error\nFailed to initialize scene", 1);
-	ft_get_scene(scene, argv[1]);
+		ft_error_exit(NULL, "Error\nFailed to initialize scene", 1);
+	get_scene(scene, argv[1]);
 //	ft_parsingcheckerprinter(scene);
 	init_mlx(scene);
 	write(1, "Rendering\n", 10); 

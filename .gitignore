@@ -1,5 +1,5 @@
 objects/
 bonus_objects/
 miniRT
-*.o
-a.out
+lib/libft/Objects
+lib/libft/libft.a

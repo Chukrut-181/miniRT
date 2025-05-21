@@ -6,14 +6,14 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 10:23:12 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/09 13:43:45 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:42:35 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
 /**
- * ft_create_identity_matrix - Creates a 4x4 identity matrix.
+ * create_identity_matrix - Creates a 4x4 identity matrix.
  * 
  * This function initializes a 4x4 matrix and sets it to be an identity matrix.
  * Takes no parameters.
@@ -25,7 +25,7 @@
  *         | 0 0 1 0 |
  *         | 0 0 0 1 |
  */
-t_4x4	ft_create_identity_matrix(void)
+t_4x4	create_identity_matrix(void)
 {
 	t_4x4	idmatrix;
 	int		i;
@@ -68,7 +68,7 @@ t_4x4	create_translation_mx(float x, float y, float z)
 {
 	t_4x4	translation_mx;
 
-	translation_mx = ft_create_identity_matrix();
+	translation_mx = create_identity_matrix();
 	translation_mx.data[0][3] = x;
 	translation_mx.data[1][3] = y;
 	translation_mx.data[2][3] = z;
@@ -95,7 +95,7 @@ t_4x4	create_scaling_mx(float x, float y, float z)
 {
 	t_4x4	scaling_mx;
 
-	scaling_mx = ft_create_identity_matrix();
+	scaling_mx = create_identity_matrix();
 	scaling_mx.data[0][0] = x;
 	scaling_mx.data[1][1] = y;
 	scaling_mx.data[2][2] = z;
@@ -103,7 +103,7 @@ t_4x4	create_scaling_mx(float x, float y, float z)
 }
 
 /**
- * ft_create_shearing_mx - 	Creates a 4x4 shearing matrix based on
+ * create_shearing_mx - 	Creates a 4x4 shearing matrix based on
  * 							given shear factors.
  * 
  * This function generates a 4x4 shearing matrix for 3D transformations.
@@ -124,11 +124,12 @@ t_4x4	create_scaling_mx(float x, float y, float z)
  *         | Zx Zy 1 0 |
  *         | 0  0  0 1 |
  */
-t_4x4	ft_create_shearing_mx(float Xy, float Xz, float Yx, float Yz, float Zx, float Zy)
+/* t_4x4	create_shearing_mx
+		(float Xy, float Xz, float Yx, float Yz, float Zx, float Zy)
 {
 	t_4x4	shearing_mx;
 
-	shearing_mx = ft_create_identity_matrix();
+	shearing_mx = create_identity_matrix();
 	shearing_mx.data[0][1] = Xy;
 	shearing_mx.data[0][2] = Xz;
 	shearing_mx.data[1][0] = Yx;
@@ -136,5 +137,4 @@ t_4x4	ft_create_shearing_mx(float Xy, float Xz, float Yx, float Yz, float Zx, fl
 	shearing_mx.data[2][0] = Zx;
 	shearing_mx.data[2][1] = Zy;
 	return (shearing_mx);
-}
-
+} */

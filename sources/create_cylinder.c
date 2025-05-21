@@ -5,116 +5,59 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/04 11:43:31 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/07 11:45:03 by igchurru         ###   ########.fr       */
+/*   Created: 2025/05/15 14:52:50 by igchurru          #+#    #+#             */
+/*   Updated: 2025/05/21 11:46:23 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-/* static bool	ft_apply_rgb_to_cylinder(t_cyl *cylinder, char *rgb)
+static t_4x4	ft_transform_cyl(char *center, char *axis, float r, float h)
 {
-	char	**split;
-	float	aux;
-	int		i;
+	t_4x4	translate;
+	t_4x4	rotate;
+	t_4x4	scalate;
+	t_4x4	transform_matrix;
+	char	**aux;
 
-	split = ft_split(rgb, ',');
-	if (!split)
-		return (false);
-	i = 0;
-	while (i < 3)
-	{
-		aux = ft_atof(split[i]) / 255.0;
-		if (aux < 0 || 1 < aux)
-			return (free(split), false);
-		if (i == 0)
-			cylinder->material.color.r = aux;
-		else if (i == 1)
-			cylinder->material.color.g = aux;
-		else if (i == 2)
-			cylinder->material.color.b = aux;
-		i++;
-	}
-	return (free(split), true);
-} */
-
-static bool	ft_set_cylinder_axis_orientation(t_cyl *cylinder, char *orientation)
-{
-	char	**split;
-	int		i;
-	float	aux;
-
-	split = ft_split(orientation, ',');
-	if (ft_arraylen(split) > 3)
-		return (ft_free_array(split), false);
-	i = 0;
-	while (i < 3)
-	{
-		aux = ft_atof(split[i]);
-		if (aux < -1 || 1 < aux)
-			return (ft_free_array(split), false);
-		else if (i == 0)
-			cylinder->axis_vector.x = aux;
-		else if (i == 1)
-			cylinder->axis_vector.y = aux;
-		else if (i == 2)
-			cylinder->axis_vector.z = aux;
-		i++;
-	}
-	cylinder->axis_vector.w = 0;
-	return (ft_free_array(split), true);
+	aux = ft_split(center, ',');
+	translate = create_translation_mx(ft_atof(aux[0]),
+			ft_atof(aux[1]), ft_atof(aux[2]));
+	ft_free_array(aux);
+	aux = ft_split(axis, ',');
+	rotate = rodriguez_rotation(ft_atof(aux[0]),
+			ft_atof(aux[1]), ft_atof(aux[2]));
+	ft_free_array(aux);
+	scalate = create_scaling_mx(1.0, 1.0, 1.0);
+	transform_matrix = multiply_matrices(translate,
+			multiply_matrices(rotate, scalate));
+	scalate = create_scaling_mx(r, h, r);
+	transform_matrix = multiply_matrices(transform_matrix, scalate);
+	return (transform_matrix);
 }
 
-static bool	ft_set_cylinder_center(t_cyl *cylinder, char *coords)
+bool	create_cylinder(t_scene *scene, char **cyl_data)
 {
-	char	**split;
-	float	aux;
-	int		i;
+	t_shape	*cylinder;
+	float	radius;
+	float	height;
 
-	split = ft_split(coords, ',');
-	if (!split)
-		return (false);
-	i = 0;
-	while (i < 3)
-	{
-		aux = ft_atof(split[i]);
-		if (i == 0)
-			cylinder->center.x = aux;
-		else if (i == 1)
-			cylinder->center.y = aux;
-		else if (i == 2)
-			cylinder->center.z = aux;
-		i++;
-	}
-	cylinder->center.w = 1;
-	ft_free_array(split);
-	return (true);
-}
-
-int	ft_create_cylinder(t_scene *scene, char **cyl)
-{
-	t_cyl	*cylinder;
-	t_list	*new_node;
-	float	aux;
-
-	cylinder = malloc(sizeof(t_cyl));
+	cylinder = malloc(sizeof(t_shape));
 	if (!cylinder)
-		return (1);
+		ft_error_exit(scene, "Error\nFailed to allocate cylinder", 1);
 	cylinder->type = CYLINDER;
-	if (!ft_check_coords(cyl[1]) || !ft_set_cylinder_center(cylinder, cyl[1]))
-		return (free(cylinder), 1);
-	if (!ft_set_cylinder_axis_orientation(cylinder, cyl[2]))
-		return (free(cylinder), 1);
-	aux = ft_atof(cyl[3]);
-	cylinder->diameter = aux;
-	aux = ft_atof(cyl[4]);
-	cylinder->height = aux;
-	if (!ft_check_rgb(cyl[5]))
-		return (free(cylinder), 1);
-	cylinder->material = ft_create_material(cyl[5]);
-	new_node = ft_lstnew(cylinder);
-	if (!new_node)
-		return (free(cylinder), 1);
-	ft_lstadd_back(&(scene->world->objects), new_node);
-	return (0);
+	if (!check_coords(cyl_data[1]) || !check_coords(cyl_data[2]))
+		return (free(cylinder), false);
+	radius = (ft_atof(cyl_data[3]) / 2.0);
+	height = ft_atof(cyl_data[4]);
+	if (radius <= 0 || height <= 0)
+		return (free(cylinder), false);
+	cylinder->transform_matrix = ft_transform_cyl(cyl_data[1],
+			cyl_data[2], radius, height);
+	cylinder->inverse_matrix = find_inverse(cylinder->transform_matrix);
+	if (!check_rgb(cyl_data[5]))
+		return (free(cylinder), false);
+	cylinder->material = create_material(cyl_data[5]);
+	ft_lstadd_back(&scene->world->objects, ft_lstnew(cylinder));
+	return (true);
 }

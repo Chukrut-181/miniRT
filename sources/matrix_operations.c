@@ -6,14 +6,14 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 09:50:24 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/17 10:51:11 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:42:51 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
 /**
- * ft_check_matrix_equality - 	Checks if two 4x4 matrices are equal
+ * check_matrix_equality - 	Checks if two 4x4 matrices are equal
  * 								within a given tolerance.
  * 
  * This function compares two 4x4 matrices element by element.
@@ -26,7 +26,7 @@
  * Return: `1` if the matrices are not equal, and `0` if they are equal within 
  *         the specified tolerance (`EPSILON`).
  */
-int	ft_check_matrix_equality(t_4x4 matrix1, t_4x4 matrix2)
+int	check_matrix_equality(t_4x4 matrix1, t_4x4 matrix2)
 {
 	int	i;
 	int	j;
@@ -48,7 +48,7 @@ int	ft_check_matrix_equality(t_4x4 matrix1, t_4x4 matrix2)
 }
 
 /**
- * ft_multiply_matrices - Multiplies two 4x4 matrices.
+ * multiply_matrices - Multiplies two 4x4 matrices.
  * 
  * This function performs matrix multiplication according to the standard
  * matrix multiplication rules, where each element in the resulting matrix
@@ -60,7 +60,7 @@ int	ft_check_matrix_equality(t_4x4 matrix1, t_4x4 matrix2)
  * 
  * Return: A t_4x4 structure representing the product of `mat1` and `mat2`.
  */
-t_4x4	ft_multiply_matrices(t_4x4 mat1, t_4x4 mat2)
+t_4x4	multiply_matrices(t_4x4 mat1, t_4x4 mat2)
 {
 	t_4x4	product;
 	int		i;
@@ -82,7 +82,7 @@ t_4x4	ft_multiply_matrices(t_4x4 mat1, t_4x4 mat2)
 }
 
 /**
- * ft_multiply_mat_and_tuple - Multiplies a 4x4 matrix by a 4D tuple.
+ * multiply_mat_and_tuple - Multiplies a 4x4 matrix by a 4D tuple.
  *  
  * This function performs matrix-vector multiplication between a 4x4 matrix
  * and a 4D tuple (`tuple`), where each component of the resulting tuple
@@ -94,7 +94,7 @@ t_4x4	ft_multiply_matrices(t_4x4 mat1, t_4x4 mat2)
  * 
  * Return A t_tuple representing the product of the matrix and the tuple.
  */
-t_tuple	ft_multiply_mat_and_tuple(t_4x4 mat, t_tuple tuple)
+t_tuple	multiply_mat_and_tuple(t_4x4 mat, t_tuple tuple)
 {
 	t_tuple	product;
 
@@ -124,25 +124,24 @@ t_tuple	ft_multiply_mat_and_tuple(t_4x4 mat, t_tuple tuple)
  */
 static t_3x3	ft_get_3x3_minor(t_4x4 matrix, int row, int col)
 {
-	int		i;
-	int		j;
+	int		i[2];
 	int		sub_i;
 	int		sub_j;
 	t_3x3	submatrix;
 
-	i = -1;
+	i[0] = -1;
 	sub_i = 0;
-	while (++i < 4)
+	while (++i[0] < 4)
 	{
-		if (i != row)
+		if (i[0] != row)
 		{
 			sub_j = 0;
-			j = -1;
-			while (++j < 4)
+			i[1] = -1;
+			while (++i[1] < 4)
 			{
-				if (j != col)
+				if (i[1] != col)
 				{
-					submatrix.data[sub_i][sub_j] = matrix.data[i][j];
+					submatrix.data[sub_i][sub_j] = matrix.data[i[0]][i[1]];
 					sub_j++;
 				}
 			}
@@ -153,7 +152,7 @@ static t_3x3	ft_get_3x3_minor(t_4x4 matrix, int row, int col)
 }
 
 /**
- * ft_find_inverse - Calculates the inverse of a 4x4 matrix.
+ * find_inverse - Calculates the inverse of a 4x4 matrix.
  * 
  * This function computes the inverse of a 4x4 matrix using the method of 
  * cofactors and determinants. It first calculates the determinant of the 
@@ -164,7 +163,7 @@ static t_3x3	ft_get_3x3_minor(t_4x4 matrix, int row, int col)
  * Return: A t_4x4 structure representing the inverse of the matrix if the 
  *         determinant is non-zero, otherwise returns the original matrix.
  */
-t_4x4	ft_find_inverse(t_4x4 matrix)
+t_4x4	find_inverse(t_4x4 matrix)
 {
 	t_4x4	inverse;
 	t_3x3	submatrix;
@@ -172,7 +171,7 @@ t_4x4	ft_find_inverse(t_4x4 matrix)
 	int		row;
 	int		col;
 
-	cofdet[1] = ft_calculate_determinant(matrix);
+	cofdet[1] = calculate_determinant(matrix);
 	if (cofdet[1] == 0)
 		return (matrix);
 	row = -1;
@@ -182,42 +181,11 @@ t_4x4	ft_find_inverse(t_4x4 matrix)
 		while (++col < 4)
 		{
 			submatrix = ft_get_3x3_minor(matrix, row, col);
-			cofdet[0] = ft_determinant_3x3(submatrix);
+			cofdet[0] = determinant_3x3(submatrix);
 			if ((row + col) % 2 != 0)
 				cofdet[0] = -cofdet[0];
 			inverse.data[col][row] = cofdet[0] / cofdet[1];
 		}
 	}
 	return (inverse);
-}
-
-/**
- * ft_transpose - Transposes a 4x4 matrix and returns the resulting matrix.
- * 
- * Transposing a matrix involves swapping its rows and columns,
- * so the element at position `[i][j]` in the original matrix becomes
- * the element at position `[j][i]` in the transposed matrix. 
- * 
- * param matrix: A t_4x4 structure representing the matrix to be transposed.
- * 
- * Return: A t_4x4 structure representing the transposed matrix.
- */
-t_4x4	ft_transpose(t_4x4 matrix)
-{
-	t_4x4	transposed;
-	int		i;
-	int		j;
-
-	i = 0;
-	while (i < 4)
-	{
-		j = 0;
-		while (j < 4)
-		{
-			transposed.data[i][j] = matrix.data[j][i];
-			j++;
-		}
-		i++;
-	}
-	return (transposed);
 }

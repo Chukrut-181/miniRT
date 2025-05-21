@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 15:51:55 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/13 13:57:04 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:45:05 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static bool	ft_apply_light_coords(t_world *world, char *coords)
 	return (true);
 }
 
-bool	ft_check_coords(char *coords)
+bool	check_coords(char *coords)
 {
 	char	**temp;
 	int		i;
@@ -66,26 +66,26 @@ bool	ft_check_coords(char *coords)
 	return (ft_free_array(temp), true);
 }
 
-int	ft_create_light(t_world *world, char **light)
+bool	create_light(t_world *world, char **light)
 {
 	float	aux;
 
 	if (world->light != NULL)
-		return (1);
+		return (false);
 	world->light = malloc(sizeof(t_light));
 	if (world->light == NULL)
-		return (1);
-	if (!ft_check_coords(light[1]))
-		return (1);
+		return (false);
+	if (!check_coords(light[1]))
+		return (false);
 	if (!ft_apply_light_coords(world, light[1]))
-		return (1);
+		return (false);
 	aux = ft_atof(light[2]);
 	if (aux < 0 || 1 < aux)
-		return (1);
+		return (false);
 	world->light->intensity = aux;
-	if (!ft_check_rgb(light[3]))
-		return (1);
-	if (!ft_apply_rgb(&world->light->l_color, light[3]))
-		return (1);
-	return (0);
+	if (!check_rgb(light[3]))
+		return (false);
+	if (!apply_rgb(&world->light->l_color, light[3]))
+		return (false);
+	return (true);
 }

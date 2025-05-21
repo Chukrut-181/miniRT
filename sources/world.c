@@ -7,10 +7,10 @@ static t_ray transform(t_ray ray, t_4x4	matrix)
 	t_tuple vec;
 	t_ray	new_ray;
 
-	multi[0] = ft_multiply_mat_and_tuple(matrix, ray.origin);
-	multi[1] = ft_multiply_mat_and_tuple(matrix, ray.direction);
+	multi[0] = multiply_mat_and_tuple(matrix, ray.origin);
+	multi[1] = multiply_mat_and_tuple(matrix, ray.direction);
 	p = ft_create_point(multi[0].x, multi[0].y, multi[0].z);
-	vec = ft_create_vector(multi[1].x, multi[1].y, multi[1].z);
+	vec = create_vector(multi[1].x, multi[1].y, multi[1].z);
 	new_ray.origin = p;
 	new_ray.direction = vec;
 	return (new_ray);
@@ -23,8 +23,8 @@ static	bool	ft_intersections(t_ray ray, t_shape *shape, t_list **inter)
 		return (intersec_sphere(shape, inter));
 	else if (shape->type == PLANE)
 		return (intersec_plane(shape, inter));
-//	else if (shape->type == CYLINDER)
-//		intersec_cylinder(shape, inter, shape->ray_in_obj_space);
+	else if (shape->type == CYLINDER)
+		intersec_cylinder(shape, inter, shape->ray_in_obj_space);
 	return (false);
 }
 
@@ -53,12 +53,12 @@ t_comps	prepare_computations(t_xs *hit, t_ray ray)
 	comps.time = hit->time;
 	comps.object = hit->object;
 	comps.point = ft_position(ray, comps.time);
-	comps.eyev = ft_negate_tuple(ray.direction);
+	comps.eyev = negate_tuple(ray.direction);
 	comps.normalv = normal_at((t_shape *)comps.object, comps.point);
-	if (ft_dot_product(comps.normalv, comps.eyev) < 0)
+	if (dot_product(comps.normalv, comps.eyev) < 0)
 	{
 		comps.inside = true;
-		comps.normalv = ft_negate_tuple(comps.normalv);
+		comps.normalv = negate_tuple(comps.normalv);
 	}
 	else
 		comps.inside = false;
@@ -78,10 +78,10 @@ int is_shadowed(t_world world, t_tuple point)
 	t_xs	*hit;
 	int		shadowed;
 
-	v = ft_substract_tuples(world.light->source, point);
-	distance = ft_calculate_magnitude(v);
-	direction = ft_normalize(v);
-	ray = ft_create_ray(point, direction);
+	v = substract_tuples(world.light->source, point);
+	distance = calculate_magnitude(v);
+	direction = normalize(v);
+	ray = create_ray(point, direction);
 	xs = ft_intersect_world(world, ray);
 	hit = ft_find_hit(xs);
 	if (hit->time && hit->time < distance)

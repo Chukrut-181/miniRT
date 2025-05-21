@@ -6,14 +6,14 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 10:04:30 by igchurru          #+#    #+#             */
-/*   Updated: 2025/03/14 14:05:23 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:41:45 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
 /**
- *ft_calculate_magnitude - Calculates the magnitude (length) of a 3D vector.
+ *calculate_magnitude - Calculates the magnitude (length) of a 3D vector.
  * 
  * This function computes the magnitude of a 3D vector using the Euclidean 
  * formula. The `w` component is ignored in the calculation. The result is
@@ -23,16 +23,16 @@
  * 
  * Return: A float representing the magnitude (length) of the vector `v`.
  */
-float	ft_calculate_magnitude(t_tuple v)
+float	calculate_magnitude(t_tuple v)
 {
 	return (sqrtf(v.x * v.x + v.y * v.y + v.z * v.z));
 }
 
 /**
- * ft_normalize - Normalizes a 3D vector to have a magnitude of 1.
+ * normalize - Normalizes a 3D vector to have a magnitude of 1.
  * 
  * This function takes a 3D vector (`v`), calculates its magnitude using
- * the `ft_calculate_magnitude` function, and then divides each component
+ * the `calculate_magnitude` function, and then divides each component
  * by the magnitude to normalize the vector.
  * The `w` component remains unchanged.
  * 
@@ -40,12 +40,12 @@ float	ft_calculate_magnitude(t_tuple v)
  * 
  * Return: A new t_tuple structure representing the normalized vector.
  */
-t_tuple	ft_normalize(t_tuple v)
+t_tuple	normalize(t_tuple v)
 {
 	float	mag;
 	t_tuple	normalized;
 
-	mag = ft_calculate_magnitude(v);
+	mag = calculate_magnitude(v);
 	normalized.x = v.x / mag;
 	normalized.y = v.y / mag;
 	normalized.z = v.z / mag;
@@ -53,7 +53,7 @@ t_tuple	ft_normalize(t_tuple v)
 }
 
 /**
- * ft_dot_product - Computes the dot product of two 3D vectors.
+ * dot_product - Computes the dot product of two 3D vectors.
  * 
  * This function calculates the dot product of two 3D vectors, `v1` and `v2`,
  * each represented by the `t_tuple` structure.The result is a floating-point
@@ -64,13 +64,13 @@ t_tuple	ft_normalize(t_tuple v)
  * 
  * Return A float representing the dot product of the vectors `v1` and `v2`.
  */
-float	ft_dot_product(t_tuple v1, t_tuple v2)
+float	dot_product(t_tuple v1, t_tuple v2)
 {
 	return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
 }
 
 /**
- * ft_cross_product - Computes the cross product of two 3D vectors.
+ * cross_product - Computes the cross product of two 3D vectors.
  * 
  * This function calculates the cross product of two 3D vectors, `v1` and `v2`,
  * each represented by the `t_tuple` structure. The cross product results in a
@@ -83,7 +83,7 @@ float	ft_dot_product(t_tuple v1, t_tuple v2)
  * 
  * Return: A new t_tuple containing the cross product of `v1` and `v2`.
  */
-t_tuple	ft_cross_product(t_tuple v1, t_tuple v2)
+t_tuple	cross_product(t_tuple v1, t_tuple v2)
 {
 	t_tuple	cross_vector;
 
