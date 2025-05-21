@@ -16,25 +16,25 @@ t_tuple	normal_at(t_shape *shape, t_tuple point)
 	t_4x4	world_normal;
 	t_tuple	normal_at;
 
-	object_normal = ft_create_vector(0, 0, 0);
+	object_normal = create_vector(0, 0, 0);
 	object_point = multiply_mat_and_tuple(shape->inverse_matrix, point);
 	if (shape->type == SPHERE)
 		object_normal = substract_tuples(object_point, ft_create_point(0, 0, 0));
 	else if (shape->type == PLANE)
-		object_normal = ft_create_vector(0, 1, 0);
+		object_normal = create_vector(0, 1, 0);
 	else if (shape->type == CYLINDER)
 	{
-        object_normal = ft_create_vector(object_point.x, 0, object_point.z);
+        object_normal = create_vector(object_point.x, 0, object_point.z);
         if (fabsf(object_point.y - 0) < EPSILON)
-            object_normal = ft_create_vector(0, -1, 0);
+            object_normal = create_vector(0, -1, 0);
         else if (fabsf(object_point.y - 1) < EPSILON)
-            object_normal = ft_create_vector(0, 1, 0);
+            object_normal = create_vector(0, 1, 0);
         else
-            object_normal = ft_create_vector(object_point.x, 0, object_point.z);
+            object_normal = create_vector(object_point.x, 0, object_point.z);
     }
 	world_normal = transpose(shape->inverse_matrix);
 	normal_at = multiply_mat_and_tuple(world_normal, object_normal);
-	return (ft_normalize(normal_at));
+	return (normalize(normal_at));
 }
 
 t_tuple	reflect(t_tuple in, t_tuple normal)
@@ -100,7 +100,7 @@ t_color	lighting(t_comps comp, t_light light, int in_shadow)
 	t_lighting l;
 
 	l.lightv = substract_tuples(light.source, comp.over_point);
-	l.lightv = ft_normalize(l.lightv);
+	l.lightv = normalize(l.lightv);
 	l.ambient = get_ambient(comp, light);
 	if (dot_product(l.lightv, comp.normalv) < 0 || in_shadow)
 	{

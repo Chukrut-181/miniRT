@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 10:05:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/21 11:26:55 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:39:04 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ bool	ft_create_sphere(t_scene *scene, char **ball)
 			ft_atof(center[1]), ft_atof(center[2]));
 	diameter = ft_atof(ball[2]) / 2.0f;
 	scalate = create_scaling_mx(diameter, diameter, diameter);
-	if (!ft_check_rgb(ball[3]))
+	if (!check_rgb(ball[3]))
 		return (free(sphere), false);
 	sphere->material = ft_create_material(ball[3]);
 	sphere->transform_matrix = multiply_matrices(translate, scalate);

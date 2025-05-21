@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 15:51:55 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/20 13:19:27 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:39:21 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ bool	ft_create_light(t_world *world, char **light)
 	if (aux < 0 || 1 < aux)
 		return (false);
 	world->light->intensity = aux;
-	if (!ft_check_rgb(light[3]))
+	if (!check_rgb(light[3]))
 		return (false);
-	if (!ft_apply_rgb(&world->light->l_color, light[3]))
+	if (!apply_rgb(&world->light->l_color, light[3]))
 		return (false);
 	return (true);
 }

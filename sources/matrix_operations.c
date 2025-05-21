@@ -6,14 +6,14 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 09:50:24 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/21 11:26:55 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:42:51 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
 /**
- * ft_check_matrix_equality - 	Checks if two 4x4 matrices are equal
+ * check_matrix_equality - 	Checks if two 4x4 matrices are equal
  * 								within a given tolerance.
  * 
  * This function compares two 4x4 matrices element by element.
@@ -26,7 +26,7 @@
  * Return: `1` if the matrices are not equal, and `0` if they are equal within 
  *         the specified tolerance (`EPSILON`).
  */
-int	ft_check_matrix_equality(t_4x4 matrix1, t_4x4 matrix2)
+int	check_matrix_equality(t_4x4 matrix1, t_4x4 matrix2)
 {
 	int	i;
 	int	j;
@@ -171,7 +171,7 @@ t_4x4	find_inverse(t_4x4 matrix)
 	int		row;
 	int		col;
 
-	cofdet[1] = ft_calculate_determinant(matrix);
+	cofdet[1] = calculate_determinant(matrix);
 	if (cofdet[1] == 0)
 		return (matrix);
 	row = -1;
@@ -181,7 +181,7 @@ t_4x4	find_inverse(t_4x4 matrix)
 		while (++col < 4)
 		{
 			submatrix = ft_get_3x3_minor(matrix, row, col);
-			cofdet[0] = ft_determinant_3x3(submatrix);
+			cofdet[0] = determinant_3x3(submatrix);
 			if ((row + col) % 2 != 0)
 				cofdet[0] = -cofdet[0];
 			inverse.data[col][row] = cofdet[0] / cofdet[1];

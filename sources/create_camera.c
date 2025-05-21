@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 13:51:00 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/21 11:31:04 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:41:45 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,15 @@ t_4x4	view_transform(t_tuple origin, t_tuple direction)
 	t_4x4	orientation;
 	t_4x4	translation;
 
-	up = ft_create_vector(0, 1, 0);
+	up = create_vector(0, 1, 0);
 	if (fabsf(direction.y) > 0.9999f)
 	{
 		if (direction.y > 0)
-			up = ft_create_vector(0, 0, -1);
+			up = create_vector(0, 0, -1);
 		else
-			up = ft_create_vector(0, 0, 1);
+			up = create_vector(0, 0, 1);
 	}
-	left = ft_normalize(cross_product(direction, up));
+	left = normalize(cross_product(direction, up));
 	true_up = cross_product(left, direction);
 	orientation = ft_orientation(left, true_up, direction);
 	translation = create_translation_mx(-origin.x, -origin.y, -origin.z);
@@ -94,9 +94,9 @@ bool	ft_create_camera(t_scene *scene, char **cam_data)
 	scene->camera->origin = origin;
 	ft_free_array(coords);
 	coords = ft_split(cam_data[2], ',');
-	direction = ft_create_vector(ft_atof(coords[0]),
+	direction = create_vector(ft_atof(coords[0]),
 			ft_atof(coords[1]), ft_atof(coords[2]));
-	direction = ft_normalize(direction);
+	direction = normalize(direction);
 	ft_free_array(coords);
 	scene->camera->transform = view_transform(origin, direction);
 	camera_guie(scene, cam_data[3]);

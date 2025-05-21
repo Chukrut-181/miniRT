@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 10:23:12 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/21 11:31:04 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:42:35 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ t_4x4	create_scaling_mx(float x, float y, float z)
 }
 
 /**
- * ft_create_shearing_mx - 	Creates a 4x4 shearing matrix based on
+ * create_shearing_mx - 	Creates a 4x4 shearing matrix based on
  * 							given shear factors.
  * 
  * This function generates a 4x4 shearing matrix for 3D transformations.
@@ -124,7 +124,7 @@ t_4x4	create_scaling_mx(float x, float y, float z)
  *         | Zx Zy 1 0 |
  *         | 0  0  0 1 |
  */
-/* t_4x4	ft_create_shearing_mx
+/* t_4x4	create_shearing_mx
 		(float Xy, float Xz, float Yx, float Yz, float Zx, float Zy)
 {
 	t_4x4	shearing_mx;
