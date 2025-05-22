@@ -85,17 +85,16 @@ bool is_shadowed(t_world world, t_tuple point)
 	t_list	*current;
 	t_xs	*intersection;
 
-    v = substract_tuples(point , world.light->source);
+    v = substract_tuples(point, world.light->source);
     distance = calculate_magnitude(v);
     direction = normalize(v);
     ray = create_ray(point, direction);
     xs = ft_intersect_world(world, ray);
-
 	current = xs;
     while (current)
     {
         intersection = (t_xs *)current->content;
-        if (intersection->time > 0 && intersection->time < distance)
+        if (intersection->time > EPSILON && intersection->time < distance)
         {
 			ft_lstclear(&xs, free);
             return (true);

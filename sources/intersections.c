@@ -18,15 +18,15 @@ static	void	update_inter(t_list **inter, t_shape *shape, float time)
 	
 	intersec = malloc(sizeof(t_xs));
 	if (!intersec)
-	return ;
+		return ;
 	intersec->object = shape;
 	intersec->time = time;
 	intersec->hit = 1;
 	intersec->intersec = true;
 	if (*inter == NULL)
-	*inter = ft_lstnew(intersec);
+		*inter = ft_lstnew(intersec);
 	else
-	ft_lstadd_back(inter, ft_lstnew(intersec));
+		ft_lstadd_back(inter, ft_lstnew(intersec));
 }
 
 bool	intersec_plane(t_shape *shape, t_list **inter)
@@ -41,9 +41,9 @@ bool	intersec_plane(t_shape *shape, t_list **inter)
 	intersec.hit = 1;
 	intersec.time = -1 * shape->ray_in_obj_space.origin.y / shape->ray_in_obj_space.direction.y;
 	if (intersec.time > EPSILON)
-	update_inter(inter, shape, intersec.time);
+		update_inter(inter, shape, intersec.time);
 	else
-	return (false);
+		return (false);
 	return (true);
 }
 /* static void	ft_intersect_caps(t_shape *cy_shape, t_ray ray, t_list **intersections)
