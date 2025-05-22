@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:38:26 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/21 15:07:51 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/22 11:33:29 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ static t_color	effective_color(t_material m, t_light l)
 {
 	t_color	effective_color;
 
-	effective_color.r = m.color.r * l.l_color.r;
-	effective_color.g = m.color.g * l.l_color.g;
-	effective_color.b = m.color.b * l.l_color.b;
+	effective_color.r = m.color.r * l.l_color.r * l.intensity;
+	effective_color.g = m.color.g * l.l_color.g * l.intensity;
+	effective_color.b = m.color.b * l.l_color.b * l.intensity;
 	return (effective_color);
 }
 
