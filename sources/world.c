@@ -24,19 +24,20 @@ static	bool	ft_intersections(t_ray ray, t_shape *shape, t_list **inter)
 	else if (shape->type == PLANE)
 		return (intersec_plane(shape, inter));
 	else if (shape->type == CYLINDER)
-		intersec_cylinder(shape, inter, shape->ray_in_obj_space);
+		return (intersec_cylinder(shape, inter, shape->ray_in_obj_space));
 	return (false);
 }
 
 t_list *ft_intersect_world(t_world world, t_ray ray)
 {
-	t_list *intersections = NULL;
+	t_list *intersections;
 	t_list *current;
 	t_shape *shape;
 	bool	found_inter;
 
 	current = world.objects;
 	found_inter = false;
+	intersections = NULL;
 	while (current)
 	{
 		shape = (t_shape *)current->content;

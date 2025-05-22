@@ -103,7 +103,7 @@ bool    intersec_cylinder(t_shape *shape, t_list **inter, t_ray ray)
     y1 = ray.origin.y + t1 * ray.direction.y;
     if (t1 > EPSILON && y1 >= 0 && y1 <= 1)
         update_inter(inter, shape, t1);
-    return (*inter != NULL);
+    return (true);
 }
 
 bool	intersec_sphere(t_shape *shape, t_list **inter)
