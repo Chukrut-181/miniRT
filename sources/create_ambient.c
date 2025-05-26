@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 12:18:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/21 11:39:21 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/26 10:55:57 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ bool	create_ambient(t_scene *scene, char **ambient)
 	float	aux;
 
 	if (scene->ambient != NULL)
-		return (false);
+		ft_error_exit(scene, "Error\nOnly one ambient light allowed", 1);
 	scene->ambient = (t_ambient *)malloc(sizeof(t_ambient));
 	if (scene->ambient == NULL)
 		return (false);
