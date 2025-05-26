@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 12:28:40 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/26 12:37:02 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/26 12:52:33 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ bool	is_shadowed(t_world world, t_tuple point)
 
 	xs = NULL;
 	v = substract_tuples(world.light->source, point);
-	distance = calculate_magnitude(v);
+	distance = get_magnitude(v);
 	xs = ft_intersect_world(world, create_ray(point, normalize(v)));
 	current = xs;
 	while (current)

@@ -6,14 +6,14 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 10:04:30 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/21 11:41:45 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/26 12:52:33 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
 /**
- *calculate_magnitude - Calculates the magnitude (length) of a 3D vector.
+ *get_magnitude - Calculates the magnitude (length) of a 3D vector.
  * 
  * This function computes the magnitude of a 3D vector using the Euclidean 
  * formula. The `w` component is ignored in the calculation. The result is
@@ -23,7 +23,7 @@
  * 
  * Return: A float representing the magnitude (length) of the vector `v`.
  */
-float	calculate_magnitude(t_tuple v)
+float	get_magnitude(t_tuple v)
 {
 	return (sqrtf(v.x * v.x + v.y * v.y + v.z * v.z));
 }
@@ -32,7 +32,7 @@ float	calculate_magnitude(t_tuple v)
  * normalize - Normalizes a 3D vector to have a magnitude of 1.
  * 
  * This function takes a 3D vector (`v`), calculates its magnitude using
- * the `calculate_magnitude` function, and then divides each component
+ * the `get_magnitude` function, and then divides each component
  * by the magnitude to normalize the vector.
  * The `w` component remains unchanged.
  * 
@@ -45,7 +45,7 @@ t_tuple	normalize(t_tuple v)
 	float	mag;
 	t_tuple	normalized;
 
-	mag = calculate_magnitude(v);
+	mag = get_magnitude(v);
 	normalized.x = v.x / mag;
 	normalized.y = v.y / mag;
 	normalized.z = v.z / mag;

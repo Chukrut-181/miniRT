@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 18:08:55 by v0                #+#    #+#             */
-/*   Updated: 2025/05/26 11:43:57 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/26 12:52:33 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_tuple		divide_tuple(t_tuple tuple, float scalar);
 t_tuple		negate_tuple(t_tuple tuple);
 
 //	VECTOR OPERATIONS
-float		calculate_magnitude(t_tuple v);
+float		get_magnitude(t_tuple v);
 t_tuple		normalize(t_tuple v);
 float		dot_product(t_tuple v1, t_tuple v2);
 t_tuple		cross_product(t_tuple v1, t_tuple v2);
