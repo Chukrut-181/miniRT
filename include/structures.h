@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:58:02 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/26 11:19:02 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/26 14:39:25 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,6 @@ typedef struct s_3x3
 	float	data[3][3];
 }	t_3x3;
 
-typedef struct s_2x2
-{
-	float	data[2][2];
-}	t_2x2;
-
 typedef struct s_ray
 {
 	t_tuple	origin;
@@ -56,8 +51,6 @@ typedef struct s_color
 typedef struct s_material
 {
 	t_color	color;
-	float	a_ratio;
-	t_color	a_color;
 	float	ambient;
 	float	diffuse;
 	float	specular;
@@ -87,7 +80,7 @@ typedef struct s_light
 {
 	t_tuple	source;
 	t_color	l_color;
-	float	intensity; // 0-1
+	float	intensity;
 }	t_light;
 
 typedef struct s_ambient
@@ -101,7 +94,6 @@ typedef struct s_world
 	t_list		*objects;
 	t_ambient	*ambient;
 	t_light		*light;
-	int			shape_count;
 }	t_world;
 
 typedef struct s_point
@@ -113,8 +105,6 @@ typedef struct s_point
 
 typedef struct s_camera
 {
-	// double	hsize;
-	// double	vsize;
 	double	field_of_view;
 	double	pixel_size;
 	double	half_width;

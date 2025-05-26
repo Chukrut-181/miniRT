@@ -12,7 +12,7 @@
 
 #include "../include/minirt.h"
 
-bool	intersec_plane(t_shape *shape, t_list **inter)
+bool	intersect_plane(t_shape *shape, t_list **inter)
 {
 	t_xs	intersec;
 
@@ -57,7 +57,7 @@ bool	intersec_plane(t_shape *shape, t_list **inter)
 	}
 } */
 
-bool	intersec_cylinder(t_shape *shape, t_list **inter, t_ray ray)
+bool	intersect_cylinder(t_shape *shape, t_list **inter, t_ray ray)
 {
 	t_abcd	data;
 	float	t[2];
@@ -86,7 +86,7 @@ bool	intersec_cylinder(t_shape *shape, t_list **inter, t_ray ray)
 	return (true);
 }
 
-bool	intersec_sphere(t_shape *shape, t_list **inter)
+bool	intersect_sphere(t_shape *shape, t_list **inter)
 {
 	t_tuple	sphere_to_ray;
 	t_tuple	origin;
@@ -113,10 +113,10 @@ bool	ft_intersections(t_ray ray, t_shape *shape, t_list **inter)
 {
 	shape->ray_in_obj_space = transform(ray, shape->inverse_matrix);
 	if (shape->type == SPHERE)
-		return (intersec_sphere(shape, inter));
+		return (intersect_sphere(shape, inter));
 	else if (shape->type == PLANE)
-		return (intersec_plane(shape, inter));
+		return (intersect_plane(shape, inter));
 	else if (shape->type == CYLINDER)
-		return (intersec_cylinder(shape, inter, shape->ray_in_obj_space));
+		return (intersect_cylinder(shape, inter, shape->ray_in_obj_space));
 	return (false);
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/19 18:08:55 by v0                #+#    #+#             */
-/*   Updated: 2025/05/26 13:42:55 by igchurru         ###   ########.fr       */
+/*   Created: 2025/04/19 18:08:55 by eandres           #+#    #+#             */
+/*   Updated: 2025/05/26 14:48:15 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,9 @@ int			main(int argc, char **argv);
 
 //	TUPLE CREATION
 t_tuple		ft_create_point(float x, float y, float z);
-t_color		ft_create_color(float x, float y, float z);
 t_tuple		create_vector(float x, float y, float z);
 int			check_equality(t_tuple tuple1, t_tuple tuple2);
 t_point		create_point(double x, double y, double z);
-t_tuple		point_tp(t_point p);
 t_tuple		negate_tuple(t_tuple tuple);
 
 //	TUPLE OPERATIONS
@@ -58,6 +56,7 @@ t_tuple		cross_product(t_tuple v1, t_tuple v2);
 t_color		multiply_color_f(t_color tuple, float scalar);
 t_color		add_colors(t_color tuple1, t_color tuple2);
 t_color		multiply_colors(t_color c1, t_color c2);
+t_color		ft_create_color(float x, float y, float z);
 t_tuple		color_tp(t_color p);
 
 //	MATRIX OPERATIONS
@@ -65,11 +64,11 @@ int			check_matrix_equality(t_4x4 matrix1, t_4x4 matrix2);
 t_4x4		multiply_matrices(t_4x4 matrix1, t_4x4 matrix2);
 t_tuple		multiply_mat_and_tuple(t_4x4 matrix, t_tuple tuple);
 t_4x4		find_inverse(t_4x4 matrix);
-t_4x4		transpose(t_4x4 matrix);
 
 // MATRIX DETERMINANT
 float		calculate_determinant(t_4x4 matrix);
 float		determinant_3x3(t_3x3 submx);
+t_4x4		transpose(t_4x4 matrix);
 
 // MATRIX TRANSFOMATION
 t_4x4		create_identity_matrix(void);
@@ -85,7 +84,6 @@ t_4x4		rodriguez_rotation(float target_x, float target_y, float target_z);
 //	RAY
 t_ray		create_ray(t_tuple origin, t_tuple direction);
 t_tuple		ft_position(t_ray ray, float t);
-t_list		*ft_intersection_sphere(t_ray ray, t_shape sphere, t_list *xs_list);
 void		identify_hit(t_list *xs_list);
 
 //	LIGHT & SHADING
@@ -96,7 +94,6 @@ t_color		lighting(t_comps comp, t_world *world, bool in_shadow);
 t_tuple		normal_at(t_shape *shape, t_tuple point);
 t_color		effective_color(t_material m, t_color color, float intensity);
 t_light		point_light(t_tuple position, t_color color);
-
 
 //	PARSE
 int			get_scene(t_scene *scene, char *argv1);
@@ -132,9 +129,9 @@ void		render_scene(t_scene *s);
 t_color		shade_hit(t_world w, t_comps comps);
 
 //	INTERSECTIONS
-bool		intersec_plane(t_shape *shape, t_list **inter);
-bool		intersec_sphere(t_shape *shape, t_list **inter);
-bool		intersec_cylinder(t_shape *shape, t_list **inter, t_ray ray);
+bool		intersect_plane(t_shape *shape, t_list **inter);
+bool		intersect_sphere(t_shape *shape, t_list **inter);
+bool		intersect_cylinder(t_shape *shape, t_list **inter, t_ray ray);
 bool		ft_intersections(t_ray ray, t_shape *shape, t_list **inter);
 
 //	INTERSECTION UTILS
