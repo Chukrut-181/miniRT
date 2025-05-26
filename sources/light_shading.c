@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:38:26 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/26 11:45:36 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/26 12:55:21 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ static t_color	get_ambient(t_comps copm, t_ambient amb)
 	t_tuple	point;
 	t_color	ambient;
 
-	point = multiply_tuple_f(color_tp(effective_color(copm.object->material, amb.a_color, amb.ratio)),
+	point = multiply_tuple_f(color_tp(effective_color(copm.object->material,
+					amb.a_color, amb.ratio)),
 			copm.object->material.ambient);
 	ambient = ft_create_color(point.x, point.y, point.z);
 	return (ambient);
@@ -88,7 +89,8 @@ static t_color	get_diffuse(t_comps comp, t_light light, t_tuple lightv)
 	t_tuple	tp2;
 	t_color	diffuse;
 
-	tp1 = multiply_tuple_f(color_tp(effective_color(comp.object->material, light.l_color, light.intensity)),
+	tp1 = multiply_tuple_f(color_tp(effective_color(comp.object->material,
+					light.l_color, light.intensity)),
 			comp.object->material.diffuse);
 	tp2 = multiply_tuple_f(tp1, dot_product(lightv, comp.normalv));
 	diffuse = ft_create_color(tp2.x, tp2.y, tp2.z);
@@ -127,9 +129,8 @@ t_color	lighting(t_comps comp, t_world *world, bool in_shadow)
 		if (l.reflect_dot_eye <= 0)
 			l.specular = ft_create_color(0, 0, 0);
 		else
-		{
-			l.specular = calc_specular(comp.object->material, *world->light, l.reflect_dot_eye);
-		}
+			l.specular = calc_specular(comp.object->material,
+					*world->light, l.reflect_dot_eye);
 	}
 	return (add_colors(l.ambient, add_colors(l.diffuse, l.specular)));
 }
