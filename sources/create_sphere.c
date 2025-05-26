@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 10:05:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/26 10:13:43 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/26 12:28:17 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_material	create_material(char *rgb_code)
 {
-	t_material m;
-	char **split;
+	t_material	m;
+	char		**split;
 
 	m.ambient = 0.2;
 	m.diffuse = 0.7;
@@ -25,7 +25,8 @@ t_material	create_material(char *rgb_code)
 	if (!split || !split[0] || !split[1] || !split[2])
 		m.color = ft_create_color(1.0, 1.0, 1.0);
 	else
-		m.color = ft_create_color(ft_atof(split[0]) / 255, ft_atof(split[1]) / 255, ft_atof(split[2]) / 255);
+		m.color = ft_create_color(ft_atof(split[0]) / 255,
+				ft_atof(split[1]) / 255, ft_atof(split[2]) / 255);
 	m.a_color = m.color;
 	if (split)
 		ft_free_array(split);
