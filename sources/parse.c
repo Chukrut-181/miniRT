@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:44:53 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/26 11:15:52 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/26 13:20:27 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*get_one_line(int fd)
 		aux = str;
 		temp = malloc(2 * sizeof(char));
 		if (!temp)
-		return (NULL);
+			return (NULL);
 		temp[0] = c;
 		temp[1] = 0;
 		str = ft_strjoin(aux, temp);
@@ -69,7 +69,7 @@ int	parse_line(t_scene *scene, char *line)
 		return (ft_free_array(temp), 1);
 }
 
-static void ft_open_scene(char *argv1, int *fd)
+static void	ft_open_scene(char *argv1, int *fd)
 {
 	char	*aux;
 
@@ -102,7 +102,8 @@ int	get_scene(t_scene *scene, char *argv1)
 		line = get_one_line(fd);
 	}
 	close(fd);
-	if (!scene->world->ambient || !scene->camera || !scene->world->light || !scene->world->objects)
+	if (!scene->world->ambient || !scene->camera
+		|| !scene->world->light || !scene->world->objects)
 		ft_error_exit(scene, "Error\nMissing mandatory elements", 1);
 	return (0);
 }

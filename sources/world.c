@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 12:28:40 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/26 13:08:41 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/26 13:22:58 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,26 +92,26 @@ bool	is_shadowed(t_world world, t_tuple point)
 {
 	t_tuple	v;
 	float	distance;
-	t_list	*xs;
+	t_list	*xs_list;
 	t_list	*current;
-	t_xs	*intersection;
+	t_xs	*xsection;
 
-	xs = NULL;
+	xs_list = NULL;
 	v = substract_tuples(world.light->source, point);
 	distance = get_magnitude(v);
-	xs = ft_intersect_world(world, create_ray(point, normalize(v)));
-	current = xs;
+	xs_list = ft_intersect_world(world, create_ray(point, normalize(v)));
+	current = xs_list;
 	while (current)
 	{
-		intersection = (t_xs *)current->content;
-		if (intersection->time > (EPSILON * 10) && intersection->time < distance)
+		xsection = (t_xs *)current->content;
+		if (xsection->time > (EPSILON * 10) && xsection->time < distance)
 		{
-			ft_lstclear(&xs, free);
+			ft_lstclear(&xs_list, free);
 			return (true);
 		}
 		current = current->next;
 	}
-	ft_lstclear(&xs, free);
+	ft_lstclear(&xs_list, free);
 	return (false);
 }
 
