@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 10:05:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/26 12:28:17 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/26 13:16:14 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ t_material	create_material(char *rgb_code)
 	t_material	m;
 	char		**split;
 
-	m.ambient = 0.2;
-	m.diffuse = 0.7;
+	m.ambient = 0.5;
+	m.diffuse = 0.8;
 	m.specular = 0.9;
 	m.shininess = 200;
 	split = ft_split(rgb_code, ',');
