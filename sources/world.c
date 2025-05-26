@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 12:28:40 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/26 15:05:20 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/26 16:30:04 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ bool	is_shadowed(t_world world, t_tuple point)
 	while (current)
 	{
 		xsection = (t_xs *)current->content;
-		if (xsection->time > (EPSILON * 100) && xsection->time < distance)
+		if (xsection->time > (EPSILON * 10) && xsection->time < distance)
 		{
 			ft_lstclear(&xs_list, free);
 			return (true);
