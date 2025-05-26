@@ -6,7 +6,7 @@
 #    By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/19 10:29:45 by igchurru          #+#    #+#              #
-#    Updated: 2025/04/03 10:50:32 by igchurru         ###   ########.fr        #
+#    Updated: 2025/05/26 14:56:23 by igchurru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,9 +70,5 @@ libft:
 
 mlx42:
 	make -C lib/minilibx
-
-update:
-	@git submodule update --init --recursive --remote
-	@echo "$(BLUE)-> MiniRT: Submodules updated to last commit$(RESET)"
 
 .PHONY: all clean fclean re libft mlx42
