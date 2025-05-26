@@ -72,6 +72,7 @@ t_comps	prepare_computations(t_xs *hit, t_ray ray)
 	comps.over_point.x = comps.point.x + comps.normalv.x * EPSILON;
 	comps.over_point.y = comps.point.y + comps.normalv.y * EPSILON;
 	comps.over_point.z = comps.point.z + comps.normalv.z * EPSILON;
+	comps.over_point.w = 1;
 	return (comps);
 }
 
@@ -85,7 +86,8 @@ bool is_shadowed(t_world world, t_tuple point)
 	t_list	*current;
 	t_xs	*intersection;
 
-    v = substract_tuples(point, world.light->source);
+	xs = NULL;
+    v = substract_tuples(world.light->source, point);
     distance = calculate_magnitude(v);
     direction = normalize(v);
     ray = create_ray(point, direction);
@@ -108,7 +110,7 @@ bool is_shadowed(t_world world, t_tuple point)
 t_color	shade_hit(t_world world, t_comps comps)
 {
 	t_color	result;
-	int		shadowed;
+	bool	shadowed;
 
 	shadowed = is_shadowed(world, comps.over_point);
 	result = lighting(comps, *world.light, shadowed);

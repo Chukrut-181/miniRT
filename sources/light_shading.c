@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:38:26 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/22 11:33:29 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/26 10:30:26 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ static t_color	calc_specular(t_material m, t_light l, double reflect_dot_eye)
 	return (specular);
 }
 
-t_color	lighting(t_comps comp, t_light light, int in_shadow)
+t_color	lighting(t_comps comp, t_light light, bool in_shadow)
 {
 	t_lighting	l;
 
