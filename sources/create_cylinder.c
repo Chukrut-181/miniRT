@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:52:50 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/21 11:46:23 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/26 10:10:41 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ bool	create_cylinder(t_scene *scene, char **cyl_data)
 	if (!cylinder)
 		ft_error_exit(scene, "Error\nFailed to allocate cylinder", 1);
 	cylinder->type = CYLINDER;
-	if (!check_coords(cyl_data[1]) || !check_coords(cyl_data[2]))
+	if (!check_coords(cyl_data[1]) || !check_coords(cyl_data[2]) || !check_rgb(cyl_data[5]))
 		return (free(cylinder), false);
 	radius = (ft_atof(cyl_data[3]) / 2.0);
 	height = ft_atof(cyl_data[4]);
@@ -55,8 +55,6 @@ bool	create_cylinder(t_scene *scene, char **cyl_data)
 	cylinder->transform_matrix = ft_transform_cyl(cyl_data[1],
 			cyl_data[2], radius, height);
 	cylinder->inverse_matrix = find_inverse(cylinder->transform_matrix);
-	if (!check_rgb(cyl_data[5]))
-		return (free(cylinder), false);
 	cylinder->material = create_material(cyl_data[5]);
 	ft_lstadd_back(&scene->world->objects, ft_lstnew(cylinder));
 	return (true);

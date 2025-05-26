@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 15:51:55 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/21 11:45:05 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/26 10:09:23 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ bool	create_light(t_world *world, char **light)
 	world->light = malloc(sizeof(t_light));
 	if (world->light == NULL)
 		return (false);
-	if (!check_coords(light[1]))
+	if (!check_coords(light[1]) || !check_rgb(light[3]))
 		return (false);
 	if (!ft_apply_light_coords(world, light[1]))
 		return (false);
@@ -83,8 +83,6 @@ bool	create_light(t_world *world, char **light)
 	if (aux < 0 || 1 < aux)
 		return (false);
 	world->light->intensity = aux;
-	if (!check_rgb(light[3]))
-		return (false);
 	if (!apply_rgb(&world->light->l_color, light[3]))
 		return (false);
 	return (true);
