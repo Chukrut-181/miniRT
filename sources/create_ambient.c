@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 12:18:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/26 10:55:57 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/26 11:18:23 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,22 +64,22 @@ bool	check_rgb(char *colorcode)
 	return (true);
 }
 
-bool	create_ambient(t_scene *scene, char **ambient)
+bool	create_ambient(t_world *world, char **ambient)
 {
 	float	aux;
 
-	if (scene->ambient != NULL)
-		ft_error_exit(scene, "Error\nOnly one ambient light allowed", 1);
-	scene->ambient = (t_ambient *)malloc(sizeof(t_ambient));
-	if (scene->ambient == NULL)
+	if (world->ambient != NULL)
+		return (false);
+	world->ambient = (t_ambient *)malloc(sizeof(t_ambient));
+	if (world->ambient == NULL)
 		return (false);
 	aux = ft_atof(ambient[1]);
 	if (aux < 0 || 1 < aux)
-		return (free(scene->ambient), false);
-	scene->ambient->ratio = aux;
+		return (free(world->ambient), false);
+	world->ambient->ratio = aux;
 	if (!check_rgb(ambient[2]))
-		return (free(scene->ambient), false);
-	if (!apply_rgb(&scene->ambient->a_color, ambient[2]))
-		return (free(scene->ambient), false);
+		return (free(world->ambient), false);
+	if (!apply_rgb(&world->ambient->a_color, ambient[2]))
+		return (free(world->ambient), false);
 	return (true);
 }

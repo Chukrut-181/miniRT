@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 18:08:55 by v0                #+#    #+#             */
-/*   Updated: 2025/05/26 10:31:00 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/26 11:19:27 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int			parse_line(t_scene *scene, char *line);
 char		*get_one_line(int fd);
 
 //	CREATE AMBIENT
-bool		create_ambient(t_scene *scene, char **ambient);
+bool		create_ambient(t_world *world, char **ambient);
 bool		check_rgb(char *colorcode);
 bool		apply_rgb(t_color *color, char *original);
 
