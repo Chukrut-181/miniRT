@@ -12,10 +12,21 @@
 
 #include "../include/minirt.h"
 
+// Helper function to solve the quadratic equation using t_abcd struct
+static bool	quadratic_equation_solution(t_abcd *data, float *t)
+{
+	data->discriminant = data->b * data->b - 4 * data->a * data->c;
+	if (data->discriminant < 0)
+		return (false);
+	t[0] = (-data->b - sqrtf(data->discriminant)) / (2 * data->a);
+	t[1] = (-data->b + sqrtf(data->discriminant)) / (2 * data->a);
+	return (true);
+}
+
 static	void	update_inter(t_list **inter, t_shape *shape, float time)
 {
 	t_xs	*intersec;
-	
+
 	intersec = malloc(sizeof(t_xs));
 	if (!intersec)
 		return ;
@@ -32,21 +43,22 @@ static	void	update_inter(t_list **inter, t_shape *shape, float time)
 bool	intersec_plane(t_shape *shape, t_list **inter)
 {
 	t_xs	intersec;
-	
+
 	if (fabsf(shape->ray_in_obj_space.direction.y) < EPSILON)
 	{
 		intersec.time = 0;
 		return (false);
 	}
 	intersec.hit = 1;
-	intersec.time = -1 * shape->ray_in_obj_space.origin.y / shape->ray_in_obj_space.direction.y;
+	intersec.time = -1 * shape->ray_in_obj_space.origin.y
+		/ shape->ray_in_obj_space.direction.y;
 	if (intersec.time > EPSILON)
 		update_inter(inter, shape, intersec.time);
 	else
 		return (false);
 	return (true);
 }
-/* static void	ft_intersect_caps(t_shape *cy_shape, t_ray ray, t_list **intersections)
+/* static void	ft_intersect_caps(t_shape *cyl, t_ray ray, t_list **xs_list)
 {
 	float t;
 	t_tuple p;
@@ -60,7 +72,7 @@ bool	intersec_plane(t_shape *shape, t_list **inter)
 	{
 		p = add_tuples(ray.origin, multiply_tuple_f(ray.direction, t));
 		if (powf(p.x, 2) + powf(p.z, 2) <= 1) // Radius is 1 in object space
-			update_inter(intersections, cy_shape, t);
+			update_inter(xs_list, cy_shape, t);
 	}
 
 	// Intersect with the top cap (y = 1 in object space)
@@ -69,65 +81,59 @@ bool	intersec_plane(t_shape *shape, t_list **inter)
 	{
 		p = add_tuples(ray.origin, multiply_tuple_f(ray.direction, t));
 		if (powf(p.x, 2) + powf(p.z, 2) <= 1) // Radius is 1 in object space
-			update_inter(intersections, cy_shape, t);
+			update_inter(xs_list, cy_shape, t);
 	}
 } */
 
-bool    intersec_cylinder(t_shape *shape, t_list **inter, t_ray ray)
+bool	intersec_cylinder(t_shape *shape, t_list **inter, t_ray ray)
 {
-    t_abcd data;
-    float   t0;
-	float   t1;
-    float   y0;
+	t_abcd	data;
+	float	t[2];
+	float	y0;
 	float	y1;
+	float	temp;
 
-    data.a = powf(ray.direction.x, 2) + powf(ray.direction.z, 2);
-    if (fabsf(data.a) < EPSILON)
-        return (false);
-    data.b = 2.0 * (ray.origin.x * ray.direction.x + ray.origin.z * ray.direction.z);
-    data.c = powf(ray.origin.x, 2) + powf(ray.origin.z, 2) - 1;
-    data.discriminant = data.b * data.b - 4.0 * data.a * data.c;
-     if (data.discriminant < 0)
-         return (false);
-    t0 = (-data.b - sqrtf(data.discriminant)) / (2.0 * data.a);
-    t1 = (-data.b + sqrtf(data.discriminant)) / (2.0 * data.a);
-    if (t0 > t1)
-    {
-        float temp = t0;
-        t0 = t1;
-        t1 = temp;
-    }
-    y0 = ray.origin.y + t0 * ray.direction.y;
-    if (t0 > EPSILON && y0 >= 0 && y0 <= 1)
-        update_inter(inter, shape, t0);
-    y1 = ray.origin.y + t1 * ray.direction.y;
-    if (t1 > EPSILON && y1 >= 0 && y1 <= 1)
-        update_inter(inter, shape, t1);
-    return (true);
+	data.a = powf(ray.direction.x, 2) + powf(ray.direction.z, 2);
+	data.b = 2.0 * (ray.origin.x * ray.direction.x
+			+ ray.origin.z * ray.direction.z);
+	data.c = powf(ray.origin.x, 2) + powf(ray.origin.z, 2) - 1;
+	if (!quadratic_equation_solution(&data, t) || fabsf(data.a) < EPSILON)
+		return (false);
+	if (t[0] > t[1])
+	{
+		temp = t[0];
+		t[0] = t[1];
+		t[1] = temp;
+	}
+	y0 = ray.origin.y + t[0] * ray.direction.y;
+	if (t[0] > EPSILON && y0 >= 0 && y0 <= 1)
+		update_inter(inter, shape, t[0]);
+	y1 = ray.origin.y + t[1] * ray.direction.y;
+	if (t[1] > EPSILON && y1 >= 0 && y1 <= 1)
+		update_inter(inter, shape, t[1]);
+	return (true);
 }
 
 bool	intersec_sphere(t_shape *shape, t_list **inter)
 {
 	t_tuple	sphere_to_ray;
-	t_tuple origin;
-	t_abcd data;
-	float	t1;
-	float	t2;
+	t_tuple	origin;
+	t_abcd	data;
+	float	t[2];
 
 	origin = ft_create_point(0, 0, 0);
 	sphere_to_ray = substract_tuples(shape->ray_in_obj_space.origin, origin);
-	data.a = dot_product(shape->ray_in_obj_space.direction, shape->ray_in_obj_space.direction);
+	data.a = dot_product(shape->ray_in_obj_space.direction,
+			shape->ray_in_obj_space.direction);
 	data.b = 2 * dot_product(shape->ray_in_obj_space.direction, sphere_to_ray);
 	data.c = dot_product(sphere_to_ray, sphere_to_ray) - 1;
 	data.discriminant = pow(data.b, 2) - 4 * data.a * data.c;
-	if (data.discriminant < 0)
+	if (!quadratic_equation_solution(&data, t))
 		return (false);
-	t1 = (-data.b - sqrtf(data.discriminant)) / (2 * data.a);
-	t2 = (-data.b + sqrtf(data.discriminant)) / (2 * data.a);
-	if (t1 < EPSILON || t2 < EPSILON)
-		return (false);
-	update_inter(inter, shape, t2);
-	update_inter(inter, shape, t1);
+	if (t[0] >= EPSILON)
+		update_inter(inter, shape, t[0]);
+	if (t[1] >= EPSILON)
+		update_inter(inter, shape, t[1]);
 	return (true);
 }
 
