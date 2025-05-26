@@ -1,28 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   execute.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/26 12:38:42 by igchurru          #+#    #+#             */
+/*   Updated: 2025/05/26 12:44:38 by igchurru         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minirt.h"
 
-static int color_to_int(t_color color)
+static int	color_to_int(t_color color)
 {
-	int r;
-	int g;
-	int b;
-	int res;
+	int	r;
+	int	g;
+	int	b;
+	int	res;
 
 	color.r = fmaxf(0.0f, fminf(1.0f, color.r));
 	color.g = fmaxf(0.0f, fminf(1.0f, color.g));
 	color.b = fmaxf(0.0f, fminf(1.0f, color.b));
-
 	r = (int)(color.r * 255.0f);
 	g = (int)(color.g * 255.0f);
 	b = (int)(color.b * 255.0f);
-
 	res = ((0 << 24) | (r << 16) | (g << 8) | b);
 	return (res);
 }
 
-static void write_pixel(t_img *img, int x, int y, int color)
+static void	write_pixel(t_img *img, int x, int y, int color)
 {
-	char *dst;
-	
+	char	*dst;
+
 	dst = img->data + (y * img->size_line + x * (img->bits_per_pixel / 8));
 	if (img->endian == 0)
 	{
@@ -40,37 +50,30 @@ static void write_pixel(t_img *img, int x, int y, int color)
 	}
 }
 
-static t_ray ray_for_pixel(t_camera camera, int px, int py)
+static t_ray	ray_for_pixel(t_camera camera, int px, int py)
 {
-	float x_offset;
-	float y_offset;
-	float world_x;
-	float world_y;
-	t_tuple pixel;
-	t_tuple origin;
-	t_tuple direction;
-	t_4x4 inverse;
-	
-	x_offset = (px + 0.5) * camera.pixel_size;
-	y_offset = (py + 0.5) * camera.pixel_size;
-	world_x = camera.half_width - x_offset;
-	world_y = camera.half_height - y_offset;
+	float	world_x;
+	float	world_y;
+	t_tuple	pixel;
+	t_tuple	origin;
+	t_4x4	inverse;
+
+	world_x = camera.half_width - (px + 0.5) * camera.pixel_size;
+	world_y = camera.half_height - (py + 0.5) * camera.pixel_size;
 	pixel = ft_create_point(world_x, world_y, -1);
 	origin = ft_create_point(0, 0, 0);
-
 	inverse = find_inverse(camera.transform);
 	pixel = multiply_mat_and_tuple(inverse, pixel);
 	origin = multiply_mat_and_tuple(inverse, origin);
-	direction = normalize(substract_tuples(pixel, origin));
-	return (create_ray(origin, direction));
+	return (create_ray(origin, normalize(substract_tuples(pixel, origin))));
 }
 
-static	t_color calculate_inter(t_world world, t_ray ray)
+static t_color	calculate_inter(t_world world, t_ray ray)
 {
-	t_list *intersections;
-	t_xs *hit;
-	t_comps comps;
-	t_color color;
+	t_list	*intersections;
+	t_xs	*hit;
+	t_comps	comps;
+	t_color	color;
 
 	intersections = ft_intersect_world(world, ray);
 	hit = ft_find_hit(intersections);
@@ -86,13 +89,13 @@ static	t_color calculate_inter(t_world world, t_ray ray)
 	return (color);
 }
 
-void render_scene(t_scene *s)
+void	render_scene(t_scene *s)
 {
-	int			x;
-	int			y;
-	t_ray		ray;
-	t_color		color;
-	int			pixel_color;
+	int		x;
+	int		y;
+	t_ray	ray;
+	t_color	color;
+	int		pixel_color;
 
 	y = 0;
 	while (y < HEIGHT)
