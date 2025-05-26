@@ -113,7 +113,7 @@ t_color	shade_hit(t_world world, t_comps comps)
 	bool	shadowed;
 
 	shadowed = is_shadowed(world, comps.over_point);
-	result = lighting(comps, *world.light, shadowed);
+	result = lighting(comps, &world, shadowed);
 	return (result);
 }
 

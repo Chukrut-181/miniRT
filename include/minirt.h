@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 18:08:55 by v0                #+#    #+#             */
-/*   Updated: 2025/05/26 11:19:27 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/26 11:43:57 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void		identify_hit(t_list *xs_list);
 //	LIGHT
 t_tuple		normal_at(t_shape *shape, t_tuple point);
 t_tuple		reflect(t_tuple in, t_tuple normal);
-t_color		lighting(t_comps comp, t_light light, bool in_shadow);
+t_color		lighting(t_comps comp, t_world *world, bool in_shadow);
 t_light		point_light(t_tuple position, t_color color);
 
 //	PARSE
