@@ -12,34 +12,6 @@
 
 #include "../include/minirt.h"
 
-// Helper function to solve the quadratic equation using t_abcd struct
-static bool	quadratic_equation_solution(t_abcd *data, float *t)
-{
-	data->discriminant = data->b * data->b - 4 * data->a * data->c;
-	if (data->discriminant < 0)
-		return (false);
-	t[0] = (-data->b - sqrtf(data->discriminant)) / (2 * data->a);
-	t[1] = (-data->b + sqrtf(data->discriminant)) / (2 * data->a);
-	return (true);
-}
-
-static	void	update_inter(t_list **inter, t_shape *shape, float time)
-{
-	t_xs	*intersec;
-
-	intersec = malloc(sizeof(t_xs));
-	if (!intersec)
-		return ;
-	intersec->object = shape;
-	intersec->time = time;
-	intersec->hit = 1;
-	intersec->intersec = true;
-	if (*inter == NULL)
-		*inter = ft_lstnew(intersec);
-	else
-		ft_lstadd_back(inter, ft_lstnew(intersec));
-}
-
 bool	intersec_plane(t_shape *shape, t_list **inter)
 {
 	t_xs	intersec;
@@ -137,26 +109,14 @@ bool	intersec_sphere(t_shape *shape, t_list **inter)
 	return (true);
 }
 
-void	identify_hit(t_list *xs_list)
+bool	ft_intersections(t_ray ray, t_shape *shape, t_list **inter)
 {
-	float	reference;
-	t_xs	*aux;
-	t_xs	*mark;
-
-	reference = 214748368;
-	aux = NULL;
-	mark = NULL;
-	while (xs_list != NULL)
-	{
-		aux = (t_xs *)xs_list->content;
-		if (aux->time < reference && aux->time > 0)
-		{
-			reference = aux->time;
-			if (mark)
-				mark->hit = 0;
-			aux->hit = 1;
-			mark = aux;
-		}
-		xs_list = xs_list->next;
-	}
+	shape->ray_in_obj_space = transform(ray, shape->inverse_matrix);
+	if (shape->type == SPHERE)
+		return (intersec_sphere(shape, inter));
+	else if (shape->type == PLANE)
+		return (intersec_plane(shape, inter));
+	else if (shape->type == CYLINDER)
+		return (intersec_cylinder(shape, inter, shape->ray_in_obj_space));
+	return (false);
 }

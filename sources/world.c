@@ -6,64 +6,11 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 12:28:40 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/26 13:22:58 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/26 13:39:58 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
-
-static t_ray	transform(t_ray ray, t_4x4	matrix)
-{
-	t_tuple	multi[2];
-	t_tuple	p;
-	t_tuple	vec;
-	t_ray	new_ray;
-
-	multi[0] = multiply_mat_and_tuple(matrix, ray.origin);
-	multi[1] = multiply_mat_and_tuple(matrix, ray.direction);
-	p = ft_create_point(multi[0].x, multi[0].y, multi[0].z);
-	vec = create_vector(multi[1].x, multi[1].y, multi[1].z);
-	new_ray.origin = p;
-	new_ray.direction = vec;
-	return (new_ray);
-}
-
-static bool	ft_intersections(t_ray ray, t_shape *shape, t_list **inter)
-{
-	shape->ray_in_obj_space = transform(ray, shape->inverse_matrix);
-	if (shape->type == SPHERE)
-		return (intersec_sphere(shape, inter));
-	else if (shape->type == PLANE)
-		return (intersec_plane(shape, inter));
-	else if (shape->type == CYLINDER)
-		return (intersec_cylinder(shape, inter, shape->ray_in_obj_space));
-	return (false);
-}
-
-t_list	*ft_intersect_world(t_world world, t_ray ray)
-{
-	t_list	*intersections;
-	t_list	*current;
-	t_shape	*shape;
-	bool	found_inter;
-
-	current = world.objects;
-	found_inter = false;
-	intersections = NULL;
-	while (current)
-	{
-		shape = (t_shape *)current->content;
-		if (ft_intersections(ray, shape, &intersections))
-			found_inter = true;
-		current = current->next;
-	}
-	if (found_inter == false)
-	{
-		ft_lstclear(&intersections, free);
-		return (NULL);
-	}
-	return (intersections);
-}
 
 t_comps	prepare_computations(t_xs *hit, t_ray ray)
 {
