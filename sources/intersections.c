@@ -99,7 +99,6 @@ bool	intersect_sphere(t_shape *shape, t_list **inter)
 			shape->ray_in_obj_space.direction);
 	data.b = 2 * dot_product(shape->ray_in_obj_space.direction, sphere_to_ray);
 	data.c = dot_product(sphere_to_ray, sphere_to_ray) - 1;
-	data.discriminant = pow(data.b, 2) - 4 * data.a * data.c;
 	if (!quadratic_equation_solution(&data, t))
 		return (false);
 	if (t[0] >= EPSILON)
