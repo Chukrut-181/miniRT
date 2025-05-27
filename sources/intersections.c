@@ -69,7 +69,7 @@ bool	intersect_cylinder(t_shape *shape, t_list **inter, t_ray ray)
 	data.b = 2.0 * (ray.origin.x * ray.direction.x
 			+ ray.origin.z * ray.direction.z);
 	data.c = powf(ray.origin.x, 2) + powf(ray.origin.z, 2) - 1;
-	if (!quadratic_equation_solution(&data, t) || fabsf(data.a) < EPSILON)
+	if (!quadratic_equation_solution(&data, t))// || fabsf(data.a) < EPSILON)
 		return (false);
 	if (t[0] > t[1])
 	{
