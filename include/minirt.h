@@ -59,6 +59,7 @@ t_color		multiply_color_f(t_color tuple, float scalar);
 t_color		add_colors(t_color tuple1, t_color tuple2);
 t_color		multiply_colors(t_color c1, t_color c2);
 t_tuple		color_tp(t_color p);
+t_tuple     matrix_multi_tp(t_4x4 mat, t_tuple tp);
 
 //	MATRIX OPERATIONS
 int			check_matrix_equality(t_4x4 matrix1, t_4x4 matrix2);

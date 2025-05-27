@@ -10,11 +10,9 @@ static int color_to_int(t_color color)
 	color.r = fmaxf(0.0f, fminf(1.0f, color.r));
 	color.g = fmaxf(0.0f, fminf(1.0f, color.g));
 	color.b = fmaxf(0.0f, fminf(1.0f, color.b));
-
 	r = (int)(color.r * 255.0f);
 	g = (int)(color.g * 255.0f);
 	b = (int)(color.b * 255.0f);
-
 	res = ((0 << 24) | (r << 16) | (g << 8) | b);
 	return (res);
 }
@@ -62,24 +60,38 @@ static t_ray ray_for_pixel(t_camera camera, int px, int py)
 	return (create_ray(camera.origin, direction));
 }
 
+static void	free_intersections(t_list **xs)
+{
+	t_list	*temp;
+
+	while (*xs)
+	{
+		temp = (*xs)->next;
+		free((*xs)->content);
+		free(*xs);
+		*xs = temp;
+	}
+}
+
 static	t_color calculate_inter(t_world world, t_ray ray)
 {
-	t_list *intersections;
+	t_list *intersections = NULL;
 	t_xs *hit;
 	t_comps comps;
 	t_color color;
 
 	intersections = ft_intersect_world(world, ray);
 	hit = ft_find_hit(intersections);
-	if (hit && hit->time > 0)
+	if (hit->time <= EPSILON)
 	{
-		comps = prepare_computations(hit, ray);
-		color = shade_hit(world, comps);
+		free_intersections(&intersections);
+		if (hit->time == 0)
+			free(hit);
+		return (ft_create_color(0, 0, 0));
 	}
-	else
-		color = ft_create_color(0, 0, 0);
-	if (intersections)
-		ft_lstclear(&intersections, free);
+	comps = prepare_computations(hit, ray);
+	free_intersections(&intersections);
+	color = shade_hit(world, comps);
 	return (color);
 }
 
