@@ -70,8 +70,9 @@ bool	intersect_cylinder(t_shape *shape, t_list **inter, t_ray ray)
 			+ ray.origin.z * ray.direction.z);
 	data.c = (ray.origin.x * ray.origin.x) + (ray.origin.z * ray.origin.z) - 1;
 	data.discriminant = (data.b * data.b) - (4 * data.a * data.c);
-	if (!quadratic_equation_solution(data, t))
+	if (data.discriminant < 0)
 		return (false);
+	solve_quadratic_equation(data, t);
 	if (t[0] > t[1])
 	{
 		temp = t[0];
@@ -101,8 +102,9 @@ bool	intersect_sphere(t_shape *shape, t_list **inter)
 	data.b = 2 * dot_product(shape->ray_in_obj_space.direction, sphere_to_ray);
 	data.c = dot_product(sphere_to_ray, sphere_to_ray) - 1;
 	data.discriminant = (data.b * data.b) - (4 * data.a * data.c);
-	if (!quadratic_equation_solution(data, t))
+	if (data.discriminant < 0)
 		return (false);
+	solve_quadratic_equation(data, t);
 	if (t[0] >= EPSILON)
 		update_inter(inter, shape, t[0]);
 	if (t[1] >= EPSILON)

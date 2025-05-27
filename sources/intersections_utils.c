@@ -6,19 +6,17 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 13:26:19 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/27 15:22:42 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/27 15:49:40 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-bool	quadratic_equation_solution(t_abcd data, float *t)
+void	solve_quadratic_equation(t_abcd data, float *t)
 {
-	if (data.discriminant < 0)
-		return (false);
 	t[0] = (-data.b - sqrtf(data.discriminant)) / (2 * data.a);
 	t[1] = (-data.b + sqrtf(data.discriminant)) / (2 * data.a);
-	return (true);
+	return ;
 }
 
 void	update_inter(t_list **inter, t_shape *shape, float time)
