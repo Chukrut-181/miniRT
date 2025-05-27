@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 18:08:55 by eandres           #+#    #+#             */
-/*   Updated: 2025/05/26 14:48:15 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/27 15:23:27 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ bool		intersect_cylinder(t_shape *shape, t_list **inter, t_ray ray);
 bool		ft_intersections(t_ray ray, t_shape *shape, t_list **inter);
 
 //	INTERSECTION UTILS
-bool		quadratic_equation_solution(t_abcd *data, float *t);
+bool		quadratic_equation_solution(t_abcd data, float *t);
 void		update_inter(t_list **inter, t_shape *shape, float time);
 void		identify_hit(t_list *xs_list);
 t_ray		transform(t_ray ray, t_4x4	matrix);

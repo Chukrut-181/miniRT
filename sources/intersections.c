@@ -65,11 +65,12 @@ bool	intersect_cylinder(t_shape *shape, t_list **inter, t_ray ray)
 	float	y1;
 	float	temp;
 
-	data.a = powf(ray.direction.x, 2) + powf(ray.direction.z, 2);
+	data.a = (ray.direction.x * ray.direction.x) + (ray.direction.z * ray.direction.z);
 	data.b = 2.0 * (ray.origin.x * ray.direction.x
 			+ ray.origin.z * ray.direction.z);
-	data.c = powf(ray.origin.x, 2) + powf(ray.origin.z, 2) - 1;
-	if (!quadratic_equation_solution(&data, t))// || fabsf(data.a) < EPSILON)
+	data.c = (ray.origin.x * ray.origin.x) + (ray.origin.z * ray.origin.z) - 1;
+	data.discriminant = (data.b * data.b) - (4 * data.a * data.c);
+	if (!quadratic_equation_solution(data, t))
 		return (false);
 	if (t[0] > t[1])
 	{
@@ -99,7 +100,8 @@ bool	intersect_sphere(t_shape *shape, t_list **inter)
 			shape->ray_in_obj_space.direction);
 	data.b = 2 * dot_product(shape->ray_in_obj_space.direction, sphere_to_ray);
 	data.c = dot_product(sphere_to_ray, sphere_to_ray) - 1;
-	if (!quadratic_equation_solution(&data, t))
+	data.discriminant = (data.b * data.b) - (4 * data.a * data.c);
+	if (!quadratic_equation_solution(data, t))
 		return (false);
 	if (t[0] >= EPSILON)
 		update_inter(inter, shape, t[0]);

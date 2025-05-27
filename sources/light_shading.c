@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:38:26 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/26 13:34:27 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/27 15:29:34 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static t_color	calc_specular(t_material m, t_light l, double reflect_dot_eye)
 	t_color	specular;
 	double	factor;
 
-	factor = pow(reflect_dot_eye, m.shininess);
+	factor = powf(reflect_dot_eye, m.shininess);
 	specular.r = l.l_color.r * m.specular * factor;
 	specular.g = l.l_color.g * m.specular * factor;
 	specular.b = l.l_color.b * m.specular * factor;
