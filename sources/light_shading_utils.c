@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 13:31:02 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/26 13:34:34 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/27 11:07:03 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,7 @@ t_tuple	normal_at(t_shape *shape, t_tuple point)
 	else if (shape->type == PLANE)
 		obj_normal = create_vector(0, 1, 0);
 	else if (shape->type == CYLINDER)
-	{
 		obj_normal = create_vector(obj_point.x, 0, obj_point.z);
-		if (fabsf(obj_point.y - 0) < EPSILON)
-			obj_normal = create_vector(0, -1, 0);
-		else if (fabsf(obj_point.y - 1) < EPSILON)
-			obj_normal = create_vector(0, 1, 0);
-		else
-			obj_normal = create_vector(obj_point.x, 0, obj_point.z);
-	}
 	world_normal = transpose(shape->inverse_matrix);
 	normal_at = multiply_mat_and_tuple(world_normal, obj_normal);
 	return (normalize(normal_at));
