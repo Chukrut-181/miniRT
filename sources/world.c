@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 12:28:40 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/27 10:21:06 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/27 13:58:11 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ bool	is_shadowed(t_world world, t_tuple point)
 	while (current)
 	{
 		xsection = (t_xs *)current->content;
-		if (xsection->time > (EPSILON * 100) && xsection->time < distance)
+		if (xsection->time > (EPSILON * 1000) && xsection->time < distance)
 		{
 			ft_lstclear(&xs_list, free);
 			return (true);
@@ -68,6 +68,7 @@ t_color	shade_hit(t_world world, t_comps comps)
 	bool	shadowed;
 
 	shadowed = is_shadowed(world, comps.over_point);
+	//shadowed = 0;
 	result = lighting(comps, &world, shadowed);
 	return (result);
 }
