@@ -95,5 +95,7 @@ bool	ft_intersections(t_ray ray, t_shape *shape, t_list **inter)
 		return (intersect_plane(shape, inter));
 	else if (shape->type == CYLINDER)
 		return (intersect_cylinder(shape, inter, shape->ray_in_obj_space));
+	else if (shape->type == CUBE)
+        return (intersect_cube(shape, inter, shape->ray_in_obj_space));
 	return (false);
 }
