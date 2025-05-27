@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 18:08:55 by eandres           #+#    #+#             */
-/*   Updated: 2025/05/27 15:50:07 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/27 17:18:07 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../lib/libft/libft.h"
 # include "../lib/minilibx/mlx.h"
 # include <math.h>
+# include <float.h>
 # include <stdio.h>
 # include <unistd.h>
 # include "structures.h"
@@ -123,6 +124,10 @@ bool		create_plane(t_scene *scene, char **plane);
 
 //	CREATE CYLINDER
 bool		create_cylinder(t_scene *scene, char **cyl_data);
+
+//	CREATE CUBE
+bool	create_cube(t_scene *scene, char **temp);
+bool    intersect_cube(t_shape *shape, t_list **inter, t_ray ray);
 
 //	EXECUTE
 void		render_scene(t_scene *s);

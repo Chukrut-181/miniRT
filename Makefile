@@ -6,11 +6,12 @@
 #    By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/19 10:29:45 by igchurru          #+#    #+#              #
-#    Updated: 2025/05/26 14:56:23 by igchurru         ###   ########.fr        #
+#    Updated: 2025/05/27 17:07:23 by igchurru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = miniRT
+BONUS_NAME = miniRT_bonus
 
 CC = cc
 
@@ -18,10 +19,15 @@ CFLAGS = -Wall -Wextra -Werror -g -g3 -O0
 MLX42_FLAGS = -ldl -lglfw -pthread
 
 SRC_DIR = sources
+BONUS_SRC_DIR = sources_bonus
 OBJ_DIR = objects
+BONUS_OBJ_DIR = objects_bonus
 
 SRCS = $(wildcard $(SRC_DIR)/**/*.c, $(SRC_DIR)/*.c)
 OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
+
+BONUS_SRCS = $(wildcard $(BONUS_SRC_DIR)/**/*.c, $(BONUS_SRC_DIR)/*.c)
+BONUS_OBJS = $(patsubst $(BONUS_SRC_DIR)/%.c, $(BONUS_OBJ_DIR)/%.o, $(BONUS_SRCS))
 
 LIBS = lib/minilibx/libmlx.a lib/libft/libft.a
 
@@ -33,37 +39,60 @@ RESET = \033[0m
 
 all: libft mlx42 $(NAME)
 
+bonus: libft mlx42 $(BONUS_NAME)
+
 $(NAME): $(OBJS) $(LIBS)
 	@$(CC) $(CFLAGS) $(MLX42_FLAGS) -lm $(OBJS) $(LIBS) -lX11 -lXext -o $(NAME)
 	@echo "$(GREEN)-> MiniRT: miniRT compilation OK$(RESET)"
 
+$(BONUS_NAME): $(BONUS_OBJS) $(LIBS)
+	@$(CC) $(CFLAGS) $(MLX42_FLAGS) -lm $(BONUS_OBJS) $(LIBS) -lX11 -lXext -o $(BONUS_NAME)
+	@echo "$(BLUE)-> MiniRT Bonus: miniRT_bonus compilation OK$(RESET)"
+
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
+
+$(BONUS_OBJ_DIR):
+	@mkdir -p $(BONUS_OBJ_DIR)
 
 $(OBJ_DIR)/operations:
 	@mkdir -p $(OBJ_DIR)/operations
 
+$(BONUS_OBJ_DIR)/operations:
+	@mkdir -p $(BONUS_OBJ_DIR)/operations
+
 $(OBJ_DIR)/parse:
 	@mkdir -p $(OBJ_DIR)/parse
+
+$(BONUS_OBJ_DIR)/parse:
+	@mkdir -p $(BONUS_OBJ_DIR)/parse
 
 $(OBJ_DIR)/test:
 	@mkdir -p $(OBJ_DIR)/test
 
+$(BONUS_OBJ_DIR)/test:
+	@mkdir -p $(BONUS_OBJ_DIR)/test
+
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR) $(OBJ_DIR)/operations $(OBJ_DIR)/parse $(OBJ_DIR)/test
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(BONUS_OBJ_DIR)/%.o: $(BONUS_SRC_DIR)/%.c | $(BONUS_OBJ_DIR) $(BONUS_OBJ_DIR)/operations $(BONUS_OBJ_DIR)/parse $(BONUS_OBJ_DIR)/test
+	$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
-	@rm -rf $(OBJ_DIR)
+	@rm -rf $(OBJ_DIR) $(BONUS_OBJ_DIR)
 	@make clean -C ./lib/libft
 	@echo "$(YELLOW)-> MiniRT: All .o files removed$(RESET)"
 
 fclean: clean
-	@rm -f $(NAME)
+	@rm -f $(NAME) $(BONUS_NAME)
 	@rm -rf MLX42/build
 	@make fclean -C ./lib/libft
-	@echo "$(RED)-> MiniRT: miniRT removed$(RESET)"
+	@echo "$(RED)-> MiniRT: miniRT and miniRT_bonus removed$(RESET)"
 
 re: fclean all
+
+rebonus: fclean bonus
 
 libft:
 	make bonus -s -C lib/libft
@@ -71,4 +100,4 @@ libft:
 mlx42:
 	make -C lib/minilibx
 
-.PHONY: all clean fclean re libft mlx42
+.PHONY: all bonus clean fclean re rebonus libft mlx42

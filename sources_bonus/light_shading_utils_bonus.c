@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light_shading_utils.c                              :+:      :+:    :+:   */
+/*   light_shading_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 13:31:02 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/27 11:29:21 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/27 17:20:51 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,25 @@ t_tuple	normal_at(t_shape *shape, t_tuple point)
 		obj_normal = create_vector(0, 1, 0);
 	else if (shape->type == CYLINDER)
 		obj_normal = create_vector(obj_point.x, 0, obj_point.z);
+	else if (shape->type == CUBE)
+	{
+		float abs_x = fabsf(obj_point.x);
+		float abs_y = fabsf(obj_point.y);
+		float abs_z = fabsf(obj_point.z);
+		float max_abs = fmaxf(fmaxf(abs_x, abs_y), abs_z);
+		if (fabsf(max_abs - abs_x) < EPSILON)
+		{
+			obj_normal = create_vector(obj_point.x, 0, 0);
+		}
+		else if (fabsf(max_abs - abs_y) < EPSILON)
+		{
+			obj_normal = create_vector(0, obj_point.y, 0);
+		}
+		else
+		{
+			obj_normal = create_vector(0, 0, obj_point.z);
+		}
+	}
 	world_normal = transpose(shape->inverse_matrix);
 	normal_at = multiply_mat_and_tuple(world_normal, obj_normal);
 	return (normalize(normal_at));

@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 16:29:33 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/27 16:50:08 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/27 17:07:54 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,6 @@ static t_4x4	ft_transform_cube(char *center, char *scale, char *target_v)
 bool	create_cube(t_scene *scene, char **temp)
 {
 	t_shape	*cube;
-	t_tuple	**aux;
-	t_4x4	translate;
-	t_4x4	scalate;
-	t_4x4	rotate;
 	
 	cube = malloc(sizeof(t_shape));
 	if (!cube)
