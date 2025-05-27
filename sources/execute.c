@@ -80,8 +80,6 @@ static t_color	calculate_inter(t_world world, t_ray ray)
 	if (hit->time <= EPSILON)
 	{
 		free_intersections(&hit, &intersections);
-		if (hit->time == 0)
-			free(hit);
 		return (ft_create_color(0, 0, 0));
 	}
 	comps = prepare_computations(hit, ray);

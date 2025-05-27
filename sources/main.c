@@ -28,7 +28,7 @@ static t_scene	*ft_init_scene(void)
 	return (new_scene);
 }
 
-static void	init_mlx(t_scene *s)
+static void	 init_mlx(t_scene *s)
 {
 	s->img.img_ptr = NULL;
 	s->img.bits_per_pixel = 0;
@@ -59,6 +59,7 @@ int	main(int argc, char **argv)
 	mlx_key_hook(scene->win, key_hook, scene);
 	mlx_hook(scene->win, 33, 1L << 17, close_hook, scene);
 	mlx_loop(scene->mlx);
+	free(scene->mlx);
 	ft_free_scene(scene);
 	return (0);
 }
