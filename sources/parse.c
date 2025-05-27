@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:44:53 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/26 13:20:27 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/27 16:21:46 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	get_scene(t_scene *scene, char *argv1)
 	line = get_one_line(fd);
 	while (line && ft_strlen(line) > 0)
 	{
-		if (*line != '\n' && parse_line(scene, line))
+		if (*line != '\n' && *line != '#' && parse_line(scene, line))
 		{
 			free(line);
 			ft_error_exit(scene, "Error\nIncorrect format encountered", 1);
