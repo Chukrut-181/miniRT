@@ -6,24 +6,12 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:36:49 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/21 11:30:28 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/26 13:43:50 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-/*
- * add_tuples - Adds two t_tuple structures component-wise.
- *
- * tuple1: The first tuple to add.
- * tuple2: The second tuple to add.
- *
- * This function performs component-wise addition of two t_tuple
- * structures. Each corresponding x, y, z, and w component is added
- * together to produce a new t_tuple structure.
- *
- * Return: A t_tuple structure representing the sum of the input tuples.
- */
 t_tuple	add_tuples(t_tuple tuple1, t_tuple tuple2)
 {
 	t_tuple	addition;
@@ -35,29 +23,6 @@ t_tuple	add_tuples(t_tuple tuple1, t_tuple tuple2)
 	return (addition);
 }
 
-/* t_color	add_colors(t_color tuple1, t_color tuple2)
-{
-	t_color	addition;
-
-	addition.r = tuple1.r + tuple2.r;
-	addition.g = tuple1.g + tuple2.g;
-	addition.b = tuple1.b + tuple2.b;
-	return (addition);
-} */
-
-/*
- * substract_tuples - Subtracts one t_tuple structure from another.
- *
- * tuple1: The tuple to subtract from (minuend).
- * tuple2: The tuple to subtract (subtrahend).
- *
- * This function performs component-wise subtraction of two t_tuple
- * structures. Each corresponding x, y, z, and w component of tuple2
- * is subtracted from tuple1 to produce a new t_tuple structure.
- *
- * Return: A t_tuple structure representing the difference between
- *         the input tuples.
- */
 t_tuple	substract_tuples(t_tuple tuple1, t_tuple tuple2)
 {
 	t_tuple	substraction;
@@ -69,30 +34,6 @@ t_tuple	substract_tuples(t_tuple tuple1, t_tuple tuple2)
 	return (substraction);
 }
 
-//t_tuple	ft_substract_point(t_point tuple1, t_point tuple2)
-//{
-//	t_tuple	substraction;
-//
-//	substraction.x = tuple1.x - tuple2.x;
-//	substraction.y = tuple1.y - tuple2.y;
-//	substraction.z = tuple1.z - tuple2.z;
-//	substraction.w = 1.0;
-//	return (substraction);
-//}
-
-/*
- * multiply_tuples - Multiplies each component of a t_tuple by a scalar.
- *
- * tuple: The tuple to be scaled.
- * scalar: The scalar value to multiply each component by.
- *
- * This function multiplies the x, y, and z components of the given
- * t_tuple by the provided scalar value. The 'w' component remains
- * unchanged, as it represents the distinction between a point and
- * a vector in homogeneous coordinates.
- *
- * Return: A t_tuple structure representing the scaled tuple.
- */
 t_tuple	multiply_tuple_f(t_tuple tuple, float scalar)
 {
 	t_tuple	product;
@@ -104,32 +45,6 @@ t_tuple	multiply_tuple_f(t_tuple tuple, float scalar)
 	return (product);
 }
 
-/* t_color	multiply_color_f(t_color tuple, float scalar)
-{
-	t_color	product;
-
-	product.r = tuple.r * scalar;
-	product.g = tuple.g * scalar;
-	product.b = tuple.b * scalar;
-	return (product);
-} */
-
-/**
- * divide_tuple - Divides each component of a 4D tuple by a scalar value.
- * 
- * This function takes a tuple of four floating-point values (`tuple`) and
- * divides each of the `x`, `y`, and `z` components by a scalar value
- * (`scalar`). The `w` component remains unchanged. The function returns
- * a new tuple with the calculated quotient values for `x`, `y`, and `z`,
- * and the original `w` value.
- *
- * param tuple: A t_tuple structure containing the 4D vector to be divided.
- * param scalar: The scalar value by which the components of the tuple will
- *               be divided.
- * 
- * Return: A new t_tuple structure with the quotient values for `x`, `y`, and
- *         `z`, and the unchanged `w` value.
- */
 t_tuple	divide_tuple(t_tuple tuple, float scalar)
 {
 	t_tuple	quotient;
@@ -141,28 +56,6 @@ t_tuple	divide_tuple(t_tuple tuple, float scalar)
 	return (quotient);
 }
 
-t_tuple	negate_tuple(t_tuple tuple)
-{
-	t_tuple	negated;
-
-	negated.x = tuple.x * -1;
-	negated.y = tuple.y * -1;
-	negated.z = tuple.z * -1;
-	negated.w = tuple.w;
-	return (negated);
-}
-
-/**
- * multiply_colors - Multiplies corresponding components of two color tuples.
- * 
- * The function multiplies the `x`, `y`, and `z` components of the two tuples 
- * together. The `w` component is omitted from the result.
- *
- * param c1: The first t_tuple representing the first color.
- * param c2: The second t_tuple representing the second color.
- * 
- * Return: A new t_tuple containing the product of the `x`, `y`, and `z`.
- */
 t_tuple	multiply_tuples(t_tuple c1, t_tuple c2)
 {
 	t_tuple	result;
@@ -172,19 +65,3 @@ t_tuple	multiply_tuples(t_tuple c1, t_tuple c2)
 	result.z = c1.z * c2.z;
 	return (result);
 }
-
-/* t_color	multiply_colors(t_color c1, t_color c2)
-{
-	t_color	result;
-
-	result.r = c1.r * c2.r;
-	if (result.r > 255)
-		result.r = 255;
-	result.g = c1.g * c2.g;
-	if (result.g > 255)
-		result.g = 255;
-	result.b = c1.b * c2.b;
-	if (result.b > 255)
-		result.b = 255;
-	return (result);
-} */

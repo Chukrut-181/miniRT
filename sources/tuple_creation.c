@@ -6,36 +6,11 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:08:59 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/21 11:41:07 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/26 13:42:37 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
-
-/*
- * ft_create_point - Creates a point in a 3D space using the given
- *                   coordinates (x, y, z).
- *
- * @x: The x-coordinate of the point.
- * @y: The y-coordinate of the point.
- * @z: The z-coordinate of the point.
- *
- * This function initializes a t_tuple structure with the provided
- * x, y, and z values. The 'w' component is set to 1, which
- * indicates that the tuple represents a point (not a vector) in
- * homogeneous coordinates.
- *
- * Return: A t_tuple structure representing a point in 3D space.
- */
-/* t_color	ft_create_color(float x, float y, float z)
-{
-	t_color	new_point;
-
-	new_point.r = x;
-	new_point.g = y;
-	new_point.b = z;
-	return (new_point);
-} */
 
 t_tuple	ft_create_point(float x, float y, float z)
 {
@@ -77,4 +52,15 @@ t_point	create_point(double x, double y, double z)
 	new.y = y;
 	new.z = z;
 	return (new);
+}
+
+t_tuple	negate_tuple(t_tuple tuple)
+{
+	t_tuple	negated;
+
+	negated.x = tuple.x * -1;
+	negated.y = tuple.y * -1;
+	negated.z = tuple.z * -1;
+	negated.w = tuple.w;
+	return (negated);
 }

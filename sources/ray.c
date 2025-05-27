@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 11:23:47 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/21 11:31:28 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/26 13:18:26 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,3 @@ void	transform_ray(t_ray	*ray, t_4x4 mat, t_ray *new_ray)
 	new_ray->direction = multiply_mat_and_tuple(mat, ray->direction);
 	new_ray->origin = multiply_mat_and_tuple(mat, ray->origin);
 }
-

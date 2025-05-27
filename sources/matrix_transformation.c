@@ -6,25 +6,12 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 10:23:12 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/21 11:42:35 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/21 12:44:37 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-/**
- * create_identity_matrix - Creates a 4x4 identity matrix.
- * 
- * This function initializes a 4x4 matrix and sets it to be an identity matrix.
- * Takes no parameters.
- *
- * Return: A t_4x4 structure representing the identity matrix:
- * 
- *         | 1 0 0 0 |
- *         | 0 1 0 0 |
- *         | 0 0 1 0 |
- *         | 0 0 0 1 |
- */
 t_4x4	create_identity_matrix(void)
 {
 	t_4x4	idmatrix;
@@ -48,22 +35,6 @@ t_4x4	create_identity_matrix(void)
 	return (idmatrix);
 }
 
-/**
- * create_translation_mx - Creates a 4x4 translation matrix based on a 3D tuple.
- * 
- * This function generates a 4x4 translation matrix that will translate a 3D 
- * point by the values specified in the `tuple` structure.
- * 
- * param tuple: A t_tuple structure containing the translation values for the 
- *              `x`, `y`, and `z` components.
- * 
- * Return: A t_4x4 structure representing the translation matrix:
- * 
- *         | 1 0 0 tuple.x |
- *         | 0 1 0 tuple.y |
- *         | 0 0 1 tuple.z |
- *         | 0 0 0   1     |
- */
 t_4x4	create_translation_mx(float x, float y, float z)
 {
 	t_4x4	translation_mx;
@@ -75,22 +46,6 @@ t_4x4	create_translation_mx(float x, float y, float z)
 	return (translation_mx);
 }
 
-/**
- * create_scalation_mx - Creates a 4x4 scaling matrix based on a 3D tuple.
- * 
- * This function generates a 4x4 scaling matrix that will scale a 3D point by 
- * the values specified in the `tuple` structure.
- * 
- * param tuple: A t_tuple structure containing the scaling factors for the 
- *              `x`, `y`, and `z` components.
- * 
- * Return: A t_4x4 structure representing the scaling matrix:
- * 
- *         | tuple.x 0      0      0 |
- *         | 0      tuple.y 0      0 |
- *         | 0      0      tuple.z 0 |
- *         | 0      0      0      1 |
- */
 t_4x4	create_scaling_mx(float x, float y, float z)
 {
 	t_4x4	scaling_mx;
@@ -102,28 +57,6 @@ t_4x4	create_scaling_mx(float x, float y, float z)
 	return (scaling_mx);
 }
 
-/**
- * create_shearing_mx - 	Creates a 4x4 shearing matrix based on
- * 							given shear factors.
- * 
- * This function generates a 4x4 shearing matrix for 3D transformations.
- * Shearing is a transformation that distorts the shape of an object,
- * shifting its components along one axis based on values from another axis.
- * 
- * param Xy: Shear factor for the x-axis with respect to the y-axis.
- * param Xz: Shear factor for the x-axis with respect to the z-axis.
- * param Yx: Shear factor for the y-axis with respect to the x-axis.
- * param Yz: Shear factor for the y-axis with respect to the z-axis.
- * param Zx: Shear factor for the z-axis with respect to the x-axis.
- * param Zy: Shear factor for the z-axis with respect to the y-axis.
- * 
- * Return: A t_4x4 structure representing the shearing matrix:
- * 
- *         | 1 Xy Xz 0 |
- *         | Yx 1 Yz 0 |
- *         | Zx Zy 1 0 |
- *         | 0  0  0 1 |
- */
 /* t_4x4	create_shearing_mx
 		(float Xy, float Xz, float Yx, float Yz, float Zx, float Zy)
 {

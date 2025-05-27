@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:52:50 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/21 11:46:23 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/27 10:27:15 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,10 @@ static t_4x4	ft_transform_cyl(char *center, char *axis, float r, float h)
 			ft_atof(aux[1]), ft_atof(aux[2]));
 	ft_free_array(aux);
 	aux = ft_split(axis, ',');
-	rotate = rodriguez_rotation(ft_atof(aux[0]),
-			ft_atof(aux[1]), ft_atof(aux[2]));
+	rotate = rodriguez_rotation(ft_atof(aux[0]), ft_atof(aux[1]), ft_atof(aux[2]));
 	ft_free_array(aux);
-	scalate = create_scaling_mx(1.0, 1.0, 1.0);
-	transform_matrix = multiply_matrices(translate,
-			multiply_matrices(rotate, scalate));
 	scalate = create_scaling_mx(r, h, r);
-	transform_matrix = multiply_matrices(transform_matrix, scalate);
+	transform_matrix = multiply_matrices(translate, multiply_matrices(rotate, scalate));
 	return (transform_matrix);
 }
 
@@ -46,7 +42,8 @@ bool	create_cylinder(t_scene *scene, char **cyl_data)
 	if (!cylinder)
 		ft_error_exit(scene, "Error\nFailed to allocate cylinder", 1);
 	cylinder->type = CYLINDER;
-	if (!check_coords(cyl_data[1]) || !check_coords(cyl_data[2]))
+	if (!check_coords(cyl_data[1]) || !check_coords(cyl_data[2])
+		|| !check_rgb(cyl_data[5]))
 		return (free(cylinder), false);
 	radius = (ft_atof(cyl_data[3]) / 2.0);
 	height = ft_atof(cyl_data[4]);
@@ -55,8 +52,6 @@ bool	create_cylinder(t_scene *scene, char **cyl_data)
 	cylinder->transform_matrix = ft_transform_cyl(cyl_data[1],
 			cyl_data[2], radius, height);
 	cylinder->inverse_matrix = find_inverse(cylinder->transform_matrix);
-	if (!check_rgb(cyl_data[5]))
-		return (free(cylinder), false);
 	cylinder->material = create_material(cyl_data[5]);
 	ft_lstadd_back(&scene->world->objects, ft_lstnew(cylinder));
 	return (true);
