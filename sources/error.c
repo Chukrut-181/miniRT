@@ -12,16 +12,20 @@
 
 #include "../include/minirt.h"
 
-/* int	key(int keycode, t_scene *scene)
+void	free_intersections(t_xs **inter, t_list **xs)
 {
-	if (keycode == 53)
+	t_list	*temp;
+
+	if ((*inter)->time == 0)
+		free(*inter);
+	while (*xs)
 	{
-		mlx_destroy_window(scene->mlx, scene->win);
-		ft_free_scene(scene);
-		exit (0);
+		temp = (*xs)->next;
+		free((*xs)->content);
+		free(*xs);
+		*xs = temp;
 	}
-	return (0);
-} */
+}
 
 int	ft_error_exit(t_scene *failed_scene, char *err_msg, int err_code)
 {

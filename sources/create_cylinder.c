@@ -17,7 +17,7 @@ static t_4x4	ft_transform_cyl(char *center, char *axis, float r, float h)
 	t_4x4	translate;
 	t_4x4	rotate;
 	t_4x4	scalate;
-	t_4x4	transform_matrix;
+	t_4x4	trans_mat;
 	char	**aux;
 
 	aux = ft_split(center, ',');
@@ -25,11 +25,13 @@ static t_4x4	ft_transform_cyl(char *center, char *axis, float r, float h)
 			ft_atof(aux[1]), ft_atof(aux[2]));
 	ft_free_array(aux);
 	aux = ft_split(axis, ',');
-	rotate = rodriguez_rotation(ft_atof(aux[0]), ft_atof(aux[1]), ft_atof(aux[2]));
+	rotate = rodriguez_rotation(ft_atof(aux[0]),
+			ft_atof(aux[1]), ft_atof(aux[2]));
 	ft_free_array(aux);
 	scalate = create_scaling_mx(r, h, r);
-	transform_matrix = multiply_matrices(translate, multiply_matrices(rotate, scalate));
-	return (transform_matrix);
+	trans_mat = multiply_matrices(translate,
+			multiply_matrices(rotate, scalate));
+	return (trans_mat);
 }
 
 bool	create_cylinder(t_scene *scene, char **cyl_data)

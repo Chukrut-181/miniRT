@@ -26,7 +26,7 @@ bool	apply_rgb(t_color *color, char *original)
 	{
 		aux = ft_atof(split[i]) / 255.0;
 		if (aux < 0 || 1 < aux)
-			return (free(split), false);
+			return (ft_free_array(split), false);
 		if (i == 0)
 			color->r = aux;
 		else if (i == 1)
@@ -35,7 +35,7 @@ bool	apply_rgb(t_color *color, char *original)
 			color->b = aux;
 		i++;
 	}
-	return (free(split), true);
+	return (ft_free_array(split), true);
 }
 
 bool	check_rgb(char *colorcode)

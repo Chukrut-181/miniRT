@@ -22,8 +22,8 @@
 
 # define EPSILON 0.00001
 
-# define HEIGHT 1200
-# define WIDTH 1800
+# define HEIGHT 600
+# define WIDTH 900
 
 # ifndef M_PI
 #  define M_PI 3.1415926
@@ -153,5 +153,6 @@ int			close_hook(t_scene *data);
 //	ERROR EXIT
 int			ft_error_exit(t_scene *failed_scene, char *err_msg, int err_code);
 void		ft_free_scene(t_scene *scene);
+void	    free_intersections(t_xs **inter, t_list **xs);
 
 #endif

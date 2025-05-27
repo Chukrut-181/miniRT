@@ -30,32 +30,6 @@ bool	intersect_plane(t_shape *shape, t_list **inter)
 		return (false);
 	return (true);
 }
-/* static void	ft_intersect_caps(t_shape *cyl, t_ray ray, t_list **xs_list)
-{
-	float t;
-	t_tuple p;
-
-	// Intersect with the bottom cap (y = 0 in object space)
-	if (fabsf(ray.direction.y) < EPSILON)
-		return;
-
-	t = -ray.origin.y / ray.direction.y;
-	if (t >= 0)
-	{
-		p = add_tuples(ray.origin, multiply_tuple_f(ray.direction, t));
-		if (powf(p.x, 2) + powf(p.z, 2) <= 1) // Radius is 1 in object space
-			update_inter(xs_list, cy_shape, t);
-	}
-
-	// Intersect with the top cap (y = 1 in object space)
-	t = (1 - ray.origin.y) / ray.direction.y; // Height is 1 in object space
-	if (t >= 0)
-	{
-		p = add_tuples(ray.origin, multiply_tuple_f(ray.direction, t));
-		if (powf(p.x, 2) + powf(p.z, 2) <= 1) // Radius is 1 in object space
-			update_inter(xs_list, cy_shape, t);
-	}
-} */
 
 bool	intersect_cylinder(t_shape *shape, t_list **inter, t_ray ray)
 {

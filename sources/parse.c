@@ -105,5 +105,6 @@ int	get_scene(t_scene *scene, char *argv1)
 	if (!scene->world->ambient || !scene->camera
 		|| !scene->world->light || !scene->world->objects)
 		ft_error_exit(scene, "Error\nMissing mandatory elements", 1);
+	free(line);
 	return (0);
 }
