@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:52:50 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/26 12:56:00 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/27 10:27:15 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,10 @@ static t_4x4	ft_transform_cyl(char *center, char *axis, float r, float h)
 			ft_atof(aux[1]), ft_atof(aux[2]));
 	ft_free_array(aux);
 	aux = ft_split(axis, ',');
-	rotate = rodriguez_rotation(ft_atof(aux[0]),
-			ft_atof(aux[1]), ft_atof(aux[2]));
+	rotate = rodriguez_rotation(ft_atof(aux[0]), ft_atof(aux[1]), ft_atof(aux[2]));
 	ft_free_array(aux);
-	scalate = create_scaling_mx(1.0, 1.0, 1.0);
-	transform_matrix = multiply_matrices(translate,
-			multiply_matrices(rotate, scalate));
 	scalate = create_scaling_mx(r, h, r);
-	transform_matrix = multiply_matrices(transform_matrix, scalate);
+	transform_matrix = multiply_matrices(translate, multiply_matrices(rotate, scalate));
 	return (transform_matrix);
 }
 
