@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:26:57 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/26 12:48:53 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/27 15:40:10 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static t_scene	*ft_init_scene(void)
 	new_scene->world = malloc(sizeof(t_world));
 	new_scene->world->ambient = NULL;
 	new_scene->world->light = NULL;
+	new_scene->world->objects = NULL;
 	new_scene->mlx = NULL;
 	new_scene->win = NULL;
 	return (new_scene);
