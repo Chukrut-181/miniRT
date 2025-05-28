@@ -68,7 +68,7 @@ static t_ray	ray_for_pixel(t_camera camera, int px, int py)
 	return (create_ray(origin, normalize(substract_tuples(pixel, origin))));
 }
 
-static t_color	calculate_inter(t_world world, t_ray ray)
+t_color	calculate_inter(t_world world, t_ray ray)
 {
 	t_list	*intersections;
 	t_xs	*hit;

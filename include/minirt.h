@@ -132,9 +132,8 @@ void		abcd_for_cyl(t_abcd *data, t_ray ray);
 
 //	EXECUTE
 void		render_scene(t_scene *s);
-t_color		shade_hit(t_world w, t_comps comps, int remaining);
-t_color	    calculate_inter(t_world world, t_ray ray, int remaining);
-t_color	    reflected_color(t_world world, t_comps comps, int remaining);
+t_color		shade_hit(t_world w, t_comps comps);
+t_color     calculate_inter(t_world world, t_ray ray);
 
 //	INTERSECTIONS
 bool		intersect_plane(t_shape *shape, t_list **inter);
