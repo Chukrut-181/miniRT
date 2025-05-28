@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_camera.c                                    :+:      :+:    :+:   */
+/*   create_camera_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 13:51:00 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/21 11:45:16 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/28 11:56:45 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "../include/minirt_bonus.h"
 
 t_4x4	ft_orientation(t_tuple left, t_tuple true_up, t_tuple forward)
 {
@@ -84,7 +84,7 @@ bool	create_camera(t_scene *scene, char **cam_data)
 	if (scene->camera != NULL)
 		ft_error_exit(scene, "Error\nCamera defined twice", 1);
 	scene->camera = malloc(sizeof(t_camera));
-	if (!scene->camera)
+	if (!scene->camera || ft_arraylen(cam_data) != 4)
 		return (false);
 	if (!check_coords(cam_data[1]) || !check_coords(cam_data[2]))
 		return (free(scene->camera), false);

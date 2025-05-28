@@ -6,73 +6,71 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 17:13:52 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/27 17:17:31 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/28 12:41:28 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "../include/minirt_bonus.h"
 
-// Helper function to calculate the intersection interval with a slab
-static void calculate_slab_intersection(float origin, float direction, float min, float max, float *tmin, float *tmax)
+static void	handle_parallel_slab(float tnum_min, float tnum_max,
+	float *tmin, float *tmax)
 {
-	float tnumerator_min = min - origin;
-	float tnumerator_max = max - origin;
-
-	if (fabsf(direction) >= EPSILON)
+	if (tnum_min > EPSILON || tnum_max < -EPSILON)
 	{
-		*tmin = tnumerator_min / direction;
-		*tmax = tnumerator_max / direction;
+		*tmin = INFINITY;
+		*tmax = -INFINITY;
 	}
 	else
 	{
-		// Ray is parallel to the slab
-		if (tnumerator_min > 0 || tnumerator_max < 0)
-		{
-			*tmin = FLT_MAX;
-			*tmax = FLT_MIN;
-		}
-		else
-		{
-			*tmin = FLT_MIN;
-			*tmax = FLT_MAX;
-		}
+		*tmin = -INFINITY;
+		*tmax = INFINITY;
 	}
+}
 
+static void	intersect_slab(float src, float dir, float *tmin, float *tmax)
+{
+	float	tnumerator_min;
+	float	tnumerator_max;
+	float	temp;
+
+	tnumerator_min = -1.0f - src;
+	tnumerator_max = 1.0f - src;
+	if (fabsf(dir) >= EPSILON)
+	{
+		*tmin = tnumerator_min / dir;
+		*tmax = tnumerator_max / dir;
+	}
+	else
+		handle_parallel_slab(tnumerator_min, tnumerator_max, tmin, tmax);
 	if (*tmin > *tmax)
 	{
-		float temp = *tmin;
+		temp = *tmin;
 		*tmin = *tmax;
 		*tmax = temp;
 	}
 }
 
-bool    intersect_cube(t_shape *shape, t_list **inter, t_ray ray)
+bool	intersect_cube(t_shape *shape, t_list **inter, t_ray ray)
 {
-    float   xtmin, xtmax, ytmin, ytmax, ztmin, ztmax;
-    float   tmin, tmax;
+	float	xt[2];
+	float	yt[2];
+	float	zt[2];
+	float	tmin;
+	float	tmax;
 
-    // Calculate intersection intervals for each slab (x, y, z)
-    calculate_slab_intersection(ray.origin.x, ray.direction.x, -1.0, 1.0, &xtmin, &xtmax);
-    calculate_slab_intersection(ray.origin.y, ray.direction.y, -1.0, 1.0, &ytmin, &ytmax);
-    calculate_slab_intersection(ray.origin.z, ray.direction.z, -1.0, 1.0, &ztmin, &ztmax);
-
-    // Determine the overall entry and exit t values
-    tmin = fmaxf(fmaxf(xtmin, ytmin), ztmin);
-    tmax = fminf(fminf(xtmax, ytmax), ztmax);
-
-    // If tmin > tmax, the ray does not intersect the cube
-    if (tmin > tmax)
-        return (false);
-
-    // If tmax is not negative, we have an intersection
-    if (tmax >= 0)
-    {
-        if (tmin >= 0)
-            update_inter(inter, shape, tmin); // Entry point
-        update_inter(inter, shape, tmax);     // Exit point
-        return (true);
-    }
-
-    return (false);
+	intersect_slab(ray.origin.x, ray.direction.x, &xt[0], &xt[1]);
+	intersect_slab(ray.origin.y, ray.direction.y, &yt[0], &yt[1]);
+	intersect_slab(ray.origin.z, ray.direction.z, &zt[0], &zt[1]);
+	tmin = fmaxf(fmaxf(xt[0], yt[0]), zt[0]);
+	tmax = fminf(fminf(xt[1], yt[1]), zt[1]);
+	if (tmin > tmax)
+		return (false);
+	if (tmax >= EPSILON)
+	{
+		if (tmin >= EPSILON)
+			update_inter(inter, shape, tmin);
+		update_inter(inter, shape, tmax);
+		return (true);
+	}
+	return (false);
 }
-

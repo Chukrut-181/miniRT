@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_ambient.c                                   :+:      :+:    :+:   */
+/*   create_ambient_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 12:18:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/26 11:18:23 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/28 11:56:38 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "../include/minirt_bonus.h"
 
 bool	apply_rgb(t_color *color, char *original)
 {
@@ -68,7 +68,7 @@ bool	create_ambient(t_world *world, char **ambient)
 {
 	float	aux;
 
-	if (world->ambient != NULL)
+	if (world->ambient != NULL || ft_arraylen(ambient) != 3)
 		return (false);
 	world->ambient = (t_ambient *)malloc(sizeof(t_ambient));
 	if (world->ambient == NULL)

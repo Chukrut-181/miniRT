@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intersections_utils.c                              :+:      :+:    :+:   */
+/*   intersections_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 13:26:19 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/27 15:49:40 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/28 11:57:37 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "../include/minirt_bonus.h"
 
 void	solve_quadratic_equation(t_abcd data, float *t)
 {

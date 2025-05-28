@@ -6,7 +6,7 @@
 #    By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/19 10:29:45 by igchurru          #+#    #+#              #
-#    Updated: 2025/05/27 17:07:23 by igchurru         ###   ########.fr        #
+#    Updated: 2025/05/28 09:31:32 by igchurru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ $(NAME): $(OBJS) $(LIBS)
 
 $(BONUS_NAME): $(BONUS_OBJS) $(LIBS)
 	@$(CC) $(CFLAGS) $(MLX42_FLAGS) -lm $(BONUS_OBJS) $(LIBS) -lX11 -lXext -o $(BONUS_NAME)
-	@echo "$(BLUE)-> MiniRT Bonus: miniRT_bonus compilation OK$(RESET)"
+	@echo "$(GREEN)-> MiniRT Bonus: miniRT_bonus compilation OK$(RESET)"
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)

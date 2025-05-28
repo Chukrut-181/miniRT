@@ -1,0 +1,8 @@
+# SINGLE PLANE
+
+A 0.3 255,255,255
+C 0,0,-150 0,0,1 60
+L -200,100,-200 1 255,0,0
+
+# identifier  xyz point   xyz normal vector     rgb color
+      pl        0,-10,0         0,1,0          20,20,255

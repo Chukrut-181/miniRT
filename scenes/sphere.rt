@@ -1,0 +1,8 @@
+# SINGLE SPHERE
+
+A 0.2 255,255,255
+C 0,0,-150 0,0,1 60
+L -200,100,-200 1 255,0,0
+
+# identifier   xyz center    float diameter     rgb color
+      sp            0,0,0        100           255,255,255

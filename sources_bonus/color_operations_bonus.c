@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color_operations.c                                 :+:      :+:    :+:   */
+/*   color_operations_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 12:57:23 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/21 11:30:28 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/28 11:56:25 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "../include/minirt_bonus.h"
 
 t_color	multiply_colors(t_color c1, t_color c2)
 {

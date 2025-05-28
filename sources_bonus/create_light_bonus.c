@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_light.c                                     :+:      :+:    :+:   */
+/*   create_light_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 15:51:55 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/26 12:27:16 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/28 11:56:58 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "../include/minirt_bonus.h"
 
 static bool	ft_apply_light_coords(t_world *world, char *coords)
 {
@@ -70,7 +70,7 @@ bool	create_light(t_world *world, char **light)
 {
 	float	aux;
 
-	if (world->light != NULL)
+	if (world->light != NULL || ft_arraylen(light) != 4)
 		return (false);
 	world->light = malloc(sizeof(t_light));
 	if (world->light == NULL)
