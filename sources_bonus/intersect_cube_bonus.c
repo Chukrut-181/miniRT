@@ -6,11 +6,11 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 17:13:52 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/28 10:23:31 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/28 11:57:26 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "../include/minirt_bonus.h"
 
 static void	handle_parallel_slab(float tnum_min, float tnum_max,
 	float *tmin, float *tmax)

@@ -6,11 +6,11 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 16:19:00 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/28 11:45:26 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/28 11:58:06 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "../include/minirt_bonus.h"
 
 char	*get_one_line(int fd)
 {

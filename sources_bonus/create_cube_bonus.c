@@ -6,11 +6,11 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 16:29:33 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/28 11:49:15 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/28 11:56:48 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "../include/minirt_bonus.h"
 
 static t_4x4	ft_transform_cube(char *center, char *scale, char *target_v)
 {
