@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 18:08:55 by eandres           #+#    #+#             */
-/*   Updated: 2025/05/28 11:53:16 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/28 12:37:08 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "../lib/libft/libft.h"
 # include "../lib/minilibx/mlx.h"
 # include <math.h>
-# include <float.h>
 # include <stdio.h>
 # include <unistd.h>
 # include "structures.h"

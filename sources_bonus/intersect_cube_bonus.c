@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 17:13:52 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/28 11:57:26 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/28 12:41:28 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ static void	handle_parallel_slab(float tnum_min, float tnum_max,
 {
 	if (tnum_min > EPSILON || tnum_max < -EPSILON)
 	{
-		*tmin = FLT_MAX;
-		*tmax = FLT_MIN;
+		*tmin = INFINITY;
+		*tmax = -INFINITY;
 	}
 	else
 	{
-		*tmin = FLT_MIN;
-		*tmax = FLT_MAX;
+		*tmin = -INFINITY;
+		*tmax = INFINITY;
 	}
 }
 
