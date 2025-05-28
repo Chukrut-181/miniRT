@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:52:50 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/28 10:46:12 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/28 11:45:06 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ bool	create_cylinder(t_scene *scene, char **cyl_data)
 	float	radius;
 	float	height;
 
+	if (ft_arraylen(cyl_data) != 6)
+		return (false);
 	cylinder = malloc(sizeof(t_shape));
 	if (!cylinder)
 		ft_error_exit(scene, "Error\nFailed to allocate cylinder", 1);

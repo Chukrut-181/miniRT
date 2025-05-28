@@ -6,11 +6,30 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 13:31:02 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/28 10:51:21 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/28 11:29:44 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
+
+static t_tuple	get_cube_normal(t_tuple obj_point)
+{
+	float	abs_x;
+	float	abs_y;
+	float	abs_z;
+	float	max_abs;
+
+	abs_x = fabsf(obj_point.x);
+	abs_y = fabsf(obj_point.y);
+	abs_z = fabsf(obj_point.z);
+	max_abs = fmaxf(fmaxf(abs_x, abs_y), abs_z);
+	if (fabsf(max_abs - abs_x) < EPSILON)
+		return (create_vector(obj_point.x, 0, 0));
+	else if (fabsf(max_abs - abs_y) < EPSILON)
+		return (create_vector(0, obj_point.y, 0));
+	else
+		return (create_vector(0, 0, obj_point.z));
+}
 
 t_tuple	normal_at(t_shape *shape, t_tuple point)
 {
@@ -18,7 +37,6 @@ t_tuple	normal_at(t_shape *shape, t_tuple point)
 	t_tuple	obj_normal;
 	t_4x4	world_normal;
 	t_tuple	normal_at;
-	float	abs[4];
 
 	obj_normal = create_vector(0, 0, 0);
 	obj_point = multiply_mat_and_tuple(shape->inverse_matrix, point);
@@ -29,18 +47,7 @@ t_tuple	normal_at(t_shape *shape, t_tuple point)
 	else if (shape->type == CYLINDER)
 		obj_normal = create_vector(obj_point.x, 0, obj_point.z);
 	else if (shape->type == CUBE)
-	{
-		abs[1] = fabsf(obj_point.x);
-		abs[2] = fabsf(obj_point.y);
-		abs[3] = fabsf(obj_point.z);
-		abs[0] = fmaxf(fmaxf(abs[1], abs[2]), abs[3]);
-		if (fabsf(abs[0] - abs[1]) < EPSILON)
-			obj_normal = create_vector(obj_point.x, 0, 0);
-		else if (fabsf(abs[0] - abs[2]) < EPSILON)
-			obj_normal = create_vector(0, obj_point.y, 0);
-		else
-			obj_normal = create_vector(0, 0, obj_point.z);
-	}
+		obj_normal = get_cube_normal(obj_point);
 	world_normal = transpose(shape->inverse_matrix);
 	normal_at = multiply_mat_and_tuple(world_normal, obj_normal);
 	return (normalize(normal_at));

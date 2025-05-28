@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_sphere.c                                    :+:      :+:    :+:   */
+/*   create_sphere_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 10:05:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/26 16:25:29 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/28 11:40:48 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ bool	create_sphere(t_scene *scene, char **ball)
 	char	**center;
 	float	diameter;
 
+	if (ft_arraylen(ball) != 4)
+		return (false);
 	sphere = malloc(sizeof(t_shape));
 	if (!sphere)
 		ft_error_exit(scene, "Error\nFailed to allocate sphere", 1);
