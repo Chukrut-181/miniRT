@@ -1,6 +1,5 @@
-# cu(identifier) x,y,z(center) sx,sy,sz(scale) r,g,b(color)
-
-cu      0,0,0      10,10,10      1,1,1       200,255,200
+# cu(identifier)   x,y,z(center)   x,y,z(scale)   x,y,z(orientation)   r,g,b(color)
+cu                   0,0,0           5,5,5            1,1,1           100,100,255
 
 A 0.2 255,255,255
 C 0,0,-100 0,0,1 60

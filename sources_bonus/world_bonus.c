@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   world.c                                            :+:      :+:    :+:   */
+/*   world_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 12:28:40 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/27 13:58:11 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/28 09:51:19 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ t_color	shade_hit(t_world world, t_comps comps)
 	bool	shadowed;
 
 	shadowed = is_shadowed(world, comps.over_point);
-	//shadowed = 0;
 	result = lighting(comps, &world, shadowed);
 	return (result);
 }
