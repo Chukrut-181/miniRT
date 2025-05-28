@@ -1,8 +1,9 @@
-# cu(identifier)   x,y,z(center)   x,y,z(scale)   x,y,z(orientation)   r,g,b(color)
-cu                   0,0,0           5,5,5            1,1,1           100,100,255
+# SINGLE CUBE
 
-A 0.2 255,255,255
+A 0.3 255,255,255
 C 0,0,-100 0,0,1 60
 L -300,300,-500 1 255,255,255
 
-pl 0,0,50 0,0,-1 255,100,100
+
+# identifier   xyz center   xyz scale   xyz orientation       rgb color
+      cu         0,0,0       10,10,10       1,1,1            255,200,55
