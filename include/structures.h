@@ -55,7 +55,7 @@ typedef struct s_material
 	float	diffuse;
 	float	specular;
 	float	shininess;
-
+	float	refelctive;
 }	t_material;
 
 typedef enum e_object_type
@@ -161,6 +161,7 @@ typedef struct s_comps
 	t_tuple	over_point;
 	t_tuple	eyev;
 	t_tuple	normalv;
+	t_tuple	reflectv;
 	bool	inside;
 }	t_comps;
 

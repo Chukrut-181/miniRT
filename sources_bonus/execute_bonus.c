@@ -68,7 +68,7 @@ static t_ray	ray_for_pixel(t_camera camera, int px, int py)
 	return (create_ray(origin, normalize(substract_tuples(pixel, origin))));
 }
 
-static t_color	calculate_inter(t_world world, t_ray ray)
+t_color	calculate_inter(t_world world, t_ray ray, int remaining)
 {
 	t_list	*intersections;
 	t_xs	*hit;
@@ -80,7 +80,7 @@ static t_color	calculate_inter(t_world world, t_ray ray)
 	if (hit && hit->time > 0)
 	{
 		comps = prepare_computations(hit, ray);
-		color = shade_hit(world, comps);
+		color = shade_hit(world, comps, remaining);
 	}
 	else
 		color = ft_create_color(0, 0, 0);
@@ -104,7 +104,7 @@ void	render_scene(t_scene *s)
 		while (x < WIDTH)
 		{
 			ray = ray_for_pixel(*s->camera, x, y);
-			color = calculate_inter(*s->world, ray);
+			color = calculate_inter(*s->world, ray, REMAINING);
 			pixel_color = color_to_int(color);
 			write_pixel(&s->img, x, y, pixel_color);
 			x++;

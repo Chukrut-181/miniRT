@@ -32,6 +32,7 @@ t_comps	prepare_computations(t_xs *hit, t_ray ray)
 	comps.over_point.y = comps.point.y + comps.normalv.y * EPSILON;
 	comps.over_point.z = comps.point.z + comps.normalv.z * EPSILON;
 	comps.over_point.w = 1;
+	comps.reflectv = reflect(ray.direction, comps.normalv);
 	return (comps);
 }
 
@@ -62,15 +63,16 @@ bool	is_shadowed(t_world world, t_tuple point)
 	return (false);
 }
 
-t_color	shade_hit(t_world world, t_comps comps)
+t_color	shade_hit(t_world world, t_comps comps, int remaining)
 {
-	t_color	result;
+	t_color	surface;
+	t_color reflected;
 	bool	shadowed;
 
 	shadowed = is_shadowed(world, comps.over_point);
-	//shadowed = 0;
-	result = lighting(comps, &world, shadowed);
-	return (result);
+	surface = lighting(comps, &world, shadowed);
+	reflected = reflected_color(world, comps, remaining);
+	return (add_colors(surface, reflected));
 }
 
 static void	find_min(t_list *xs, t_xs **min_inter, double *min)
