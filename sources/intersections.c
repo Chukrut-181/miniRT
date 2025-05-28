@@ -65,11 +65,7 @@ bool	intersect_cylinder(t_shape *shape, t_list **inter, t_ray ray)
 	float	y1;
 	float	temp;
 
-	data.a = (ray.direction.x * ray.direction.x) + (ray.direction.z * ray.direction.z);
-	data.b = 2.0 * (ray.origin.x * ray.direction.x
-			+ ray.origin.z * ray.direction.z);
-	data.c = (ray.origin.x * ray.origin.x) + (ray.origin.z * ray.origin.z) - 1;
-	data.discriminant = (data.b * data.b) - (4 * data.a * data.c);
+	abcd_for_cyl(&data, ray);
 	if (data.discriminant < 0)
 		return (false);
 	solve_quadratic_equation(data, t);

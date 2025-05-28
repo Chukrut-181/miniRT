@@ -6,11 +6,23 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:52:50 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/27 10:27:15 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/28 10:45:29 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
+
+void	abcd_for_cyl(t_abcd *data, t_ray ray)
+{
+	data->a = (ray.direction.x * ray.direction.x)
+		+ (ray.direction.z * ray.direction.z);
+	data->b = 2.0 * (ray.origin.x * ray.direction.x)
+		+ (ray.origin.z * ray.direction.z);
+	data->c = (ray.origin.x * ray.origin.x)
+		+ (ray.origin.z * ray.origin.z) - 1;
+	data->discriminant = (data->b * data->b) - (4 * data->a * data->c);
+	return ;
+}
 
 static t_4x4	ft_transform_cyl(char *center, char *axis, float r, float h)
 {
@@ -25,10 +37,12 @@ static t_4x4	ft_transform_cyl(char *center, char *axis, float r, float h)
 			ft_atof(aux[1]), ft_atof(aux[2]));
 	ft_free_array(aux);
 	aux = ft_split(axis, ',');
-	rotate = rodriguez_rotation(ft_atof(aux[0]), ft_atof(aux[1]), ft_atof(aux[2]));
+	rotate = rodriguez_rotation(ft_atof(aux[0]),
+			ft_atof(aux[1]), ft_atof(aux[2]));
 	ft_free_array(aux);
 	scalate = create_scaling_mx(r, h, r);
-	transform_matrix = multiply_matrices(translate, multiply_matrices(rotate, scalate));
+	transform_matrix = multiply_matrices(translate,
+			multiply_matrices(rotate, scalate));
 	return (transform_matrix);
 }
 

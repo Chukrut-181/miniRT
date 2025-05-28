@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 18:08:55 by eandres           #+#    #+#             */
-/*   Updated: 2025/05/27 17:18:07 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/28 10:40:52 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ bool		create_plane(t_scene *scene, char **plane);
 
 //	CREATE CYLINDER
 bool		create_cylinder(t_scene *scene, char **cyl_data);
+void		abcd_for_cyl(t_abcd *data, t_ray ray);
 
 //	CREATE CUBE
 bool	create_cube(t_scene *scene, char **temp);

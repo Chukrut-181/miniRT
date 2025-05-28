@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 13:31:02 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/27 17:20:51 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/28 10:51:21 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_tuple	normal_at(t_shape *shape, t_tuple point)
 	t_tuple	obj_normal;
 	t_4x4	world_normal;
 	t_tuple	normal_at;
+	float	abs[4];
 
 	obj_normal = create_vector(0, 0, 0);
 	obj_point = multiply_mat_and_tuple(shape->inverse_matrix, point);
@@ -29,22 +30,16 @@ t_tuple	normal_at(t_shape *shape, t_tuple point)
 		obj_normal = create_vector(obj_point.x, 0, obj_point.z);
 	else if (shape->type == CUBE)
 	{
-		float abs_x = fabsf(obj_point.x);
-		float abs_y = fabsf(obj_point.y);
-		float abs_z = fabsf(obj_point.z);
-		float max_abs = fmaxf(fmaxf(abs_x, abs_y), abs_z);
-		if (fabsf(max_abs - abs_x) < EPSILON)
-		{
+		abs[1] = fabsf(obj_point.x);
+		abs[2] = fabsf(obj_point.y);
+		abs[3] = fabsf(obj_point.z);
+		abs[0] = fmaxf(fmaxf(abs[1], abs[2]), abs[3]);
+		if (fabsf(abs[0] - abs[1]) < EPSILON)
 			obj_normal = create_vector(obj_point.x, 0, 0);
-		}
-		else if (fabsf(max_abs - abs_y) < EPSILON)
-		{
+		else if (fabsf(abs[0] - abs[2]) < EPSILON)
 			obj_normal = create_vector(0, obj_point.y, 0);
-		}
 		else
-		{
 			obj_normal = create_vector(0, 0, obj_point.z);
-		}
 	}
 	world_normal = transpose(shape->inverse_matrix);
 	normal_at = multiply_mat_and_tuple(world_normal, obj_normal);
