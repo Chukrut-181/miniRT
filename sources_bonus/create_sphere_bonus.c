@@ -6,13 +6,13 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 10:05:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/29 09:34:17 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/29 10:05:49 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt_bonus.h"
 
-t_material	create_material(char *rgb_code)
+t_material	create_material(char *rgb_code, char *r_index)
 {
 	t_material	m;
 	char		**split;
@@ -27,6 +27,7 @@ t_material	create_material(char *rgb_code)
 	else
 		m.color = ft_create_color(ft_atof(split[0]) / 255,
 				ft_atof(split[1]) / 255, ft_atof(split[2]) / 255);
+	m.reflectiveness = ft_atof(r_index);
 	if (split)
 		ft_free_array(split);
 	return (m);
@@ -40,7 +41,7 @@ bool	create_sphere(t_scene *scene, char **ball)
 	char	**center;
 	float	diameter;
 
-	if (ft_arraylen(ball) != 4)
+	if (ft_arraylen(ball) != 5)
 		return (false);
 	sphere = malloc(sizeof(t_shape));
 	if (!sphere)
@@ -53,8 +54,7 @@ bool	create_sphere(t_scene *scene, char **ball)
 			ft_atof(center[1]), ft_atof(center[2]));
 	diameter = ft_atof(ball[2]) / 2.0f;
 	scalate = create_scaling_mx(diameter, diameter, diameter);
-	sphere->material = create_material(ball[3]);
-	sphere->material.reflectiveness = 0.5;
+	sphere->material = create_material(ball[3], ball[4]);
 	sphere->transform_matrix = multiply_matrices(translate, scalate);
 	sphere->inverse_matrix = find_inverse(sphere->transform_matrix);
 	ft_lstadd_back(&scene->world->objects, ft_lstnew(sphere));

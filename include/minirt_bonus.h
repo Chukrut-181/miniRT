@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 11:51:26 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/29 09:34:39 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/29 10:01:28 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ t_4x4		view_transform(t_tuple origin, t_tuple direction);
 t_4x4		ft_orientation(t_tuple left, t_tuple true_up, t_tuple forward);
 
 //	CREATE SPHERE
-t_material	create_material(char *rgb_code);
+t_material	create_material(char *rgb_code, char *r_index);
 bool		create_sphere(t_scene *scene, char **ball);
 
 //	CREATE PLANE

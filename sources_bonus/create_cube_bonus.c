@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 16:29:33 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/28 11:56:48 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/29 10:03:20 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ bool	create_cube(t_scene *scene, char **frnkd)
 {
 	t_shape	*cube;
 
-	if (ft_arraylen(frnkd) != 5)
+	if (ft_arraylen(frnkd) != 6)
 		return (false);
 	cube = malloc(sizeof(t_shape));
 	if (!cube)
@@ -52,7 +52,7 @@ bool	create_cube(t_scene *scene, char **frnkd)
 		return (free(cube), false);
 	cube->transform_matrix = ft_transform_cube(frnkd[1], frnkd[2], frnkd[3]);
 	cube->inverse_matrix = find_inverse(cube->transform_matrix);
-	cube->material = create_material(frnkd[4]);
+	cube->material = create_material(frnkd[4], frnkd[5]);
 	ft_lstadd_back(&scene->world->objects, ft_lstnew(cube));
 	return (true);
 }

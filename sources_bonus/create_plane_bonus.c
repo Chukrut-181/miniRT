@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 11:07:45 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/28 11:57:01 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/29 10:02:11 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ bool	create_plane(t_scene *scene, char **pla)
 	if (!plane)
 		ft_error_exit(scene, "Error\nMemory allocation failed for plane.\n", 1);
 	plane->type = PLANE;
-	if (ft_arraylen(pla) != 4 || !check_coords(pla[1])
+	if (ft_arraylen(pla) != 5 || !check_coords(pla[1])
 		|| !check_coords(pla[2]) || !check_rgb(pla[3]))
 		return (free(plane), false);
 	coords = ft_split(pla[1], ',');
@@ -36,7 +36,7 @@ bool	create_plane(t_scene *scene, char **pla)
 	ft_free_array(coords);
 	plane->transform_matrix = multiply_matrices(translate, rotate);
 	plane->inverse_matrix = find_inverse(plane->transform_matrix);
-	plane->material = create_material(pla[3]);
+	plane->material = create_material(pla[3], pla[4]);
 	ft_lstadd_back(&scene->world->objects, ft_lstnew(plane));
 	return (true);
 }
