@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 10:23:12 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/28 11:58:00 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:19:50 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_4x4	create_identity_matrix(void)
 	return (idmatrix);
 }
 
-t_4x4	create_translation_mx(float x, float y, float z)
+t_4x4	create_translation_mx(double x, double y, double z)
 {
 	t_4x4	translation_mx;
 
@@ -46,7 +46,7 @@ t_4x4	create_translation_mx(float x, float y, float z)
 	return (translation_mx);
 }
 
-t_4x4	create_scaling_mx(float x, float y, float z)
+t_4x4	create_scaling_mx(double x, double y, double z)
 {
 	t_4x4	scaling_mx;
 
@@ -58,7 +58,7 @@ t_4x4	create_scaling_mx(float x, float y, float z)
 }
 
 /* t_4x4	create_shearing_mx
-		(float Xy, float Xz, float Yx, float Yz, float Zx, float Zy)
+		(double Xy, double Xz, double Yx, double Yz, double Zx, double Zy)
 {
 	t_4x4	shearing_mx;
 

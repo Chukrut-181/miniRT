@@ -5,5 +5,5 @@ L   -100,100,-100 1 255,255,255
 C   0,0,-100 0,0,1 60
 
 
-# identifier  xyz center   xyz axis vector   float diameter   float height       rbg color
+# identifier  xyz center   xyz axis vector   double diameter   double height       rbg color
      cy       -15,-15,0           1,1,1           40                60         255,100,50

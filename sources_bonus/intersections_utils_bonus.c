@@ -6,20 +6,20 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 13:26:19 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/28 11:57:37 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:19:50 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt_bonus.h"
 
-void	solve_quadratic_equation(t_abcd data, float *t)
+void	solve_quadratic_equation(t_abcd data, double *t)
 {
 	t[0] = (-data.b - sqrtf(data.discriminant)) / (2 * data.a);
 	t[1] = (-data.b + sqrtf(data.discriminant)) / (2 * data.a);
 	return ;
 }
 
-void	update_inter(t_list **inter, t_shape *shape, float time)
+void	update_inter(t_list **inter, t_shape *shape, double time)
 {
 	t_xs	*intersec;
 
@@ -38,7 +38,7 @@ void	update_inter(t_list **inter, t_shape *shape, float time)
 
 void	identify_hit(t_list *xs_list)
 {
-	float	reference;
+	double	reference;
 	t_xs	*aux;
 	t_xs	*mark;
 

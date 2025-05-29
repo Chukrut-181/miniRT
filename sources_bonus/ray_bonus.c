@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 11:23:47 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/28 11:58:10 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:19:50 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_ray	create_ray(t_tuple origin, t_tuple direction)
 	return (ray);
 }
 
-t_tuple	ft_position(t_ray ray, float t)
+t_tuple	ft_position(t_ray ray, double t)
 {
 	t_tuple	pos;
 

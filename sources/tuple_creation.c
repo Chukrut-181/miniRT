@@ -6,13 +6,13 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:08:59 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/26 13:42:37 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:20:52 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-t_tuple	ft_create_point(float x, float y, float z)
+t_tuple	ft_create_point(double x, double y, double z)
 {
 	t_tuple	new_point;
 
@@ -23,7 +23,7 @@ t_tuple	ft_create_point(float x, float y, float z)
 	return (new_point);
 }
 
-t_tuple	create_vector(float x, float y, float z)
+t_tuple	create_vector(double x, double y, double z)
 {
 	t_tuple	new_vector;
 
@@ -36,9 +36,9 @@ t_tuple	create_vector(float x, float y, float z)
 
 int	check_equality(t_tuple tuple1, t_tuple tuple2)
 {
-	if ((fabsf(tuple1.x - tuple2.x) < EPSILON)
-		&& (fabsf(tuple1.y - tuple2.y) < EPSILON)
-		&& (fabsf(tuple1.z - tuple2.z) < EPSILON))
+	if ((fabs(tuple1.x - tuple2.x) < EPSILON)
+		&& (fabs(tuple1.y - tuple2.y) < EPSILON)
+		&& (fabs(tuple1.z - tuple2.z) < EPSILON))
 		return (0);
 	else
 		return (1);

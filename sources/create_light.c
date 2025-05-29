@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 15:51:55 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/28 13:09:16 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:19:50 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static bool	ft_apply_light_coords(t_world *world, char *coords)
 {
 	char	**split;
-	float	aux;
+	double	aux;
 	int		i;
 
 	split = ft_split(coords, ',');
@@ -68,7 +68,7 @@ bool	check_coords(char *coords)
 
 bool	create_light(t_world *world, char **light)
 {
-	float	aux;
+	double	aux;
 
 	if (world->light != NULL)
 		return (false);

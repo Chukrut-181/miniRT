@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:52:50 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/29 10:02:59 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:19:50 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	abcd_for_cyl(t_abcd *data, t_ray ray)
 	return ;
 }
 
-static t_4x4	ft_transform_cyl(char *center, char *axis, float r, float h)
+static t_4x4	ft_transform_cyl(char *center, char *axis, double r, double h)
 {
 	t_4x4	translate;
 	t_4x4	rotate;
@@ -49,8 +49,8 @@ static t_4x4	ft_transform_cyl(char *center, char *axis, float r, float h)
 bool	create_cylinder(t_scene *scene, char **cyl_data)
 {
 	t_shape	*cylinder;
-	float	radius;
-	float	height;
+	double	radius;
+	double	height;
 
 	if (ft_arraylen(cyl_data) != 7)
 		return (false);

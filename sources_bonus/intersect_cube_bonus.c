@@ -6,14 +6,14 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 17:13:52 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/28 12:41:28 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:20:52 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt_bonus.h"
 
-static void	handle_parallel_slab(float tnum_min, float tnum_max,
-	float *tmin, float *tmax)
+static void	handle_parallel_slab(double tnum_min, double tnum_max,
+	double *tmin, double *tmax)
 {
 	if (tnum_min > EPSILON || tnum_max < -EPSILON)
 	{
@@ -27,15 +27,15 @@ static void	handle_parallel_slab(float tnum_min, float tnum_max,
 	}
 }
 
-static void	intersect_slab(float src, float dir, float *tmin, float *tmax)
+static void	intersect_slab(double src, double dir, double *tmin, double *tmax)
 {
-	float	tnumerator_min;
-	float	tnumerator_max;
-	float	temp;
+	double	tnumerator_min;
+	double	tnumerator_max;
+	double	temp;
 
 	tnumerator_min = -1.0f - src;
 	tnumerator_max = 1.0f - src;
-	if (fabsf(dir) >= EPSILON)
+	if (fabs(dir) >= EPSILON)
 	{
 		*tmin = tnumerator_min / dir;
 		*tmax = tnumerator_max / dir;
@@ -52,11 +52,11 @@ static void	intersect_slab(float src, float dir, float *tmin, float *tmax)
 
 bool	intersect_cube(t_shape *shape, t_list **inter, t_ray ray)
 {
-	float	xt[2];
-	float	yt[2];
-	float	zt[2];
-	float	tmin;
-	float	tmax;
+	double	xt[2];
+	double	yt[2];
+	double	zt[2];
+	double	tmin;
+	double	tmax;
 
 	intersect_slab(ray.origin.x, ray.direction.x, &xt[0], &xt[1]);
 	intersect_slab(ray.origin.y, ray.direction.y, &yt[0], &yt[1]);

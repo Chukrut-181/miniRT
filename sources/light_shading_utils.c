@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 13:31:02 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/27 11:29:21 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:19:50 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_tuple	normal_at(t_shape *shape, t_tuple point)
 	return (normalize(normal_at));
 }
 
-t_color	effective_color(t_material m, t_color color, float intensity)
+t_color	effective_color(t_material m, t_color color, double intensity)
 {
 	t_color	effective_color;
 

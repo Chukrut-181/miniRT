@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:36:49 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/28 11:58:25 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:19:50 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_tuple	substract_tuples(t_tuple tuple1, t_tuple tuple2)
 	return (substraction);
 }
 
-t_tuple	multiply_tuple_f(t_tuple tuple, float scalar)
+t_tuple	multiply_tuple_f(t_tuple tuple, double scalar)
 {
 	t_tuple	product;
 
@@ -45,7 +45,7 @@ t_tuple	multiply_tuple_f(t_tuple tuple, float scalar)
 	return (product);
 }
 
-t_tuple	divide_tuple(t_tuple tuple, float scalar)
+t_tuple	divide_tuple(t_tuple tuple, double scalar)
 {
 	t_tuple	quotient;
 

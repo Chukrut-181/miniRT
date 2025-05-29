@@ -16,7 +16,7 @@ bool	intersect_plane(t_shape *shape, t_list **inter)
 {
 	t_xs	intersec;
 
-	if (fabsf(shape->ray_in_obj_space.direction.y) < EPSILON)
+	if (fabs(shape->ray_in_obj_space.direction.y) < EPSILON)
 	{
 		intersec.time = 0;
 		return (false);
@@ -34,10 +34,10 @@ bool	intersect_plane(t_shape *shape, t_list **inter)
 bool	intersect_cylinder(t_shape *shape, t_list **inter, t_ray ray)
 {
 	t_abcd	data;
-	float	t[2];
-	float	y0;
-	float	y1;
-	float	temp;
+	double	t[2];
+	double	y0;
+	double	y1;
+	double	temp;
 
 	abcd_for_cyl(&data, ray);
 	if (data.discriminant < 0)
@@ -63,7 +63,7 @@ bool	intersect_sphere(t_shape *shape, t_list **inter)
 	t_tuple	sphere_to_ray;
 	t_tuple	origin;
 	t_abcd	data;
-	float	t[2];
+	double	t[2];
 
 	origin = ft_create_point(0, 0, 0);
 	sphere_to_ray = substract_tuples(shape->ray_in_obj_space.origin, origin);

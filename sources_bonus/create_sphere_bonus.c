@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 10:05:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/29 10:05:49 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:19:50 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ bool	create_sphere(t_scene *scene, char **ball)
 	t_4x4	translate;
 	t_4x4	scalate;
 	char	**center;
-	float	diameter;
+	double	diameter;
 
 	if (ft_arraylen(ball) != 5)
 		return (false);

@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 12:28:40 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/28 10:43:25 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:19:50 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_comps	prepare_computations(t_xs *hit, t_ray ray)
 bool	is_shadowed(t_world world, t_tuple point)
 {
 	t_tuple	v;
-	float	distance;
+	double	distance;
 	t_list	*xs_list;
 	t_list	*current;
 	t_xs	*xsection;

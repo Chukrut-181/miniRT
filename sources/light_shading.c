@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:38:26 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/27 15:29:34 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:19:50 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_tuple	reflect(t_tuple in, t_tuple normal)
 {
-	float	dop;
+	double	dop;
 	t_tuple	scaled;
 	t_tuple	result;
 

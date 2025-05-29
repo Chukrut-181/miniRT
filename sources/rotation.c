@@ -6,13 +6,13 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 10:23:48 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/26 12:52:33 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:20:52 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-t_4x4	rotation_x(float radians)
+t_4x4	rotation_x(double radians)
 {
 	t_4x4	rotation_x;
 
@@ -24,7 +24,7 @@ t_4x4	rotation_x(float radians)
 	return (rotation_x);
 }
 
-t_4x4	rotation_y(float radians)
+t_4x4	rotation_y(double radians)
 {
 	t_4x4	rotation_y;
 
@@ -36,7 +36,7 @@ t_4x4	rotation_y(float radians)
 	return (rotation_y);
 }
 
-t_4x4	rotation_z(float radians)
+t_4x4	rotation_z(double radians)
 {
 	t_4x4	rotation_z;
 
@@ -48,12 +48,12 @@ t_4x4	rotation_z(float radians)
 	return (rotation_z);
 }
 
-t_4x4	rodriguez_rotation(float target_x, float target_y, float target_z)
+t_4x4	rodriguez_rotation(double target_x, double target_y, double target_z)
 {
 	t_tuple	target_n;
 	t_tuple	axis;
-	float	cos_th;
-	float	sin_th;
+	double	cos_th;
+	double	sin_th;
 	t_4x4	rot_mx;
 
 	rot_mx = create_identity_matrix();
@@ -61,7 +61,7 @@ t_4x4	rodriguez_rotation(float target_x, float target_y, float target_z)
 	axis = normalize(cross_product(create_vector(0, 1, 0), target_n));
 	cos_th = (0 * target_n.x) + (1 * target_n.y) + (0 * target_n.z);
 	sin_th = get_magnitude(cross_product(create_vector(0, 1, 0), target_n));
-	if (fabsf(sin_th) < EPSILON)
+	if (fabs(sin_th) < EPSILON)
 		return (rot_mx);
 	rot_mx.data[0][0] = cos_th + axis.x * axis.x * (1.0f - cos_th);
 	rot_mx.data[0][1] = axis.x * axis.y * (1.0f - cos_th) - axis.z * sin_th;

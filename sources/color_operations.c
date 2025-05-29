@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 12:57:23 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/21 11:30:28 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:19:50 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_color	multiply_colors(t_color c1, t_color c2)
 	return (result);
 }
 
-t_color	multiply_color_f(t_color tuple, float scalar)
+t_color	multiply_color_f(t_color tuple, double scalar)
 {
 	t_color	product;
 
@@ -48,7 +48,7 @@ t_color	add_colors(t_color tuple1, t_color tuple2)
 	return (addition);
 }
 
-t_color	ft_create_color(float x, float y, float z)
+t_color	ft_create_color(double x, double y, double z)
 {
 	t_color	new_point;
 

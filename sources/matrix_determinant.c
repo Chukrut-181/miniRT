@@ -6,13 +6,13 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:10:23 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/26 14:44:13 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:19:50 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-float	determinant_3x3(t_3x3 submx)
+double	determinant_3x3(t_3x3 submx)
 {
 	return (submx.data[0][0] * (submx.data[1][1] * submx.data[2][2]
 		- submx.data[1][2] * submx.data[2][1])
@@ -50,9 +50,9 @@ static t_3x3	ft_get_3x3_submatrix(t_4x4 matrix, int exc_col)
 	return (submatrix);
 }
 
-float	calculate_determinant(t_4x4 matrix)
+double	calculate_determinant(t_4x4 matrix)
 {
-	float	det;
+	double	det;
 	t_3x3	submatrix;
 	int		sign;
 	int		col;

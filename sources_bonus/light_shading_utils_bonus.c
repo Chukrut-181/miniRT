@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 13:31:02 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/29 09:34:17 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:20:52 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 static t_tuple	get_cube_normal(t_tuple obj_point)
 {
-	float	abs_x;
-	float	abs_y;
-	float	abs_z;
-	float	max_abs;
+	double	abs_x;
+	double	abs_y;
+	double	abs_z;
+	double	max_abs;
 
-	abs_x = fabsf(obj_point.x);
-	abs_y = fabsf(obj_point.y);
-	abs_z = fabsf(obj_point.z);
+	abs_x = fabs(obj_point.x);
+	abs_y = fabs(obj_point.y);
+	abs_z = fabs(obj_point.z);
 	max_abs = fmaxf(fmaxf(abs_x, abs_y), abs_z);
-	if (fabsf(max_abs - abs_x) < EPSILON)
+	if (fabs(max_abs - abs_x) < EPSILON)
 		return (create_vector(obj_point.x, 0, 0));
-	else if (fabsf(max_abs - abs_y) < EPSILON)
+	else if (fabs(max_abs - abs_y) < EPSILON)
 		return (create_vector(0, obj_point.y, 0));
 	else
 		return (create_vector(0, 0, obj_point.z));
@@ -53,7 +53,7 @@ t_tuple	normal_at(t_shape *shape, t_tuple point)
 	return (normalize(normal_at));
 }
 
-t_color	effective_color(t_material m, t_color color, float intensity)
+t_color	effective_color(t_material m, t_color color, double intensity)
 {
 	t_color	effective_color;
 

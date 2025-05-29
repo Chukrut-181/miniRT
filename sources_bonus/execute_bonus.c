@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 12:38:42 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/28 11:57:19 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:19:50 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ static void	write_pixel(t_img *img, int x, int y, int color)
 
 static t_ray	ray_for_pixel(t_camera camera, int px, int py)
 {
-	float	world_x;
-	float	world_y;
+	double	world_x;
+	double	world_y;
 	t_tuple	pixel;
 	t_tuple	origin;
 	t_4x4	inverse;

@@ -6,20 +6,20 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 10:04:30 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/28 11:58:28 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:19:50 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt_bonus.h"
 
-float	get_magnitude(t_tuple v)
+double	get_magnitude(t_tuple v)
 {
 	return (sqrtf(v.x * v.x + v.y * v.y + v.z * v.z));
 }
 
 t_tuple	normalize(t_tuple v)
 {
-	float	mag;
+	double	mag;
 	t_tuple	normalized;
 
 	mag = get_magnitude(v);
@@ -29,7 +29,7 @@ t_tuple	normalize(t_tuple v)
 	return (normalized);
 }
 
-float	dot_product(t_tuple v1, t_tuple v2)
+double	dot_product(t_tuple v1, t_tuple v2)
 {
 	return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
 }

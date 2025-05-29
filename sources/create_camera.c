@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 13:51:00 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/21 11:45:16 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:20:52 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_4x4	view_transform(t_tuple origin, t_tuple direction)
 	t_4x4	translation;
 
 	up = create_vector(0, 1, 0);
-	if (fabsf(direction.y) > 0.9999f)
+	if (fabs(direction.y) > 0.9999f)
 	{
 		if (direction.y > 0)
 			up = create_vector(0, 0, -1);
@@ -54,14 +54,14 @@ t_4x4	view_transform(t_tuple origin, t_tuple direction)
 
 static void	camera_guie(t_scene *scene, char *pov)
 {
-	float	fov;
-	float	half_view;
-	float	aspect;
+	double	fov;
+	double	half_view;
+	double	aspect;
 
 	fov = ft_atof(pov) * M_PI / 180.0;
 	scene->camera->field_of_view = fov;
 	half_view = tanf(fov / 2);
-	aspect = ((float)WIDTH / (float)HEIGHT);
+	aspect = ((double)WIDTH / (double)HEIGHT);
 	if (aspect >= 1)
 	{
 		scene->camera->half_width = half_view;

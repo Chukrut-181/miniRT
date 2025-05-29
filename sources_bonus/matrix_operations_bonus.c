@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 09:50:24 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/28 11:57:56 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:20:52 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	check_matrix_equality(t_4x4 matrix1, t_4x4 matrix2)
 		j = 0;
 		while (j < 4)
 		{
-			if (fabsf(matrix1.data[i][j] - matrix2.data[i][j]) > EPSILON)
+			if (fabs(matrix1.data[i][j] - matrix2.data[i][j]) > EPSILON)
 				return (1);
 			else
 				j++;
@@ -102,7 +102,7 @@ t_4x4	find_inverse(t_4x4 matrix)
 {
 	t_4x4	inverse;
 	t_3x3	submatrix;
-	float	cofdet[2];
+	double	cofdet[2];
 	int		row;
 	int		col;
 

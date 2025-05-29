@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 12:18:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/26 11:18:23 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:19:50 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 bool	apply_rgb(t_color *color, char *original)
 {
 	char	**split;
-	float	aux;
+	double	aux;
 	int		i;
 
 	split = ft_split(original, ',');
@@ -66,7 +66,7 @@ bool	check_rgb(char *colorcode)
 
 bool	create_ambient(t_world *world, char **ambient)
 {
-	float	aux;
+	double	aux;
 
 	if (world->ambient != NULL)
 		return (false);

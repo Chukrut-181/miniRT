@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:58:02 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/29 09:35:09 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:19:50 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,20 @@
 
 typedef struct s_tuple
 {
-	float	x;
-	float	y;
-	float	z;
+	double	x;
+	double	y;
+	double	z;
 	int		w;
 }	t_tuple;
 
 typedef struct s_4x4
 {
-	float	data[4][4];
+	double	data[4][4];
 }	t_4x4;
 
 typedef struct s_3x3
 {
-	float	data[3][3];
+	double	data[3][3];
 }	t_3x3;
 
 typedef struct s_ray
@@ -43,18 +43,18 @@ typedef struct s_ray
 
 typedef struct s_color
 {
-	float	r;
-	float	g;
-	float	b;
+	double	r;
+	double	g;
+	double	b;
 }	t_color;
 
 typedef struct s_material
 {
 	t_color	color;
-	float	ambient;
-	float	diffuse;
-	float	specular;
-	float	shininess;
+	double	ambient;
+	double	diffuse;
+	double	specular;
+	double	shininess;
 }	t_material;
 
 typedef enum e_object_type
@@ -69,23 +69,23 @@ typedef enum e_object_type
 
 typedef struct s_quadratic_equation_data
 {
-	float	discriminant;
-	float	a;
-	float	b;
-	float	c;
+	double	discriminant;
+	double	a;
+	double	b;
+	double	c;
 }	t_abcd;
 
 typedef struct s_light
 {
 	t_tuple	source;
 	t_color	l_color;
-	float	intensity;
+	double	intensity;
 }	t_light;
 
 typedef struct s_ambient
 {
 	t_color	a_color;
-	float	ratio;
+	double	ratio;
 }	t_ambient;
 
 typedef struct s_world
@@ -144,9 +144,9 @@ typedef struct s_intersection
 	bool	intersec;
 	int		hit;
 	t_shape	*object;
-	float	time;
-	float	min;
-	float	max;
+	double	time;
+	double	min;
+	double	max;
 	t_tuple	point;
 	t_tuple	normal;
 	t_color	color;
@@ -155,7 +155,7 @@ typedef struct s_intersection
 typedef struct s_comps
 {
 	t_shape	*object;
-	float	time;
+	double	time;
 	t_tuple	point;
 	t_tuple	over_point;
 	t_tuple	eyev;
@@ -171,8 +171,8 @@ typedef struct s_lighting
 	t_color	diffuse;
 	t_color	specular;
 	t_tuple	reflectv;
-	float	factor;
-	float	reflect_dot_eye;
+	double	factor;
+	double	reflect_dot_eye;
 }	t_lighting;
 
 #endif
