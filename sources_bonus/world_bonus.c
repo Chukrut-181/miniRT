@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 12:28:40 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/29 12:47:28 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/29 13:33:47 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ t_color	shade_hit(t_world world, t_comps comps, int remaining)
 
 	shadowed = is_shadowed(world, comps.over_point);
 	surface = lighting(comps, &world, shadowed);
-	surface = multiply_color_f(surface, (1 - comps.object->material.reflectiveness));
 	reflected = reflected_color(world, comps, remaining);
 	return (add_colors(surface, reflected));
 }
