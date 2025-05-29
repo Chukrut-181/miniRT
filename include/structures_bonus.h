@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   structures.h                                       :+:      :+:    :+:   */
+/*   structures_bonus.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/21 11:58:02 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/29 09:35:09 by igchurru         ###   ########.fr       */
+/*   Created: 2025/05/29 09:32:26 by igchurru          #+#    #+#             */
+/*   Updated: 2025/05/29 09:34:17 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCTURES_H
-# define STRUCTURES_H
+#ifndef STRUCTURES_BONUS_H
+# define STRUCTURES_BONUS_H
 
 # include "../lib/minilibx/mlx.h"
 # include "../lib/libft/libft.h"
@@ -55,6 +55,7 @@ typedef struct s_material
 	float	diffuse;
 	float	specular;
 	float	shininess;
+	float	reflectiveness;
 }	t_material;
 
 typedef enum e_object_type

@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 10:05:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/28 11:57:06 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/05/29 09:34:17 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ bool	create_sphere(t_scene *scene, char **ball)
 	diameter = ft_atof(ball[2]) / 2.0f;
 	scalate = create_scaling_mx(diameter, diameter, diameter);
 	sphere->material = create_material(ball[3]);
-	sphere->material.refelctive = 0.5;
+	sphere->material.reflectiveness = 0.5;
 	sphere->transform_matrix = multiply_matrices(translate, scalate);
 	sphere->inverse_matrix = find_inverse(sphere->transform_matrix);
 	ft_lstadd_back(&scene->world->objects, ft_lstnew(sphere));
