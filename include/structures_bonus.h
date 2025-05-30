@@ -56,6 +56,8 @@ typedef struct s_material
 	float	specular;
 	float	shininess;
 	float	reflectiveness;
+	float	transparency;
+	float	refractive_index;
 }	t_material;
 
 typedef enum e_object_type
@@ -156,12 +158,15 @@ typedef struct s_intersection
 typedef struct s_comps
 {
 	t_shape	*object;
-	float	time;
 	t_tuple	point;
 	t_tuple	over_point;
 	t_tuple	eyev;
 	t_tuple	normalv;
 	t_tuple	reflectv;
+	t_tuple	under_point;
+	float	time;
+	float	n1;
+	float	n2;
 	bool	inside;
 }	t_comps;
 

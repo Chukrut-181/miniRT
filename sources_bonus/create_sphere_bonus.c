@@ -54,7 +54,9 @@ bool	create_sphere(t_scene *scene, char **ball)
 	diameter = ft_atof(ball[2]) / 2.0f;
 	scalate = create_scaling_mx(diameter, diameter, diameter);
 	sphere->material = create_material(ball[3]);
-	sphere->material.reflectiveness = 0.5;
+	sphere->material.reflectiveness = 0.9;
+	//sphere->material.transparency = 0.6;
+	//sphere->material.refractive_index = 1.0;
 	sphere->transform_matrix = multiply_matrices(translate, scalate);
 	sphere->inverse_matrix = find_inverse(sphere->transform_matrix);
 	ft_lstadd_back(&scene->world->objects, ft_lstnew(sphere));

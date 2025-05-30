@@ -12,30 +12,6 @@
 
 #include "../include/minirt_bonus.h"
 
-t_comps	prepare_computations(t_xs *hit, t_ray ray)
-{
-	t_comps	comps;
-
-	comps.time = hit->time;
-	comps.object = hit->object;
-	comps.point = ft_position(ray, comps.time);
-	comps.eyev = negate_tuple(ray.direction);
-	comps.normalv = normal_at((t_shape *)comps.object, comps.point);
-	if (dot_product(comps.normalv, comps.eyev) < 0)
-	{
-		comps.inside = true;
-		comps.normalv = negate_tuple(comps.normalv);
-	}
-	else
-		comps.inside = false;
-	comps.over_point.x = comps.point.x + comps.normalv.x * EPSILON;
-	comps.over_point.y = comps.point.y + comps.normalv.y * EPSILON;
-	comps.over_point.z = comps.point.z + comps.normalv.z * EPSILON;
-	comps.over_point.w = 1;
-	comps.reflectv = reflect(ray.direction, comps.normalv);
-	return (comps);
-}
-
 bool	is_shadowed(t_world world, t_tuple point)
 {
 	t_tuple	v;
@@ -67,12 +43,14 @@ t_color	shade_hit(t_world world, t_comps comps, int remaining)
 {
 	t_color	surface;
 	t_color reflected;
+	t_color	transparent;
 	bool	shadowed;
 
 	shadowed = is_shadowed(world, comps.over_point);
 	surface = lighting(comps, &world, shadowed);
 	reflected = reflected_color(world, comps, remaining);
-	return (add_colors(surface, reflected));
+	transparent = refracted_color(world, comps, remaining);
+	return (add_colors(transparent, add_colors(surface, reflected)));
 }
 
 static void	find_min(t_list *xs, t_xs **min_inter, double *min)

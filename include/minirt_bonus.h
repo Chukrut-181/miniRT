@@ -99,6 +99,9 @@ t_color		lighting(t_comps comp, t_world *world, bool in_shadow);
 t_tuple		normal_at(t_shape *shape, t_tuple point);
 t_color		effective_color(t_material m, t_color color, float intensity);
 t_light		point_light(t_tuple position, t_color color);
+t_color     transparent_color(t_world world, t_comps comps, int remaining);
+t_color     reflected_color(t_world world, t_comps comps, int remaining);
+t_color     refracted_color(t_world world, t_comps comps, int remaining);
 
 //	PARSE
 int			get_scene(t_scene *scene, char *argv1);
@@ -134,11 +137,10 @@ void		abcd_for_cyl(t_abcd *data, t_ray ray);
 void		render_scene(t_scene *s);
 t_color		shade_hit(t_world w, t_comps comps, int remaining);
 t_color     calculate_inter(t_world world, t_ray ray, int remaining);
-t_color     reflected_color(t_world world, t_comps comps, int remaining);
 
 //	CREATE CUBE
-bool	create_cube(t_scene *scene, char **temp);
-bool	intersect_cube(t_shape *shape, t_list **inter, t_ray ray);
+bool	    create_cube(t_scene *scene, char **temp);
+bool	    intersect_cube(t_shape *shape, t_list **inter, t_ray ray);
 
 //	INTERSECTIONS
 bool		intersect_plane(t_shape *shape, t_list **inter);
@@ -155,7 +157,7 @@ t_list		*ft_intersect_world(t_world world, t_ray ray);
 
 //	WORLD
 t_xs		*ft_find_hit(t_list *intersections);
-t_comps		prepare_computations(t_xs *hit, t_ray ray);
+t_comps     prepare_computations(t_xs *hit, t_ray ray, t_list *xs);
 
 //	HOOKS
 int			key_hook(int keycode, t_scene *data);

@@ -83,3 +83,30 @@ t_color	reflected_color(t_world world, t_comps comps, int remaining)
 	color = calculate_inter(world, reflect_ray, remaining - 1);
 	return(multiply_color_f(color, comps.object->material.reflectiveness));
 }
+
+t_color refracted_color(t_world world, t_comps comps, int remaining)
+{
+	float	n_ratio;
+	float	cos_i;
+	float	sin2_t;
+	float	cos_t;
+	t_tuple	direction;
+	t_ray	refract_ray;
+	t_color	color;
+
+	if (comps.object->material.transparency == 0 || remaining <= 0)
+		return (ft_create_color(0, 0, 0));
+	n_ratio = comps.n1 / comps.n2;
+	cos_i = dot_product(comps.eyev, comps.normalv);
+	sin2_t = pow(n_ratio, 2) * (1 - pow(cos_i, 2));
+	if (sin2_t > 1)
+		return (ft_create_color(0, 0, 0));
+	cos_t = sqrt(1.0 - sin2_t);
+	direction = substract_tuples(
+		multiply_tuple_f(comps.normalv, (n_ratio * cos_i - cos_t)),
+		multiply_tuple_f(comps.eyev, n_ratio)
+	);
+	refract_ray = create_ray(comps.under_point, direction);
+	color = calculate_inter(world, refract_ray, remaining - 1);
+	return (multiply_color_f(color, comps.object->material.transparency));
+}

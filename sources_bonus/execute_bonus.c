@@ -79,7 +79,7 @@ t_color	calculate_inter(t_world world, t_ray ray, int remaining)
 	hit = ft_find_hit(intersections);
 	if (hit && hit->time > 0)
 	{
-		comps = prepare_computations(hit, ray);
+		comps = prepare_computations(hit, ray, intersections);
 		color = shade_hit(world, comps, remaining);
 	}
 	else
