@@ -6,7 +6,7 @@
 #    By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/19 10:29:45 by igchurru          #+#    #+#              #
-#    Updated: 2025/05/28 09:31:32 by igchurru         ###   ########.fr        #
+#    Updated: 2025/06/02 15:10:56 by igchurru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,7 @@ BONUS_SRCS = sources_bonus/color_operations_bonus.c \
 		sources_bonus/create_cylinder_bonus.c \
 		sources_bonus/create_light_bonus.c \
 		sources_bonus/create_plane_bonus.c \
+		sources_bonus/create_cube_bonus.c \
 		sources_bonus/create_sphere_bonus.c \
 		sources_bonus/error_bonus.c \
 		sources_bonus/execute_bonus.c \

@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 13:51:00 by igchurru          #+#    #+#             */
-/*   Updated: 2025/06/02 15:02:08 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/06/02 15:34:28 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,24 @@ static void	camera_guie(t_scene *scene, char *pov)
 	scene->camera->pixel_size = (scene->camera->half_width * 2) / WIDTH;
 }
 
+static bool	check_cam_vector(char *vector)
+{
+	char	**aux;
+	float	temp;
+
+	aux = ft_split(vector, ',');
+	temp = ft_atof(aux[0]);
+	if (temp < -1 || temp > 1)
+		return (false);
+	temp = ft_atof(aux[1]);
+	if (temp < -1 || temp > 1)
+		return (false);
+	temp = ft_atof(aux[2]);
+	if (temp < -1 || temp > 1)
+		return (false);
+	return (true);
+}
+
 bool	create_camera(t_scene *scene, char **cam_data)
 {
 	t_tuple	origin;
@@ -87,8 +105,9 @@ bool	create_camera(t_scene *scene, char **cam_data)
 	if (!scene->camera || ft_atof(cam_data[3]) < 0
 		|| 180 < ft_atof(cam_data[3]))
 		return (false);
-	if (!check_coords(cam_data[1]) || !check_coords(cam_data[2]))
-		return (free(scene->camera), false);
+	if (!check_coords(cam_data[1]) || !check_coords(cam_data[2])
+		|| !check_cam_vector(cam_data[2]))
+		return (false);
 	coords = ft_split(cam_data[1], ',');
 	origin = ft_create_point(ft_atof(coords[0]),
 			ft_atof(coords[1]), ft_atof(coords[2]));
