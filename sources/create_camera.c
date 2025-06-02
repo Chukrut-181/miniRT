@@ -100,7 +100,7 @@ bool	create_camera(t_scene *scene, char **cam_data)
 	char	**coords;
 
 	if (scene->camera != NULL)
-		ft_error_exit(scene, "Error\nCamera defined twice", 1);
+		return (false);
 	scene->camera = malloc(sizeof(t_camera));
 	if (!scene->camera || ft_atof(cam_data[3]) < 0
 		|| 180 < ft_atof(cam_data[3]))
