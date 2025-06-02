@@ -34,5 +34,7 @@ void	ft_free_scene(t_scene *scene)
 			free(scene->world->ambient);
 		free(scene->world);
 	}
+	if (scene->mlx)
+		free(scene->mlx);
 	free(scene);
 }
