@@ -18,16 +18,65 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -g -g3 -O0
 MLX42_FLAGS = -ldl -lglfw -pthread
 
-SRC_DIR = sources
-BONUS_SRC_DIR = sources_bonus
 OBJ_DIR = objects
 BONUS_OBJ_DIR = objects_bonus
 
-SRCS = $(wildcard $(SRC_DIR)/**/*.c, $(SRC_DIR)/*.c)
-OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
+SRCS = sources/color_operations.c \
+		sources/create_ambient.c \
+		sources/create_camera.c \
+		sources/create_cylinder.c \
+		sources/create_light.c \
+		sources/create_plane.c \
+		sources/create_sphere.c \
+		sources/error.c \
+		sources/execute.c \
+		sources/hooks.c \
+		sources/intersections_utils.c \
+		sources/intersections.c \
+		sources/light_shading_utils.c \
+		sources/light_shading.c \
+		sources/main.c \
+		sources/matrix_determinant.c \
+		sources/matrix_operations.c \
+		sources/matrix_transformation.c \
+		sources/parse.c \
+		sources/ray.c \
+		sources/rotation.c \
+		sources/tuple_creation.c \
+		sources/tuple_operations.c \
+		sources/vector_operations.c \
+		sources/world.c \
 
-BONUS_SRCS = $(wildcard $(BONUS_SRC_DIR)/**/*.c, $(BONUS_SRC_DIR)/*.c)
-BONUS_OBJS = $(patsubst $(BONUS_SRC_DIR)/%.c, $(BONUS_OBJ_DIR)/%.o, $(BONUS_SRCS))
+OBJS = $(patsubst $(SRCS)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
+
+BONUS_SRCS = sources_bonus/color_operations_bonus.c \
+		sources_bonus/create_ambient_bonus.c \
+		sources_bonus/create_camera_bonus.c \
+		sources_bonus/create_cylinder_bonus.c \
+		sources_bonus/create_light_bonus.c \
+		sources_bonus/create_plane_bonus.c \
+		sources_bonus/create_sphere_bonus.c \
+		sources_bonus/error_bonus.c \
+		sources_bonus/execute_bonus.c \
+		sources_bonus/hooks_bonus.c \
+		sources_bonus/intersect_cube_bonus.c \
+		sources_bonus/intersections_utils_bonus.c \
+		sources_bonus/intersections_bonus.c \
+		sources_bonus/light_shading_utils_bonus.c \
+		sources_bonus/light_shading_bonus.c \
+		sources_bonus/main_bonus.c \
+		sources_bonus/matrix_determinant_bonus.c \
+		sources_bonus/matrix_operations_bonus.c \
+		sources_bonus/matrix_transformation_bonus.c \
+		sources_bonus/parse_bonus.c \
+		sources_bonus/ray_bonus.c \
+		sources_bonus/rotation_bonus.c \
+		sources_bonus/tuple_creation_bonus.c \
+		sources_bonus/tuple_operations_bonus.c \
+		sources_bonus/vector_operations_bonus.c \
+		sources_bonus/world_bonus.c \
+
+BONUS_OBJS = $(patsubst $(BONUS_SRCS)/%.c, $(BONUS_OBJ_DIR)/%.o, $(BONUS_SRCS))
 
 LIBS = lib/minilibx/libmlx.a lib/libft/libft.a
 
