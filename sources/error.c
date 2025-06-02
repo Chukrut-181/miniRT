@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 15:03:48 by igchurru          #+#    #+#             */
-/*   Updated: 2025/06/02 13:24:17 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/06/02 15:04:07 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,6 @@ void	ft_free_scene(t_scene *scene)
 		free(scene->world);
 	}
 	if (scene->mlx)
-	{
-		write(1, "olakease!\n", 13);
 		free(scene->mlx);
-	}
 	free(scene);
 }
