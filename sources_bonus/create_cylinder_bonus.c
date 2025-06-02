@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:52:50 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/28 11:56:53 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/06/02 11:14:24 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	abcd_for_cyl(t_abcd *data, t_ray ray)
 {
 	data->a = (ray.direction.x * ray.direction.x)
 		+ (ray.direction.z * ray.direction.z);
-	data->b = 2.0 * (ray.origin.x * ray.direction.x)
-		+ (ray.origin.z * ray.direction.z);
+	data->b = 2.0 * ((ray.origin.x * ray.direction.x)
+		+ (ray.origin.z * ray.direction.z));
 	data->c = (ray.origin.x * ray.origin.x)
 		+ (ray.origin.z * ray.origin.z) - 1;
 	data->discriminant = (data->b * data->b) - (4 * data->a * data->c);
