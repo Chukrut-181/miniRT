@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 11:51:26 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/29 09:34:39 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/06/02 10:44:06 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,9 +132,9 @@ void		abcd_for_cyl(t_abcd *data, t_ray ray);
 
 //	EXECUTE
 void		render_scene(t_scene *s);
-t_color		shade_hit(t_world w, t_comps comps, int remaining);
-t_color     calculate_inter(t_world world, t_ray ray, int remaining);
-t_color     reflected_color(t_world world, t_comps comps, int remaining);
+t_color		shade_hit(t_world w, t_comps comps);//, int remaining);
+t_color     calculate_inter(t_world world, t_ray ray);//, int remaining);
+t_color     reflected_color(t_world world, t_comps comps);//, int remaining);
 
 //	CREATE CUBE
 bool	create_cube(t_scene *scene, char **temp);
