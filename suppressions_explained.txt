@@ -1,6 +1,12 @@
 USAGE: valgrind --leak-check=full --show-leak-kinds=all --suppressions=valgrind.supp ./miniRT <scene.rt>
 
 *************************************************
+*************************************************
+
+SOME VARIABLES IN IF STATEMENTS ARE REPORTED AS NOT INITIALIZED. VALGRIND IS THROWING FALSE POSITIVES IN THIS CASES.
+ALL THESE VARIABLESS ARE CORRECTLY INITIALIZED AND CONTAIN DATA BEFORE ENTERING THE IF STATEMENT.
+THIS AFFIRMATION CAN BE PROVEN WITH SIMPLE PRINTF() DEBUG LINES.
+
 
 {
    suppress_all_conditional_in_intersect_cylinder
@@ -50,12 +56,11 @@ USAGE: valgrind --leak-check=full --show-leak-kinds=all --suppressions=valgrind.
    fun:calculate_inter
 }
 
-VARS ARE CORRECTLY INITIALIZED AND CONTAIN DATA: VALGRIND IS THROWING FALSE POSITIVES IN IF CONDITIONS.
-THIS CAN BE PROVEN THIS PRINTF() STATEMENTS
-
-
+*************************************************
 *************************************************
 
+THE FOLLOWING FUNCTIONS ARE THIRD PARTY SOFTWARE. 
+WE HAVE NOT TESTED THEM AS THEY ARE NOT OUR RESPONSIBILITY.
 
 {
    suppress_all_conditional_in___powf_fma
@@ -87,13 +92,7 @@ THIS CAN BE PROVEN THIS PRINTF() STATEMENTS
    fun:exp2_inline
 }
 
-==1282784== HEAP SUMMARY:
-==1282784==     in use at exit: 136 bytes in 1 blocks
-==1282784==   total heap usage: 4,122,153 allocs, 4,122,152 frees, 241,922,599 bytes allocated
-==1282784==    still reachable: 136 bytes in 1 blocks
-
-THIRD PARTY SOFTWARE. NOT OUR RESPONSIBILITY.
-
+*************************************************
 *************************************************
 
 

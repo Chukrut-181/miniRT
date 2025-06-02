@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 11:07:45 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/26 13:00:39 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/06/02 16:54:20 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ bool	create_plane(t_scene *scene, char **pla)
 
 	plane = malloc(sizeof(t_shape));
 	if (!plane)
-		ft_error_exit(scene, "Error\nMemory allocation failed for plane.\n", 1);
+		return (false);;
 	plane->type = PLANE;
 	if (!check_coords(pla[1]) || !check_coords(pla[2]) || !check_rgb(pla[3]))
 		return (free(plane), false);

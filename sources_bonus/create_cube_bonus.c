@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 16:29:33 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/28 11:56:48 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/06/02 16:55:33 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ bool	create_cube(t_scene *scene, char **frnkd)
 		return (false);
 	cube = malloc(sizeof(t_shape));
 	if (!cube)
-		ft_error_exit(scene, "Error\nMemory allocation failed for cube.\n", 1);
+		return (false);
 	cube->type = CUBE;
 	if (!check_coords(frnkd[1]) || !check_coords(frnkd[2])
 		|| !check_coords(frnkd[3]) || !check_rgb(frnkd[4]))

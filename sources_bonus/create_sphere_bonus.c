@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 10:05:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/06/02 10:41:12 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/06/02 16:54:55 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ bool	create_sphere(t_scene *scene, char **ball)
 		return (false);
 	sphere = malloc(sizeof(t_shape));
 	if (!sphere)
-		ft_error_exit(scene, "Error\nFailed to allocate sphere", 1);
+		return (false);
 	sphere->type = SPHERE;
 	if (!check_coords(ball[1]) || !check_rgb(ball[3]))
 		return (free(sphere), false);
