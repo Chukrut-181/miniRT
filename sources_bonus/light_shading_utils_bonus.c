@@ -71,15 +71,3 @@ t_light	point_light(t_tuple position, t_color color)
 	light.l_color = color;
 	return (light);
 }
-
-t_color	reflected_color(t_world world, t_comps comps)
-{
-	t_ray	reflect_ray;
-	t_color	color;
-
-	if (comps.object->material.reflectiveness == 0)
-		return (ft_create_color(0, 0, 0));
-	reflect_ray = create_ray(comps.over_point, comps.reflectv);
-	color = calculate_inter(world, reflect_ray);
-	return(multiply_color_f(color, comps.object->material.reflectiveness));
-}

@@ -58,7 +58,6 @@ t_color		add_colors(t_color tuple1, t_color tuple2);
 t_color		multiply_colors(t_color c1, t_color c2);
 t_color		ft_create_color(float x, float y, float z);
 t_tuple		color_tp(t_color p);
-t_tuple     matrix_multi_tp(t_4x4 mat, t_tuple tp);
 
 //	MATRIX OPERATIONS
 int			check_matrix_equality(t_4x4 matrix1, t_4x4 matrix2);
@@ -129,7 +128,7 @@ void		abcd_for_cyl(t_abcd *data, t_ray ray);
 //	EXECUTE
 void		render_scene(t_scene *s);
 t_color		shade_hit(t_world w, t_comps comps);
-t_color     calculate_inter(t_world world, t_ray ray);
+t_color		calculate_inter(t_world world, t_ray ray);
 
 //	INTERSECTIONS
 bool		intersect_plane(t_shape *shape, t_list **inter);
@@ -155,6 +154,6 @@ int			close_hook(t_scene *data);
 //	ERROR EXIT
 int			ft_error_exit(t_scene *failed_scene, char *err_msg, int err_code);
 void		ft_free_scene(t_scene *scene);
-void	    free_intersections(t_xs **inter, t_list **xs);
+void		free_intersections(t_xs **inter, t_list **xs);
 
 #endif

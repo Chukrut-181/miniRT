@@ -29,7 +29,7 @@ static t_scene	*ft_init_scene(void)
 	return (new_scene);
 }
 
-static void	 init_mlx(t_scene *s)
+static	void	init_mlx(t_scene *s)
 {
 	s->img.img_ptr = NULL;
 	s->img.bits_per_pixel = 0;
