@@ -84,8 +84,7 @@ t_color	calculate_inter(t_world world, t_ray ray)
 	}
 	else
 		color = ft_create_color(0, 0, 0);
-	if (intersections)
-		ft_lstclear(&intersections, free);
+	free_intersections(&hit, &intersections);
 	return (color);
 }
 

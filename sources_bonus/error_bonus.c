@@ -12,6 +12,21 @@
 
 #include "../include/minirt_bonus.h"
 
+void	free_intersections(t_xs **inter, t_list **xs)
+{
+	t_list	*temp;
+
+	if ((*inter)->time == 0)
+		free(*inter);
+	while (*xs)
+	{
+		temp = (*xs)->next;
+		free((*xs)->content);
+		free(*xs);
+		*xs = temp;
+	}
+}
+
 int	ft_error_exit(t_scene *failed_scene, char *err_msg, int err_code)
 {
 	if (failed_scene)
