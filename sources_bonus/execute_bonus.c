@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 12:38:42 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/28 11:57:19 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/06/02 10:49:59 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static t_ray	ray_for_pixel(t_camera camera, int px, int py)
 	return (create_ray(origin, normalize(substract_tuples(pixel, origin))));
 }
 
-t_color	calculate_inter(t_world world, t_ray ray, int remaining)
+t_color	calculate_inter(t_world world, t_ray ray)
 {
 	t_list	*intersections;
 	t_xs	*hit;
@@ -80,7 +80,7 @@ t_color	calculate_inter(t_world world, t_ray ray, int remaining)
 	if (hit && hit->time > 0)
 	{
 		comps = prepare_computations(hit, ray);
-		color = shade_hit(world, comps, remaining);
+		color = shade_hit(world, comps);
 	}
 	else
 		color = ft_create_color(0, 0, 0);
@@ -104,7 +104,7 @@ void	render_scene(t_scene *s)
 		while (x < WIDTH)
 		{
 			ray = ray_for_pixel(*s->camera, x, y);
-			color = calculate_inter(*s->world, ray, REMAINING);
+			color = calculate_inter(*s->world, ray);
 			pixel_color = color_to_int(color);
 			write_pixel(&s->img, x, y, pixel_color);
 			x++;

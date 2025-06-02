@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 12:28:40 by igchurru          #+#    #+#             */
-/*   Updated: 2025/06/02 10:43:17 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/06/02 10:50:29 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,16 +63,13 @@ bool	is_shadowed(t_world world, t_tuple point)
 	return (false);
 }
 
-t_color	shade_hit(t_world world, t_comps comps)//, int remaining)
+t_color	shade_hit(t_world world, t_comps comps)
 {
 	t_color	surface;
-	//t_color reflected;
 	bool	shadowed;
 
 	shadowed = is_shadowed(world, comps.over_point);
 	surface = lighting(comps, &world, shadowed);
-	//reflected = reflected_color(world, comps, remaining);
-	//return (add_colors(surface, reflected));
 	return (surface);
 }
 

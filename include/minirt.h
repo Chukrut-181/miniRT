@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 18:08:55 by eandres           #+#    #+#             */
-/*   Updated: 2025/05/28 12:37:08 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/06/02 10:50:06 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,6 @@
 
 # ifndef M_PI
 #  define M_PI 3.1415926535897932
-# endif
-
-# ifndef REMAINING
-#  define REMAINING 5
 # endif
 
 //	MAIN

@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 13:31:02 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/29 09:34:17 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/06/02 10:50:18 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,14 @@ t_light	point_light(t_tuple position, t_color color)
 	return (light);
 }
 
-t_color	reflected_color(t_world world, t_comps comps, int remaining)
+t_color	reflected_color(t_world world, t_comps comps)
 {
 	t_ray	reflect_ray;
 	t_color	color;
 
-	if (comps.object->material.reflectiveness == 0 || remaining <= 0)
+	if (comps.object->material.reflectiveness == 0)
 		return (ft_create_color(0, 0, 0));
 	reflect_ray = create_ray(comps.over_point, comps.reflectv);
-	color = calculate_inter(world, reflect_ray, remaining - 1);
+	color = calculate_inter(world, reflect_ray);
 	return(multiply_color_f(color, comps.object->material.reflectiveness));
 }
