@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:44:53 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/27 16:21:46 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/06/02 16:22:26 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,22 +47,22 @@ int	parse_line(t_scene *scene, char *line)
 	if (*line == '#')
 		return (0);
 	temp = ft_split(line, ' ');
-	if (!ft_strncmp(temp[0], "A", 1) && ft_arraylen(temp) == 3
+	if (!ft_strcmp(temp[0], "A") && ft_arraylen(temp) == 3
 		&& create_ambient(scene->world, temp))
 		return (ft_free_array(temp), 0);
-	else if (!ft_strncmp(temp[0], "C", 1) && ft_arraylen(temp) == 4
+	else if (!ft_strcmp(temp[0], "C") && ft_arraylen(temp) == 4
 		&& create_camera(scene, temp))
 		return (ft_free_array(temp), 0);
-	else if (!ft_strncmp(temp[0], "L", 1) && ft_arraylen(temp) == 4
+	else if (!ft_strcmp(temp[0], "L") && ft_arraylen(temp) == 4
 		&& create_light(scene->world, temp))
 		return (ft_free_array(temp), 0);
-	else if (!ft_strncmp(temp[0], "sp", 2) && ft_arraylen(temp) == 4
+	else if (!ft_strcmp(temp[0], "sp") && ft_arraylen(temp) == 4
 		&& create_sphere(scene, temp))
 		return (ft_free_array(temp), 0);
-	else if (!ft_strncmp(temp[0], "pl", 2) && ft_arraylen(temp) == 4
+	else if (!ft_strcmp(temp[0], "pl") && ft_arraylen(temp) == 4
 		&& create_plane(scene, temp))
 		return (ft_free_array(temp), 0);
-	else if (!ft_strncmp(temp[0], "cy", 2) && ft_arraylen(temp) == 6
+	else if (!ft_strcmp(temp[0], "cy") && ft_arraylen(temp) == 6
 		&& create_cylinder(scene, temp))
 		return (ft_free_array(temp), 0);
 	else

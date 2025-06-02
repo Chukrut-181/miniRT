@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 16:19:00 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/28 11:58:06 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/06/02 16:19:32 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,23 @@ char	*get_one_line(int fd)
 int	parse_line(t_scene *scene, char *line)
 {
 	char	**temp;
+	int		len;
 
 	temp = ft_split(line, ' ');
-	if (!ft_strncmp(temp[0], "A", 1) && create_ambient(scene->world, temp))
+	len = ft_strlen(temp[0]);
+	if (!ft_strcmp(temp[0], "A") && create_ambient(scene->world, temp))
 		return (ft_free_array(temp), 0);
-	else if (!ft_strncmp(temp[0], "C", 1) && create_camera(scene, temp))
+	else if (!ft_strcmp(temp[0], "C") && create_camera(scene, temp))
 		return (ft_free_array(temp), 0);
-	else if (!ft_strncmp(temp[0], "L", 1) && create_light(scene->world, temp))
+	else if (!ft_strcmp(temp[0], "L") && create_light(scene->world, temp))
 		return (ft_free_array(temp), 0);
-	else if (!ft_strncmp(temp[0], "sp", 2) && create_sphere(scene, temp))
+	else if (!ft_strcmp(temp[0], "sp") && create_sphere(scene, temp))
 		return (ft_free_array(temp), 0);
-	else if (!ft_strncmp(temp[0], "pl", 2) && create_plane(scene, temp))
+	else if (!ft_strcmp(temp[0], "pl") && create_plane(scene, temp))
 		return (ft_free_array(temp), 0);
-	else if (!ft_strncmp(temp[0], "cy", 2) && create_cylinder(scene, temp))
+	else if (!ft_strcmp(temp[0], "cy") && create_cylinder(scene, temp))
 		return (ft_free_array(temp), 0);
-	else if (!ft_strncmp(temp[0], "cu", 2) && create_cube(scene, temp))
+	else if (!ft_strcmp(temp[0], "cu") && create_cube(scene, temp))
 		return (ft_free_array(temp), 0);
 	else
 		return (ft_free_array(temp), 1);

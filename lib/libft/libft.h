@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:08:41 by igchurru          #+#    #+#             */
-/*   Updated: 2025/04/01 12:30:55 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/06/02 16:18:24 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+int		ft_strcmp(const char *s1, const char *s2);
 
 //	LIBFT BONUS FUNCTIONS
 typedef struct s_list

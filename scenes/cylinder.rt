@@ -2,8 +2,8 @@
 
 A   0.2    255,20,255
 L   -100,100,-100 1 255,255,255
-C   0,0,-100 2,0,0.45 60
+C   0,0,-100 0,0,0.45 60
 
 
 # identifier  xyz center   xyz axis vector   float diameter   float height       rbg color
-     cy       -15,-15,0           1,1,1           40                60         255,0,1
+     cytetere       -15,-15,0           1,1,1           40                60         255,0,1
