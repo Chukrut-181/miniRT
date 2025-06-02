@@ -5,6 +5,24 @@
 }
 
 {
+   suppress_all_conditional_in_intersect_sphere
+   Memcheck:Cond
+   fun:intersect_sphere
+}
+
+{
+   suppress_all_conditional_in_intersect_plane
+   Memcheck:Cond
+   fun:intersect_plane
+}
+
+{
+   suppress_all_conditional_in_intersect_cube
+   Memcheck:Cond
+   fun:intersect_cube
+}
+
+{
    suppress_all_conditional_in_find_hit
    Memcheck:Cond
    fun:ft_find_hit
