@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 12:18:17 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/28 11:56:38 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/06/02 16:06:53 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	apply_rgb(t_color *color, char *original)
 	{
 		aux = ft_atof(split[i]) / 255.0;
 		if (aux < 0 || 1 < aux)
-			return (free(split), false);
+			return (ft_free_array(split), false);
 		if (i == 0)
 			color->r = aux;
 		else if (i == 1)
@@ -35,7 +35,7 @@ bool	apply_rgb(t_color *color, char *original)
 			color->b = aux;
 		i++;
 	}
-	return (free(split), true);
+	return (ft_free_array(split), true);
 }
 
 bool	check_rgb(char *colorcode)
@@ -58,6 +58,8 @@ bool	check_rgb(char *colorcode)
 			else
 				j++;
 		}
+		if (ft_atof(split[i]) > 255 || ft_atof(split[i]) < 0)
+			return (ft_free_array(split), false);
 		i++;
 	}
 	ft_free_array(split);
@@ -75,11 +77,11 @@ bool	create_ambient(t_world *world, char **ambient)
 		return (false);
 	aux = ft_atof(ambient[1]);
 	if (aux < 0 || 1 < aux)
-		return (free(world->ambient), false);
+		return (false);
 	world->ambient->ratio = aux;
 	if (!check_rgb(ambient[2]))
-		return (free(world->ambient), false);
+		return (false);
 	if (!apply_rgb(&world->ambient->a_color, ambient[2]))
-		return (free(world->ambient), false);
+		return (false);
 	return (true);
 }

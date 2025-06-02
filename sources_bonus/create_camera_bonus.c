@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 13:51:00 by igchurru          #+#    #+#             */
-/*   Updated: 2025/06/02 15:31:17 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/06/02 16:05:03 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,14 +83,14 @@ static bool	check_cam_vector(char *vector)
 	aux = ft_split(vector, ',');
 	temp = ft_atof(aux[0]);
 	if (temp < -1 || temp > 1)
-		return (false);
+		return (ft_free_array(aux), false);
 	temp = ft_atof(aux[1]);
 	if (temp < -1 || temp > 1)
-		return (false);
+		return (ft_free_array(aux), false);
 	temp = ft_atof(aux[2]);
 	if (temp < -1 || temp > 1)
-		return (false);
-	return (true);
+		return (ft_free_array(aux), false);
+	return (ft_free_array(aux), true);
 }
 
 bool	create_camera(t_scene *scene, char **cam_data)

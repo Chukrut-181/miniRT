@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 18:08:55 by eandres           #+#    #+#             */
-/*   Updated: 2025/06/02 10:50:06 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/06/02 16:01:35 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 
 # define EPSILON 0.00001
 
-# define HEIGHT 1200
-# define WIDTH 1800
+# define HEIGHT 200
+# define WIDTH 300
 
 # ifndef M_PI
 #  define M_PI 3.1415926535897932
