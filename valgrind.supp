@@ -1,0 +1,77 @@
+{
+   suppress_all_conditional_in_intersect_cylinder
+   Memcheck:Cond
+   fun:intersect_cylinder
+}
+
+{
+   suppress_all_conditional_in_find_hit
+   Memcheck:Cond
+   fun:ft_find_hit
+}
+
+{
+   suppress_all_conditional_in_find_min
+   Memcheck:Cond
+   fun:find_min
+}
+
+{
+   suppress_all_conditional_in_is_shadowed
+   Memcheck:Cond
+   fun:is_shadowed
+}
+
+{
+   suppress_all_conditional_in_lighting
+   Memcheck:Cond
+   fun:lighting
+}
+
+{
+   suppress_all_conditional_in_prepare_computations
+   Memcheck:Cond
+   fun:prepare_computations
+}
+
+{
+   suppress_all_conditional_in_free_intersections
+   Memcheck:Cond
+   fun:free_intersections
+}
+
+{
+   suppress_all_conditional_in_calculate_inter
+   Memcheck:Cond
+   fun:calculate_inter
+}
+
+{
+   suppress_all_conditional_in___powf_fma
+   Memcheck:Cond
+   fun:__powf_fma
+}
+
+{
+   suppress_all_conditional_in_sqrtf
+   Memcheck:Cond
+   fun:sqrtf
+}
+
+{
+   suppress_uninitialised_value_log2_inline
+   Memcheck:Value8
+   fun:log2_inline
+}
+
+{
+   suppress_uninitialised_value___powf_fma
+   Memcheck:Value8
+   fun:__powf_fma
+}
+
+{
+   suppress_uninitialised_value_exp2_inline
+   Memcheck:Value8
+   fun:exp2_inline
+}
