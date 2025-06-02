@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 13:51:00 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/28 11:56:45 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/06/02 15:08:13 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ bool	create_camera(t_scene *scene, char **cam_data)
 	if (scene->camera != NULL)
 		ft_error_exit(scene, "Error\nCamera defined twice", 1);
 	scene->camera = malloc(sizeof(t_camera));
-	if (!scene->camera || ft_arraylen(cam_data) != 4)
+	if (!scene->camera || ft_atof(cam_data[3]) < 0
+		|| 180 < ft_atof(cam_data[3]))
 		return (false);
 	if (!check_coords(cam_data[1]) || !check_coords(cam_data[2]))
 		return (free(scene->camera), false);
@@ -94,9 +95,8 @@ bool	create_camera(t_scene *scene, char **cam_data)
 	scene->camera->origin = origin;
 	ft_free_array(coords);
 	coords = ft_split(cam_data[2], ',');
-	direction = create_vector(ft_atof(coords[0]),
-			ft_atof(coords[1]), ft_atof(coords[2]));
-	direction = normalize(direction);
+	direction = normalize(create_vector(ft_atof(coords[0]),
+				ft_atof(coords[1]), ft_atof(coords[2])));
 	ft_free_array(coords);
 	scene->camera->transform = view_transform(origin, direction);
 	camera_guie(scene, cam_data[3]);
