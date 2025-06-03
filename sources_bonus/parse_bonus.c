@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 16:19:00 by igchurru          #+#    #+#             */
-/*   Updated: 2025/06/02 16:19:32 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/06/03 10:47:42 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	parse_line(t_scene *scene, char *line)
 		return (ft_free_array(temp), 1);
 }
 
-static void	ft_open_scene(char *argv1, int *fd)
+static void	ft_open_scene(char *argv1, int *fd, t_scene *scene)
 {
 	char	*aux;
 
@@ -74,7 +74,7 @@ static void	ft_open_scene(char *argv1, int *fd)
 	if (*fd <= 0)
 	{
 		free(aux);
-		ft_error_exit(NULL, "Error\nCould not open scene", 1);
+		ft_error_exit(scene, "Error\nCould not open scene", 1);
 	}
 	free(aux);
 }
@@ -85,7 +85,7 @@ int	get_scene(t_scene *scene, char *argv1)
 	char	*line;
 
 	fd = 0;
-	ft_open_scene(argv1, &fd);
+	ft_open_scene(argv1, &fd, scene);
 	line = get_one_line(fd);
 	while (line && ft_strlen(line) > 0)
 	{
