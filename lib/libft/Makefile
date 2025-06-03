@@ -1,5 +1,6 @@
 # The name of the library we are going to create.
 NAME = libft.a
+NAME_BONUS = libft_bonus.a
 
 # The compiler to use, here it's the C compiler.
 CC = cc
@@ -52,6 +53,10 @@ $(NAME) : $(OBJS)
 	@ar crs $(NAME) $(OBJS)
 	@echo "$(GREEN)-> Libft: libft.a compilation OK$(RESET)"
 
+$(NAME_BONUS) : $(OBJS) $(BONUS_OBJS)
+	@ar crs $(NAME_BONUS) $(OBJS) $(BONUS_OBJS)
+	@echo "$(GREEN)-> Libft: libft_bonus.a compilation OK$(RESET)"
+
 # Rule to compile a source file into an object file.
 # %.o will match any object file, %.c will match the corresponding source file.
 # $< represents the first dependency (the source file).
@@ -86,9 +91,7 @@ re: fclean all
 # Rule to compile the library with the bonus source files.
 # It depends on both the regular object files and the bonus object files.
 # `ar crs` will create the final library including the bonus functions.
-bonus: $(OBJS) $(BONUS_OBJS)
-	@ar crs $(NAME) $(OBJS) $(BONUS_OBJS)
-	@echo "$(GREEN)-> Libft: libft.a with bonuses compilation OK$(RESET)"
+bonus: $(NAME_BONUS)
 
 # Declares targets that are not actual files.
 # This prevents Make from confusing these names with file names.

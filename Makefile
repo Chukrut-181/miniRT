@@ -6,7 +6,7 @@
 #    By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/19 10:29:45 by igchurru          #+#    #+#              #
-#    Updated: 2025/06/02 15:10:56 by igchurru         ###   ########.fr        #
+#    Updated: 2025/06/03 10:39:27 by igchurru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,7 @@ BONUS_SRCS = sources_bonus/color_operations_bonus.c \
 
 BONUS_OBJS = $(patsubst $(BONUS_SRCS)/%.c, $(BONUS_OBJ_DIR)/%.o, $(BONUS_SRCS))
 
-LIBS = lib/minilibx/libmlx.a lib/libft/libft.a
+LIBS = lib/minilibx/libmlx.a lib/libft/libft_bonus.a
 
 GREEN = \033[0;32m
 RED = \033[0;31m
@@ -92,11 +92,11 @@ all: libft mlx42 $(NAME)
 bonus: libft mlx42 $(BONUS_NAME)
 
 $(NAME): $(OBJS) $(LIBS)
-	@$(CC) $(CFLAGS) $(MLX42_FLAGS) -lm $(OBJS) $(LIBS) -lX11 -lXext -o $(NAME)
+	$(CC) $(CFLAGS) $(MLX42_FLAGS) -lm $(OBJS) $(LIBS) -lX11 -lXext -o $(NAME)
 	@echo "$(GREEN)-> MiniRT: miniRT compilation OK$(RESET)"
 
 $(BONUS_NAME): $(BONUS_OBJS) $(LIBS)
-	@$(CC) $(CFLAGS) $(MLX42_FLAGS) -lm $(BONUS_OBJS) $(LIBS) -lX11 -lXext -o $(BONUS_NAME)
+	$(CC) $(CFLAGS) $(MLX42_FLAGS) -lm $(BONUS_OBJS) $(LIBS) -lX11 -lXext -o $(BONUS_NAME)
 	@echo "$(GREEN)-> MiniRT Bonus: miniRT_bonus compilation OK$(RESET)"
 
 $(OBJ_DIR):
