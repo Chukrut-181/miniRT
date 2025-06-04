@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 17:13:52 by igchurru          #+#    #+#             */
-/*   Updated: 2025/05/28 12:41:28 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/06/04 14:15:54 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	intersect_slab(float src, float dir, float *tmin, float *tmax)
 
 	tnumerator_min = -1.0f - src;
 	tnumerator_max = 1.0f - src;
-	if (fabsf(dir) >= EPSILON)
+	if (fabsf(dir) >= EPSILON / 10)
 	{
 		*tmin = tnumerator_min / dir;
 		*tmax = tnumerator_max / dir;
@@ -65,10 +65,13 @@ bool	intersect_cube(t_shape *shape, t_list **inter, t_ray ray)
 	tmax = fminf(fminf(xt[1], yt[1]), zt[1]);
 	if (tmin > tmax)
 		return (false);
-	if (tmax >= EPSILON)
+	if (tmin >= EPSILON * 10)
 	{
-		if (tmin >= EPSILON)
-			update_inter(inter, shape, tmin);
+		update_inter(inter, shape, tmin);
+		return (true);
+	}
+	else if (tmax >= EPSILON * 10)
+	{
 		update_inter(inter, shape, tmax);
 		return (true);
 	}
