@@ -6,7 +6,7 @@
 #    By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/19 10:29:45 by igchurru          #+#    #+#              #
-#    Updated: 2025/06/03 10:39:27 by igchurru         ###   ########.fr        #
+#    Updated: 2025/06/04 09:23:25 by igchurru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,28 +105,10 @@ $(OBJ_DIR):
 $(BONUS_OBJ_DIR):
 	@mkdir -p $(BONUS_OBJ_DIR)
 
-$(OBJ_DIR)/operations:
-	@mkdir -p $(OBJ_DIR)/operations
-
-$(BONUS_OBJ_DIR)/operations:
-	@mkdir -p $(BONUS_OBJ_DIR)/operations
-
-$(OBJ_DIR)/parse:
-	@mkdir -p $(OBJ_DIR)/parse
-
-$(BONUS_OBJ_DIR)/parse:
-	@mkdir -p $(BONUS_OBJ_DIR)/parse
-
-$(OBJ_DIR)/test:
-	@mkdir -p $(OBJ_DIR)/test
-
-$(BONUS_OBJ_DIR)/test:
-	@mkdir -p $(BONUS_OBJ_DIR)/test
-
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR) $(OBJ_DIR)/operations $(OBJ_DIR)/parse $(OBJ_DIR)/test
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(BONUS_OBJ_DIR)/%.o: $(BONUS_SRC_DIR)/%.c | $(BONUS_OBJ_DIR) $(BONUS_OBJ_DIR)/operations $(BONUS_OBJ_DIR)/parse $(BONUS_OBJ_DIR)/test
+$(BONUS_OBJ_DIR)/%.o: $(BONUS_SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
