@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:44:53 by igchurru          #+#    #+#             */
-/*   Updated: 2025/06/03 10:45:40 by igchurru         ###   ########.fr       */
+/*   Updated: 2025/06/04 09:14:22 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,9 @@ int	get_scene(t_scene *scene, char *argv1)
 		line = get_one_line(fd);
 	}
 	close(fd);
+	free(line);
 	if (!scene->world->ambient || !scene->camera
 		|| !scene->world->light || !scene->world->objects)
 		ft_error_exit(scene, "Error\nMissing mandatory elements", 1);
-	free(line);
 	return (0);
 }
